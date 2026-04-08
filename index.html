@@ -19,6 +19,14 @@ nav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(10,10,15,0.9
 .logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
 nav a{color:var(--text2);text-decoration:none;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;transition:color .2s}
 nav a:hover{color:var(--accent)}
+.nav-spacer{flex:1}
+
+/* LANG TOGGLE BUTTON */
+.lang-switch{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-shrink:0}
+.lang-switch button{background:transparent;border:none;color:var(--text2);padding:.35rem .75rem;font-size:.72rem;font-weight:800;cursor:pointer;letter-spacing:.08em;transition:all .2s}
+.lang-switch button:hover{color:var(--text)}
+.lang-switch button.active{background:var(--accent);color:#fff}
+.lang-switch .divider{width:1px;background:var(--border);height:20px}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
@@ -78,10 +86,6 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 footer{border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--text2);font-size:.8rem}
 
 /* ── BILINGUAL TOGGLE ── */
-.lang-toggle{margin-top:.6rem}
-.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
-.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
-.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
 .t-en{display:none!important}
 body.lang-en .t-es{display:none!important}
 body.lang-en .t-en{display:block!important}
@@ -94,188 +98,303 @@ body.lang-en .t-es-i{display:none!important}
 
 <nav>
   <span class="logo">🎓 AI Expert Mastery</span>
-  <a href="#modulos">Módulos</a>
-  <a href="#metodologia">Metodología</a>
-  <a href="curso-ai-recursos.html" style="color:var(--accent4)">⭐ Recursos</a>
-  <a href="curso-ai-m0.html">Empezar →</a>
+  <a href="#modulos"><span class="t-es-i">Módulos</span><span class="t-en-i" style="display:none">Modules</span></a>
+  <a href="#metodologia"><span class="t-es-i">Metodología</span><span class="t-en-i" style="display:none">Methodology</span></a>
+  <a href="curso-ai-recursos.html" style="color:var(--accent4)">⭐ <span class="t-es-i">Recursos</span><span class="t-en-i" style="display:none">Resources</span></a>
+  <a href="curso-ai-m0.html"><span class="t-es-i">Empezar →</span><span class="t-en-i" style="display:none">Start →</span></a>
+  <div class="nav-spacer"></div>
+  <div class="lang-switch">
+    <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+    <div class="divider"></div>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
 </nav>
 
 <div class="hero">
   <div class="hero-content">
-    <div class="badge">Curso Completo · Sergio AM · 2026</div>
-    <h1>Conviértete en Experto de IA<br>para RevOps y CRM</h1>
-    <p>Un programa de estudio real — con lecciones, ejercicios, quizzes y proyectos — para dominar IA, Agentic Tools y Vibecoding aplicado a tu carrera.</p>
-    <div class="stats">
-      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Módulos</div></div>
-      <div class="stat"><div class="stat-n">33</div><div class="stat-l">Lecciones</div></div>
-      <div class="stat"><div class="stat-n">33</div><div class="stat-l">Ejercicios</div></div>
-      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Proyectos</div></div>
-      <div class="stat"><div class="stat-n">13</div><div class="stat-l">Certif. Gratis</div></div>
+    <div class="badge">
+      <span class="t-es-i">Curso Completo · Sergio AM · 2026</span>
+      <span class="t-en-i" style="display:none">Full Course · Sergio AM · 2026</span>
     </div>
-    <a href="curso-ai-m0.html" class="btn" style="margin-right:1rem;font-size:1rem;padding:.9rem 2rem">🚀 Comenzar el Curso</a>
-    <a href="curso-ai-recursos.html" class="btn" style="margin-right:1rem;font-size:1rem;padding:.9rem 2rem;background:var(--accent2);color:#000">⭐ Recursos &amp; Setup</a>
-    <a href="#modulos" class="btn btn-outline" style="font-size:1rem;padding:.9rem 2rem">Ver Contenido</a>
+    <h1>
+      <span class="t-es-i">Conviértete en Experto de IA<br>para RevOps y CRM</span>
+      <span class="t-en-i" style="display:none">Become an AI Expert<br>for RevOps and CRM</span>
+    </h1>
+    <p>
+      <span class="t-es-i">Un programa de estudio real — con lecciones, ejercicios, quizzes y proyectos — para dominar IA, Agentic Tools y Vibecoding aplicado a tu carrera.</span>
+      <span class="t-en-i" style="display:none">A real study program — with lessons, exercises, quizzes and projects — to master AI, Agentic Tools and Vibecoding applied to your career.</span>
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l"><span class="t-es-i">Módulos</span><span class="t-en-i" style="display:none">Modules</span></div></div>
+      <div class="stat"><div class="stat-n">33</div><div class="stat-l"><span class="t-es-i">Lecciones</span><span class="t-en-i" style="display:none">Lessons</span></div></div>
+      <div class="stat"><div class="stat-n">33</div><div class="stat-l"><span class="t-es-i">Ejercicios</span><span class="t-en-i" style="display:none">Exercises</span></div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l"><span class="t-es-i">Proyectos</span><span class="t-en-i" style="display:none">Projects</span></div></div>
+      <div class="stat"><div class="stat-n">13</div><div class="stat-l"><span class="t-es-i">Certif. Gratis</span><span class="t-en-i" style="display:none">Free Certs</span></div></div>
+    </div>
+    <a href="curso-ai-m0.html" class="btn" style="margin-right:1rem;font-size:1rem;padding:.9rem 2rem">
+      🚀 <span class="t-es-i">Comenzar el Curso</span><span class="t-en-i" style="display:none">Start the Course</span>
+    </a>
+    <a href="curso-ai-recursos.html" class="btn" style="margin-right:1rem;font-size:1rem;padding:.9rem 2rem;background:var(--accent2);color:#000">
+      ⭐ <span class="t-es-i">Recursos &amp; Setup</span><span class="t-en-i" style="display:none">Resources &amp; Setup</span>
+    </a>
+    <a href="#modulos" class="btn btn-outline" style="font-size:1rem;padding:.9rem 2rem">
+      <span class="t-es-i">Ver Contenido</span><span class="t-en-i" style="display:none">View Content</span>
+    </a>
   </div>
 </div>
 
 <hr class="div">
 
 <section class="section" id="metodologia">
-  <div class="section-label">Metodología</div>
-  <h2>Cómo funciona este curso</h2>
-  <p class="section-sub">Diseñado para aprender haciendo, a tu ritmo, con aplicación directa a tu trabajo actual de CRM y RevOps.</p>
+  <div class="section-label"><span class="t-es-i">Metodología</span><span class="t-en-i" style="display:none">Methodology</span></div>
+  <h2><span class="t-es-i">Cómo funciona este curso</span><span class="t-en-i" style="display:none">How this course works</span></h2>
+  <p class="section-sub">
+    <span class="t-es-i">Diseñado para aprender haciendo, a tu ritmo, con aplicación directa a tu trabajo actual de CRM y RevOps.</span>
+    <span class="t-en-i" style="display:none">Designed to learn by doing, at your own pace, with direct application to your current CRM and RevOps work.</span>
+  </p>
   <div class="how-grid">
-    <div class="how-card"><div class="how-num">1</div><h3>Lee y Entiende</h3><p>Cada lección tiene contenido real — explicaciones, analogías y frameworks. No solo bullets, sino comprensión profunda.</p></div>
-    <div class="how-card"><div class="how-num">2</div><h3>Ejercicio Práctico</h3><p>Cada lección tiene un ejercicio que haces con tus herramientas actuales (Claude, ChatGPT, etc.) aplicado a tu contexto.</p></div>
-    <div class="how-card"><div class="how-num">3</div><h3>Quiz de Comprensión</h3><p>Evalúa si realmente entendiste. No memorización — comprensión aplicada. Puedes retomar las veces que quieras.</p></div>
-    <div class="how-card"><div class="how-num">4</div><h3>Proyecto de Módulo</h3><p>Al final de cada módulo, un proyecto real que puedes mostrar como portafolio y usar en tu trabajo o consultoría.</p></div>
+    <div class="how-card">
+      <div class="how-num">1</div>
+      <h3><span class="t-es-i">Lee y Entiende</span><span class="t-en-i" style="display:none">Read &amp; Understand</span></h3>
+      <p><span class="t-es-i">Cada lección tiene contenido real — explicaciones, analogías y frameworks. No solo bullets, sino comprensión profunda.</span><span class="t-en-i" style="display:none">Each lesson has real content — explanations, analogies and frameworks. Not just bullets, but deep understanding.</span></p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">2</div>
+      <h3><span class="t-es-i">Ejercicio Práctico</span><span class="t-en-i" style="display:none">Hands-on Exercise</span></h3>
+      <p><span class="t-es-i">Cada lección tiene un ejercicio que haces con tus herramientas actuales (Claude, ChatGPT, etc.) aplicado a tu contexto.</span><span class="t-en-i" style="display:none">Each lesson has an exercise you do with your current tools (Claude, ChatGPT, etc.) applied to your context.</span></p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">3</div>
+      <h3><span class="t-es-i">Quiz de Comprensión</span><span class="t-en-i" style="display:none">Comprehension Quiz</span></h3>
+      <p><span class="t-es-i">Evalúa si realmente entendiste. No memorización — comprensión aplicada. Puedes retomar las veces que quieras.</span><span class="t-en-i" style="display:none">Test whether you truly understood. Not memorization — applied comprehension. Retake as many times as you want.</span></p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">4</div>
+      <h3><span class="t-es-i">Proyecto de Módulo</span><span class="t-en-i" style="display:none">Module Project</span></h3>
+      <p><span class="t-es-i">Al final de cada módulo, un proyecto real que puedes mostrar como portafolio y usar en tu trabajo o consultoría.</span><span class="t-en-i" style="display:none">At the end of each module, a real project you can show as portfolio and use in your work or consulting.</span></p>
+    </div>
   </div>
 </section>
 
 <hr class="div">
 
 <section class="section" id="modulos">
-  <div class="section-label">Contenido del Curso</div>
-  <h2>6 Módulos · 33 Lecciones</h2>
-  <p class="section-sub">Progresión desde los fundamentos hasta convertirte en experto y monetizar tu conocimiento.</p>
+  <div class="section-label"><span class="t-es-i">Contenido del Curso</span><span class="t-en-i" style="display:none">Course Content</span></div>
+  <h2><span class="t-es-i">6 Módulos · 33 Lecciones</span><span class="t-en-i" style="display:none">6 Modules · 33 Lessons</span></h2>
+  <p class="section-sub">
+    <span class="t-es-i">Progresión desde los fundamentos hasta convertirte en experto y monetizar tu conocimiento.</span>
+    <span class="t-en-i" style="display:none">Progression from the fundamentals to becoming an expert and monetizing your knowledge.</span>
+  </p>
 
   <div class="modules-grid">
 
     <a href="curso-ai-m0.html" class="module-card m0">
-      <div class="module-num n0">Módulo 0 · 4 Lecciones · ~3 hrs</div>
-      <div class="module-title">Fundamentos de IA Moderna</div>
-      <div class="module-desc">Entiende cómo funciona realmente la IA antes de usarla. La base que el 90% de la gente se salta.</div>
+      <div class="module-num n0">
+        <span class="t-es-i">Módulo 0 · 4 Lecciones · ~3 hrs</span>
+        <span class="t-en-i" style="display:none">Module 0 · 4 Lessons · ~3 hrs</span>
+      </div>
+      <div class="module-title">
+        <span class="t-es-i">Fundamentos de IA Moderna</span>
+        <span class="t-en-i" style="display:none">Modern AI Fundamentals</span>
+      </div>
+      <div class="module-desc">
+        <span class="t-es-i">Entiende cómo funciona realmente la IA antes de usarla. La base que el 90% de la gente se salta.</span>
+        <span class="t-en-i" style="display:none">Understand how AI really works before using it. The foundation that 90% of people skip.</span>
+      </div>
       <div class="module-meta">
-        <span class="meta-tag">⏱ 3 horas</span>
-        <span class="meta-tag">🟢 Nivel: Base</span>
-        <span class="meta-tag">📍 Empieza aquí</span>
+        <span class="meta-tag">⏱ 3 hrs</span>
+        <span class="meta-tag">🟢 <span class="t-es-i">Nivel: Base</span><span class="t-en-i" style="display:none">Level: Beginner</span></span>
+        <span class="meta-tag">📍 <span class="t-es-i">Empieza aquí</span><span class="t-en-i" style="display:none">Start here</span></span>
       </div>
       <ul class="lessons-list">
-        <li>Cómo funcionan los LLMs realmente</li>
-        <li>El mapa completo del ecosistema IA 2026</li>
-        <li>Terminología esencial para profesionales</li>
-        <li>Tu setup profesional de IA</li>
+        <li><span class="t-es-i">Cómo funcionan los LLMs realmente</span><span class="t-en-i" style="display:none">How LLMs really work</span></li>
+        <li><span class="t-es-i">El mapa completo del ecosistema IA 2026</span><span class="t-en-i" style="display:none">The complete AI ecosystem map 2026</span></li>
+        <li><span class="t-es-i">Terminología esencial para profesionales</span><span class="t-en-i" style="display:none">Essential terminology for professionals</span></li>
+        <li><span class="t-es-i">Tu setup profesional de IA</span><span class="t-en-i" style="display:none">Your professional AI setup</span></li>
       </ul>
-      <span class="btn" style="margin-top:1rem">Empezar Módulo →</span>
+      <span class="btn" style="margin-top:1rem">
+        <span class="t-es-i">Empezar Módulo →</span>
+        <span class="t-en-i" style="display:none">Start Module →</span>
+      </span>
     </a>
 
     <a href="curso-ai-m1.html" class="module-card m1">
-      <div class="module-num n1">Módulo 1 · 8 Lecciones · ~8 hrs</div>
+      <div class="module-num n1">
+        <span class="t-es-i">Módulo 1 · 8 Lecciones · ~8 hrs</span>
+        <span class="t-en-i" style="display:none">Module 1 · 8 Lessons · ~8 hrs</span>
+      </div>
       <div class="module-title">Prompt Engineering Mastery</div>
-      <div class="module-desc">La habilidad más valiosa de 2026. De prompts casuales a prompts de nivel experto con frameworks probados.</div>
+      <div class="module-desc">
+        <span class="t-es-i">La habilidad más valiosa de 2026. De prompts casuales a prompts de nivel experto con frameworks probados.</span>
+        <span class="t-en-i" style="display:none">The most valuable skill of 2026. From casual prompts to expert-level prompts with proven frameworks.</span>
+      </div>
       <div class="module-meta">
-        <span class="meta-tag">⏱ 8 horas</span>
-        <span class="meta-tag">🟡 Nivel: Intermedio</span>
-        <span class="meta-tag">🔑 Habilidad Core</span>
+        <span class="meta-tag">⏱ 8 hrs</span>
+        <span class="meta-tag">🟡 <span class="t-es-i">Nivel: Intermedio</span><span class="t-en-i" style="display:none">Level: Intermediate</span></span>
+        <span class="meta-tag">🔑 <span class="t-es-i">Habilidad Core</span><span class="t-en-i" style="display:none">Core Skill</span></span>
       </div>
       <ul class="lessons-list">
-        <li>Por qué el prompting es una habilidad real</li>
-        <li>La anatomía del prompt perfecto (Framework CRAFT)</li>
-        <li>Zero-Shot, Few-Shot y sus variantes</li>
-        <li>Chain-of-Thought (CoT)</li>
-        <li>Role Prompting y System Prompts</li>
-        <li>Meta-Prompting y refinamiento iterativo</li>
-        <li>Prompt Chaining para tareas complejas</li>
-        <li>Tu Prompt Library profesional</li>
+        <li><span class="t-es-i">Por qué el prompting es una habilidad real</span><span class="t-en-i" style="display:none">Why prompting is a real skill</span></li>
+        <li><span class="t-es-i">La anatomía del prompt perfecto (Framework CRAFT)</span><span class="t-en-i" style="display:none">The anatomy of the perfect prompt (CRAFT Framework)</span></li>
+        <li><span class="t-es-i">Zero-Shot, Few-Shot y sus variantes</span><span class="t-en-i" style="display:none">Zero-Shot, Few-Shot and variations</span></li>
+        <li><span class="t-es-i">Chain-of-Thought (CoT)</span><span class="t-en-i" style="display:none">Chain-of-Thought (CoT)</span></li>
+        <li><span class="t-es-i">Role Prompting y System Prompts</span><span class="t-en-i" style="display:none">Role Prompting and System Prompts</span></li>
+        <li><span class="t-es-i">Meta-Prompting y refinamiento iterativo</span><span class="t-en-i" style="display:none">Meta-Prompting and iterative refinement</span></li>
+        <li><span class="t-es-i">Prompt Chaining para tareas complejas</span><span class="t-en-i" style="display:none">Prompt Chaining for complex tasks</span></li>
+        <li><span class="t-es-i">Tu Prompt Library profesional</span><span class="t-en-i" style="display:none">Your professional Prompt Library</span></li>
       </ul>
-      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+      <span class="btn btn-outline" style="margin-top:1rem">
+        <span class="t-es-i">Ir al Módulo →</span><span class="t-en-i" style="display:none">Go to Module →</span>
+      </span>
     </a>
 
     <a href="curso-ai-m2.html" class="module-card m2">
-      <div class="module-num n2">Módulo 2 · 6 Lecciones · ~7 hrs</div>
-      <div class="module-title">AI Agents &amp; Sistemas Agénticos</div>
-      <div class="module-desc">Construye sistemas que trabajan solos. La frontera donde los expertos de IA crean valor real y diferenciado.</div>
+      <div class="module-num n2">
+        <span class="t-es-i">Módulo 2 · 6 Lecciones · ~7 hrs</span>
+        <span class="t-en-i" style="display:none">Module 2 · 6 Lessons · ~7 hrs</span>
+      </div>
+      <div class="module-title">
+        <span class="t-es-i">AI Agents &amp; Sistemas Agénticos</span>
+        <span class="t-en-i" style="display:none">AI Agents &amp; Agentic Systems</span>
+      </div>
+      <div class="module-desc">
+        <span class="t-es-i">Construye sistemas que trabajan solos. La frontera donde los expertos de IA crean valor real y diferenciado.</span>
+        <span class="t-en-i" style="display:none">Build systems that work autonomously. The frontier where AI experts create real, differentiated value.</span>
+      </div>
       <div class="module-meta">
-        <span class="meta-tag">⏱ 7 horas</span>
-        <span class="meta-tag">🟠 Nivel: Avanzado</span>
-        <span class="meta-tag">🤖 Skill del Futuro</span>
+        <span class="meta-tag">⏱ 7 hrs</span>
+        <span class="meta-tag">🟠 <span class="t-es-i">Nivel: Avanzado</span><span class="t-en-i" style="display:none">Level: Advanced</span></span>
+        <span class="meta-tag">🤖 <span class="t-es-i">Skill del Futuro</span><span class="t-en-i" style="display:none">Future Skill</span></span>
       </div>
       <ul class="lessons-list">
-        <li>Qué es un agente de IA — anatomía completa</li>
-        <li>Patrones de arquitectura: ReAct, Plan-Execute</li>
-        <li>Herramientas: n8n, Make, Zapier AI</li>
-        <li>Memoria y RAG — tu base de conocimiento con IA</li>
-        <li>Diseño de agentes para procesos de negocio</li>
-        <li>Construye tu primer agente funcional</li>
+        <li><span class="t-es-i">Qué es un agente de IA — anatomía completa</span><span class="t-en-i" style="display:none">What is an AI agent — complete anatomy</span></li>
+        <li><span class="t-es-i">Patrones de arquitectura: ReAct, Plan-Execute</span><span class="t-en-i" style="display:none">Architecture patterns: ReAct, Plan-Execute</span></li>
+        <li><span class="t-es-i">Herramientas: n8n, Make, Zapier AI</span><span class="t-en-i" style="display:none">Tools: n8n, Make, Zapier AI</span></li>
+        <li><span class="t-es-i">Memoria y RAG — tu base de conocimiento con IA</span><span class="t-en-i" style="display:none">Memory and RAG — your AI knowledge base</span></li>
+        <li><span class="t-es-i">Diseño de agentes para procesos de negocio</span><span class="t-en-i" style="display:none">Agent design for business processes</span></li>
+        <li><span class="t-es-i">Construye tu primer agente funcional</span><span class="t-en-i" style="display:none">Build your first functional agent</span></li>
       </ul>
-      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+      <span class="btn btn-outline" style="margin-top:1rem">
+        <span class="t-es-i">Ir al Módulo →</span><span class="t-en-i" style="display:none">Go to Module →</span>
+      </span>
     </a>
 
     <a href="curso-ai-m3.html" class="module-card m3">
-      <div class="module-num n3">Módulo 3 · 5 Lecciones · ~6 hrs</div>
+      <div class="module-num n3">
+        <span class="t-es-i">Módulo 3 · 5 Lecciones · ~6 hrs</span>
+        <span class="t-en-i" style="display:none">Module 3 · 5 Lessons · ~6 hrs</span>
+      </div>
       <div class="module-title">Vibecoding</div>
-      <div class="module-desc">Construye productos reales sin ser programador. El superpoder de 2026 que democratiza la creación de software.</div>
+      <div class="module-desc">
+        <span class="t-es-i">Construye productos reales sin ser programador. El superpoder de 2026 que democratiza la creación de software.</span>
+        <span class="t-en-i" style="display:none">Build real products without being a programmer. The 2026 superpower that democratizes software creation.</span>
+      </div>
       <div class="module-meta">
-        <span class="meta-tag">⏱ 6 horas</span>
-        <span class="meta-tag">🔴 Nivel: Avanzado</span>
-        <span class="meta-tag">⚡ Crear Productos</span>
+        <span class="meta-tag">⏱ 6 hrs</span>
+        <span class="meta-tag">🔴 <span class="t-es-i">Nivel: Avanzado</span><span class="t-en-i" style="display:none">Level: Advanced</span></span>
+        <span class="meta-tag">⚡ <span class="t-es-i">Crear Productos</span><span class="t-en-i" style="display:none">Build Products</span></span>
       </div>
       <ul class="lessons-list">
-        <li>Qué es Vibecoding y por qué cambia todo</li>
-        <li>Las herramientas: Lovable, Bolt, Cursor, v0</li>
-        <li>El flujo completo: idea → producto live</li>
-        <li>Suficiente código para no perderte</li>
-        <li>Construye tu primera mini-app de RevOps</li>
+        <li><span class="t-es-i">Qué es Vibecoding y por qué cambia todo</span><span class="t-en-i" style="display:none">What is Vibecoding and why it changes everything</span></li>
+        <li><span class="t-es-i">Las herramientas: Lovable, Bolt, Cursor, v0</span><span class="t-en-i" style="display:none">The tools: Lovable, Bolt, Cursor, v0</span></li>
+        <li><span class="t-es-i">El flujo completo: idea → producto live</span><span class="t-en-i" style="display:none">The complete flow: idea → live product</span></li>
+        <li><span class="t-es-i">Suficiente código para no perderte</span><span class="t-en-i" style="display:none">Enough code to not get lost</span></li>
+        <li><span class="t-es-i">Construye tu primera mini-app de RevOps</span><span class="t-en-i" style="display:none">Build your first RevOps mini-app</span></li>
       </ul>
-      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+      <span class="btn btn-outline" style="margin-top:1rem">
+        <span class="t-es-i">Ir al Módulo →</span><span class="t-en-i" style="display:none">Go to Module →</span>
+      </span>
     </a>
 
     <a href="curso-ai-m4.html" class="module-card m4">
-      <div class="module-num n4">Módulo 4 · 6 Lecciones · ~7 hrs</div>
-      <div class="module-title">IA para CRM, RevOps &amp; Martech</div>
-      <div class="module-desc">Tu ventaja competitiva única. Expertise de dominio + IA = posición imbatible en el mercado.</div>
+      <div class="module-num n4">
+        <span class="t-es-i">Módulo 4 · 6 Lecciones · ~7 hrs</span>
+        <span class="t-en-i" style="display:none">Module 4 · 6 Lessons · ~7 hrs</span>
+      </div>
+      <div class="module-title">
+        <span class="t-es-i">IA para CRM, RevOps &amp; Martech</span>
+        <span class="t-en-i" style="display:none">AI for CRM, RevOps &amp; Martech</span>
+      </div>
+      <div class="module-desc">
+        <span class="t-es-i">Tu ventaja competitiva única. Expertise de dominio + IA = posición imbatible en el mercado.</span>
+        <span class="t-en-i" style="display:none">Your unique competitive advantage. Domain expertise + AI = unbeatable market position.</span>
+      </div>
       <div class="module-meta">
-        <span class="meta-tag">⏱ 7 horas</span>
-        <span class="meta-tag">🔵 Nivel: Experto</span>
-        <span class="meta-tag">💼 Tu Dominio</span>
+        <span class="meta-tag">⏱ 7 hrs</span>
+        <span class="meta-tag">🔵 <span class="t-es-i">Nivel: Experto</span><span class="t-en-i" style="display:none">Level: Expert</span></span>
+        <span class="meta-tag">💼 <span class="t-es-i">Tu Dominio</span><span class="t-en-i" style="display:none">Your Domain</span></span>
       </div>
       <ul class="lessons-list">
-        <li>El nuevo stack de RevOps con IA</li>
-        <li>CRM Intelligence: scoring, enriquecimiento, predicción</li>
-        <li>Marketing Automation con LLMs</li>
-        <li>ABM con IA a escala</li>
-        <li>Martech Audit y diseño de stack</li>
-        <li>Tu AI RevOps Playbook</li>
+        <li><span class="t-es-i">El nuevo stack de RevOps con IA</span><span class="t-en-i" style="display:none">The new RevOps stack with AI</span></li>
+        <li><span class="t-es-i">CRM Intelligence: scoring, enriquecimiento, predicción</span><span class="t-en-i" style="display:none">CRM Intelligence: scoring, enrichment, prediction</span></li>
+        <li><span class="t-es-i">Marketing Automation con LLMs</span><span class="t-en-i" style="display:none">Marketing Automation with LLMs</span></li>
+        <li><span class="t-es-i">ABM con IA a escala</span><span class="t-en-i" style="display:none">ABM with AI at scale</span></li>
+        <li><span class="t-es-i">Martech Audit y diseño de stack</span><span class="t-en-i" style="display:none">Martech Audit and stack design</span></li>
+        <li><span class="t-es-i">Tu AI RevOps Playbook</span><span class="t-en-i" style="display:none">Your AI RevOps Playbook</span></li>
       </ul>
-      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+      <span class="btn btn-outline" style="margin-top:1rem">
+        <span class="t-es-i">Ir al Módulo →</span><span class="t-en-i" style="display:none">Go to Module →</span>
+      </span>
     </a>
 
     <a href="curso-ai-m5.html" class="module-card m5">
-      <div class="module-num n5">Módulo 5 · 4 Lecciones · ~5 hrs</div>
-      <div class="module-title">Experticia y Monetización</div>
-      <div class="module-desc">Convierte tu conocimiento en autoridad, clientes y negocio. De aprendiz a experto reconocido y bien pagado.</div>
+      <div class="module-num n5">
+        <span class="t-es-i">Módulo 5 · 4 Lecciones · ~5 hrs</span>
+        <span class="t-en-i" style="display:none">Module 5 · 4 Lessons · ~5 hrs</span>
+      </div>
+      <div class="module-title">
+        <span class="t-es-i">Experticia y Monetización</span>
+        <span class="t-en-i" style="display:none">Expertise &amp; Monetization</span>
+      </div>
+      <div class="module-desc">
+        <span class="t-es-i">Convierte tu conocimiento en autoridad, clientes y negocio. De aprendiz a experto reconocido y bien pagado.</span>
+        <span class="t-en-i" style="display:none">Turn your knowledge into authority, clients and business. From learner to recognized, well-paid expert.</span>
+      </div>
       <div class="module-meta">
-        <span class="meta-tag">⏱ 5 horas</span>
-        <span class="meta-tag">🟣 Nivel: Estratégico</span>
+        <span class="meta-tag">⏱ 5 hrs</span>
+        <span class="meta-tag">🟣 <span class="t-es-i">Nivel: Estratégico</span><span class="t-en-i" style="display:none">Level: Strategic</span></span>
         <span class="meta-tag">💰 Top 1%</span>
       </div>
       <ul class="lessons-list">
-        <li>Cómo construir autoridad real en IA</li>
-        <li>Diseña tu oferta de consultoría</li>
-        <li>Personal Brand: IA + RevOps Expert</li>
-        <li>Escala: producto, curso, agencia</li>
+        <li><span class="t-es-i">Cómo construir autoridad real en IA</span><span class="t-en-i" style="display:none">How to build real authority in AI</span></li>
+        <li><span class="t-es-i">Diseña tu oferta de consultoría</span><span class="t-en-i" style="display:none">Design your consulting offer</span></li>
+        <li><span class="t-es-i">Personal Brand: IA + RevOps Expert</span><span class="t-en-i" style="display:none">Personal Brand: AI + RevOps Expert</span></li>
+        <li><span class="t-es-i">Escala: producto, curso, agencia</span><span class="t-en-i" style="display:none">Scale: product, course, agency</span></li>
       </ul>
-      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+      <span class="btn btn-outline" style="margin-top:1rem">
+        <span class="t-es-i">Ir al Módulo →</span><span class="t-en-i" style="display:none">Go to Module →</span>
+      </span>
     </a>
 
     <a href="curso-ai-recursos.html" class="module-card" style="border-color:rgba(255,210,0,.3);background:linear-gradient(135deg,rgba(247,151,30,.07),rgba(255,210,0,.03))">
-      <div class="module-num" style="color:#ffd200">⭐ BONUS · Recursos Esenciales · Referencia Permanente</div>
-      <div class="module-title">Setup, Recursos &amp; Casos de Uso</div>
-      <div class="module-desc">Tu hub de referencia: AI Station óptimo, guías de todos los modelos (Claude, GPT, Gemini, Llama, Gemma), IA local con Ollama, 13 certificaciones gratuitas, recursos de Ruben Hassid y casos de uso por profesión.</div>
+      <div class="module-num" style="color:#ffd200">
+        ⭐ <span class="t-es-i">BONUS · Recursos Esenciales · Referencia Permanente</span>
+        <span class="t-en-i" style="display:none">BONUS · Essential Resources · Permanent Reference</span>
+      </div>
+      <div class="module-title">
+        <span class="t-es-i">Setup, Recursos &amp; Casos de Uso</span>
+        <span class="t-en-i" style="display:none">Setup, Resources &amp; Use Cases</span>
+      </div>
+      <div class="module-desc">
+        <span class="t-es-i">Tu hub de referencia: AI Station óptimo, guías de todos los modelos (Claude, GPT, Gemini, Llama, Gemma), IA local con Ollama, 13 certificaciones gratuitas, recursos de Ruben Hassid y casos de uso por profesión.</span>
+        <span class="t-en-i" style="display:none">Your reference hub: optimal AI Station, guides for all models (Claude, GPT, Gemini, Llama, Gemma), local AI with Ollama, 13 free certifications, Ruben Hassid resources and use cases by profession.</span>
+      </div>
       <div class="module-meta">
         <span class="meta-tag">💻 AI Station Setup</span>
-        <span class="meta-tag">🏆 13 Certificaciones</span>
-        <span class="meta-tag">👥 20+ Profesiones</span>
+        <span class="meta-tag">🏆 13 <span class="t-es-i">Certificaciones</span><span class="t-en-i" style="display:none">Certifications</span></span>
+        <span class="meta-tag">👥 20+ <span class="t-es-i">Profesiones</span><span class="t-en-i" style="display:none">Professions</span></span>
       </div>
       <ul class="lessons-list">
-        <li>Setup óptimo: Mac Mini M4 Pro y alternativas (todos los tiers)</li>
-        <li>Guía completa de todos los modelos: Claude, GPT, Gemini, Llama, Gemma, DeepSeek</li>
-        <li>IA Local: Ollama + Open WebUI + VPS — instalación y setup detallado</li>
-        <li>13 certificaciones gratuitas de Anthropic + Google + HubSpot</li>
-        <li>Casos de uso específicos para 20+ profesiones</li>
-        <li>Recursos de Ruben Hassid + Lo último de Abril 2026</li>
+        <li><span class="t-es-i">Setup óptimo: Mac Mini M4 Pro y alternativas (todos los tiers)</span><span class="t-en-i" style="display:none">Optimal setup: Mac Mini M4 Pro and alternatives (all tiers)</span></li>
+        <li><span class="t-es-i">Guía completa de todos los modelos: Claude, GPT, Gemini, Llama, Gemma, DeepSeek</span><span class="t-en-i" style="display:none">Complete guide to all models: Claude, GPT, Gemini, Llama, Gemma, DeepSeek</span></li>
+        <li><span class="t-es-i">IA Local: Ollama + Open WebUI + VPS — instalación y setup detallado</span><span class="t-en-i" style="display:none">Local AI: Ollama + Open WebUI + VPS — detailed installation and setup</span></li>
+        <li><span class="t-es-i">13 certificaciones gratuitas de Anthropic + Google + HubSpot</span><span class="t-en-i" style="display:none">13 free certifications from Anthropic + Google + HubSpot</span></li>
+        <li><span class="t-es-i">Casos de uso específicos para 20+ profesiones</span><span class="t-en-i" style="display:none">Specific use cases for 20+ professions</span></li>
+        <li><span class="t-es-i">Recursos de Ruben Hassid + Lo último de Abril 2026</span><span class="t-en-i" style="display:none">Ruben Hassid resources + Latest from April 2026</span></li>
       </ul>
-      <span class="btn" style="margin-top:1rem;background:var(--accent2);color:#000">Ver Recursos →</span>
+      <span class="btn" style="margin-top:1rem;background:var(--accent2);color:#000">
+        <span class="t-es-i">Ver Recursos →</span><span class="t-en-i" style="display:none">View Resources →</span>
+      </span>
     </a>
 
   </div>
@@ -285,20 +404,51 @@ body.lang-en .t-es-i{display:none!important}
 
 <section class="section">
   <div class="promise">
-    <div class="section-label">La Promesa</div>
-    <h2>Al completar este curso:</h2>
-    <div class="big">"Serás el experto de IA en CRM y RevOps más valioso de cualquier sala en la que entres."</div>
-    <p>No porque hayas memorizado conceptos — sino porque habrás construido cosas reales, resuelto problemas reales y desarrollado un framework mental que te permite adaptarte a cualquier nueva herramienta que salga.</p>
-    <p>El campo de IA cambia cada semana. Este curso no te da peces — te enseña a pescar en cualquier lago.</p>
+    <div class="section-label"><span class="t-es-i">La Promesa</span><span class="t-en-i" style="display:none">The Promise</span></div>
+    <h2><span class="t-es-i">Al completar este curso:</span><span class="t-en-i" style="display:none">After completing this course:</span></h2>
+    <div class="big">
+      <span class="t-es-i">"Serás el experto de IA en CRM y RevOps más valioso de cualquier sala en la que entres."</span>
+      <span class="t-en-i" style="display:none">"You will be the most valuable AI expert in CRM and RevOps in any room you walk into."</span>
+    </div>
+    <p>
+      <span class="t-es-i">No porque hayas memorizado conceptos — sino porque habrás construido cosas reales, resuelto problemas reales y desarrollado un framework mental que te permite adaptarte a cualquier nueva herramienta que salga.</span>
+      <span class="t-en-i" style="display:none">Not because you memorized concepts — but because you'll have built real things, solved real problems and developed a mental framework that lets you adapt to any new tool that comes out.</span>
+    </p>
+    <p>
+      <span class="t-es-i">El campo de IA cambia cada semana. Este curso no te da peces — te enseña a pescar en cualquier lago.</span>
+      <span class="t-en-i" style="display:none">The AI field changes every week. This course doesn't give you fish — it teaches you to fish in any lake.</span>
+    </p>
     <br>
-    <a href="curso-ai-m0.html" class="btn" style="font-size:1rem;padding:.9rem 2rem">🚀 Comenzar con el Módulo 0</a>
+    <a href="curso-ai-m0.html" class="btn" style="font-size:1rem;padding:.9rem 2rem">
+      🚀 <span class="t-es-i">Comenzar con el Módulo 0</span><span class="t-en-i" style="display:none">Start with Module 0</span>
+    </a>
   </div>
 </section>
 
 <footer>
   <p style="font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Expert Mastery · Sergio AM · 2026</p>
-  <p style="margin-top:.5rem">Estudio serio. Resultados reales. Top 1% global.</p>
+  <p style="margin-top:.5rem">
+    <span class="t-es-i">Estudio serio. Resultados reales. Top 1% global.</span>
+    <span class="t-en-i" style="display:none">Serious study. Real results. Global Top 1%.</span>
+  </p>
 </footer>
+
+<script>
+function setLang(lang) {
+  const isEn = lang === 'en';
+  document.body.classList.toggle('lang-en', isEn);
+  document.getElementById('btn-es').classList.toggle('active', !isEn);
+  document.getElementById('btn-en').classList.toggle('active', isEn);
+  // Handle inline-style spans
+  document.querySelectorAll('.t-en-i').forEach(el => el.style.display = isEn ? 'inline' : 'none');
+  document.querySelectorAll('.t-es-i').forEach(el => el.style.display = isEn ? 'none' : 'inline');
+  localStorage.setItem('lang', lang);
+}
+// Restore preference
+(function(){
+  try { const l = localStorage.getItem('lang'); if(l === 'en') setLang('en'); } catch(e){}
+})();
+</script>
 
 </body>
 </html>
