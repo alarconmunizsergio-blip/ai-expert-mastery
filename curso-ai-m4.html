@@ -941,12 +941,12 @@ Slack/email: notifica al AE con el brief completo</pre>
 
 <script>
 const lessons=[
-  {num:'4.1',title:'El nuevo stack de RevOps con IA'},
-  {num:'4.2',title:'CRM Intelligence: scoring, enriquecimiento y predicción'},
-  {num:'4.3',title:'Marketing Automation con LLMs'},
-  {num:'4.4',title:'ABM con IA a escala'},
-  {num:'4.5',title:'Martech Audit y diseño de stack con IA'},
-  {num:'4.6',title:'Tu AI RevOps Playbook'}
+  {num:'4.1',title:'El nuevo stack de RevOps con IA',titleEn:'The New RevOps Stack with AI'},
+  {num:'4.2',title:'CRM Intelligence: scoring, enriquecimiento y predicción',titleEn:'CRM Intelligence: Scoring, Enrichment & Prediction'},
+  {num:'4.3',title:'Marketing Automation con LLMs',titleEn:'Marketing Automation with LLMs'},
+  {num:'4.4',title:'ABM con IA a escala',titleEn:'ABM with AI at Scale'},
+  {num:'4.5',title:'Martech Audit y diseño de stack con IA',titleEn:'Martech Audit and Stack Design with AI'},
+  {num:'4.6',title:'Tu AI RevOps Playbook',titleEn:'Your AI RevOps Playbook'}
 ];
 let cur=0;
 const btns=document.querySelectorAll('.ll');
@@ -958,8 +958,9 @@ function show(i){
   btns.forEach(b=>b.classList.remove('active'));
   btns[i].classList.add('active');
   cur=i;
-  document.getElementById('tl').textContent='Módulo 4 · Lección '+lessons[i].num;
-  document.getElementById('tt').textContent=lessons[i].title;
+  const _en4=document.body.classList.contains('lang-en');
+  document.getElementById('tl').textContent=_en4?('Module 4 · Lesson '+lessons[i].num):('Módulo 4 · Lección '+lessons[i].num);
+  document.getElementById('tt').textContent=_en4?lessons[i].titleEn:lessons[i].title;
   completed.add(i);
   const p=Math.round(completed.size/lessons.length*100);
   document.getElementById('pp').textContent=p+'%';
@@ -1009,27 +1010,49 @@ function score(rid,total){
 }
 
 /* ── LANG TOGGLE ── */
-function toggleLang(){
-  const en=document.body.classList.toggle('lang-en');
+function applyLang(en){
+  document.body.classList.toggle('lang-en',en);
   const btn=document.getElementById('langBtn');
   if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
-  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
-  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  // All inline-style bilingual spans
+  document.querySelectorAll('.t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  document.querySelectorAll('.t-en-i').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.t-es-i').forEach(el=>el.style.display=en?'none':'inline');
+  // Refresh topbar title in current language
+  if(typeof showLesson==='function') showLesson(currentLesson);
+  else if(typeof show==='function') show(cur);
+  // Tab buttons (plain text)
+  document.querySelectorAll('.tab').forEach(t=>{
+    if(!t.children.length){
+      if(en) t.textContent=t.textContent.replace('📖 Lección','📖 Lesson').replace('✏️ Ejercicio','✏️ Exercise');
+      else t.textContent=t.textContent.replace('📖 Lesson','📖 Lección').replace('✏️ Exercise','✏️ Ejercicio');
+    }
+  });
+  // Topbar nav buttons (plain text)
+  document.querySelectorAll('.nb,.nav-btn').forEach(b=>{
+    if(!b.children.length){
+      if(en){b.textContent=b.textContent.replace('← Anterior','← Previous').replace('Siguiente →','Next →');}
+      else{b.textContent=b.textContent.replace('← Previous','← Anterior').replace('Next →','Siguiente →');}
+    }
+  });
+  // Progress label (plain text .sl or sidebar-progress)
+  const sl=document.querySelector('.sl,.progress-label');
+  if(sl&&!sl.querySelector('.t-es,.t-en')){
+    const ppId=(document.getElementById('pp')?'pp':'progress-pct');
+    const pct=(document.getElementById(ppId)||{textContent:'0%'}).textContent;
+    sl.innerHTML=(en?'Progress: ':'Progreso: ')+'<span id="'+ppId+'">'+pct+'</span>';
+  }
+}
+function toggleLang(){
+  const en=!document.body.classList.contains('lang-en');
+  applyLang(en);
   try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
 }
 (function(){
-  try{
-    if(localStorage.getItem('aiCourseL')==='en'){
-      document.documentElement.classList.add('lang-en');
-      document.addEventListener('DOMContentLoaded',function(){
-        document.body.classList.add('lang-en');
-        var b=document.getElementById('langBtn');
-        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
-        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
-        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
-      });
-    }
-  }catch(e){}
+  try{if(localStorage.getItem('aiCourseL')==='en'){
+    document.addEventListener('DOMContentLoaded',()=>applyLang(true));
+  }}catch(e){}
 })();
 
 </script>

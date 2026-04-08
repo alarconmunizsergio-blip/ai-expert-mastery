@@ -1010,27 +1010,49 @@ function score(rid,total){
 }
 
 /* ── LANG TOGGLE ── */
-function toggleLang(){
-  const en=document.body.classList.toggle('lang-en');
+function applyLang(en){
+  document.body.classList.toggle('lang-en',en);
   const btn=document.getElementById('langBtn');
   if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
-  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
-  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  // All inline-style bilingual spans
+  document.querySelectorAll('.t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  document.querySelectorAll('.t-en-i').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.t-es-i').forEach(el=>el.style.display=en?'none':'inline');
+  // Refresh topbar title in current language
+  if(typeof showLesson==='function') showLesson(currentLesson);
+  else if(typeof show==='function') show(cur);
+  // Tab buttons (plain text)
+  document.querySelectorAll('.tab').forEach(t=>{
+    if(!t.children.length){
+      if(en) t.textContent=t.textContent.replace('📖 Lección','📖 Lesson').replace('✏️ Ejercicio','✏️ Exercise');
+      else t.textContent=t.textContent.replace('📖 Lesson','📖 Lección').replace('✏️ Exercise','✏️ Ejercicio');
+    }
+  });
+  // Topbar nav buttons (plain text)
+  document.querySelectorAll('.nb,.nav-btn').forEach(b=>{
+    if(!b.children.length){
+      if(en){b.textContent=b.textContent.replace('← Anterior','← Previous').replace('Siguiente →','Next →');}
+      else{b.textContent=b.textContent.replace('← Previous','← Anterior').replace('Next →','Siguiente →');}
+    }
+  });
+  // Progress label (plain text .sl or sidebar-progress)
+  const sl=document.querySelector('.sl,.progress-label');
+  if(sl&&!sl.querySelector('.t-es,.t-en')){
+    const ppId=(document.getElementById('pp')?'pp':'progress-pct');
+    const pct=(document.getElementById(ppId)||{textContent:'0%'}).textContent;
+    sl.innerHTML=(en?'Progress: ':'Progreso: ')+'<span id="'+ppId+'">'+pct+'</span>';
+  }
+}
+function toggleLang(){
+  const en=!document.body.classList.contains('lang-en');
+  applyLang(en);
   try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
 }
 (function(){
-  try{
-    if(localStorage.getItem('aiCourseL')==='en'){
-      document.documentElement.classList.add('lang-en');
-      document.addEventListener('DOMContentLoaded',function(){
-        document.body.classList.add('lang-en');
-        var b=document.getElementById('langBtn');
-        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
-        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
-        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
-      });
-    }
-  }catch(e){}
+  try{if(localStorage.getItem('aiCourseL')==='en'){
+    document.addEventListener('DOMContentLoaded',()=>applyLang(true));
+  }}catch(e){}
 })();
 
 </script>
