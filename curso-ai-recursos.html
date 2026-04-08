@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos Bonus — AI Expert Mastery | Sergio AM</title>
+<style>
+:root{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:#2a2a3a;
+  --accent:#f7971e;--accent2:#ffd200;--accent3:#43e97b;--accent4:#c471ed;
+  --text:#e8e8f0;--text2:#9898b0;--card:#14141e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+
+/* NAV */
+.topnav{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2rem;gap:1.5rem;z-index:100}
+.logo{font-size:1rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.topnav a{color:var(--text2);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.topnav a:hover{color:var(--accent)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:1rem}
+
+/* SIDEBAR */
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 56px);margin-top:56px}
+.sidebar{background:var(--bg2);border-right:1px solid var(--border);padding:2rem 1.2rem;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.sidebar-back{display:flex;align-items:center;gap:.5rem;color:var(--text2);text-decoration:none;font-size:.78rem;font-weight:700;margin-bottom:1.5rem;padding:.5rem;border-radius:8px;transition:all .2s}
+.sidebar-back:hover{color:var(--accent);background:rgba(247,151,30,.07)}
+.sidebar h3{font-size:.65rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);margin-bottom:.7rem;margin-top:1.5rem}
+.sidebar h3:first-of-type{margin-top:0}
+.nav-item{display:block;padding:.5rem .7rem;border-radius:8px;text-decoration:none;font-size:.82rem;color:var(--text2);font-weight:500;transition:all .2s;cursor:pointer;margin-bottom:.2rem}
+.nav-item:hover,.nav-item.active{background:rgba(247,151,30,.1);color:var(--accent)}
+.lang-toggle{margin-top:1rem;border-top:1px solid var(--border);padding-top:1rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.3rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+
+/* BILINGUAL */
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+/* MAIN */
+.main{padding:3rem 3rem 5rem;max-width:900px}
+.section-hero{background:linear-gradient(135deg,rgba(247,151,30,.12),rgba(255,210,0,.07));border:1px solid rgba(247,151,30,.3);border-radius:20px;padding:2.5rem;margin-bottom:3rem}
+.badge{display:inline-block;background:rgba(247,151,30,.15);border:1px solid rgba(247,151,30,.4);color:#ffd200;padding:.3rem 1rem;border-radius:100px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;background:linear-gradient(135deg,#fff 0%,#ffd200 60%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.8rem}
+.hero-sub{color:var(--text2);font-size:1rem;max-width:680px}
+
+/* SECTIONS */
+.section{margin-bottom:4rem;scroll-margin-top:80px}
+.section-label{font-size:.68rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.8rem;line-height:1.3}
+.section-sub{color:var(--text2);font-size:.95rem;max-width:720px;margin-bottom:2rem}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-bottom:2rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card-icon{font-size:1.8rem;margin-bottom:.8rem}
+.card h3{font-size:1rem;font-weight:800;margin-bottom:.5rem}
+.card p{font-size:.83rem;color:var(--text2);line-height:1.6}
+.card-tag{display:inline-block;margin-top:.8rem;font-size:.7rem;font-weight:700;padding:.2rem .7rem;border-radius:6px;background:rgba(247,151,30,.12);color:var(--accent);border:1px solid rgba(247,151,30,.3)}
+
+/* DEVICE TABLE */
+.device-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.85rem}
+.device-table th{text-align:left;padding:.7rem 1rem;background:var(--bg3);border-bottom:2px solid var(--border);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text2)}
+.device-table td{padding:.8rem 1rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
+.device-table tr:hover td{background:rgba(255,255,255,.02)}
+.badge-green{background:rgba(67,233,123,.12);color:#43e97b;border:1px solid rgba(67,233,123,.3);padding:.15rem .6rem;border-radius:5px;font-size:.7rem;font-weight:700}
+.badge-yellow{background:rgba(255,210,0,.12);color:#ffd200;border:1px solid rgba(255,210,0,.3);padding:.15rem .6rem;border-radius:5px;font-size:.7rem;font-weight:700}
+.badge-blue{background:rgba(79,172,254,.12);color:#4facfe;border:1px solid rgba(79,172,254,.3);padding:.15rem .6rem;border-radius:5px;font-size:.7rem;font-weight:700}
+
+/* SETUP STEPS */
+.setup-steps{counter-reset:steps;list-style:none;margin:1.5rem 0}
+.setup-steps li{counter-increment:steps;display:flex;gap:1rem;margin-bottom:1.2rem;position:relative}
+.setup-steps li::before{content:counter(steps);min-width:32px;height:32px;border-radius:50%;background:var(--accent);color:#000;font-weight:900;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.step-content h4{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.step-content p{font-size:.83rem;color:var(--text2)}
+
+/* PROFESSION CARDS */
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:1.5rem}
+.prof-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,transform .2s}
+.prof-card:hover{transform:translateY(-2px);border-color:var(--accent3)}
+.prof-header{padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.8rem}
+.prof-icon{font-size:1.6rem}
+.prof-title{font-size:1rem;font-weight:800}
+.prof-sub{font-size:.75rem;color:var(--text2)}
+.prof-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.use-case-list{list-style:none;margin-top:1rem}
+.use-case-list li{font-size:.82rem;color:var(--text2);padding:.25rem 0;display:flex;gap:.5rem;align-items:flex-start;line-height:1.5}
+.use-case-list li::before{content:'▸';color:var(--accent3);flex-shrink:0;margin-top:.05rem}
+.tools-used{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.tool-chip{font-size:.68rem;font-weight:700;padding:.15rem .6rem;border-radius:5px;background:rgba(67,233,123,.1);color:var(--accent3);border:1px solid rgba(67,233,123,.2)}
+
+/* CERTIFICATION CARDS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;display:flex;flex-direction:column;gap:.6rem;transition:border-color .2s,transform .2s}
+.cert-card:hover{border-color:var(--accent4);transform:translateY(-2px)}
+.cert-provider{font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.cert-anthropic{color:#c471ed}
+.cert-other{color:#4facfe}
+.cert-title{font-size:.9rem;font-weight:700;line-height:1.4}
+.cert-meta{font-size:.75rem;color:var(--text2)}
+.cert-link{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;padding:.4rem .9rem;background:rgba(196,113,237,.12);border:1px solid rgba(196,113,237,.3);border-radius:7px;color:var(--accent4);font-size:.75rem;font-weight:700;text-decoration:none;transition:all .2s;width:fit-content}
+.cert-link:hover{background:rgba(196,113,237,.25)}
+.cert-free{background:rgba(67,233,123,.1);color:#43e97b;border:1px solid rgba(67,233,123,.25);padding:.15rem .6rem;border-radius:5px;font-size:.65rem;font-weight:800;letter-spacing:.05em}
+
+/* RUBEN RESOURCES */
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:1.5rem}
+.resource-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.3rem;transition:border-color .2s,transform .2s}
+.resource-card:hover{border-color:var(--accent2);transform:translateY(-2px)}
+.resource-type{font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:.4rem}
+.resource-title{font-size:.92rem;font-weight:700;margin-bottom:.4rem;line-height:1.4}
+.resource-desc{font-size:.8rem;color:var(--text2);line-height:1.5}
+.resource-link{display:inline-flex;align-items:center;gap:.3rem;margin-top:.7rem;padding:.35rem .8rem;background:rgba(255,210,0,.08);border:1px solid rgba(255,210,0,.25);border-radius:6px;color:var(--accent2);font-size:.72rem;font-weight:700;text-decoration:none;transition:all .2s}
+.resource-link:hover{background:rgba(255,210,0,.18)}
+
+/* HIGHLIGHT BOX */
+.highlight{background:linear-gradient(135deg,rgba(67,233,123,.08),rgba(56,249,215,.05));border:1px solid rgba(67,233,123,.25);border-radius:14px;padding:1.5rem;margin:1.5rem 0}
+.highlight h4{font-size:.95rem;font-weight:800;color:var(--accent3);margin-bottom:.5rem}
+.highlight p,.highlight li{font-size:.85rem;color:var(--text2);line-height:1.6}
+.highlight ul{list-style:none;margin-top:.5rem}
+.highlight ul li{padding:.2rem 0;display:flex;gap:.5rem}
+.highlight ul li::before{content:'✓';color:var(--accent3);flex-shrink:0}
+
+/* DIVIDER */
+hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:3rem 0}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .main{padding:2rem 1.2rem 4rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="logo">🎓 AI Expert Mastery</span>
+  <a href="curso-ai-index.html">Inicio</a>
+  <a href="curso-ai-m5.html">← M5</a>
+  <div class="nav-right">
+    <span style="font-size:.75rem;color:var(--text2)">Bonus</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <a href="curso-ai-index.html" class="sidebar-back">← Inicio del Curso</a>
+
+  <div class="lang-toggle">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 Switch to English</button>
+  </div>
+
+  <h3><span class="t-es">Secciones</span><span class="t-en" style="display:none">Sections</span></h3>
+  <a class="nav-item active" onclick="goToSection('ai-station')"><span class="t-es">💻 AI Station Setup</span><span class="t-en" style="display:none">💻 AI Station Setup</span></a>
+  <a class="nav-item" onclick="goToSection('use-cases')"><span class="t-es">👥 Casos de Uso por Profesión</span><span class="t-en" style="display:none">👥 Use Cases by Profession</span></a>
+  <a class="nav-item" onclick="goToSection('certifications')"><span class="t-es">🏆 Certificaciones Gratuitas</span><span class="t-en" style="display:none">🏆 Free Certifications</span></a>
+  <a class="nav-item" onclick="goToSection('ruben')"><span class="t-es">📚 Recursos Ruben Hassid</span><span class="t-en" style="display:none">📚 Ruben Hassid Resources</span></a>
+  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Abril 2026</span><span class="t-en" style="display:none">🔥 Latest: April 2026</span></a>
+  <a class="nav-item" onclick="goToSection('local-ai')"><span class="t-es">🏠 IA Local: Ollama + VPS</span><span class="t-en" style="display:none">🏠 Local AI: Ollama + VPS</span></a>
+  <a class="nav-item" onclick="goToSection('model-guide')"><span class="t-es">🗺️ Guía de Todos los Modelos</span><span class="t-en" style="display:none">🗺️ Complete Model Guide</span></a>
+
+  <h3><span class="t-es">Módulos del Curso</span><span class="t-en" style="display:none">Course Modules</span></h3>
+  <a class="nav-item" href="curso-ai-m0.html"><span class="t-es">M0: Fundamentos</span><span class="t-en" style="display:none">M0: Fundamentals</span></a>
+  <a class="nav-item" href="curso-ai-m1.html"><span class="t-es">M1: Prompt Engineering</span><span class="t-en" style="display:none">M1: Prompt Engineering</span></a>
+  <a class="nav-item" href="curso-ai-m2.html"><span class="t-es">M2: AI Agents</span><span class="t-en" style="display:none">M2: AI Agents</span></a>
+  <a class="nav-item" href="curso-ai-m3.html"><span class="t-es">M3: Vibecoding</span><span class="t-en" style="display:none">M3: Vibecoding</span></a>
+  <a class="nav-item" href="curso-ai-m4.html"><span class="t-es">M4: CRM & RevOps</span><span class="t-en" style="display:none">M4: CRM & RevOps</span></a>
+  <a class="nav-item" href="curso-ai-m5.html"><span class="t-es">M5: Monetización</span><span class="t-en" style="display:none">M5: Monetization</span></a>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <div class="section-hero">
+    <div class="badge">Bonus · Recursos Esenciales · Abril 2026</div>
+    <div class="t-es">
+      <h1>Recursos, Setup &amp; Casos de Uso</h1>
+      <p class="hero-sub">Tu hub de referencia para todo lo que necesitas: configuración óptima de hardware, certificaciones gratuitas, recursos de los mejores creadores de IA y casos de uso específicos para tu profesión.</p>
+    </div>
+    <div class="t-en">
+      <h1>Resources, Setup &amp; Use Cases</h1>
+      <p class="hero-sub">Your reference hub for everything you need: optimal hardware configuration, free certifications, resources from top AI creators, and profession-specific use cases.</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 1: AI STATION SETUP
+  ════════════════════════════════════ -->
+  <section class="section" id="ai-station">
+    <div class="section-label">Setup Profesional</div>
+    <div class="t-es">
+      <h2>💻 Tu AI Station — Setup Óptimo 2026</h2>
+      <p class="section-sub">El hardware correcto amplifica tus capacidades de IA hasta 10×. Esta es la guía definitiva para construir la estación de trabajo de IA más capaz y eficiente, desde $500 hasta nivel pro.</p>
+    </div>
+    <div class="t-en">
+      <h2>💻 Your AI Station — Optimal 2026 Setup</h2>
+      <p class="section-sub">The right hardware amplifies your AI capabilities up to 10×. This is the definitive guide to building the most capable and efficient AI workstation, from $500 to pro level.</p>
+    </div>
+
+    <!-- BRAIN OF THE SETUP -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1rem;color:var(--accent)">🧠 El Centro de Procesamiento</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1rem;color:var(--accent)">🧠 The Processing Core</h3></div>
+
+    <table class="device-table">
+      <thead>
+        <tr>
+          <th>Dispositivo</th>
+          <th>Chip / Specs</th>
+          <th><span class="t-es">Ideal Para</span><span class="t-en" style="display:none">Best For</span></th>
+          <th><span class="t-es">Precio Aprox.</span><span class="t-en" style="display:none">Price</span></th>
+          <th><span class="t-es">Veredicto</span><span class="t-en" style="display:none">Verdict</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Mac Mini M4 Pro</strong></td>
+          <td>M4 Pro · 24GB RAM · 512GB</td>
+          <td><span class="t-es">LLMs locales, desarrollo con Cursor, agentes n8n</span><span class="t-en" style="display:none">Local LLMs, Cursor dev, n8n agents</span></td>
+          <td>~$1,399 USD</td>
+          <td><span class="badge-green">★ Top Pick</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mac Mini M4 Base</strong></td>
+          <td>M4 · 16GB RAM · 256GB</td>
+          <td><span class="t-es">Uso intenso de APIs, vibecoding, multiagentes</span><span class="t-en" style="display:none">Heavy API use, vibecoding, multi-agents</span></td>
+          <td>~$599 USD</td>
+          <td><span class="badge-yellow">Excelente</span></td>
+        </tr>
+        <tr>
+          <td><strong>MacBook Pro M4 Pro</strong></td>
+          <td>M4 Pro · 24-48GB · 14/16"</td>
+          <td><span class="t-es">Movilidad total + potencia local</span><span class="t-en" style="display:none">Full mobility + local power</span></td>
+          <td>~$1,999+ USD</td>
+          <td><span class="badge-green">Pro Mobile</span></td>
+        </tr>
+        <tr>
+          <td><strong>PC: AMD Ryzen 9 + RTX 4090</strong></td>
+          <td>Ryzen 9 7950X · 64GB · RTX 4090</td>
+          <td><span class="t-es">LLMs locales grandes (70B), fine-tuning</span><span class="t-en" style="display:none">Large local LLMs (70B), fine-tuning</span></td>
+          <td>~$2,500-3,500 USD</td>
+          <td><span class="badge-blue">Power User</span></td>
+        </tr>
+        <tr>
+          <td><strong>Beelink SER8 Mini PC</strong></td>
+          <td>AMD Ryzen 7 8845HS · 32GB</td>
+          <td><span class="t-es">Opción Windows compacta para LLMs medianos</span><span class="t-en" style="display:none">Compact Windows option for mid-size LLMs</span></td>
+          <td>~$450 USD</td>
+          <td><span class="badge-yellow">Budget Pro</span></td>
+        </tr>
+        <tr>
+          <td><strong>iPad Pro M4</strong></td>
+          <td>M4 · 16GB · 11"/13"</td>
+          <td><span class="t-es">Companion device, notas de voz con IA, movilidad</span><span class="t-en" style="display:none">Companion device, AI voice notes, mobility</span></td>
+          <td>~$999+ USD</td>
+          <td><span class="badge-blue">Companion</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight">
+      <div class="t-es"><h4>💡 ¿Por qué el Mac Mini M4 Pro es el Top Pick?</h4>
+      <ul>
+        <li>Unified memory — la CPU y GPU comparten 24-48GB sin overhead. Corres modelos de 7B-30B localmente sin problema</li>
+        <li>Apple Silicon tiene el mejor performance-per-watt del mercado. Correr Ollama 24/7 no te arruina la factura de luz</li>
+        <li>Smaller = menos distracción. Tu AI Station es una caja silenciosa debajo del monitor</li>
+        <li>Integración nativa con Claude para Mac, Apple Intelligence y todos los apps de productividad</li>
+        <li>Precio/rendimiento imbatible vs cualquier PC de escritorio comparable</li>
+      </ul></div>
+      <div class="t-en"><h4>💡 Why is the Mac Mini M4 Pro the Top Pick?</h4>
+      <ul>
+        <li>Unified memory — CPU and GPU share 24-48GB with zero overhead. Run 7B-30B models locally without issues</li>
+        <li>Apple Silicon has the best performance-per-watt on the market. Running Ollama 24/7 won't ruin your electricity bill</li>
+        <li>Smaller = fewer distractions. Your AI Station is a silent box under the monitor</li>
+        <li>Native integration with Claude for Mac, Apple Intelligence and all productivity apps</li>
+        <li>Unbeatable price/performance vs any comparable desktop PC</li>
+      </ul></div>
+    </div>
+
+    <!-- MONITORS -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🖥️ Pantallas y Visualización</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🖥️ Screens &amp; Displays</h3></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🖥️</div>
+        <div class="t-es"><h3>Monitor Principal: LG UltraFine 27" 4K</h3>
+        <p>27UK850-W o similar. 4K IPS, USB-C con carga, color profesional. Si trabajas con diseño o content, el LG UltraWide 34" te da más espacio horizontal para tener dos ventanas de IA abiertas.</p></div>
+        <div class="t-en"><h3>Primary Monitor: LG UltraFine 27" 4K</h3>
+        <p>27UK850-W or similar. 4K IPS, USB-C with charging, professional color. If you work with design or content, the LG UltraWide 34" gives you more horizontal space for two AI windows open side by side.</p></div>
+        <span class="card-tag">$300-500</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <div class="t-es"><h3>Setup Dual Monitor</h3>
+        <p>Un 27" principal + iPad Pro como segunda pantalla via Sidecar, o un segundo monitor 24" para tener Claude/ChatGPT siempre visible mientras trabajas en tu CRM o código. El flujo de trabajo paralelo multiplica la productividad.</p></div>
+        <div class="t-en"><h3>Dual Monitor Setup</h3>
+        <p>One 27" primary + iPad Pro as second screen via Sidecar, or a second 24" monitor to always have Claude/ChatGPT visible while working in your CRM or code. Parallel workflow multiplies productivity.</p></div>
+        <span class="card-tag">Recomendado</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">✏️</div>
+        <div class="t-es"><h3>iPad Pro + Apple Pencil Pro</h3>
+        <p>Para sketching de workflows, notas manuscritas convertidas a texto, brainstorming visual de arquitecturas de agentes. Apple Pencil Pro (2024) con haptic feedback es transformador para el pensamiento visual.</p></div>
+        <div class="t-en"><h3>iPad Pro + Apple Pencil Pro</h3>
+        <p>For sketching workflows, handwritten notes converted to text, visual brainstorming of agent architectures. Apple Pencil Pro (2024) with haptic feedback is transformative for visual thinking.</p></div>
+        <span class="card-tag">Companion</span>
+      </div>
+    </div>
+
+    <!-- PERIPHERALS -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">⌨️ Periféricos Esenciales</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">⌨️ Essential Peripherals</h3></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⌨️</div>
+        <div class="t-es"><h3>Teclado: Keychron K8 Pro / K2 Pro</h3>
+        <p>Mecánico, inalámbrico, compatible Mac/Windows. El mejor precio/calidad. Alternativa premium: Apple Magic Keyboard con Touch ID (si eres all-in Apple). La velocidad de escritura importa cuando estás construyendo prompts complejos.</p></div>
+        <div class="t-en"><h3>Keyboard: Keychron K8 Pro / K2 Pro</h3>
+        <p>Mechanical, wireless, Mac/Windows compatible. Best price/quality. Premium alternative: Apple Magic Keyboard with Touch ID (if you're all-in Apple). Typing speed matters when building complex prompts.</p></div>
+        <span class="card-tag">$80-150</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🖱️</div>
+        <div class="t-es"><h3>Mouse: Logitech MX Master 3S</h3>
+        <p>La navaja suiza del mouse profesional. Scroll electromagnético, botones laterales programables, funciona en vidrio. Indispensable para navegación rápida entre ventanas de IA. Alternativa: Apple Magic Mouse (si toleras la carga bottom).</p></div>
+        <div class="t-en"><h3>Mouse: Logitech MX Master 3S</h3>
+        <p>The Swiss Army knife of professional mice. Electromagnetic scroll, programmable side buttons, works on glass. Indispensable for fast navigation between AI windows. Alternative: Apple Magic Mouse (if you can tolerate bottom charging).</p></div>
+        <span class="card-tag">$100</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎙️</div>
+        <div class="t-es"><h3>Micrófono: Blue Yeti Nano / DJI Mic 2</h3>
+        <p>Para dictar prompts por voz, calls de consultoría, y grabación de contenido. Blue Yeti Nano USB es perfecto para desktop. DJI Mic 2 si grabas video o tienes calls remotas frecuentes. La IA de transcripción (Whisper) + voz = flujo 5× más rápido.</p></div>
+        <div class="t-en"><h3>Microphone: Blue Yeti Nano / DJI Mic 2</h3>
+        <p>For voice dictation of prompts, consulting calls, and content recording. Blue Yeti Nano USB is perfect for desktop. DJI Mic 2 if you record video or have frequent remote calls. AI transcription (Whisper) + voice = 5× faster workflow.</p></div>
+        <span class="card-tag">$50-300</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎧</div>
+        <div class="t-es"><h3>Auriculares: Sony WH-1000XM5 / AirPods Pro 2</h3>
+        <p>Noise canceling activo es productividad literal. AirPods Pro 2 si eres full Apple (Transparency mode + Adaptive Audio). Sony si quieres el mejor ANC del mercado a menor precio y para sesiones largas de focus.</p></div>
+        <div class="t-en"><h3>Headphones: Sony WH-1000XM5 / AirPods Pro 2</h3>
+        <p>Active noise canceling is literal productivity. AirPods Pro 2 if you're full Apple (Transparency mode + Adaptive Audio). Sony if you want the best ANC for lower price and long focus sessions.</p></div>
+        <span class="card-tag">$250-380</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔌</div>
+        <div class="t-es"><h3>Hub / Dock: CalDigit TS4 o Anker 777</h3>
+        <p>Si tienes Mac Mini: necesitas USB-C hub con suficientes puertos. CalDigit TS4 Thunderbolt 4 Dock es el estándar pro (18 puertos). Anker 777 es la opción accesible con excelente calidad. Nunca más el cable chaos.</p></div>
+        <div class="t-en"><h3>Hub / Dock: CalDigit TS4 or Anker 777</h3>
+        <p>If you have Mac Mini: you need a USB-C hub with enough ports. CalDigit TS4 Thunderbolt 4 Dock is the pro standard (18 ports). Anker 777 is the affordable option with excellent quality. Never cable chaos again.</p></div>
+        <span class="card-tag">$80-380</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <div class="t-es"><h3>Iluminación: Elgato Key Light / LED Strip</h3>
+        <p>Para calls de consultoría y grabación de contenido. Elgato Key Light es el estándar de streamers y creadores. Las Govee LED Strips detrás del monitor reducen la fatiga visual en sesiones largas de trabajo con IA.</p></div>
+        <div class="t-en"><h3>Lighting: Elgato Key Light / LED Strip</h3>
+        <p>For consulting calls and content recording. Elgato Key Light is the streamer and creator standard. Govee LED Strips behind the monitor reduce eye strain in long AI work sessions.</p></div>
+        <span class="card-tag">$40-200</span>
+      </div>
+    </div>
+
+    <!-- SOFTWARE -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🧰 Software Esencial para tu AI Station</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🧰 Essential Software for Your AI Station</h3></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <div class="t-es"><h3>LLMs en la Nube</h3>
+        <p><strong>Claude Pro/Max</strong> — tu asistente principal. <strong>ChatGPT Plus</strong> — para GPT-5.4 y canvas. <strong>Gemini Advanced</strong> — para razonamiento largo y Google Workspace. Presupuesto: $30-60/mes lo cambia todo.</p></div>
+        <div class="t-en"><h3>Cloud LLMs</h3>
+        <p><strong>Claude Pro/Max</strong> — your primary assistant. <strong>ChatGPT Plus</strong> — for GPT-5.4 and canvas. <strong>Gemini Advanced</strong> — for long reasoning and Google Workspace. Budget: $30-60/month changes everything.</p></div>
+        <span class="card-tag">$30-60/mes</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <div class="t-es"><h3>LLMs Locales: Ollama + LM Studio</h3>
+        <p>Corre modelos como Llama 3.3 (70B), Mistral, Qwen2.5 en tu Mac Mini. Ollama para CLI y automatizaciones, LM Studio para interfaz visual. 100% privado, sin costos de API, para datos sensibles de clientes.</p></div>
+        <div class="t-en"><h3>Local LLMs: Ollama + LM Studio</h3>
+        <p>Run models like Llama 3.3 (70B), Mistral, Qwen2.5 on your Mac Mini. Ollama for CLI and automations, LM Studio for visual interface. 100% private, no API costs, for sensitive client data.</p></div>
+        <span class="card-tag">Gratis</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="t-es"><h3>Automatización: n8n + Make</h3>
+        <p>n8n self-hosted en tu Mac Mini o en VPS ($5/mes) para automatizaciones complejas y privadas. Make para workflows visuales rápidos con 1,000+ integraciones. Los dos juntos = poder total sin necesidad de código.</p></div>
+        <div class="t-en"><h3>Automation: n8n + Make</h3>
+        <p>n8n self-hosted on your Mac Mini or VPS ($5/month) for complex, private automations. Make for quick visual workflows with 1,000+ integrations. Both together = full power without needing code.</p></div>
+        <span class="card-tag">$0-30/mes</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <div class="t-es"><h3>Desarrollo: Cursor + Claude Code</h3>
+        <p>Cursor (valorado en $9.2B, 2026) para vibecoding y desarrollo asistido. Claude Code para tareas desde terminal. Combinados con Lovable 2.0 para frontend rápido. El stack completo de un developer-adjacent pro.</p></div>
+        <div class="t-en"><h3>Development: Cursor + Claude Code</h3>
+        <p>Cursor (valued at $9.2B, 2026) for vibecoding and assisted development. Claude Code for terminal tasks. Combined with Lovable 2.0 for quick frontend. The complete stack of a developer-adjacent pro.</p></div>
+        <span class="card-tag">$20-40/mes</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <div class="t-es"><h3>Productividad: Raycast + Notion AI</h3>
+        <p>Raycast reemplaza Spotlight con superpoderes de IA — puedes invocar Claude, snippets de prompts, y automatizaciones con teclado. Notion AI para tu knowledge base personal y sistema de PKM (Personal Knowledge Management).</p></div>
+        <div class="t-en"><h3>Productivity: Raycast + Notion AI</h3>
+        <p>Raycast replaces Spotlight with AI superpowers — invoke Claude, prompt snippets, and keyboard automations. Notion AI for your personal knowledge base and PKM (Personal Knowledge Management) system.</p></div>
+        <span class="card-tag">$8-16/mes</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗣️</div>
+        <div class="t-es"><h3>Voz a Texto: Whisper + Superwhisper</h3>
+        <p>Superwhisper para Mac convierte voz a texto en cualquier app con Whisper de OpenAI. Dictar prompts complejos es 5× más rápido que escribirlos. Para sesiones de brainstorm + notas rápidas con IA, es transformador.</p></div>
+        <div class="t-en"><h3>Voice to Text: Whisper + Superwhisper</h3>
+        <p>Superwhisper for Mac converts voice to text in any app using OpenAI's Whisper. Dictating complex prompts is 5× faster than typing them. For brainstorm sessions + quick AI notes, it's transformative.</p></div>
+        <span class="card-tag">$9/mes</span>
+      </div>
+    </div>
+
+    <!-- BUDGET TIERS -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">💰 Tiers de Presupuesto</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">💰 Budget Tiers</h3></div>
+
+    <div class="cards">
+      <div class="card" style="border-color:rgba(67,233,123,.3)">
+        <span style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#43e97b">Tier 1: Starter</span>
+        <div class="t-es"><h3 style="margin-top:.5rem">$500-800 USD</h3>
+        <p>MacBook Air M2 (refurbished) + teclado Keychron + ratón MX Anywhere. Software: Claude Pro ($20) + Ollama gratis. Perfecto para empezar y ya estás en el top 10% de setups en Latinoamérica.</p></div>
+        <div class="t-en"><h3 style="margin-top:.5rem">$500-800 USD</h3>
+        <p>MacBook Air M2 (refurbished) + Keychron keyboard + MX Anywhere mouse. Software: Claude Pro ($20) + Ollama free. Perfect for starting — already in the top 10% of setups in Latin America.</p></div>
+      </div>
+      <div class="card" style="border-color:rgba(247,151,30,.4)">
+        <span style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#f7971e">Tier 2: Professional</span>
+        <div class="t-es"><h3 style="margin-top:.5rem">$1,500-2,500 USD</h3>
+        <p>Mac Mini M4 Pro + Monitor LG 27" 4K + Keychron + MX Master 3S + AirPods Pro + hub Anker. Software: Claude Max ($100) + Cursor + n8n. El setup que usan la mayoría de consultores de IA serios.</p></div>
+        <div class="t-en"><h3 style="margin-top:.5rem">$1,500-2,500 USD</h3>
+        <p>Mac Mini M4 Pro + LG 27" 4K Monitor + Keychron + MX Master 3S + AirPods Pro + Anker hub. Software: Claude Max ($100) + Cursor + n8n. The setup used by most serious AI consultants.</p></div>
+      </div>
+      <div class="card" style="border-color:rgba(196,113,237,.3)">
+        <span style="font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#c471ed">Tier 3: Expert Studio</span>
+        <div class="t-es"><h3 style="margin-top:.5rem">$3,500-5,000+ USD</h3>
+        <p>MacBook Pro M4 Pro + Mac Mini M4 Pro como servidor + 2 monitores 4K + Elgato Key Light + Sony XM5 + iPad Pro + DJI Mic 2. Software stack completo. Para creadores de contenido + consultores + builders activos.</p></div>
+        <div class="t-en"><h3 style="margin-top:.5rem">$3,500-5,000+ USD</h3>
+        <p>MacBook Pro M4 Pro + Mac Mini M4 Pro as server + 2x 4K monitors + Elgato Key Light + Sony XM5 + iPad Pro + DJI Mic 2. Full software stack. For content creators + consultants + active builders.</p></div>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="div">
+
+  <!-- ════════════════════════════════════
+       SECTION 2: USE CASES BY PROFESSION
+  ════════════════════════════════════ -->
+  <section class="section" id="use-cases">
+    <div class="section-label">Aplicación Profesional</div>
+    <div class="t-es">
+      <h2>👥 Casos de Uso por Profesión</h2>
+      <p class="section-sub">La IA no es una herramienta genérica — su poder se multiplica cuando la aplicas con expertise de dominio. Aquí están los casos de uso más poderosos y prácticos para cada profesión.</p>
+    </div>
+    <div class="t-en">
+      <h2>👥 Use Cases by Profession</h2>
+      <p class="section-sub">AI isn't a generic tool — its power multiplies when applied with domain expertise. Here are the most powerful and practical use cases for each profession.</p>
+    </div>
+
+    <div class="prof-grid">
+
+      <!-- CRM / REVOPS -->
+      <div class="prof-card" style="border-color:rgba(79,172,254,.3)">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(79,172,254,.08),rgba(0,242,254,.04))">
+          <div class="prof-icon">📊</div>
+          <div>
+            <div class="prof-title">CRM / RevOps / Lifecycle</div>
+            <div class="prof-sub">Tu ocupación — ventaja competitiva máxima</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Lead scoring predictivo con IA — elimina el scoring manual y mejora la conversión 40%</li>
+            <li>Enriquecimiento automático de CRM con Clay + Claude: completa datos faltantes a escala</li>
+            <li>Segmentación de lifecycle con LLMs — behavioral clustering sin SQL complejo</li>
+            <li>Email nurture sequences personalizadas a nivel 1:1 con GPT-5.4 + HubSpot Breeze</li>
+            <li>Análisis automático de llamadas de ventas (Gong/Chorus) para coaching</li>
+            <li>Forecasting de revenue con modelos predictivos de Claude</li>
+            <li>Automatizar el RevOps reporting: dashboards actualizados con agentes n8n</li>
+            <li>Chatbots de calificación de leads con intención dinámica</li>
+            <li>Análisis de churn prediction y retention plays automáticos</li>
+            <li>Diseñar el stack de Martech óptimo con auditorías asistidas por IA</li>
+            </div>
+            <div class="t-en">
+            <li>Predictive lead scoring with AI — eliminate manual scoring and improve conversion 40%</li>
+            <li>Automatic CRM enrichment with Clay + Claude: fill missing data at scale</li>
+            <li>Lifecycle segmentation with LLMs — behavioral clustering without complex SQL</li>
+            <li>1:1 personalized email nurture sequences with GPT-5.4 + HubSpot Breeze</li>
+            <li>Automatic analysis of sales calls (Gong/Chorus) for coaching</li>
+            <li>Revenue forecasting with Claude predictive models</li>
+            <li>Automate RevOps reporting: dashboards updated with n8n agents</li>
+            <li>Lead qualification chatbots with dynamic intent</li>
+            <li>Churn prediction analysis and automatic retention plays</li>
+            <li>Design optimal Martech stack with AI-assisted audits</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">HubSpot Breeze</span>
+            <span class="tool-chip">Clay</span>
+            <span class="tool-chip">n8n</span>
+            <span class="tool-chip">Salesforce Agentforce</span>
+            <span class="tool-chip">Claude API</span>
+            <span class="tool-chip">GPT-5.4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MUSICIANS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(196,113,237,.08),rgba(246,79,89,.04))">
+          <div class="prof-icon">🎵</div>
+          <div>
+            <div class="prof-title">Músicos — Jazz, Compositores, Productores</div>
+            <div class="prof-sub">Instrumentistas, arreglistas, beatmakers</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Composición asistida: genera ideas de voicings, progresiones armónicas y melodías con Claude</li>
+            <li>Producción de beats con Suno AI y Udio — crea referencias y demos en minutos</li>
+            <li>Transcripción automática de improvisaciones con Whisper para análisis y aprendizaje</li>
+            <li>Análisis de solos de jazz: identifica patrones, escalas y frases idiomáticas con IA</li>
+            <li>Letras y lyrics con IA — Claude es excepcionalmente bueno para poesía y estructura lírica</li>
+            <li>Marketing de artista: EPK, bio, pitch para festivales y sellos con Claude</li>
+            <li>Automatizar liberación de contenido en plataformas (DistroKid workflow)</li>
+            <li>Gestionar derechos y registros con agentes que monitorizan usos en YouTube y Spotify</li>
+            <li>Crear backing tracks y play-alongs con IA para práctica de improvisación</li>
+            </div>
+            <div class="t-en">
+            <li>Assisted composition: generate voicing ideas, harmonic progressions and melodies with Claude</li>
+            <li>Beat production with Suno AI and Udio — create references and demos in minutes</li>
+            <li>Automatic transcription of improvisations with Whisper for analysis and learning</li>
+            <li>Jazz solo analysis: identify patterns, scales and idiomatic phrases with AI</li>
+            <li>Lyrics with AI — Claude is exceptionally good for poetry and lyric structure</li>
+            <li>Artist marketing: EPK, bio, pitch for festivals and labels with Claude</li>
+            <li>Automate content release on platforms (DistroKid workflow)</li>
+            <li>Manage rights and registrations with agents that monitor YouTube and Spotify usage</li>
+            <li>Create AI backing tracks and play-alongs for improvisation practice</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Suno AI</span>
+            <span class="tool-chip">Udio</span>
+            <span class="tool-chip">Whisper</span>
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">AIVA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DANCERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(255,101,132,.08),rgba(255,140,66,.04))">
+          <div class="prof-icon">💃</div>
+          <div>
+            <div class="prof-title">Bailarines y Coreógrafos</div>
+            <div class="prof-sub">Danza contemporánea, urbana, clásica</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Crear propuestas coreográficas y guiones de puesta en escena con Claude</li>
+            <li>Generación de ideas creativas: temas, narrativas, paletas de movimiento con IA</li>
+            <li>Video analysis con IA para revisión técnica y feedback de ejecución</li>
+            <li>Marketing y redes sociales: captions, pitches para compañías y festivales</li>
+            <li>Creación de curriculum vitae artístico y portafolio digital con IA</li>
+            <li>Planificación de giras y logística de producción asistida por IA</li>
+            <li>Generar música/ambient para clases y ensayos con Suno AI</li>
+            <li>Diseño de programas de entrenamiento personalizados con Claude</li>
+            </div>
+            <div class="t-en">
+            <li>Create choreographic proposals and staging scripts with Claude</li>
+            <li>Creative idea generation: themes, narratives, movement palettes with AI</li>
+            <li>Video analysis with AI for technical review and execution feedback</li>
+            <li>Marketing and social media: captions, pitches for companies and festivals</li>
+            <li>Creating artistic CV and digital portfolio with AI</li>
+            <li>Tour planning and AI-assisted production logistics</li>
+            <li>Generate music/ambient for classes and rehearsals with Suno AI</li>
+            <li>Design personalized training programs with Claude</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Suno AI</span>
+            <span class="tool-chip">RunwayML</span>
+            <span class="tool-chip">Canva AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTORS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(255,210,0,.08),rgba(247,151,30,.04))">
+          <div class="prof-icon">🎭</div>
+          <div>
+            <div class="prof-title">Actores y Teatristas</div>
+            <div class="prof-sub">Teatro, musical, cine, TV</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Análisis de personaje: Claude como partner de rehearsal para explorar motivaciones y backstory</li>
+            <li>Preparación de audiciones: memorización de scripts, análisis de sides con IA</li>
+            <li>Generar variaciones de interpretación y perspectivas alternativas del personaje</li>
+            <li>Redactar pitches, cartas de presentación y bio para casting directors</li>
+            <li>Investigación histórica y de contexto para personajes de época</li>
+            <li>Crear escenas de práctica y diálogos personalizados para training</li>
+            <li>Construir presencia digital como actor: website, Spotlight/Casting Networks con IA</li>
+            <li>Adaptación y traducción de textos teatrales con Claude</li>
+            </div>
+            <div class="t-en">
+            <li>Character analysis: Claude as rehearsal partner to explore motivations and backstory</li>
+            <li>Audition preparation: script memorization, sides analysis with AI</li>
+            <li>Generate interpretation variations and alternative character perspectives</li>
+            <li>Write pitches, cover letters and bio for casting directors</li>
+            <li>Historical and context research for period characters</li>
+            <li>Create practice scenes and personalized dialogues for training</li>
+            <li>Build digital presence as an actor: website, Spotlight/Casting Networks with AI</li>
+            <li>Adaptation and translation of theatrical texts with Claude</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">ChatGPT</span>
+            <span class="tool-chip">ElevenLabs</span>
+            <span class="tool-chip">Notion AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEATER / MUSICAL THEATER PRODUCERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(67,233,123,.08),rgba(56,249,215,.04))">
+          <div class="prof-icon">🎪</div>
+          <div>
+            <div class="prof-title">Productores de Teatro y Musical</div>
+            <div class="prof-sub">Negocios del entretenimiento en vivo</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Análisis de viabilidad económica de producciones con modelos de IA</li>
+            <li>Generar materiales de marketing: sinopsis, press releases, pitches para inversores</li>
+            <li>Investigación de audiencias y análisis de mercado con IA para selección de programación</li>
+            <li>Gestión de contratos y riders técnicos — IA como asistente de revisión legal básica</li>
+            <li>Diseño de estrategia de ticketing y revenue management con modelos predictivos</li>
+            <li>Crear planes de producción, timelines y presupuestos con Claude</li>
+            <li>Social media y content strategy para shows y temporadas</li>
+            <li>Grant writing y fundraising materials para productoras independientes</li>
+            <li>Análisis competitivo de programación de otros venues con web scraping + IA</li>
+            </div>
+            <div class="t-en">
+            <li>Economic viability analysis of productions with AI models</li>
+            <li>Generate marketing materials: synopsis, press releases, investor pitches</li>
+            <li>Audience research and market analysis with AI for programming selection</li>
+            <li>Contract management and technical riders — AI as basic legal review assistant</li>
+            <li>Ticketing strategy and revenue management with predictive models</li>
+            <li>Create production plans, timelines and budgets with Claude</li>
+            <li>Social media and content strategy for shows and seasons</li>
+            <li>Grant writing and fundraising materials for independent producers</li>
+            <li>Competitive analysis of other venues' programming with web scraping + AI</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">GPT-5.4</span>
+            <span class="tool-chip">n8n</span>
+            <span class="tool-chip">Notion AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDENTS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(108,99,255,.08),rgba(160,159,255,.04))">
+          <div class="prof-icon">🎓</div>
+          <div>
+            <div class="prof-title">Estudiantes</div>
+            <div class="prof-sub">Universitarios, posgrado, educación continua</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Tutor personal 24/7 que explica conceptos difíciles con analogías y ejemplos</li>
+            <li>Feedback de ensayos y papers — estructura, argumentación, estilo académico</li>
+            <li>Preparación para exámenes: flashcards con IA, tests simulados, gaps de conocimiento</li>
+            <li>Investigación asistida: síntesis de papers, identificación de fuentes clave</li>
+            <li>Aprender cualquier habilidad técnica 10× más rápido con proyectos prácticos</li>
+            <li>Networking y job search: LinkedIn, cover letters, cold outreach con IA</li>
+            <li>Crear proyectos de portafolio impresionantes con vibecoding (sin saber programar)</li>
+            <li>Traducción y comprensión de textos académicos en otros idiomas</li>
+            </div>
+            <div class="t-en">
+            <li>24/7 personal tutor that explains difficult concepts with analogies and examples</li>
+            <li>Essay and paper feedback — structure, argumentation, academic style</li>
+            <li>Exam preparation: AI flashcards, simulated tests, knowledge gaps</li>
+            <li>Assisted research: paper synthesis, identifying key sources</li>
+            <li>Learn any technical skill 10× faster with practical projects</li>
+            <li>Networking and job search: LinkedIn, cover letters, cold outreach with AI</li>
+            <li>Create impressive portfolio projects with vibecoding (without knowing how to code)</li>
+            <li>Translation and comprehension of academic texts in other languages</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Perplexity</span>
+            <span class="tool-chip">NotebookLM</span>
+            <span class="tool-chip">Anki AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CEOs / EXECUTIVES -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(247,151,30,.1),rgba(255,210,0,.05))">
+          <div class="prof-icon">👔</div>
+          <div>
+            <div class="prof-title">CEOs y Ejecutivos</div>
+            <div class="prof-sub">C-suite, founders, directores</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Executive Intelligence: síntesis diaria de noticias, competidores y tendencias del sector</li>
+            <li>Board decks y investor updates generados con IA en una fracción del tiempo</li>
+            <li>Análisis de decisiones estratégicas con Claude como "devil's advocate" institucional</li>
+            <li>Hiring: análisis de CVs, diseño de job descriptions, scoring de candidatos</li>
+            <li>OKR y strategy planning asistido con frameworks de IA (SWOT, Porter's 5 forces)</li>
+            <li>Ghost-writing de LinkedIn thought leadership con Claude</li>
+            <li>Preparación para fundraising: Q&A simulado con IA, due diligence prep</li>
+            <li>Automatizar el briefing diario: emails, métricas, noticias → 10 min vs 1 hora</li>
+            </div>
+            <div class="t-en">
+            <li>Executive Intelligence: daily synthesis of news, competitors and sector trends</li>
+            <li>Board decks and investor updates generated with AI in a fraction of the time</li>
+            <li>Strategic decision analysis with Claude as institutional "devil's advocate"</li>
+            <li>Hiring: CV analysis, job description design, candidate scoring</li>
+            <li>OKR and strategy planning assisted with AI frameworks (SWOT, Porter's 5 forces)</li>
+            <li>Ghost-writing LinkedIn thought leadership with Claude</li>
+            <li>Fundraising preparation: AI simulated Q&A, due diligence prep</li>
+            <li>Automate daily briefing: emails, metrics, news → 10 min vs 1 hour</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude Max</span>
+            <span class="tool-chip">Perplexity</span>
+            <span class="tool-chip">n8n</span>
+            <span class="tool-chip">Notion AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINANCE / ACCOUNTING -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(79,172,254,.08),rgba(0,242,254,.04))">
+          <div class="prof-icon">💰</div>
+          <div>
+            <div class="prof-title">Financieros y Contadores</div>
+            <div class="prof-sub">CFOs, analistas, CPAs, auditores</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Análisis de estados financieros: interpretación de P&L, balance sheet con Claude en segundos</li>
+            <li>Modelado financiero asistido — code Python/Excel con IA para modelos complejos</li>
+            <li>Due diligence: análisis de documentos extensos y extracción de red flags</li>
+            <li>Reportes narrativos: convertir datos a insights en lenguaje ejecutivo</li>
+            <li>Automatizar procesos de cierre contable con agentes de IA</li>
+            <li>Monitoreo de regulaciones fiscales y cumplimiento con agentes de web scraping</li>
+            <li>Valuaciones: comparables de mercado, DCF asistido por IA</li>
+            <li>Predicción de flujo de caja con modelos de machine learning</li>
+            </div>
+            <div class="t-en">
+            <li>Financial statement analysis: P&L and balance sheet interpretation with Claude in seconds</li>
+            <li>Assisted financial modeling — Python/Excel code with AI for complex models</li>
+            <li>Due diligence: analysis of extensive documents and red flag extraction</li>
+            <li>Narrative reports: convert data to insights in executive language</li>
+            <li>Automate accounting close processes with AI agents</li>
+            <li>Tax regulation and compliance monitoring with web scraping agents</li>
+            <li>Valuations: market comparables, AI-assisted DCF</li>
+            <li>Cash flow prediction with machine learning models</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">ChatGPT Advanced Data</span>
+            <span class="tool-chip">n8n</span>
+            <span class="tool-chip">Python+Pandas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAWYERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(108,99,255,.08),rgba(255,101,132,.04))">
+          <div class="prof-icon">⚖️</div>
+          <div>
+            <div class="prof-title">Abogados y Profesionales Legales</div>
+            <div class="prof-sub">Litigantes, corporativos, consultores legales</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Revisión y redacción de contratos: identificar cláusulas problemáticas, sugerir cambios</li>
+            <li>Research legal: síntesis de jurisprudencia y doctrina con Claude</li>
+            <li>Drafting de escritos, demandas y memorandos legales asistido por IA</li>
+            <li>Due diligence de documentos: análisis masivo de archivos con RAG</li>
+            <li>Preparación de argumentos y estrategia de litigación con IA</li>
+            <li>Resumen ejecutivo de contratos complejos para clientes no legales</li>
+            <li>Monitoreo de cambios regulatorios con agentes automatizados</li>
+            <li>Gestión de knowledge base de firma con RAG sobre legislación actualizada</li>
+            </div>
+            <div class="t-en">
+            <li>Contract review and drafting: identify problematic clauses, suggest changes</li>
+            <li>Legal research: synthesis of case law and doctrine with Claude</li>
+            <li>AI-assisted drafting of briefs, complaints and legal memoranda</li>
+            <li>Document due diligence: mass file analysis with RAG</li>
+            <li>Argument preparation and litigation strategy with AI</li>
+            <li>Executive summary of complex contracts for non-legal clients</li>
+            <li>Regulatory change monitoring with automated agents</li>
+            <li>Law firm knowledge base management with RAG on updated legislation</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Harvey AI</span>
+            <span class="tool-chip">Casetext</span>
+            <span class="tool-chip">RAG Pipeline</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEACHERS / EDUCATORS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(67,233,123,.08),rgba(56,249,215,.04))">
+          <div class="prof-icon">📚</div>
+          <div>
+            <div class="prof-title">Maestros y Educadores</div>
+            <div class="prof-sub">Docentes K-12, universitarios, instructores</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Diseño de curriculum: crear unidades de aprendizaje, rúbricas y materiales diferenciados</li>
+            <li>Generación de ejercicios y exámenes personalizados por nivel y estilo de aprendizaje</li>
+            <li>Retroalimentación de ensayos asistida — IA genera borradores, maestro supervisa</li>
+            <li>Creación de presentaciones, infografías y recursos visuales con IA</li>
+            <li>Gamificación: diseñar dinámicas y actividades interactivas con Claude</li>
+            <li>Comunicación con padres: redacción de informes y notas con IA</li>
+            <li>Tutores de IA para estudiantes con dificultades específicas</li>
+            <li>Investigación educativa: síntesis de literatura académica relevante</li>
+            </div>
+            <div class="t-en">
+            <li>Curriculum design: create learning units, rubrics and differentiated materials</li>
+            <li>Generation of customized exercises and exams by level and learning style</li>
+            <li>Assisted essay feedback — AI generates drafts, teacher supervises</li>
+            <li>Creating presentations, infographics and visual resources with AI</li>
+            <li>Gamification: designing interactive dynamics and activities with Claude</li>
+            <li>Parent communication: writing reports and notes with AI</li>
+            <li>AI tutors for students with specific difficulties</li>
+            <li>Educational research: synthesis of relevant academic literature</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Khan Academy AI</span>
+            <span class="tool-chip">Gamma</span>
+            <span class="tool-chip">MagicSchool AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENGINEERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(247,151,30,.08),rgba(255,210,0,.04))">
+          <div class="prof-icon">⚙️</div>
+          <div>
+            <div class="prof-title">Ingenieros</div>
+            <div class="prof-sub">Software, civil, industrial, mecánico</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Pair programming 24/7: Claude como rubber duck + code reviewer + debugger</li>
+            <li>Documentación técnica automática: de código a docs legibles en minutos</li>
+            <li>Análisis y refactoring de código legacy con IA</li>
+            <li>Diseño de arquitectura de sistemas con Claude como consultor técnico</li>
+            <li>Generación de tests unitarios e integración automáticos</li>
+            <li>Research de tecnologías: comparar frameworks, evaluar trade-offs con IA</li>
+            <li>Ingeniería civil/industrial: cálculos asistidos, revisión de normas, reportes técnicos</li>
+            <li>Automatizar workflows de CI/CD y DevOps con agentes de IA</li>
+            </div>
+            <div class="t-en">
+            <li>24/7 pair programming: Claude as rubber duck + code reviewer + debugger</li>
+            <li>Automatic technical documentation: from code to readable docs in minutes</li>
+            <li>Legacy code analysis and refactoring with AI</li>
+            <li>System architecture design with Claude as technical consultant</li>
+            <li>Automatic unit and integration test generation</li>
+            <li>Technology research: compare frameworks, evaluate trade-offs with AI</li>
+            <li>Civil/industrial engineering: assisted calculations, standard review, technical reports</li>
+            <li>Automate CI/CD and DevOps workflows with AI agents</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Cursor</span>
+            <span class="tool-chip">Claude Code</span>
+            <span class="tool-chip">GitHub Copilot</span>
+            <span class="tool-chip">Claude API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESIGNERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(255,101,132,.08),rgba(196,113,237,.04))">
+          <div class="prof-icon">🎨</div>
+          <div>
+            <div class="prof-title">Diseñadores</div>
+            <div class="prof-sub">UX/UI, gráfico, motion, branding</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Generación de imágenes con Midjourney v7, DALL-E 4, Stable Diffusion para concepts</li>
+            <li>Escribir briefs creativos, copy para piezas y guías de estilo con Claude</li>
+            <li>Prototipado rápido de UI con v0.dev y Galileo AI — diseño a código</li>
+            <li>Research de tendencias de diseño y análisis de competidores con IA</li>
+            <li>Automatizar exportación y preparación de assets con scripts de IA</li>
+            <li>Generación de variantes de branding y exploración visual acelerada</li>
+            <li>UX Research: síntesis de user interviews con IA, identificar patrones</li>
+            <li>Motion design asistido con RunwayML y Kling AI</li>
+            </div>
+            <div class="t-en">
+            <li>Image generation with Midjourney v7, DALL-E 4, Stable Diffusion for concepts</li>
+            <li>Write creative briefs, copy for pieces and style guides with Claude</li>
+            <li>Rapid UI prototyping with v0.dev and Galileo AI — design to code</li>
+            <li>Design trend research and competitor analysis with AI</li>
+            <li>Automate asset export and preparation with AI scripts</li>
+            <li>Brand variant generation and accelerated visual exploration</li>
+            <li>UX Research: user interview synthesis with AI, pattern identification</li>
+            <li>Assisted motion design with RunwayML and Kling AI</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Midjourney v7</span>
+            <span class="tool-chip">v0.dev</span>
+            <span class="tool-chip">RunwayML</span>
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Figma AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WRITERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(108,99,255,.08),rgba(160,159,255,.04))">
+          <div class="prof-icon">✍️</div>
+          <div>
+            <div class="prof-title">Escritores y Periodistas</div>
+            <div class="prof-sub">Novelistas, copywriters, content creators, journalists</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Claude como co-escritor para brainstorm de ideas, plot holes y desarrollo de personajes</li>
+            <li>Investigación periodística: síntesis de fuentes, fact-checking asistido</li>
+            <li>SEO content: crear artículos optimizados manteniendo voz propia con IA</li>
+            <li>Superar el bloqueo creativo con generación de borradores y variantes</li>
+            <li>Edición y proofreading avanzado: estilo, coherencia, registro</li>
+            <li>Traducción literaria asistida preservando matices y voz</li>
+            <li>Pitching: propuestas para editoriales, revistas y plataformas</li>
+            <li>Automatizar research de newsletters y content curation con agentes</li>
+            </div>
+            <div class="t-en">
+            <li>Claude as co-writer for idea brainstorming, plot holes and character development</li>
+            <li>Journalistic research: source synthesis, assisted fact-checking</li>
+            <li>SEO content: create optimized articles while maintaining own voice with AI</li>
+            <li>Overcome creative block with draft generation and variants</li>
+            <li>Advanced editing and proofreading: style, coherence, register</li>
+            <li>Assisted literary translation preserving nuances and voice</li>
+            <li>Pitching: proposals for publishers, magazines and platforms</li>
+            <li>Automate newsletter research and content curation with agents</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Sudowrite</span>
+            <span class="tool-chip">Perplexity</span>
+            <span class="tool-chip">Notion AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTOGRAPHERS / VIDEOGRAPHERS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(79,172,254,.08),rgba(67,233,123,.04))">
+          <div class="prof-icon">📸</div>
+          <div>
+            <div class="prof-title">Fotógrafos y Videógrafos</div>
+            <div class="prof-sub">Comercial, retrato, documental, content</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Edición y retoque asistido con Adobe Firefly y Luminar Neo AI</li>
+            <li>Generación de shooting concepts, mood boards y direction con Claude + Midjourney</li>
+            <li>Automatizar culling de fotos con apps de IA (Photo AI, AfterShoot)</li>
+            <li>Scripts para YouTube/Reels y storytelling de proyectos visuales con IA</li>
+            <li>Color grading asistido y matching de looks cinematográficos con IA</li>
+            <li>Marketing de fotografía: propuestas a clientes, cotizaciones, contratos con Claude</li>
+            <li>SEO para sitio web de fotógrafo: alt texts, descripciones de galerías con IA</li>
+            <li>Video editing con IA: Descript para edición por transcripción, RunwayML para VFX</li>
+            </div>
+            <div class="t-en">
+            <li>Assisted editing and retouching with Adobe Firefly and Luminar Neo AI</li>
+            <li>Generate shooting concepts, mood boards and direction with Claude + Midjourney</li>
+            <li>Automate photo culling with AI apps (Photo AI, AfterShoot)</li>
+            <li>Scripts for YouTube/Reels and visual project storytelling with AI</li>
+            <li>Assisted color grading and cinematic look matching with AI</li>
+            <li>Photography marketing: client proposals, quotes, contracts with Claude</li>
+            <li>SEO for photographer website: alt texts, gallery descriptions with AI</li>
+            <li>AI video editing: Descript for transcript-based editing, RunwayML for VFX</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Adobe Firefly</span>
+            <span class="tool-chip">RunwayML</span>
+            <span class="tool-chip">Descript</span>
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Midjourney</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEALTHCARE -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(67,233,123,.1),rgba(56,249,215,.05))">
+          <div class="prof-icon">🏥</div>
+          <div>
+            <div class="prof-title">Profesionales de Salud</div>
+            <div class="prof-sub">Médicos, psicólogos, nutriólogos, fisios</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Síntesis de literatura médica y clinical evidence rápida con Perplexity/Claude</li>
+            <li>Documentación clínica asistida: notas SOAP, epicrisis, informes con IA</li>
+            <li>Diseño de planes de tratamiento personalizados y programas de ejercicio</li>
+            <li>Educación al paciente: materiales explicativos en lenguaje sencillo</li>
+            <li>Research de medicamentos: interacciones, contraindicaciones, dosis</li>
+            <li>Chatbots de triage y pre-consulta para filtrar pacientes</li>
+            <li>Automatizar recordatorios y seguimiento de pacientes con IA</li>
+            </div>
+            <div class="t-en">
+            <li>Medical literature synthesis and rapid clinical evidence with Perplexity/Claude</li>
+            <li>Assisted clinical documentation: SOAP notes, discharge summaries, reports with AI</li>
+            <li>Design personalized treatment plans and exercise programs</li>
+            <li>Patient education: explanatory materials in simple language</li>
+            <li>Medication research: interactions, contraindications, dosages</li>
+            <li>Triage and pre-consultation chatbots to filter patients</li>
+            <li>Automate patient reminders and follow-up with AI</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Perplexity</span>
+            <span class="tool-chip">Nabla</span>
+            <span class="tool-chip">DAX Copilot</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKETING / CONTENT CREATORS -->
+      <div class="prof-card">
+        <div class="prof-header" style="background:linear-gradient(135deg,rgba(255,101,132,.08),rgba(255,140,66,.04))">
+          <div class="prof-icon">📱</div>
+          <div>
+            <div class="prof-title">Marketers y Content Creators</div>
+            <div class="prof-sub">Social media, growth, performance, influencers</div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <ul class="use-case-list">
+            <div class="t-es">
+            <li>Estrategia de contenido: calendarios, pilares, narrativas con Claude en minutos</li>
+            <li>Copywriting: ads, email subject lines, CTAs con A/B testing asistido por IA</li>
+            <li>Repurposing: de un video → 10 formatos de contenido con IA</li>
+            <li>Social listening y análisis de competidores con agentes de scraping</li>
+            <li>Performance marketing: análisis de campañas y optimización con IA</li>
+            <li>Crear personajes de audiencia y ICP detallados con Claude</li>
+            <li>Video scripts, thumbnails concepts, hooks para YouTube con IA</li>
+            <li>Automatizar reporting de KPIs con dashboards de n8n + Notion</li>
+            </div>
+            <div class="t-en">
+            <li>Content strategy: calendars, pillars, narratives with Claude in minutes</li>
+            <li>Copywriting: ads, email subject lines, CTAs with AI-assisted A/B testing</li>
+            <li>Repurposing: from one video → 10 content formats with AI</li>
+            <li>Social listening and competitor analysis with scraping agents</li>
+            <li>Performance marketing: campaign analysis and optimization with AI</li>
+            <li>Create detailed audience personas and ICPs with Claude</li>
+            <li>Video scripts, thumbnail concepts, hooks for YouTube with AI</li>
+            <li>Automate KPI reporting with n8n + Notion dashboards</li>
+            </div>
+          </ul>
+          <div class="tools-used">
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">Jasper</span>
+            <span class="tool-chip">Opus Clip</span>
+            <span class="tool-chip">n8n</span>
+            <span class="tool-chip">AdCreative AI</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end prof-grid -->
+  </section>
+
+  <hr class="div">
+
+  <!-- ════════════════════════════════════
+       SECTION 3: CERTIFICATIONS
+  ════════════════════════════════════ -->
+  <section class="section" id="certifications">
+    <div class="section-label">Educación Oficial</div>
+    <div class="t-es">
+      <h2>🏆 Certificaciones Gratuitas de IA — 2026</h2>
+      <p class="section-sub">Las certificaciones más valiosas del mercado, incluyendo las 13 certificaciones gratuitas de Anthropic. Estas acreditan tu conocimiento y son reconocidas por empleadores y clientes.</p>
+    </div>
+    <div class="t-en">
+      <h2>🏆 Free AI Certifications — 2026</h2>
+      <p class="section-sub">The most valuable certifications in the market, including all 13 free Anthropic certifications. These accredit your knowledge and are recognized by employers and clients.</p>
+    </div>
+
+    <div class="t-es"><h3 style="font-size:1rem;font-weight:800;margin-bottom:1rem;color:var(--accent4)">🤖 Certificaciones de Anthropic (Claude) — Todas Gratuitas</h3></div>
+    <div class="t-en"><h3 style="font-size:1rem;font-weight:800;margin-bottom:1rem;color:var(--accent4)">🤖 Anthropic (Claude) Certifications — All Free</h3></div>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Intro to Claude — Getting Started with AI Assistance</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~2 hrs · Beginner</div>
+        <a href="https://www.anthropic.com/learn" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Prompt Engineering Fundamentals with Claude</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~3 hrs · Intermediate</div>
+        <a href="https://www.anthropic.com/learn" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Building with Claude API — Developer Fundamentals</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~4 hrs · Developer</div>
+        <a href="https://docs.anthropic.com/en/docs/get-started" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Claude for Enterprise — Teams and Organizations</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~2 hrs · Business</div>
+        <a href="https://www.anthropic.com/claude/teams" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">AI Safety and Responsible Use of Claude</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~2 hrs · All Levels</div>
+        <a href="https://www.anthropic.com/responsible-scaling-policy" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Agentic Workflows with Claude — Multi-Step Automation</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~5 hrs · Advanced</div>
+        <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">RAG and Knowledge Bases with Claude</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~4 hrs · Advanced</div>
+        <a href="https://docs.anthropic.com/en/docs/build-with-claude/embeddings" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Claude for Marketing and Content Creation</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~3 hrs · Marketing</div>
+        <a href="https://www.anthropic.com/solutions/marketing" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Claude for Coding and Software Development</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~5 hrs · Engineering</div>
+        <a href="https://www.anthropic.com/solutions/coding" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Constitutional AI and Claude's Design Principles</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~2 hrs · Research</div>
+        <a href="https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Claude in Production — Scaling AI Applications</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~6 hrs · Enterprise</div>
+        <a href="https://docs.anthropic.com/en/api/getting-started" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Advanced Prompt Engineering — Chain of Thought and Expert Techniques</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~4 hrs · Expert</div>
+        <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider cert-anthropic">Anthropic</div>
+        <div class="cert-title">Computer Use and Autonomous Agents with Claude</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~5 hrs · Cutting Edge</div>
+        <a href="https://www.anthropic.com/news/3-5-models-and-computer-use" target="_blank" class="cert-link">🎓 Obtener Certificación</a>
+      </div>
+    </div>
+
+    <!-- ── OpenAI Academy ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🟢</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#43e97b;margin:0">OpenAI Academy — ChatGPT &amp; Prompting</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#43e97b;margin:0">OpenAI Academy — ChatGPT &amp; Prompting</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(67,233,123,.3)">
+        <div class="cert-provider" style="color:#43e97b">OpenAI Academy</div>
+        <div class="cert-title">ChatGPT Fundamentals — Getting Started</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · Beginner · All levels</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Domina ChatGPT desde cero: cómo formular peticiones, usar GPTs personalizados, Advanced Data Analysis y los modos de voz y visión.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Master ChatGPT from scratch: how to write requests, use custom GPTs, Advanced Data Analysis, and voice/vision modes.</div>
+        <a href="https://academy.openai.com/" target="_blank" class="cert-link">🎓 <span class="t-es">Ver en OpenAI Academy</span><span class="t-en" style="display:none">View on OpenAI Academy</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(67,233,123,.3)">
+        <div class="cert-provider" style="color:#43e97b">OpenAI Academy</div>
+        <div class="cert-title">Prompting Mastery — GPT-5.4 Best Practices</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · Intermediate · Core skill</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Técnicas avanzadas de prompting para GPT-5.4: system prompts, chain-of-thought, structured outputs y JSON mode para integraciones.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Advanced prompting techniques for GPT-5.4: system prompts, chain-of-thought, structured outputs and JSON mode for integrations.</div>
+        <a href="https://academy.openai.com/en/public/content" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Contenido</span><span class="t-en" style="display:none">View Content</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(67,233,123,.3)">
+        <div class="cert-provider" style="color:#43e97b">OpenAI Academy</div>
+        <div class="cert-title">AI for Small Business &amp; Education</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · Collections · Practical</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Colecciones especializadas para negocios, educadores, científicos y más. OpenAI Academy reúne casos de uso reales de la comunidad global.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Specialized collections for businesses, educators, scientists and more. OpenAI Academy brings together real use cases from the global community.</div>
+        <a href="https://academy.openai.com/" target="_blank" class="cert-link">🎓 <span class="t-es">Explorar Academy</span><span class="t-en" style="display:none">Explore Academy</span></a>
+      </div>
+    </div>
+
+    <!-- ── Google Grow with AI ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🎯</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#4facfe;margin:0">Google — Grow with AI (Cursos Gratuitos)</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#4facfe;margin:0">Google — Grow with AI (Free Courses)</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(79,172,254,.35)">
+        <div class="cert-provider cert-other">Google Grow with AI</div>
+        <div class="cert-title">Google AI Professional Certificate ⭐</div>
+        <div class="cert-meta"><span class="cert-free">FREE (90 días)</span> · 20+ actividades prácticas · Portfolio</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">El certificado más completo de Google: 20+ actividades hands-on, portfolio de trabajo, acceso a 90 días de Google AI Pro. Valida tu expertise para empleadores desde el día uno.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Google's most comprehensive certificate: 20+ hands-on activities, work portfolio, 90 days of Google AI Pro access. Validates your expertise for employers from day one.</div>
+        <a href="https://grow.google/ai-coursera" target="_blank" class="cert-link">🎓 <span class="t-es">Obtener Certificado</span><span class="t-en" style="display:none">Get Certificate</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.35)">
+        <div class="cert-provider cert-other">Google Grow with AI</div>
+        <div class="cert-title">AI Essentials — 5 Hours</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · 5 hrs · Beginner · Certificate</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Nuevo en IA. Aprende los fundamentos de IA generativa y practica usando herramientas de IA para desarrollar ideas, crear contenido y acelerar tareas diarias.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">New to AI? Learn the fundamentals of generative AI and practice using AI tools to develop new ideas, create content, and speed up daily tasks.</div>
+        <a href="https://grow.google/intl/ALL_us/google-ai-essentials/" target="_blank" class="cert-link">🎓 <span class="t-es">Empezar Gratis</span><span class="t-en" style="display:none">Start Free</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.35)">
+        <div class="cert-provider cert-other">Google Grow with AI</div>
+        <div class="cert-title">AI for Educators — 2 Hours</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · 2 hrs · Teachers</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Aprende a usar herramientas de IA generativa para ahorrar tiempo en tareas cotidianas, personalizar la instrucción y enriquecer las lecciones de forma creativa.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Learn to use generative AI tools to save time on everyday tasks, personalize instruction, and enhance lessons in creative ways.</div>
+        <a href="https://grow.google/ai-coursera" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Curso</span><span class="t-en" style="display:none">View Course</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.35)">
+        <div class="cert-provider cert-other">Google Grow with AI</div>
+        <div class="cert-title">Accelerate Your Job Search with AI — 6 Hours</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · 6 hrs · Career</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Usa IA para acelerar tu búsqueda laboral: descubre tus habilidades transferibles, crea un plan de búsqueda, gestiona aplicaciones y practica entrevistas con IA.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Leverage AI tools to accelerate your job search. Uncover transferable skills, create a search plan, manage applications, and practice for interviews.</div>
+        <a href="https://grow.google/ai-coursera" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Curso</span><span class="t-en" style="display:none">View Course</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.35)">
+        <div class="cert-provider cert-other">Google Grow with AI</div>
+        <div class="cert-title">AI for Small Businesses &amp; AI for Students</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · Beginner · Practical</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Dos cursos especializados: IA para negocios (eficiencia, conexión con clientes, crecimiento) e IA para estudiantes (estudio asistido, aprendizaje personalizado, productividad académica).</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Two specialized courses: AI for business (efficiency, customer connection, growth) and AI for students (assisted studying, personalized learning, academic productivity).</div>
+        <a href="https://grow.google/ai-coursera" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Ambos</span><span class="t-en" style="display:none">View Both</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.35)">
+        <div class="cert-provider cert-other">Google Cloud Skills Boost</div>
+        <div class="cert-title">Introduction to Generative AI</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · 45 min · Badge</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">El curso de entrada de Google Cloud para IA generativa. Conceptos clave, cómo funcionan los modelos, casos de uso empresariales. Badge verificado al completar.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Google Cloud's entry course for generative AI. Key concepts, how models work, enterprise use cases. Verified badge upon completion.</div>
+        <a href="https://www.cloudskillsboost.google/courses/536" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Curso</span><span class="t-en" style="display:none">View Course</span></a>
+      </div>
+    </div>
+
+    <!-- ── Microsoft Learn ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🪟</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#6c63ff;margin:0">Microsoft Learn — Copilot &amp; AI</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#6c63ff;margin:0">Microsoft Learn — Copilot &amp; AI</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(108,99,255,.35)">
+        <div class="cert-provider" style="color:#6c63ff">Microsoft Learn</div>
+        <div class="cert-title">Introduction to Microsoft 365 Copilot</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~1 hr · M365 Users · Badge</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Aprende cómo Microsoft 365 Copilot transforma Word, Excel, PowerPoint, Outlook y Teams. Módulo oficial de Microsoft con badge verificado al completar.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Learn how Microsoft 365 Copilot transforms Word, Excel, PowerPoint, Outlook and Teams. Official Microsoft module with verified badge upon completion.</div>
+        <a href="https://learn.microsoft.com/en-us/training/modules/introduction-microsoft-365-copilot/" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Módulo</span><span class="t-en" style="display:none">View Module</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(108,99,255,.35)">
+        <div class="cert-provider" style="color:#6c63ff">Microsoft + LinkedIn Learning</div>
+        <div class="cert-title">Career Essentials in Generative AI</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~5 hrs · All Levels · Certificate</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Path oficial de Microsoft + LinkedIn: cómo la IA generativa funciona, cómo usarla de forma responsable en el trabajo, y cómo posicionar tus skills en el mercado laboral 2026.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Official Microsoft + LinkedIn path: how generative AI works, how to use it responsibly at work, and how to position your skills in the 2026 job market.</div>
+        <a href="https://www.linkedin.com/learning/paths/career-essentials-in-generative-ai-by-microsoft-and-linkedin" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Path</span><span class="t-en" style="display:none">View Path</span></a>
+      </div>
+    </div>
+
+    <!-- ── HubSpot Academy ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🧡</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#f7971e;margin:0">HubSpot Academy — IA para CRM &amp; Marketing</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#f7971e;margin:0">HubSpot Academy — AI for CRM &amp; Marketing</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(247,151,30,.35)">
+        <div class="cert-provider" style="color:#f7971e">HubSpot Academy</div>
+        <div class="cert-title">AI for Marketers Certification ⭐</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~3 hrs · CRM/RevOps · Badge</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">El certificado más valioso de HubSpot para RevOps: cómo la IA potencia la creación de contenido, personaliza experiencias de cliente y cómo evaluar herramientas de IA de forma ética.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">HubSpot's most valuable cert for RevOps: how AI powers content creation, personalizes customer experiences, and how to evaluate AI tools ethically.</div>
+        <a href="https://academy.hubspot.com/courses/AI-for-Marketers" target="_blank" class="cert-link">🎓 <span class="t-es">Obtener Certificado</span><span class="t-en" style="display:none">Get Certificate</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(247,151,30,.35)">
+        <div class="cert-provider" style="color:#f7971e">HubSpot Academy</div>
+        <div class="cert-title">AI for Marketing Campaigns</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~1 hr · Practical</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Cómo usar IA para diseñar, ejecutar y optimizar campañas de marketing. Módulo práctico enfocado en Breeze AI y las capacidades de IA nativas de HubSpot.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">How to use AI to design, execute and optimize marketing campaigns. Practical module focused on Breeze AI and HubSpot's native AI capabilities.</div>
+        <a href="https://academy.hubspot.com/lessons/AI-For-Marketing-Campaigns" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Módulo</span><span class="t-en" style="display:none">View Module</span></a>
+      </div>
+    </div>
+
+    <!-- ── IBM SkillsBuild ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🔵</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#4facfe;margin:0">IBM SkillsBuild — IA Gratuita con Badge Oficial</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#4facfe;margin:0">IBM SkillsBuild — Free AI with Official Badge</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(79,172,254,.3)">
+        <div class="cert-provider cert-other">IBM SkillsBuild</div>
+        <div class="cert-title">Artificial Intelligence Fundamentals ⭐</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · 6-10 hrs · Badge Verificado</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">El curso de entrada de IBM para IA. Cubre fundamentos, IA generativa, herramientas como ChatGPT, ética en IA. Badge digital compartible en LinkedIn. Sin requisitos previos.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">IBM's entry course for AI. Covers fundamentals, generative AI, tools like ChatGPT, AI ethics. Shareable digital badge on LinkedIn. No prerequisites.</div>
+        <a href="https://skillsbuild.org/adult-learners/explore-learning/artificial-intelligence" target="_blank" class="cert-link">🎓 <span class="t-es">Empezar Gratis</span><span class="t-en" style="display:none">Start Free</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.3)">
+        <div class="cert-provider cert-other">IBM + Coursera</div>
+        <div class="cert-title">IBM AI Developer Professional Certificate</div>
+        <div class="cert-meta"><span class="cert-free">AUDIT FREE</span> · 10 cursos · Developer</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Serie de 10 cursos: fundamentos de IA, IA generativa, construcción de apps con ChatGPT, GitHub Copilot, n8n y Bolt. El path más completo de IBM para developers y profesionales técnicos.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">10-course series: AI fundamentals, generative AI, building apps with ChatGPT, GitHub Copilot, n8n and Bolt. IBM's most complete path for developers and technical professionals.</div>
+        <a href="https://www.coursera.org/professional-certificates/applied-artifical-intelligence-ibm-watson-ai" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Certificado</span><span class="t-en" style="display:none">View Certificate</span></a>
+      </div>
+    </div>
+
+    <!-- ── DeepLearning.AI ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🧠</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#c471ed;margin:0">DeepLearning.AI — Andrew Ng (Short Courses)</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#c471ed;margin:0">DeepLearning.AI — Andrew Ng (Short Courses)</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(196,113,237,.3)">
+        <div class="cert-provider" style="color:#c471ed">DeepLearning.AI + Anthropic</div>
+        <div class="cert-title">Prompt Engineering for Developers ⭐</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~1 hr · Andrew Ng</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">El curso de prompting más respetado del mercado, creado por Anthropic + Andrew Ng. Cubre desde principios básicos hasta técnicas avanzadas para developers con la API de Claude.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">The most respected prompting course on the market, created by Anthropic + Andrew Ng. Covers basic principles to advanced techniques for developers with Claude API.</div>
+        <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Curso</span><span class="t-en" style="display:none">View Course</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(196,113,237,.3)">
+        <div class="cert-provider" style="color:#c471ed">DeepLearning.AI</div>
+        <div class="cert-title">Building Agentic RAG with LlamaIndex</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~1 hr · Advanced</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Construye sistemas RAG agénticos — tu base de conocimiento con IA que puede razonar y buscar información de forma autónoma. Fundamental para developers de agentes.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Build agentic RAG systems — your AI knowledge base that can reason and search for information autonomously. Fundamental for agent developers.</div>
+        <a href="https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Curso</span><span class="t-en" style="display:none">View Course</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(196,113,237,.3)">
+        <div class="cert-provider" style="color:#c471ed">DeepLearning.AI (Coursera)</div>
+        <div class="cert-title">AI for Everyone — Andrew Ng</div>
+        <div class="cert-meta"><span class="cert-free">AUDIT FREE</span> · ~6 hrs · All Levels</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">El curso más accesible de Andrew Ng: qué es la IA, cómo navegar la transformación de tu industria, cómo colaborar con equipos técnicos. Sin requisitos técnicos. Ideal para ejecutivos y no-técnicos.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Andrew Ng's most accessible course: what AI is, how to navigate your industry's transformation, how to collaborate with technical teams. No technical requirements. Ideal for executives and non-technical professionals.</div>
+        <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Curso</span><span class="t-en" style="display:none">View Course</span></a>
+      </div>
+    </div>
+
+    <!-- ── Meta Blueprint ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">🔷</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#4facfe;margin:0">Meta Blueprint — IA Generativa &amp; Publicidad</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#4facfe;margin:0">Meta Blueprint — Generative AI &amp; Advertising</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(79,172,254,.3)">
+        <div class="cert-provider cert-other">Meta Blueprint</div>
+        <div class="cert-title">Introduction to Generative AI &amp; Prompting</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · Beginner · Practical</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Cómo usar IA generativa para el negocio en Meta: generar imágenes para anuncios, copy creativo con IA, personalización a escala en Facebook e Instagram.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">How to use generative AI for business in Meta: generate ad images, AI creative copy, personalization at scale on Facebook and Instagram.</div>
+        <a href="https://www.facebook.com/business/learn/lessons/gen-ai" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Lección</span><span class="t-en" style="display:none">View Lesson</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(79,172,254,.3)">
+        <div class="cert-provider cert-other">Meta Blueprint</div>
+        <div class="cert-title">Meta Certified Professional — Digital Marketing</div>
+        <div class="cert-meta"><span style="background:rgba(255,210,0,.12);color:#ffd200;border:1px solid rgba(255,210,0,.3);padding:.15rem .6rem;border-radius:5px;font-size:.65rem;font-weight:800">PAGO</span> · Exam · Industry Cert</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">La certificación oficial de Meta para marketing digital. Reconocida por agencias y empresas. El prep material en Meta Blueprint es gratis — solo el examen tiene costo (~$150).</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Meta's official digital marketing certification. Recognized by agencies and companies. Blueprint prep material is free — only the exam has a cost (~$150).</div>
+        <a href="https://www.facebook.com/business/learn/certification" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Certificación</span><span class="t-en" style="display:none">View Certification</span></a>
+      </div>
+    </div>
+
+    <!-- ── Notion + Perplexity + n8n ── -->
+    <div style="margin-top:2.5rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem">
+      <span style="font-size:1.4rem">⚡</span>
+      <div>
+        <div class="t-es"><h3 style="font-size:1rem;font-weight:800;color:#43e97b;margin:0">Notion, Perplexity &amp; n8n — Herramientas Clave</h3></div>
+        <div class="t-en"><h3 style="font-size:1rem;font-weight:800;color:#43e97b;margin:0">Notion, Perplexity &amp; n8n — Key Tools</h3></div>
+      </div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" style="border-color:rgba(67,233,123,.3)">
+        <div class="cert-provider" style="color:#43e97b">Notion Academy</div>
+        <div class="cert-title">Notion Certified Admin ⭐</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · All levels · Badge</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">La certificación oficial de Notion para administradores de workspace. Cubre Notion AI, bases de datos, automatizaciones y gestión de equipos. Muy valorada por ops professionals.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Notion's official certification for workspace administrators. Covers Notion AI, databases, automations and team management. Highly valued by ops professionals.</div>
+        <a href="https://academy.notion.com/page/become-a-notion-certified-admin" target="_blank" class="cert-link">🎓 <span class="t-es">Certificarse</span><span class="t-en" style="display:none">Get Certified</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(67,233,123,.3)">
+        <div class="cert-provider" style="color:#43e97b">Perplexity AI</div>
+        <div class="cert-title">Perplexity Enterprise Resources &amp; Guides</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · Enterprise · Research AI</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Recursos enterprise de Perplexity: guías de uso avanzado para teams, integración con workflows de research, Spaces colaborativos y API. Ideal para consultores y profesionales de knowledge work.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Perplexity enterprise resources: advanced usage guides for teams, research workflow integration, collaborative Spaces and API. Ideal for consultants and knowledge workers.</div>
+        <a href="https://www.perplexity.ai/enterprise/resources" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Recursos</span><span class="t-en" style="display:none">View Resources</span></a>
+      </div>
+      <div class="cert-card" style="border-color:rgba(67,233,123,.3)">
+        <div class="cert-provider" style="color:#43e97b">n8n Academy</div>
+        <div class="cert-title">n8n AI Automation Certification</div>
+        <div class="cert-meta"><span class="cert-free">FREE</span> · ~4 hrs · Automation</div>
+        <div class="t-es" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Curso oficial de n8n para dominar la automatización con IA: nodos de LLM, agentes, RAG, integraciones con Claude/GPT/Gemini. El certificado más práctico para RevOps y ops professionals.</div>
+        <div class="t-en" style="font-size:.78rem;color:var(--text2);margin:.4rem 0">Official n8n course to master AI automation: LLM nodes, agents, RAG, integrations with Claude/GPT/Gemini. The most practical certificate for RevOps and ops professionals.</div>
+        <a href="https://academy.n8n.io" target="_blank" class="cert-link">🎓 <span class="t-es">Ver Academy</span><span class="t-en" style="display:none">View Academy</span></a>
+      </div>
+    </div>
+
+    <!-- ── Strategy Highlight ── -->
+    <div class="highlight" style="margin-top:2rem">
+      <div class="t-es"><h4>📌 Ruta de Certificaciones Recomendada (por prioridad)</h4>
+      <ul>
+        <li><strong>Primero (Core):</strong> Anthropic Prompt Engineering → Anthropic Agentic Workflows → Anthropic API Fundamentals</li>
+        <li><strong>Segundo (Plataforma):</strong> HubSpot AI for Marketers (si eres RevOps) → n8n Academy (si usas automatización)</li>
+        <li><strong>Tercero (Credibilidad):</strong> Google AI Essentials (5h, gratis, muy reconocido) → IBM AI Fundamentals (badge IBM)</li>
+        <li><strong>Cuarto (Especialización):</strong> OpenAI Academy → Microsoft Copilot → Notion Certified Admin</li>
+        <li><strong>Combo ganador para LinkedIn:</strong> Anthropic + Google AI Professional Certificate + HubSpot AI = posicionamiento imbatible en el mercado de IA 2026</li>
+        <li><strong>Bonus para técnicos:</strong> DeepLearning.AI Prompt Engineering + IBM AI Developer = credenciales reconocidas por hiring managers técnicos</li>
+      </ul></div>
+      <div class="t-en"><h4>📌 Recommended Certification Path (by priority)</h4>
+      <ul>
+        <li><strong>First (Core):</strong> Anthropic Prompt Engineering → Anthropic Agentic Workflows → Anthropic API Fundamentals</li>
+        <li><strong>Second (Platform):</strong> HubSpot AI for Marketers (if RevOps) → n8n Academy (if you use automation)</li>
+        <li><strong>Third (Credibility):</strong> Google AI Essentials (5h, free, widely recognized) → IBM AI Fundamentals (IBM badge)</li>
+        <li><strong>Fourth (Specialization):</strong> OpenAI Academy → Microsoft Copilot → Notion Certified Admin</li>
+        <li><strong>LinkedIn winning combo:</strong> Anthropic + Google AI Professional Certificate + HubSpot AI = unbeatable positioning in 2026 AI market</li>
+        <li><strong>Bonus for technical:</strong> DeepLearning.AI Prompt Engineering + IBM AI Developer = credentials recognized by technical hiring managers</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ════════════════════════════════════
+       SECTION 4: RUBEN HASSID RESOURCES
+  ════════════════════════════════════ -->
+  <section class="section" id="ruben">
+    <div class="section-label">Recursos de Creadores</div>
+    <div class="t-es">
+      <h2>📚 Recursos de Ruben Hassid — How to AI</h2>
+      <p class="section-sub">Ruben Hassid es uno de los creadores de contenido sobre IA más valiosos y prácticos. Sus guías, infografías y newsletters son material de referencia para profesionales. Aquí están los recursos más importantes de su ecosistema.</p>
+    </div>
+    <div class="t-en">
+      <h2>📚 Ruben Hassid's Resources — How to AI</h2>
+      <p class="section-sub">Ruben Hassid is one of the most valuable and practical AI content creators. His guides, infographics and newsletters are reference material for professionals. Here are the most important resources from his ecosystem.</p>
+    </div>
+
+    <div class="resource-grid">
+
+      <div class="resource-card">
+        <div class="resource-type">Guía Principal</div>
+        <div class="resource-title">How to AI — La Guía Definitiva</div>
+        <div class="t-es"><div class="resource-desc">El recurso central de Ruben. Cómo usar IA de forma práctica y efectiva en tu trabajo. Actualizada regularmente con los últimos modelos y técnicas.</div></div>
+        <div class="t-en"><div class="resource-desc">Ruben's central resource. How to use AI practically and effectively in your work. Regularly updated with the latest models and techniques.</div></div>
+        <a href="https://ruben.substack.com/archive?sort=new" target="_blank" class="resource-link">📖 Ver en Substack →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Infografía</div>
+        <div class="resource-title">Claude Dictionary — Vocabulario Esencial</div>
+        <div class="t-es"><div class="resource-desc">Guía visual de los términos más importantes de Claude: context window, artifacts, Projects, system prompts, MCP y más. El diccionario que todo profesional de IA necesita dominar.</div></div>
+        <div class="t-en"><div class="resource-desc">Visual guide to Claude's most important terms: context window, artifacts, Projects, system prompts, MCP and more. The dictionary every AI professional needs to master.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Infografía</div>
+        <div class="resource-title">Claude Skills Hacks — Trucos Avanzados</div>
+        <div class="t-es"><div class="resource-desc">Los hacks menos conocidos pero más poderosos de Claude: cómo usar artifacts para code execution, PDF analysis avanzado, chain prompting, y el uso de Projects para memoria persistente.</div></div>
+        <div class="t-en"><div class="resource-desc">The least known but most powerful Claude hacks: how to use artifacts for code execution, advanced PDF analysis, chain prompting, and using Projects for persistent memory.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Tutorial</div>
+        <div class="resource-title">Claude Cowork Mode — Guía Completa</div>
+        <div class="t-es"><div class="resource-desc">Cómo usar Claude Cowork (beta) para automatizar tareas de gestión de archivos, organización y flujos de trabajo en tu computadora. El futuro del trabajo con asistentes de IA locales.</div></div>
+        <div class="t-en"><div class="resource-desc">How to use Claude Cowork (beta) to automate file management, organization and workflow tasks on your computer. The future of work with local AI assistants.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Guía de Prompting</div>
+        <div class="resource-title">The Ultimate Prompting Guide for Claude</div>
+        <div class="t-es"><div class="resource-desc">Técnicas específicas para obtener resultados superiores con Claude: formatos de output, uso de XML tags, chain of thought, role prompting y las diferencias de Claude vs ChatGPT para distintas tareas.</div></div>
+        <div class="t-en"><div class="resource-desc">Specific techniques for getting superior results with Claude: output formats, XML tag usage, chain of thought, role prompting, and Claude vs ChatGPT differences for different tasks.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Framework</div>
+        <div class="resource-title">The AI Workflow Framework — De Idea a Resultado</div>
+        <div class="t-es"><div class="resource-desc">El framework de 5 pasos de Ruben para convertir cualquier tarea en un flujo de IA efectivo. Especialmente útil para profesionales que no vienen de tecnología y quieren sistematizar su uso de IA.</div></div>
+        <div class="t-en"><div class="resource-desc">Ruben's 5-step framework for converting any task into an effective AI workflow. Especially useful for non-tech professionals who want to systematize their AI usage.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Newsletter</div>
+        <div class="resource-title">How to AI Weekly Newsletter</div>
+        <div class="t-es"><div class="resource-desc">La newsletter semanal con los lanzamientos más importantes, tutoriales prácticos y casos de uso reales. Uno de los recursos más valiosos para mantenerte actualizado sin consumir horas de contenido.</div></div>
+        <div class="t-en"><div class="resource-desc">The weekly newsletter with the most important launches, practical tutorials and real use cases. One of the most valuable resources for staying updated without consuming hours of content.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📩 Suscribirse →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Infografía</div>
+        <div class="resource-title">The Best AI Tools by Category — 2026 Edition</div>
+        <div class="t-es"><div class="resource-desc">Mapa visual de las mejores herramientas de IA por categoría: escritura, código, imágenes, video, audio, agentes, search, y productividad. El mapa de referencia para construir tu stack.</div></div>
+        <div class="t-en"><div class="resource-desc">Visual map of the best AI tools by category: writing, code, images, video, audio, agents, search, and productivity. The reference map for building your stack.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Caso de Uso</div>
+        <div class="resource-title">How to Build Your AI Second Brain</div>
+        <div class="t-es"><div class="resource-desc">Cómo usar Claude Projects + Notion AI + RAG para crear un sistema de conocimiento personal que recuerda todo, conecta ideas y actúa como tu asistente de investigación personalizado.</div></div>
+        <div class="t-en"><div class="resource-desc">How to use Claude Projects + Notion AI + RAG to create a personal knowledge system that remembers everything, connects ideas and acts as your personalized research assistant.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Guía</div>
+        <div class="resource-title">AI for Non-Technical Professionals</div>
+        <div class="t-es"><div class="resource-desc">La guía de Ruben específicamente para profesionales que no son técnicos: cómo usar IA para tu trabajo sin necesidad de saber programar, con casos de uso para 20+ profesiones.</div></div>
+        <div class="t-en"><div class="resource-desc">Ruben's guide specifically for non-technical professionals: how to use AI for your work without needing to code, with use cases for 20+ professions.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Infografía</div>
+        <div class="resource-title">The Prompt Formula That Always Works</div>
+        <div class="t-es"><div class="resource-desc">La estructura de prompt universal de Ruben: Context + Task + Format + Constraints + Example. Con ejemplos reales para cada tipo de profesional. Probada con millones de prompts.</div></div>
+        <div class="t-en"><div class="resource-desc">Ruben's universal prompt structure: Context + Task + Format + Constraints + Example. With real examples for each type of professional. Tested with millions of prompts.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-type">Comparativa</div>
+        <div class="resource-title">Claude vs ChatGPT vs Gemini — Cuál usar y cuándo</div>
+        <div class="t-es"><div class="resource-desc">La guía práctica definitiva de Ruben para elegir el modelo correcto según la tarea. Claude para análisis y escritura larga, GPT-5.4 para multimodal y coding, Gemini para Google Workspace y contexto ultra-largo.</div></div>
+        <div class="t-en"><div class="resource-desc">Ruben's definitive practical guide for choosing the right model by task. Claude for analysis and long writing, GPT-5.4 for multimodal and coding, Gemini for Google Workspace and ultra-long context.</div></div>
+        <a href="https://ruben.substack.com" target="_blank" class="resource-link">📖 Ver Recurso →</a>
+      </div>
+
+    </div>
+
+    <div class="highlight" style="margin-top:2rem">
+      <div class="t-es"><h4>🔗 Accede al Archivo Completo de Ruben</h4>
+      <p>El archivo completo del Substack de Ruben Hassid tiene cientos de guías, tutoriales e infografías. Visita <strong>ruben.substack.com/archive</strong> y filtra por "new" para ver lo más reciente. Es gratis subscribirse al tier básico y recibir las actualizaciones semanales.</p></div>
+      <div class="t-en"><h4>🔗 Access Ruben's Complete Archive</h4>
+      <p>Ruben Hassid's complete Substack archive has hundreds of guides, tutorials and infographics. Visit <strong>ruben.substack.com/archive</strong> and filter by "new" to see the latest. It's free to subscribe to the basic tier and receive weekly updates.</p></div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ════════════════════════════════════
+       SECTION 5: LO ÚLTIMO — ABRIL 2026
+  ════════════════════════════════════ -->
+  <section class="section" id="tools-2026">
+    <div class="section-label">Actualización Abril 2026</div>
+    <div class="t-es">
+      <h2>🔥 Lo Último de lo Último — Abril 2026</h2>
+      <p class="section-sub">El ecosistema de IA en abril de 2026 se mueve más rápido que nunca. Aquí están los lanzamientos más importantes que debes conocer ahora mismo.</p>
+    </div>
+    <div class="t-en">
+      <h2>🔥 The Very Latest — April 2026</h2>
+      <p class="section-sub">The AI ecosystem in April 2026 moves faster than ever. Here are the most important launches you need to know right now.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card" style="border-color:rgba(196,113,237,.4)">
+        <div class="card-icon">🎭</div>
+        <div class="t-es"><h3>Claude Opus 4.6 — El Modelo Más Inteligente</h3>
+        <p>El flagship de Anthropic en 2026. Razonamiento multi-paso excepcional, comprensión de documentos largos (200K tokens), y agente autónomo de clase profesional. El mejor modelo para análisis complejo, escritura de alto nivel y tareas de agente.</p></div>
+        <div class="t-en"><h3>Claude Opus 4.6 — The Most Intelligent Model</h3>
+        <p>Anthropic's 2026 flagship. Exceptional multi-step reasoning, long document comprehension (200K tokens), and professional-class autonomous agent. The best model for complex analysis, high-level writing and agent tasks.</p></div>
+        <span class="card-tag">Anthropic · Abril 2026</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(67,233,123,.4)">
+        <div class="card-icon">🤖</div>
+        <div class="t-es"><h3>GPT-5.4 — OpenAI's Multimodal Master</h3>
+        <p>La versión más reciente del modelo insignia de OpenAI. Capacidades multimodales superiores (audio, video, imagen, texto en tiempo real), razonamiento matemático de nivel PhD, y la mejor integración con herramientas externas. Especialmente fuerte en coding.</p></div>
+        <div class="t-en"><h3>GPT-5.4 — OpenAI's Multimodal Master</h3>
+        <p>The latest version of OpenAI's flagship model. Superior multimodal capabilities (audio, video, image, text in real time), PhD-level mathematical reasoning, and best-in-class external tool integration. Especially strong in coding.</p></div>
+        <span class="card-tag">OpenAI · 2026</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(79,172,254,.4)">
+        <div class="card-icon">💎</div>
+        <div class="t-es"><h3>Gemini 3.1 Pro — Ultra-Long Context</h3>
+        <p>Google DeepMind rompe el récord con 2M de tokens de contexto. Integración nativa con Google Workspace (Docs, Sheets, Gmail, Drive). El mejor para empresas que viven en el ecosistema Google y para análisis de repositorios enteros de código.</p></div>
+        <div class="t-en"><h3>Gemini 3.1 Pro — Ultra-Long Context</h3>
+        <p>Google DeepMind breaks the record with 2M context tokens. Native integration with Google Workspace (Docs, Sheets, Gmail, Drive). Best for companies living in the Google ecosystem and for analyzing entire code repositories.</p></div>
+        <span class="card-tag">Google DeepMind · 2026</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,140,66,.4)">
+        <div class="card-icon">❤️</div>
+        <div class="t-es"><h3>Lovable 2.0 — Vibecoding Evolucionado</h3>
+        <p>La plataforma de vibecoding más popular ahora con deployment automático, backends con Supabase integrado, y colaboración en tiempo real. Construye apps completas full-stack con IA. La herramienta favorita de non-technical founders en 2026.</p></div>
+        <div class="t-en"><h3>Lovable 2.0 — Evolved Vibecoding</h3>
+        <p>The most popular vibecoding platform now with automatic deployment, integrated Supabase backends, and real-time collaboration. Build complete full-stack apps with AI. The favorite tool of non-technical founders in 2026.</p></div>
+        <span class="card-tag">Lovable · 2026</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,210,0,.4)">
+        <div class="card-icon">⚡</div>
+        <div class="t-es"><h3>Cursor — Valorado en $9.2B USD</h3>
+        <p>El IDE de IA alcanzó una valuación de $9.2B en 2026, confirmando que el coding asistido es el futuro. Cursor Agent puede completar features enteras de forma autónoma. La herramienta que los engineers serios usan todos los días.</p></div>
+        <div class="t-en"><h3>Cursor — Valued at $9.2B USD</h3>
+        <p>The AI IDE reached a valuation of $9.2B in 2026, confirming that assisted coding is the future. Cursor Agent can complete entire features autonomously. The tool serious engineers use every day.</p></div>
+        <span class="card-tag">Cursor · Valuación Histórica</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,101,132,.4)">
+        <div class="card-icon">🏢</div>
+        <div class="t-es"><h3>HubSpot Breeze AI con GPT-5.4</h3>
+        <p>HubSpot integró GPT-5.4 en su plataforma Breeze AI, elevando todas las capacidades de CRM, marketing automation y content generation. Si eres RevOps en HubSpot, esta actualización te da superpoderes nativos sin salir de la plataforma.</p></div>
+        <div class="t-en"><h3>HubSpot Breeze AI with GPT-5.4</h3>
+        <p>HubSpot integrated GPT-5.4 into its Breeze AI platform, elevating all CRM, marketing automation and content generation capabilities. If you're RevOps on HubSpot, this update gives you native superpowers without leaving the platform.</p></div>
+        <span class="card-tag">HubSpot · 2026</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(79,172,254,.4)">
+        <div class="card-icon">☁️</div>
+        <div class="t-es"><h3>Salesforce Agentforce — $540M ARR</h3>
+        <p>La apuesta más agresiva de Salesforce en IA alcanzó $540M en ARR en 2026. Los Einstein Agents ahora pueden ejecutar procesos completos de ventas de forma autónoma. El estándar para enterprise CRM inteligente.</p></div>
+        <div class="t-en"><h3>Salesforce Agentforce — $540M ARR</h3>
+        <p>Salesforce's most aggressive AI bet reached $540M in ARR in 2026. Einstein Agents can now autonomously execute complete sales processes. The standard for intelligent enterprise CRM.</p></div>
+        <span class="card-tag">Salesforce · $540M ARR</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(67,233,123,.4)">
+        <div class="card-icon">🔗</div>
+        <div class="t-es"><h3>MCP (Model Context Protocol) — El Estándar de Agentes</h3>
+        <p>El protocolo de Anthropic para conectar LLMs con herramientas externas se convirtió en el estándar de la industria. Claude, GPT, Gemini y todos los modelos principales ahora soportan MCP. Conecta tu CRM, calendar, Slack, y 500+ herramientas directamente con tu IA.</p></div>
+        <div class="t-en"><h3>MCP (Model Context Protocol) — The Agent Standard</h3>
+        <p>Anthropic's protocol for connecting LLMs with external tools became the industry standard. Claude, GPT, Gemini and all major models now support MCP. Connect your CRM, calendar, Slack, and 500+ tools directly with your AI.</p></div>
+        <span class="card-tag">Industry Standard · 2026</span>
+      </div>
+
+    </div>
+
+    <div class="highlight" style="margin-top:1.5rem;background:linear-gradient(135deg,rgba(247,151,30,.1),rgba(255,210,0,.05));border-color:rgba(247,151,30,.3)">
+      <div class="t-es"><h4 style="color:var(--accent)">💡 Cómo mantenerse actualizado en 2026</h4>
+      <ul>
+        <li><strong>Ruben Hassid Substack</strong> — ruben.substack.com (semanal, lo mejor)</li>
+        <li><strong>Ben's Bites</strong> — bensbites.beehiiv.com (diario, news rápidas)</li>
+        <li><strong>The Rundown AI</strong> — therundown.ai (diario, muy completo)</li>
+        <li><strong>Latent Space Podcast</strong> — para depth técnico real</li>
+        <li><strong>X/Twitter:</strong> Sigue a @sama, @karpathy, @anthropic, @emollick, @levelsio</li>
+        <li><strong>Claude.ai changelog</strong> — anthropic.com/news para updates de Claude</li>
+      </ul></div>
+      <div class="t-en"><h4 style="color:var(--accent)">💡 How to stay updated in 2026</h4>
+      <ul>
+        <li><strong>Ruben Hassid Substack</strong> — ruben.substack.com (weekly, the best)</li>
+        <li><strong>Ben's Bites</strong> — bensbites.beehiiv.com (daily, quick news)</li>
+        <li><strong>The Rundown AI</strong> — therundown.ai (daily, very comprehensive)</li>
+        <li><strong>Latent Space Podcast</strong> — for real technical depth</li>
+        <li><strong>X/Twitter:</strong> Follow @sama, @karpathy, @anthropic, @emollick, @levelsio</li>
+        <li><strong>Claude.ai changelog</strong> — anthropic.com/news for Claude updates</li>
+      </ul></div>
+    </div>
+
+  </section>
+
+  <hr class="div">
+
+  <!-- ════════════════════════════════════
+       SECTION 6: LOCAL AI DEEP GUIDE
+  ════════════════════════════════════ -->
+  <section class="section" id="local-ai">
+    <div class="section-label">IA Local — Guía Técnica</div>
+    <div class="t-es">
+      <h2>🏠 IA Local: Guía Definitiva de Instalación y Setup</h2>
+      <p class="section-sub">Corre modelos de IA en tu propia máquina — sin costos de API, con privacidad total y disponibilidad offline. Desde Ollama hasta setups en VPS, esta es la guía completa para el profesional serio.</p>
+    </div>
+    <div class="t-en">
+      <h2>🏠 Local AI: Complete Installation &amp; Setup Guide</h2>
+      <p class="section-sub">Run AI models on your own machine — no API costs, full privacy and offline availability. From Ollama to VPS setups, this is the complete guide for the serious professional.</p>
+    </div>
+
+    <!-- WHY LOCAL AI -->
+    <div class="highlight" style="margin-bottom:2rem">
+      <div class="t-es"><h4>🎯 ¿Por qué IA Local? Los 5 Casos Reales</h4>
+      <ul>
+        <li><strong>Datos confidenciales de clientes</strong> — nunca deberían salir de tu red (contratos, datos médicos, información financiera)</li>
+        <li><strong>Costo cero de API</strong> — correr Llama 3.3 70B localmente es $0 vs $5-20/M tokens en la nube</li>
+        <li><strong>Latencia ultra-baja</strong> — sin viajes de red. Para agentes que hacen 1000 llamadas, la diferencia es de horas</li>
+        <li><strong>Disponibilidad offline</strong> — aviones, zonas sin internet, sistemas críticos sin dependencia externa</li>
+        <li><strong>Customización total</strong> — fine-tuning, system prompts permanentes, integraciones propietarias</li>
+      </ul></div>
+      <div class="t-en"><h4>🎯 Why Local AI? The 5 Real Cases</h4>
+      <ul>
+        <li><strong>Confidential client data</strong> — should never leave your network (contracts, medical data, financial info)</li>
+        <li><strong>Zero API cost</strong> — running Llama 3.3 70B locally is $0 vs $5-20/M tokens in the cloud</li>
+        <li><strong>Ultra-low latency</strong> — no network trips. For agents making 1000 calls, the difference is hours</li>
+        <li><strong>Offline availability</strong> — planes, no-internet zones, critical systems without external dependency</li>
+        <li><strong>Total customization</strong> — fine-tuning, permanent system prompts, proprietary integrations</li>
+      </ul></div>
+    </div>
+
+    <!-- OLLAMA SETUP -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1rem;color:var(--accent)">⚡ Ollama — El Motor Estándar para IA Local</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1rem;color:var(--accent)">⚡ Ollama — The Standard Engine for Local AI</h3></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🍎</div>
+        <div class="t-es"><h3>Instalación en Mac (M1/M2/M3/M4)</h3>
+        <p>Instalación en un comando. Ollama aprovecha Metal GPU de Apple Silicon para rendimiento óptimo.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#43e97b"># Instalar Ollama
+brew install ollama
+
+# O descarga directo de ollama.com
+# Corre tu primer modelo
+ollama run llama3.3
+
+# Modelos recomendados por uso de RAM:
+# 8GB RAM → llama3.2:3b, phi3:mini
+# 16GB RAM → llama3.3:8b, mistral:7b, qwen2.5:7b
+# 24GB+ RAM → llama3.3:70b, deepseek-r1:32b
+# Listar modelos disponibles
+ollama list
+# Correr con GPU específica
+OLLAMA_GPU_LAYERS=99 ollama run llama3.3</pre></div>
+        <div class="t-en"><h3>Installation on Mac (M1/M2/M3/M4)</h3>
+        <p>Installation in one command. Ollama leverages Apple Silicon Metal GPU for optimal performance.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#43e97b"># Install Ollama
+brew install ollama
+
+# Or download directly from ollama.com
+# Run your first model
+ollama run llama3.3
+
+# Recommended models by RAM usage:
+# 8GB RAM → llama3.2:3b, phi3:mini
+# 16GB RAM → llama3.3:8b, mistral:7b, qwen2.5:7b
+# 24GB+ RAM → llama3.3:70b, deepseek-r1:32b
+# List available models
+ollama list</pre></div>
+        <span class="card-tag">ollama.com · Gratis</span>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🐧</div>
+        <div class="t-es"><h3>Instalación en Linux / VPS</h3>
+        <p>Para servidores, VPS en la nube (Hetzner, DigitalOcean) o máquinas Linux. Ideal para agentes n8n que necesitan LLMs locales sin costo.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#43e97b"># Instalar Ollama en Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Iniciar como servicio
+sudo systemctl start ollama
+sudo systemctl enable ollama
+
+# Exponer API (cuidado: solo en red privada)
+OLLAMA_HOST=0.0.0.0:11434 ollama serve
+
+# Usar API REST directamente
+curl http://localhost:11434/api/generate \
+  -d '{"model":"llama3.3","prompt":"Hello"}'</pre></div>
+        <div class="t-en"><h3>Linux / VPS Installation</h3>
+        <p>For servers, cloud VPS (Hetzner, DigitalOcean) or Linux machines. Ideal for n8n agents needing local LLMs at zero cost.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#43e97b"># Install Ollama on Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Start as service
+sudo systemctl start ollama
+sudo systemctl enable ollama
+
+# Expose API (caution: only on private network)
+OLLAMA_HOST=0.0.0.0:11434 ollama serve
+
+# Use REST API directly
+curl http://localhost:11434/api/generate \
+  -d '{"model":"llama3.3","prompt":"Hello"}'</pre></div>
+        <span class="card-tag">Linux · Gratis</span>
+      </div>
+    </div>
+
+    <!-- OPEN WEBUI / FRONTENDS -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🖥️ Open WebUI — La Interfaz Visual para Ollama</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🖥️ Open WebUI — The Visual Interface for Ollama</h3></div>
+
+    <div class="cards">
+      <div class="card" style="border-color:rgba(67,233,123,.35)">
+        <div class="card-icon">🌐</div>
+        <div class="t-es"><h3>Open WebUI (antes Ollama WebUI)</h3>
+        <p>La interfaz tipo ChatGPT para tus modelos locales. Soporte para múltiples modelos, historial de chats, RAG con documentos, usuarios y mucho más. La opción más popular y mantenida.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#4facfe"># Instalar con Docker (más fácil)
+docker run -d \
+  -p 3000:8080 \
+  --add-host=host.docker.internal:host-gateway \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  ghcr.io/open-webui/open-webui:main
+
+# Accede en: http://localhost:3000
+# Sin Docker (npm):
+pip install open-webui
+open-webui serve</pre></div>
+        <div class="t-en"><h3>Open WebUI (formerly Ollama WebUI)</h3>
+        <p>The ChatGPT-style interface for your local models. Supports multiple models, chat history, RAG with documents, users and much more. The most popular and maintained option.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#4facfe"># Install with Docker (easiest)
+docker run -d \
+  -p 3000:8080 \
+  --add-host=host.docker.internal:host-gateway \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  ghcr.io/open-webui/open-webui:main
+
+# Access at: http://localhost:3000</pre></div>
+        <span class="card-tag">github.com/open-webui · MIT License</span>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔬</div>
+        <div class="t-es"><h3>LM Studio — GUI Desktop para Modelos Locales</h3>
+        <p>Aplicación desktop (Mac/Win/Linux) para descargar y correr modelos de Hugging Face con interfaz gráfica. Incluye servidor local compatible con OpenAI API. Perfecto para no-técnicos que quieren IA local sin terminal.</p></div>
+        <div class="t-en"><h3>LM Studio — Desktop GUI for Local Models</h3>
+        <p>Desktop app (Mac/Win/Linux) for downloading and running Hugging Face models with graphical interface. Includes local server compatible with OpenAI API. Perfect for non-technical users wanting local AI without terminal.</p></div>
+        <span class="card-tag">lmstudio.ai · Gratis</span>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <div class="t-es"><h3>AnythingLLM — RAG Local Todo-en-Uno</h3>
+        <p>La solución más completa para RAG local. Conecta PDFs, Notion, sitios web, y más a tus modelos Ollama. Perfecto para crear un "segundo cerebro" privado con todos tus documentos de trabajo indexados.</p></div>
+        <div class="t-en"><h3>AnythingLLM — All-in-One Local RAG</h3>
+        <p>The most complete solution for local RAG. Connect PDFs, Notion, websites, and more to your Ollama models. Perfect for creating a private "second brain" with all your work documents indexed.</p></div>
+        <span class="card-tag">useanything.com · Gratis/Pro</span>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <div class="t-es"><h3>Jan.ai — App Desktop Local Privada</h3>
+        <p>Alternativa a LM Studio con foco en privacidad total. Descarga modelos directamente desde Hugging Face, tiene su propio API server local y extensiones. Interfaz limpia y simple para uso diario.</p></div>
+        <div class="t-en"><h3>Jan.ai — Private Local Desktop App</h3>
+        <p>LM Studio alternative with focus on total privacy. Downloads models directly from Hugging Face, has its own local API server and extensions. Clean, simple interface for daily use.</p></div>
+        <span class="card-tag">jan.ai · Gratis · Open Source</span>
+      </div>
+    </div>
+
+    <!-- VPS GUIDE -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">☁️ Correr IA en VPS — La Opción para Agentes 24/7</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">☁️ Running AI on VPS — The Option for 24/7 Agents</h3></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <div class="t-es"><h3>Hetzner Cloud — El Mejor Precio/Rendimiento</h3>
+        <p>El VPS favorito de la comunidad de IA europea. CPX31 (4 vCPU, 8GB RAM) a ~$8/mes corre perfectamente Ollama con modelos 7B. Para modelos más grandes, CPX51 (16 vCPU, 32GB RAM) a ~$30/mes. Datacenters en EU y US.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#43e97b"># Setup rápido en Hetzner VPS
+# 1. Crea VPS Ubuntu 22.04
+# 2. SSH al servidor
+ssh root@tu-ip
+
+# 3. Instala Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 4. Instala n8n
+npm install -g n8n
+
+# 5. Conecta n8n con Ollama
+# En n8n: AI → Ollama → localhost:11434</pre></div>
+        <div class="t-en"><h3>Hetzner Cloud — Best Price/Performance</h3>
+        <p>The EU AI community's favorite VPS. CPX31 (4 vCPU, 8GB RAM) at ~$8/month runs Ollama perfectly with 7B models. For larger models, CPX51 (16 vCPU, 32GB RAM) at ~$30/month. Datacenters in EU and US.</p>
+        <pre style="background:#0a0a0f;padding:1rem;border-radius:8px;margin-top:.8rem;font-size:.78rem;overflow-x:auto;border:1px solid var(--border);color:#43e97b"># Quick setup on Hetzner VPS
+# 1. Create VPS Ubuntu 22.04
+# 2. SSH to server
+ssh root@your-ip
+
+# 3. Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 4. Install n8n
+npm install -g n8n
+
+# 5. Connect n8n to Ollama
+# In n8n: AI → Ollama → localhost:11434</pre></div>
+        <span class="card-tag">hetzner.com · $5-30/mes</span>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <div class="t-es"><h3>RunPod / Vast.ai — GPU en la Nube a Demanda</h3>
+        <p>Para cuando necesitas GPU real para modelos grandes (70B+). RunPod ofrece RTX 3090/4090 por hora (~$0.30-0.70/hr). Perfecto para fine-tuning o batch processing. Vast.ai tiene precios más bajos pero más variables.</p></div>
+        <div class="t-en"><h3>RunPod / Vast.ai — On-Demand Cloud GPU</h3>
+        <p>For when you need real GPU for large models (70B+). RunPod offers RTX 3090/4090 by the hour (~$0.30-0.70/hr). Perfect for fine-tuning or batch processing. Vast.ai has lower but more variable prices.</p></div>
+        <span class="card-tag">runpod.io · Por Hora</span>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <div class="t-es"><h3>Stack Recomendado: Mac Mini + VPS Combo</h3>
+        <p>La configuración ideal para profesionales: Mac Mini M4 Pro para trabajo local y sesiones interactivas + Hetzner VPS $15/mes para agentes n8n corriendo 24/7 con Ollama. Lo mejor de ambos mundos sin los costos de GPU en la nube.</p></div>
+        <div class="t-en"><h3>Recommended Stack: Mac Mini + VPS Combo</h3>
+        <p>The ideal config for professionals: Mac Mini M4 Pro for local work and interactive sessions + Hetzner VPS $15/month for n8n agents running 24/7 with Ollama. Best of both worlds without cloud GPU costs.</p></div>
+        <span class="card-tag">Pro Setup · ~$45/mes total</span>
+      </div>
+    </div>
+
+    <!-- RECOMMENDED LOCAL MODELS -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🧠 Mejores Modelos para Correr Localmente en 2026</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent)">🧠 Best Models to Run Locally in 2026</h3></div>
+
+    <table class="device-table">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th><span class="t-es">RAM Necesaria</span><span class="t-en" style="display:none">RAM Needed</span></th>
+          <th><span class="t-es">Mejor Para</span><span class="t-en" style="display:none">Best For</span></th>
+          <th>Ollama Command</th>
+          <th><span class="t-es">Calidad</span><span class="t-en" style="display:none">Quality</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Llama 3.3 70B</strong></td>
+          <td>40-48GB</td>
+          <td><span class="t-es">Razonamiento general, escritura larga</span><span class="t-en" style="display:none">General reasoning, long writing</span></td>
+          <td><code>ollama run llama3.3</code></td>
+          <td><span class="badge-green">★ Top Local</span></td>
+        </tr>
+        <tr>
+          <td><strong>Qwen2.5 72B</strong></td>
+          <td>40-48GB</td>
+          <td><span class="t-es">Multilingüe, código, análisis</span><span class="t-en" style="display:none">Multilingual, code, analysis</span></td>
+          <td><code>ollama run qwen2.5:72b</code></td>
+          <td><span class="badge-green">Excelente</span></td>
+        </tr>
+        <tr>
+          <td><strong>DeepSeek R1 32B</strong></td>
+          <td>20GB</td>
+          <td><span class="t-es">Razonamiento chain-of-thought, matemáticas</span><span class="t-en" style="display:none">Chain-of-thought reasoning, math</span></td>
+          <td><code>ollama run deepseek-r1:32b</code></td>
+          <td><span class="badge-green">Razonamiento</span></td>
+        </tr>
+        <tr>
+          <td><strong>Gemma 3 27B</strong></td>
+          <td>16GB</td>
+          <td><span class="t-es">Balance calidad/velocidad, multimodal</span><span class="t-en" style="display:none">Quality/speed balance, multimodal</span></td>
+          <td><code>ollama run gemma3:27b</code></td>
+          <td><span class="badge-yellow">Muy Bueno</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mistral Small 3.1</strong></td>
+          <td>12GB</td>
+          <td><span class="t-es">Velocidad + calidad, agents, JSON</span><span class="t-en" style="display:none">Speed + quality, agents, JSON</span></td>
+          <td><code>ollama run mistral-small3.1</code></td>
+          <td><span class="badge-yellow">Rápido</span></td>
+        </tr>
+        <tr>
+          <td><strong>Phi-4 Mini</strong></td>
+          <td>4GB</td>
+          <td><span class="t-es">Dispositivos con poca RAM, edge AI</span><span class="t-en" style="display:none">Low-RAM devices, edge AI</span></td>
+          <td><code>ollama run phi4-mini</code></td>
+          <td><span class="badge-blue">Edge</span></td>
+        </tr>
+        <tr>
+          <td><strong>Llama 3.2 Vision 11B</strong></td>
+          <td>8GB</td>
+          <td><span class="t-es">Análisis de imágenes local y visión</span><span class="t-en" style="display:none">Local image analysis and vision</span></td>
+          <td><code>ollama run llama3.2-vision</code></td>
+          <td><span class="badge-yellow">Visión</span></td>
+        </tr>
+        <tr>
+          <td><strong>Nomic Embed Text</strong></td>
+          <td>1GB</td>
+          <td><span class="t-es">Embeddings locales para RAG</span><span class="t-en" style="display:none">Local embeddings for RAG</span></td>
+          <td><code>ollama run nomic-embed-text</code></td>
+          <td><span class="badge-blue">RAG</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- DEMYSTIFY HYPE TOOLS -->
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent2)">🚨 Desmitificando el Hype: Open WebUI, "ClaudBot" y Similares</h3></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;margin:2rem 0 1rem;color:var(--accent2)">🚨 Demystifying the Hype: Open WebUI, "ClaudBot" and Similar Tools</h3></div>
+
+    <div class="cards">
+      <div class="card" style="border-color:rgba(255,210,0,.35)">
+        <div class="card-icon">🌐</div>
+        <div class="t-es"><h3>Open WebUI — Lo que Realmente Es</h3>
+        <p><strong>¿Qué es?</strong> Una interfaz web de código abierto para Ollama. Es legítima, popular (50K+ estrellas en GitHub) y muy útil. El hype exagerado la presenta como "Claude gratis" o "ChatGPT local" — en realidad es solo la interfaz, los modelos que corre (Llama, Mistral, etc.) son distintos. <strong>Veredicto: Herramienta real y valiosa, úsala.</strong></p></div>
+        <div class="t-en"><h3>Open WebUI — What It Really Is</h3>
+        <p><strong>What is it?</strong> An open-source web interface for Ollama. It's legitimate, popular (50K+ GitHub stars) and very useful. The hype presents it as "free Claude" or "local ChatGPT" — it's actually just the interface; the models it runs (Llama, Mistral, etc.) are different. <strong>Verdict: Real and valuable tool, use it.</strong></p></div>
+        <span class="card-tag">✅ Legítimo — Úsalo</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,101,132,.35)">
+        <div class="card-icon">⚠️</div>
+        <div class="t-es"><h3>"ClaudBot" / "OpenClaw" / Clones Dudosos</h3>
+        <p>Han aparecido decenas de sitios y apps que se presentan como "Claude gratis", "versión sin límites de Claude" o "API de Claude sin restricciones". <strong>Red flags: ninguno es Claude de Anthropic.</strong> Son wrappers de Llama u otros modelos open-source, o directamente estafas para capturar datos. El Claude real solo está en claude.ai y la API oficial de Anthropic.</p></div>
+        <div class="t-en"><h3>"ClaudBot" / "OpenClaw" / Dubious Clones</h3>
+        <p>Dozens of sites and apps have appeared claiming to be "free Claude", "unlimited Claude version" or "unrestricted Claude API". <strong>Red flags: none of these are Anthropic's Claude.</strong> They're wrappers of Llama or other open-source models, or outright scams to capture data. Real Claude is only at claude.ai and the official Anthropic API.</p></div>
+        <span class="card-tag">🚨 Evitar — No es Claude Real</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,101,132,.35)">
+        <div class="card-icon">⚠️</div>
+        <div class="t-es"><h3>APIs "Baratas" de Claude/GPT en Sitios Terceros</h3>
+        <p>Sitios que venden "acceso a Claude/GPT por centavos" usando APIs no autorizadas. Problemas: violan los TOS de Anthropic/OpenAI, pueden tener modelos viejos o degradados, sin garantías de privacidad, y en muchos casos son re-sellers de cuentas robadas. <strong>Siempre usa la API oficial.</strong></p></div>
+        <div class="t-en"><h3>"Cheap" Claude/GPT APIs on Third-Party Sites</h3>
+        <p>Sites selling "Claude/GPT access for pennies" using unauthorized APIs. Problems: violate Anthropic/OpenAI TOS, may have old or degraded models, no privacy guarantees, and many cases are resellers of stolen accounts. <strong>Always use the official API.</strong></p></div>
+        <span class="card-tag">🚨 Riesgo Legal y de Seguridad</span>
+      </div>
+
+      <div class="card" style="border-color:rgba(67,233,123,.35)">
+        <div class="card-icon">✅</div>
+        <div class="t-es"><h3>La Alternativa Real: Modelos Open Source Legítimos</h3>
+        <p>Si quieres IA gratuita y sin límites: <strong>Llama 3.3</strong> (Meta, MIT License), <strong>Mistral</strong> (Mistral AI, Apache 2.0), <strong>Qwen 2.5</strong> (Alibaba, Apache 2.0), <strong>Gemma 3</strong> (Google, Apache 2.0). Son modelos reales, de primera clase, 100% legítimos y gratuitos para uso personal y comercial.</p></div>
+        <div class="t-en"><h3>The Real Alternative: Legitimate Open Source Models</h3>
+        <p>If you want free, unlimited AI: <strong>Llama 3.3</strong> (Meta, MIT License), <strong>Mistral</strong> (Mistral AI, Apache 2.0), <strong>Qwen 2.5</strong> (Alibaba, Apache 2.0), <strong>Gemma 3</strong> (Google, Apache 2.0). These are real, first-class models, 100% legitimate and free for personal and commercial use.</p></div>
+        <span class="card-tag">✅ Legítimo y Gratuito</span>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="div">
+
+  <!-- ════════════════════════════════════
+       SECTION 7: MODEL GUIDE — ALL MODELS
+  ════════════════════════════════════ -->
+  <section class="section" id="model-guide">
+    <div class="section-label">Guía de Modelos</div>
+    <div class="t-es">
+      <h2>🗺️ Guía Completa de Todos los Modelos — 2026</h2>
+      <p class="section-sub">De ChatGPT a Gemma, de Claude a Llama — todo lo que necesitas saber sobre cada modelo, cuándo usarlo, sus versiones, precios y casos de uso específicos.</p>
+    </div>
+    <div class="t-en">
+      <h2>🗺️ Complete Guide to All Models — 2026</h2>
+      <p class="section-sub">From ChatGPT to Gemma, from Claude to Llama — everything you need to know about each model, when to use it, its versions, prices and specific use cases.</p>
+    </div>
+
+    <!-- CLAUDE -->
+    <div style="background:linear-gradient(135deg,rgba(196,113,237,.1),rgba(246,79,89,.05));border:1px solid rgba(196,113,237,.35);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+        <span style="font-size:1.6rem">🤖</span>
+        <div>
+          <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#c471ed">Anthropic</div>
+          <div style="font-size:1.1rem;font-weight:800">Claude — La Familia Completa</div>
+        </div>
+      </div>
+      <div class="t-es">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">Claude es el modelo de Anthropic, reconocido por su razonamiento excepcional, escritura de calidad literaria, y comportamiento seguro y honesto. Es el mejor modelo para análisis de documentos largos, escritura compleja y razonamiento multi-paso.</p>
+        <table class="device-table" style="font-size:.8rem">
+          <thead><tr><th>Versión</th><th>Cuándo Usarla</th><th>Precio</th><th>Contexto</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Claude Opus 4.6</strong></td><td>Análisis más complejo, agentes autónomos, escritura de nivel experto</td><td>API: ~$15/M tokens</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Sonnet 4.5</strong></td><td>Uso diario, balance costo/calidad. El modelo que más usarás</td><td>API: ~$3/M tokens</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Haiku 3.5</strong></td><td>Tareas rápidas y repetitivas, clasificación, resúmenes cortos</td><td>API: ~$0.25/M tokens</td><td>200K tokens</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.82rem;color:var(--text2);margin-top:.8rem"><strong>Pros:</strong> El mejor para razonamiento largo y complejo, escritura matizada, análisis de documentos. Honesto con sus limitaciones. <strong>Contras:</strong> No tiene búsqueda web nativa (en la versión base), más conservador en algunos casos.</p>
+      </div>
+      <div class="t-en">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">Claude is Anthropic's model, recognized for exceptional reasoning, literary-quality writing, and safe and honest behavior. Best model for long document analysis, complex writing and multi-step reasoning.</p>
+        <table class="device-table" style="font-size:.8rem">
+          <thead><tr><th>Version</th><th>When to Use</th><th>Price</th><th>Context</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Claude Opus 4.6</strong></td><td>Most complex analysis, autonomous agents, expert-level writing</td><td>API: ~$15/M tokens</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Sonnet 4.5</strong></td><td>Daily use, cost/quality balance. The model you'll use most</td><td>API: ~$3/M tokens</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Haiku 3.5</strong></td><td>Fast and repetitive tasks, classification, short summaries</td><td>API: ~$0.25/M tokens</td><td>200K tokens</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem">
+        <span class="tool-chip" style="background:rgba(196,113,237,.12);color:#c471ed;border-color:rgba(196,113,237,.25)">claude.ai</span>
+        <span class="tool-chip" style="background:rgba(196,113,237,.12);color:#c471ed;border-color:rgba(196,113,237,.25)">Claude Code (CLI)</span>
+        <span class="tool-chip" style="background:rgba(196,113,237,.12);color:#c471ed;border-color:rgba(196,113,237,.25)">Claude Cowork</span>
+        <span class="tool-chip" style="background:rgba(196,113,237,.12);color:#c471ed;border-color:rgba(196,113,237,.25)">API: api.anthropic.com</span>
+      </div>
+    </div>
+
+    <!-- CLAUDE CODE -->
+    <div style="background:var(--card);border:1px solid rgba(196,113,237,.25);border-radius:14px;padding:1.3rem;margin-bottom:1.2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#c471ed;margin-bottom:.3rem">Anthropic · Producto</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Claude Code — El Agente de Coding en Terminal</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">Claude Code es un agente de coding que corre directamente desde tu terminal (CLI). No es solo un autocompletar — es un agente que lee tu codebase completo, escribe archivos, corre comandos, y completa tareas de programación end-to-end. Construido sobre Claude Sonnet/Opus. Instalación: <code style="background:#0a0a0f;padding:.15rem .4rem;border-radius:4px;font-size:.78rem">npm install -g @anthropic-ai/claude-code</code>. Ideal para: engineers que quieren un pair programmer autónomo en su terminal.</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">Claude Code is a coding agent that runs directly from your terminal (CLI). It's not just autocomplete — it's an agent that reads your full codebase, writes files, runs commands, and completes programming tasks end-to-end. Built on Claude Sonnet/Opus. Install: <code style="background:#0a0a0f;padding:.15rem .4rem;border-radius:4px;font-size:.78rem">npm install -g @anthropic-ai/claude-code</code>. Ideal for: engineers who want an autonomous pair programmer in their terminal.</p></div>
+    </div>
+
+    <!-- CLAUDE COWORK -->
+    <div style="background:var(--card);border:1px solid rgba(196,113,237,.25);border-radius:14px;padding:1.3rem;margin-bottom:2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#c471ed;margin-bottom:.3rem">Anthropic · Beta 2026</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Claude Cowork — IA para tu Desktop (Beta)</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">Claude Cowork es el modo de escritorio de Claude que puede controlar archivos, ejecutar código y automatizar flujos de trabajo directamente en tu computadora. Similar a lo que hace Claude Code para programadores, pero para profesionales no técnicos. Actualmente en beta pública. Ideal para: gestión de archivos inteligente, organización de documentos, procesamiento de PDFs a escala y creación de presentaciones con IA de forma autónoma.</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">Claude Cowork is Claude's desktop mode that can control files, execute code and automate workflows directly on your computer. Similar to what Claude Code does for programmers, but for non-technical professionals. Currently in public beta. Ideal for: intelligent file management, document organization, PDF processing at scale and autonomous AI-powered presentation creation.</p></div>
+    </div>
+
+    <!-- CHATGPT -->
+    <div style="background:linear-gradient(135deg,rgba(67,233,123,.08),rgba(16,163,127,.04));border:1px solid rgba(67,233,123,.3);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+        <span style="font-size:1.6rem">🟢</span>
+        <div>
+          <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#43e97b">OpenAI</div>
+          <div style="font-size:1.1rem;font-weight:800">ChatGPT — La Familia Completa</div>
+        </div>
+      </div>
+      <div class="t-es">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">ChatGPT es el producto más conocido de IA del mercado. Con GPT-5.4 en 2026, OpenAI mantiene el liderazgo en capacidades multimodales, código, y razonamiento matemático avanzado. El ecosistema más maduro con plugins, GPTs y integración con terceros.</p>
+        <table class="device-table" style="font-size:.8rem">
+          <thead><tr><th>Versión / Modo</th><th>Cuándo Usarla</th><th>Acceso</th></tr></thead>
+          <tbody>
+            <tr><td><strong>GPT-5.4</strong></td><td>Multimodal (imagen+audio+video), código avanzado, razonamiento PhD</td><td>ChatGPT Plus ($20/mes)</td></tr>
+            <tr><td><strong>o4-mini / o3</strong></td><td>Razonamiento extendido step-by-step para matemáticas, ciencia, código</td><td>Plus/Pro ($20-200/mes)</td></tr>
+            <tr><td><strong>GPT-4o</strong></td><td>Multimodal estándar, voz en tiempo real, análisis de imágenes</td><td>Gratis (con límites)</td></tr>
+            <tr><td><strong>GPT-4o mini</strong></td><td>Tareas rápidas, alta velocidad, bajo costo</td><td>Gratis · API muy barata</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.82rem;color:var(--text2);margin-top:.8rem"><strong>Pros:</strong> El mejor ecosistema de plugins e integraciones, GPT Builder para crear asistentes custom, Advanced Data Analysis, DALL-E 4 integrado. <strong>Contras:</strong> Tiende a ser "agradador" vs honesto en comparación con Claude.</p>
+      </div>
+      <div class="t-en">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">ChatGPT is the most well-known AI product on the market. With GPT-5.4 in 2026, OpenAI maintains leadership in multimodal capabilities, code, and advanced mathematical reasoning. The most mature ecosystem with plugins, GPTs and third-party integrations.</p>
+        <table class="device-table" style="font-size:.8rem">
+          <thead><tr><th>Version / Mode</th><th>When to Use</th><th>Access</th></tr></thead>
+          <tbody>
+            <tr><td><strong>GPT-5.4</strong></td><td>Multimodal (image+audio+video), advanced code, PhD reasoning</td><td>ChatGPT Plus ($20/month)</td></tr>
+            <tr><td><strong>o4-mini / o3</strong></td><td>Extended step-by-step reasoning for math, science, code</td><td>Plus/Pro ($20-200/month)</td></tr>
+            <tr><td><strong>GPT-4o</strong></td><td>Standard multimodal, real-time voice, image analysis</td><td>Free (with limits)</td></tr>
+            <tr><td><strong>GPT-4o mini</strong></td><td>Fast tasks, high speed, low cost</td><td>Free · Very cheap API</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GEMINI -->
+    <div style="background:linear-gradient(135deg,rgba(79,172,254,.08),rgba(0,242,254,.04));border:1px solid rgba(79,172,254,.3);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+        <span style="font-size:1.6rem">💎</span>
+        <div>
+          <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#4facfe">Google DeepMind</div>
+          <div style="font-size:1.1rem;font-weight:800">Gemini — La Familia Completa</div>
+        </div>
+      </div>
+      <div class="t-es">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">Gemini es la familia de modelos de Google DeepMind. Diseñada nativamente para ser multimodal desde el inicio. La integración con el ecosistema Google (Workspace, Search, YouTube) es su mayor ventaja diferencial. Con 2M de tokens de contexto en Gemini 3.1 Pro, es el rey del contexto largo.</p>
+        <table class="device-table" style="font-size:.8rem">
+          <thead><tr><th>Versión</th><th>Cuándo Usarla</th><th>Acceso</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gemini 3.1 Ultra</strong></td><td>Contexto ultra-largo (2M tokens), análisis de repos enteros, empresas Google</td><td>Google One AI Premium</td></tr>
+            <tr><td><strong>Gemini 3.1 Pro</strong></td><td>Uso profesional con integración Google Workspace. El más balanceado</td><td>Google One AI ($20/mes)</td></tr>
+            <tr><td><strong>Gemini Flash 2.0</strong></td><td>Ultra-rápido, bajo costo de API, ideal para producción y volumen</td><td>API gratis (con límites)</td></tr>
+            <tr><td><strong>Gemini Nano</strong></td><td>On-device en Android/Pixel. Sin internet, privado</td><td>Built-in en Pixel 8+</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.82rem;color:var(--text2);margin-top:.8rem"><strong>Pros:</strong> Mejor integración con Google Docs/Sheets/Gmail/Drive, contexto más largo del mercado, multimodal nativo. <strong>Contras:</strong> Interfaz de Gemini.google.com menos pulida que Claude o ChatGPT.</p>
+      </div>
+      <div class="t-en">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">Gemini is Google DeepMind's model family. Designed natively multimodal from the start. Integration with the Google ecosystem (Workspace, Search, YouTube) is its biggest differentiator. With 2M context tokens in Gemini 3.1 Pro, it's the king of long context.</p>
+      </div>
+    </div>
+
+    <!-- PERPLEXITY -->
+    <div style="background:var(--card);border:1px solid rgba(79,172,254,.25);border-radius:14px;padding:1.3rem;margin-bottom:1.2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#4facfe;margin-bottom:.3rem">Perplexity AI</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Perplexity — El Motor de Búsqueda con IA</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">Perplexity no es un modelo, es un producto que usa múltiples modelos (Claude, GPT-4, Llama) con búsqueda web en tiempo real. Su superpoder es que cita fuentes en cada respuesta. El mejor sustituto de Google Search para investigación profesional. <strong>Cuándo usarlo:</strong> cuando necesitas información actualizada con fuentes verificables. <strong>Pro tip:</strong> Perplexity Pro ($20/mes) te da acceso a Claude Opus y GPT-5.4 con búsqueda web, lo cual es increíble valor.</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">Perplexity is not a model, it's a product that uses multiple models (Claude, GPT-4, Llama) with real-time web search. Its superpower is citing sources in every response. Best Google Search replacement for professional research. <strong>When to use:</strong> when you need up-to-date information with verifiable sources. <strong>Pro tip:</strong> Perplexity Pro ($20/month) gives you access to Claude Opus and GPT-5.4 with web search, which is incredible value.</p></div>
+    </div>
+
+    <!-- COPILOT -->
+    <div style="background:var(--card);border:1px solid rgba(108,99,255,.25);border-radius:14px;padding:1.3rem;margin-bottom:1.2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#6c63ff;margin-bottom:.3rem">Microsoft</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Microsoft Copilot — IA Integrada en el Ecosistema Microsoft</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">Microsoft Copilot (powered by GPT-5.4 y Phi-4) está integrado en Windows 11, Microsoft 365 (Word, Excel, PowerPoint, Outlook, Teams) y GitHub. <strong>Cuándo usarlo:</strong> Si tu empresa usa Microsoft 365, Copilot for M365 ($30/usuario/mes) es transformador — genera reportes en Word, analiza datos en Excel, resume meetings de Teams automáticamente. <strong>GitHub Copilot</strong> (~$10/mes) es esencial para cualquier developer. <strong>Copilot Studio</strong> permite crear agentes personalizados para empresas.</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">Microsoft Copilot (powered by GPT-5.4 and Phi-4) is integrated into Windows 11, Microsoft 365 (Word, Excel, PowerPoint, Outlook, Teams) and GitHub. <strong>When to use:</strong> If your company uses Microsoft 365, Copilot for M365 ($30/user/month) is transformative — generates Word reports, analyzes Excel data, automatically summarizes Teams meetings. <strong>GitHub Copilot</strong> (~$10/month) is essential for any developer. <strong>Copilot Studio</strong> lets you create custom enterprise agents.</p></div>
+    </div>
+
+    <!-- LLAMA / META -->
+    <div style="background:var(--card);border:1px solid rgba(247,151,30,.25);border-radius:14px;padding:1.3rem;margin-bottom:1.2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#f7971e;margin-bottom:.3rem">Meta AI · Open Source</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Llama — El Rey del Open Source</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">Llama es la familia de modelos open-source de Meta, con licencia MIT para uso comercial. Llama 3.3 (70B) es comparable a GPT-4 en muchas tareas y se puede correr localmente con Ollama. <strong>Versiones clave 2026:</strong> Llama 3.3 (70B), Llama 3.2 Vision (11B/90B para imágenes), Llama 3.2 (1B/3B para edge AI). <strong>Cuándo usarlos:</strong> datos confidenciales, infraestructura propia, fine-tuning para casos de uso específicos, o cuando el costo de API importa a escala.</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">Llama is Meta's open-source model family, with MIT license for commercial use. Llama 3.3 (70B) is comparable to GPT-4 in many tasks and can be run locally with Ollama. <strong>Key 2026 versions:</strong> Llama 3.3 (70B), Llama 3.2 Vision (11B/90B for images), Llama 3.2 (1B/3B for edge AI). <strong>When to use:</strong> confidential data, own infrastructure, fine-tuning for specific use cases, or when API cost matters at scale.</p></div>
+    </div>
+
+    <!-- GEMMA -->
+    <div style="background:linear-gradient(135deg,rgba(79,172,254,.08),rgba(67,233,123,.04));border:1px solid rgba(79,172,254,.3);border-radius:14px;padding:1.3rem;margin-bottom:1.2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#4facfe;margin-bottom:.3rem">Google · Open Source</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Gemma 3 — El Open Source de Google</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">Gemma 3 es la familia de modelos open-source de Google, destilados a partir de Gemini. Licencia permisiva para uso comercial. <strong>Por qué importa:</strong> Gemma 3 27B es multimodal (texto + imagen), corre en un Mac Mini con 16GB RAM, y tiene rendimiento comparable a muchos modelos propietarios. <strong>Versiones:</strong> Gemma 3 1B (ultra-ligero, on-device), Gemma 3 4B/12B (balance), Gemma 3 27B (flagship, multimodal). <strong>Comando:</strong> <code style="background:#0a0a0f;padding:.15rem .4rem;border-radius:4px;font-size:.78rem">ollama run gemma3:27b</code>. Google también tiene <strong>PaliGemma</strong> (visión) y <strong>CodeGemma</strong> (código).</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">Gemma 3 is Google's open-source model family, distilled from Gemini. Permissive license for commercial use. <strong>Why it matters:</strong> Gemma 3 27B is multimodal (text + image), runs on a Mac Mini with 16GB RAM, and has performance comparable to many proprietary models. <strong>Versions:</strong> Gemma 3 1B (ultra-lightweight, on-device), Gemma 3 4B/12B (balance), Gemma 3 27B (flagship, multimodal). <strong>Command:</strong> <code style="background:#0a0a0f;padding:.15rem .4rem;border-radius:4px;font-size:.78rem">ollama run gemma3:27b</code>. Google also has <strong>PaliGemma</strong> (vision) and <strong>CodeGemma</strong> (code).</p></div>
+    </div>
+
+    <!-- DEEPSEEK -->
+    <div style="background:var(--card);border:1px solid rgba(67,233,123,.25);border-radius:14px;padding:1.3rem;margin-bottom:1.2rem">
+      <div style="font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#43e97b;margin-bottom:.3rem">DeepSeek AI · Open Source</div>
+      <div style="font-size:1rem;font-weight:800;margin-bottom:.5rem">DeepSeek — El Modelo Chino que Sorprendió al Mundo</div>
+      <div class="t-es"><p style="font-size:.83rem;color:var(--text2)">DeepSeek R1 demostró en enero 2025 que se podía entrenar un modelo de razonamiento de clase mundial a una fracción del costo de OpenAI. <strong>DeepSeek R1 (671B):</strong> razonamiento chain-of-thought excepcional, disponible vía API y localmente. <strong>DeepSeek V3:</strong> modelo de completación general, muy eficiente. <strong>Nota de seguridad:</strong> DeepSeek almacena datos en servidores chinos — para datos confidenciales, usa la versión local con Ollama (<code style="background:#0a0a0f;padding:.15rem .4rem;border-radius:4px;font-size:.78rem">ollama run deepseek-r1:32b</code>) para total privacidad.</p></div>
+      <div class="t-en"><p style="font-size:.83rem;color:var(--text2)">DeepSeek R1 demonstrated in January 2025 that a world-class reasoning model could be trained at a fraction of OpenAI's cost. <strong>DeepSeek R1 (671B):</strong> exceptional chain-of-thought reasoning, available via API and locally. <strong>DeepSeek V3:</strong> general completion model, very efficient. <strong>Security note:</strong> DeepSeek stores data on Chinese servers — for confidential data, use the local version with Ollama (<code style="background:#0a0a0f;padding:.15rem .4rem;border-radius:4px;font-size:.78rem">ollama run deepseek-r1:32b</code>) for total privacy.</p></div>
+    </div>
+
+    <!-- QUICK COMPARISON TABLE -->
+    <div class="t-es"><h3 style="font-size:1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text)">⚖️ Tabla de Decisión Rápida: ¿Cuál modelo usar?</h3></div>
+    <div class="t-en"><h3 style="font-size:1rem;font-weight:800;margin:2rem 0 1rem;color:var(--text)">⚖️ Quick Decision Table: Which model to use?</h3></div>
+
+    <table class="device-table">
+      <thead>
+        <tr>
+          <th><span class="t-es">Si necesitas...</span><span class="t-en" style="display:none">If you need...</span></th>
+          <th><span class="t-es">Usa</span><span class="t-en" style="display:none">Use</span></th>
+          <th><span class="t-es">Por qué</span><span class="t-en" style="display:none">Why</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="t-es">Análisis de documento largo + escritura sofisticada</span><span class="t-en" style="display:none">Long document analysis + sophisticated writing</span></td>
+          <td><strong>Claude Sonnet/Opus</strong></td>
+          <td><span class="t-es">Contexto 200K + mejor razonamiento narrativo</span><span class="t-en" style="display:none">200K context + best narrative reasoning</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Coding avanzado + matemáticas + multimodal</span><span class="t-en" style="display:none">Advanced coding + math + multimodal</span></td>
+          <td><strong>GPT-5.4 / o4</strong></td>
+          <td><span class="t-es">Mejor en benchmarks de código y razonamiento matemático</span><span class="t-en" style="display:none">Best in code and math reasoning benchmarks</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Información web actualizada + fuentes citadas</span><span class="t-en" style="display:none">Updated web info + cited sources</span></td>
+          <td><strong>Perplexity Pro</strong></td>
+          <td><span class="t-es">Búsqueda en tiempo real + citas verificables</span><span class="t-en" style="display:none">Real-time search + verifiable citations</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Integración Google Workspace o contexto 2M tokens</span><span class="t-en" style="display:none">Google Workspace integration or 2M token context</span></td>
+          <td><strong>Gemini 3.1 Pro</strong></td>
+          <td><span class="t-es">Nativo en Google ecosystem + contexto más largo</span><span class="t-en" style="display:none">Native in Google ecosystem + longest context</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Datos confidenciales + privacidad total</span><span class="t-en" style="display:none">Confidential data + total privacy</span></td>
+          <td><strong>Ollama + Llama 3.3 / Gemma 3</strong></td>
+          <td><span class="t-es">100% local, sin envío de datos a terceros</span><span class="t-en" style="display:none">100% local, no data sent to third parties</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Razonamiento chain-of-thought paso a paso</span><span class="t-en" style="display:none">Step-by-step chain-of-thought reasoning</span></td>
+          <td><strong>DeepSeek R1 / o3</strong></td>
+          <td><span class="t-es">Modelos de razonamiento extendido, muestran el trabajo</span><span class="t-en" style="display:none">Extended reasoning models, show their work</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Microsoft 365 / Word / Excel / Teams</span><span class="t-en" style="display:none">Microsoft 365 / Word / Excel / Teams</span></td>
+          <td><strong>Copilot for M365</strong></td>
+          <td><span class="t-es">Integración nativa, acceso a tus datos de Microsoft</span><span class="t-en" style="display:none">Native integration, access to your Microsoft data</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-es">Agentes de n8n a bajo costo, 24/7</span><span class="t-en" style="display:none">Low-cost n8n agents, 24/7</span></td>
+          <td><strong>Mistral Small / Qwen2.5</strong></td>
+          <td><span class="t-es">Precio/velocidad/calidad óptimo para automatizaciones</span><span class="t-en" style="display:none">Optimal price/speed/quality for automations</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <div style="text-align:center;padding:3rem 0 1rem">
+    <a href="curso-ai-index.html" class="cert-link" style="font-size:.9rem;padding:.7rem 1.5rem">← Volver al Inicio del Curso</a>
+  </div>
+
+</main>
+</div>
+
+<script>
+// Sidebar scroll highlight
+function goToSection(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  // Handle both direct clicks and clicks on child spans
+  let target = event.target;
+  while(target && !target.classList.contains('nav-item')) target = target.parentElement;
+  if(target) target.classList.add('active');
+}
+
+// Language toggle
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(en){btn.textContent='🌐 Ver en Español';btn.classList.add('active-en')}
+  else{btn.textContent='🌐 Switch to English';btn.classList.remove('active-en')}
+  // Update inline-style sidebar spans (they use style="display:none" not CSS class)
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es')}catch(e){}
+}
+
+// Restore language preference
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.body.classList.add('lang-en');
+      const btn=document.getElementById('langBtn');
+      if(btn){btn.textContent='🌐 Ver en Español';btn.classList.add('active-en')}
+      document.addEventListener('DOMContentLoaded',function(){
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
+</body>
+</html>

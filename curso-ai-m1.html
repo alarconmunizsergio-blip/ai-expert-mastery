@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 1: Prompt Engineering Mastery</title>
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--border:#2a2a3a;--accent:#f7971e;--accent2:#ffd200;--accent3:#43e97b;--accentR:#ff6584;--text:#e8e8f0;--text2:#9898b0;--card:#14141e;--mod:#ffd200}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+.sidebar{width:270px;min-width:270px;background:var(--bg2);border-right:1px solid var(--border);height:100vh;position:fixed;top:0;left:0;overflow-y:auto;z-index:50;padding-bottom:2rem}
+.sidebar-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.sidebar-logo{font-size:.85rem;font-weight:800;background:linear-gradient(135deg,#f7971e,#ffd200);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{display:block;font-size:.72rem;color:var(--text2);text-decoration:none;margin-top:.2rem}
+.sidebar-back:hover{color:var(--accent)}
+.mod-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod);padding:.8rem 1.2rem .3rem}
+.ll{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem 1.2rem;cursor:pointer;border:none;background:none;width:100%;text-align:left;color:var(--text2);font-size:.8rem;line-height:1.4;transition:background .2s}
+.ll:hover{background:rgba(247,151,30,.08);color:var(--text)}
+.ll.active{background:rgba(247,151,30,.15);color:var(--accent);font-weight:700}
+.ln{font-size:.62rem;font-weight:900;color:var(--mod);min-width:26px;padding-top:.1rem}
+.sp{padding:.8rem 1.2rem;border-top:1px solid var(--border);margin-top:.5rem}
+.sl{font-size:.7rem;color:var(--text2);margin-bottom:.3rem}
+.pb{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+.main{margin-left:270px;flex:1}
+.topbar{position:sticky;top:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;gap:1rem;z-index:40;backdrop-filter:blur(10px)}
+.tl{font-size:.75rem;color:var(--text2)}
+.tt{font-size:.9rem;font-weight:800}
+.tnav{margin-left:auto;display:flex;gap:.4rem}
+.nb{padding:.35rem .8rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s}
+.nb:hover{border-color:var(--accent);color:var(--accent)}
+.nb.p{background:var(--accent);color:#000;border-color:var(--accent)}
+.nb.p:hover{opacity:.85}
+.content{max-width:800px;margin:0 auto;padding:2.5rem 2rem}
+.tabs{display:flex;gap:.4rem;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab{padding:.5rem 1rem;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tc{display:none}.tc.active{display:block}
+.lh{margin-bottom:2rem}
+.badge{display:inline-flex;align-items:center;background:rgba(247,151,30,.12);border:1px solid rgba(247,151,30,.3);border-radius:7px;padding:.25rem .8rem;font-size:.68rem;font-weight:800;color:var(--mod);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.8rem}
+.lt{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:.6rem}
+.lm{display:flex;gap:.8rem;flex-wrap:wrap;color:var(--text2);font-size:.8rem}
+.mc{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.15rem .6rem;border-radius:5px}
+.obj{background:rgba(67,233,123,.06);border:1px solid rgba(67,233,123,.25);border-radius:12px;padding:1.2rem;margin-bottom:2rem}
+.obj h3{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:.6rem}
+.obj ul{list-style:none}
+.obj li{font-size:.87rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.obj li::before{content:'✓';color:var(--accent3);font-weight:900;flex-shrink:0}
+.lb h2{font-size:1.2rem;font-weight:800;margin:1.8rem 0 .7rem;color:var(--text)}
+.lb h3{font-size:1rem;font-weight:800;margin:1.3rem 0 .5rem;color:var(--mod)}
+.lb p{font-size:.9rem;color:var(--text2);margin-bottom:.9rem;line-height:1.75}
+.lb strong{color:var(--text);font-weight:700}
+.ca{border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+.ca-a{background:rgba(108,99,255,.08);border-left:3px solid #6c63ff}
+.ca-k{background:rgba(247,151,30,.07);border-left:3px solid var(--accent)}
+.ca-w{background:rgba(255,101,132,.07);border-left:3px solid var(--accentR)}
+.ca-g{background:rgba(67,233,123,.07);border-left:3px solid var(--accent3)}
+.ca-lbl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+.ca-a .ca-lbl{color:#a09fff}.ca-k .ca-lbl{color:var(--accent)}.ca-w .ca-lbl{color:var(--accentR)}.ca-g .ca-lbl{color:var(--accent3)}
+.ca p{font-size:.87rem;color:var(--text);margin:0;line-height:1.65}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.6rem .9rem;background:rgba(255,255,255,.03);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:.6rem .9rem;font-size:.83rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+td:first-child{font-weight:700;color:var(--text)}
+tr:last-child td{border-bottom:none}
+.fw{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}
+.fw-t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.8rem}
+.fi{display:flex;gap:.8rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.fi:last-child{border-bottom:none}
+.fl{font-size:1.1rem;font-weight:900;color:var(--accent);min-width:28px}
+.fc h4{font-size:.88rem;font-weight:800;color:var(--text)}
+.fc p{font-size:.8rem;color:var(--text2);margin:0}
+pre.code{background:rgba(0,0,0,.4);border:1px solid rgba(247,151,30,.2);border-radius:8px;padding:.8rem;font-size:.77rem;color:#ffe0a0;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:.6rem 0}
+.tk{background:rgba(247,151,30,.07);border:1px solid rgba(247,151,30,.25);border-radius:10px;padding:1.2rem;margin-top:1.8rem}
+.tk h3{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.tk ul{list-style:none}
+.tk li{font-size:.86rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem;list-style:none}
+.tk li::before{content:'★';color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:.2rem}
+.ex{background:rgba(247,151,30,.07);border:1px solid rgba(247,151,30,.25);border-radius:14px;padding:1.8rem;margin-top:.5rem}
+.ex h2{font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+.ex-m{font-size:.76rem;color:var(--text2);margin-bottom:1.3rem}
+.es{display:flex;gap:.8rem;margin-bottom:1.1rem;align-items:flex-start}
+.sn{min-width:26px;height:26px;background:var(--accent);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;margin-top:.1rem}
+.sc h4{font-size:.87rem;font-weight:800;margin-bottom:.2rem}
+.sc p{font-size:.83rem;color:var(--text2);margin:0}
+.dv{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.25);border-radius:9px;padding:.9rem;margin-top:1.3rem}
+.dv h4{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:.2rem}
+.dv p{font-size:.83rem;color:var(--text2);margin:0}
+.qz{margin-top:.5rem}
+.qz h2{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.qi{font-size:.86rem;color:var(--text2);margin-bottom:1.8rem}
+.qb{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;margin-bottom:1rem}
+.qt{font-size:.92rem;font-weight:700;margin-bottom:.9rem}
+.opts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.85rem;background:rgba(255,255,255,.02);transition:all .2s}
+.opt:hover{border-color:var(--accent);background:rgba(247,151,30,.08)}
+.opt.correct{background:rgba(67,233,123,.12);border-color:var(--accent3);color:var(--accent3)}
+.opt.wrong{background:rgba(255,101,132,.1);border-color:var(--accentR);color:var(--accentR)}
+.opt input[type=radio]{accent-color:var(--accent);flex-shrink:0;margin-top:.2rem}
+.exp{font-size:.81rem;color:var(--text2);background:rgba(255,255,255,.03);border-radius:7px;padding:.7rem .9rem;margin-top:.7rem;display:none;line-height:1.6}
+.exp.show{display:block}
+.qbtn{padding:.55rem 1.3rem;background:var(--accent);color:#000;border:none;border-radius:7px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.qr{background:rgba(247,151,30,.1);border:1px solid rgba(247,151,30,.3);border-radius:10px;padding:1.2rem;text-align:center;margin-top:1.3rem;display:none}
+.qr.show{display:block}
+.rs{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lnb{display:flex;gap:.8rem;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.lnbtn{padding:.7rem 1.2rem;border-radius:9px;text-decoration:none;font-size:.85rem;font-weight:700;border:1px solid var(--border);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
+.lnbtn:hover{border-color:var(--accent);color:var(--accent)}
+.lnbtn.nx{background:var(--accent);color:#000;border-color:var(--accent)}
+.lnbtn.nx:hover{opacity:.85}
+.mod-complete{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.3);border-radius:12px;padding:1.5rem;margin-top:2rem;text-align:center}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">🎓 <span class="t-es" style="display:inline">Módulo 1 · Prompt Engineering</span><span class="t-en" style="display:none">Module 1 · Prompt Engineering</span></div>
+    <a href="curso-ai-index.html" class="sidebar-back"><span class="t-es">← Volver al inicio</span><span class="t-en" style="display:none">← Back to start</span></a>
+    <a href="curso-ai-recursos.html" style="display:block;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-es">⭐ Setup &amp; Recursos</a><a href="curso-ai-recursos.html" style="display:none;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-en">⭐ Resources &amp; Setup</a>
+  <div class="lang-toggle">
+    <button id="langBtn" class="lang-btn" onclick="toggleLang()">🌐 EN</button>
+  </div>
+  </div>
+  <div class="mod-label"><div class="t-es">8 Lecciones · ~8 horas</div><div class="t-en">8 Lessons · ~8 hours</div></div>
+  <button class="ll active" onclick="show(0)"><span class="ln">1.1</span><div class="t-es">Por qué el prompting es una habilidad real</div><div class="t-en">Why Prompting Is a Real Skill</div></button>
+  <button class="ll" onclick="show(1)"><span class="ln">1.2</span><div class="t-es">Framework CRAFT: anatomía del prompt perfecto</div><div class="t-en">The CRAFT Framework: Anatomy of the Perfect Prompt</div></button>
+  <button class="ll" onclick="show(2)"><span class="ln">1.3</span><div class="t-es">Zero-Shot, Few-Shot y sus variantes</div><div class="t-en">Zero-Shot, Few-Shot, and Their Variants</div></button>
+  <button class="ll" onclick="show(3)"><span class="ln">1.4</span><div class="t-es">Chain-of-Thought: la IA piensa paso a paso</div><div class="t-en">Chain-of-Thought: Getting AI to Think Step by Step</div></button>
+  <button class="ll" onclick="show(4)"><span class="ln">1.5</span><div class="t-es">Role Prompting y System Prompts</div><div class="t-en">Role Prompting and System Prompts</div></button>
+  <button class="ll" onclick="show(5)"><span class="ln">1.6</span><div class="t-es">Meta-Prompting: la IA mejora tus prompts</div><div class="t-en">Meta-Prompting: AI Improves Your Prompts</div></button>
+  <button class="ll" onclick="show(6)"><span class="ln">1.7</span><div class="t-es">Prompt Chaining: divide y vencerás</div><div class="t-en">Prompt Chaining: Divide and Conquer</div></button>
+  <button class="ll" onclick="show(7)"><span class="ln">1.8</span><div class="t-es">Tu Prompt Library profesional</div><div class="t-en">Your Professional Prompt Library</div></button>
+  <div class="sp">
+    <div class="sl"><div class="t-es">Progreso: <span id="pp">0%</span></div><div class="t-en">Progress: <span id="pp">0%</span></div></div>
+    <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div><div class="tl" id="tl">Módulo 1 · Lección 1.1</div><div class="tt" id="tt">Por qué el prompting es una habilidad real</div></div>
+    <div class="tnav">
+      <button class="nb" onclick="prev()">← Anterior</button>
+      <button class="nb p" onclick="next()">Siguiente →</button>
+    </div>
+  </div>
+  <div class="content">
+
+<!-- ══ LECCIÓN 1.1 ══ -->
+<div id="L0" class="lp">
+  <div class="lh">
+    <div class="badge"><div class="t-es">Módulo 1 · Lección 1.1 · 45 min</div><div class="t-en">Module 1 · Lesson 1.1 · 45 min</div></div>
+    <h1 class="lt"><div class="t-es">Por qué el prompting es una habilidad real</div><div class="t-en">Why Prompting Is a Real Skill</div></h1>
+    <div class="lm"><span class="mc">⏱ <span class="t-es">45 min</span><span class="t-en">45 min</span></span><span class="mc">🧠 <span class="t-es">Mentalidad</span><span class="t-en">Mindset</span></span><span class="mc">🔑 <span class="t-es">Fundacional</span><span class="t-en">Foundational</span></span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c0')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e0')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q0')">🧠 Quiz</button>
+  </div>
+  <div id="c0" class="tc active">
+    <div class="obj"><h3><div class="t-es">Al terminar esta lección podrás:</div><div class="t-en">By the end of this lesson, you'll be able to:</div></h3><ul>
+      <li>Explicar por qué el prompt engineering no es "hablar bonito con la IA"</li>
+      <li>Identificar la diferencia entre un prompt amateur y uno experto</li>
+      <li>Calcular el ROI real de mejorar tus habilidades de prompting</li>
+      <li>Establecer un estándar personal de calidad para tus prompts</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El Malentendido Más Costoso</h2>
+      <p>La mayoría de las personas cree que para usar bien la IA solo hace falta escribir claramente. "Es como Google, pero más inteligente." Esta creencia es la razón por la que el 95% usa IA al 10% de su capacidad.</p>
+      <p>El prompting experto no es escribir bien. Es una disciplina que combina psicología cognitiva, diseño de instrucciones, y conocimiento profundo de cómo los LLMs procesan información. Es la diferencia entre darle instrucciones a un practicante y briefear a un consultor senior.</p>
+      <div class="ca ca-a"><div class="ca-lbl">🔮 Analogía</div><p>Piensa en un chef de clase mundial y en alguien que acaba de aprender a cocinar. Ambos tienen acceso a los mismos ingredientes de calidad, la misma cocina, y los mismos utensilios. La diferencia no está en el equipo — está en saber exactamente qué hacer con él, en qué orden, con qué técnica y por qué. El prompt es tu técnica culinaria. El modelo es tu cocina.</p></div>
+      <h2>El Costo Invisible de los Prompts Malos</h2>
+      <p>Un prompt malo no falla dramáticamente — eso lo harías notar. Falla silenciosamente: da una respuesta que parece útil pero es genérica, que suena bien pero no aplica a tu situación específica, que requiere 3 iteraciones más para llegar a lo que necesitabas desde el inicio.</p>
+      <p>Si usas IA 10 veces al día con prompts de calidad baja, y cada vez necesitas 2-3 iteraciones extra de 5 minutos, estás perdiendo <strong>100-150 minutos diarios</strong>. En un año: más de 600 horas. Eso es 15 semanas de trabajo.</p>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ El cálculo que cambia todo</div><p>Un prompt experto tarda 3-5 minutos más en escribirse que uno promedio. Pero elimina 2-3 iteraciones de 5 minutos. Net gain: 5-10 minutos por tarea. Si haces 10 tareas de IA al día: <strong>50-100 minutos ahorrados diariamente</strong>. En un año: 250-500 horas. Ese es el ROI real del prompt engineering.</p></div>
+      <h2>Cinco Diferencias Entre Amateur y Experto</h2>
+      <div class="tw"><table><thead><tr><th>Dimensión</th><th>Prompt Amateur</th><th>Prompt Experto</th></tr></thead><tbody>
+        <tr><td>Contexto</td><td>"Analiza nuestro pipeline."</td><td>Incluye ICP, ciclo de venta, métricas actuales, objetivo del análisis</td></tr>
+        <tr><td>Rol</td><td>No especifica quién debe ser la IA</td><td>"Eres un consultor senior de RevOps con 15 años de experiencia en SaaS B2B"</td></tr>
+        <tr><td>Formato</td><td>No especifica cómo quiere el output</td><td>"Responde con: 1) Diagnóstico en 3 bullets, 2) Tabla de prioridades, 3) Próximos 3 pasos"</td></tr>
+        <tr><td>Restricciones</td><td>No dice qué evitar</td><td>"No uses jerga técnica. Máximo 400 palabras. Sin introducción innecesaria."</td></tr>
+        <tr><td>Verificación</td><td>Acepta el primer output</td><td>Pide al modelo que revise su propio trabajo o que indique su nivel de confianza</td></tr>
+      </tbody></table></div>
+      <h2>La Mentalidad del Prompt Engineer</h2>
+      <p>Los expertos en prompting no tratan a la IA como un buscador que "sabe cosas". La tratan como un colaborador extremadamente capaz pero que necesita dirección precisa. Cada prompt es un brief profesional.</p>
+      <p>La mentalidad correcta: <strong>"¿Qué necesita saber este colaborador para devolverme exactamente lo que necesito, a la primera?"</strong> Cuando haces esa pregunta antes de escribir, la calidad de tus prompts sube inmediatamente.</p>
+      <div class="ca ca-g"><div class="ca-lbl"><div class="t-es">🎯 Aplicación a RevOps</div><div class="t-en">🎯 RevOps Application</div></div><p><div class="t-es">En tu trabajo de CRM y RevOps, el prompting experto se traduce directamente en: análisis de pipeline que realmente revelan insights accionables, emails de outreach que suenan como tú (no como un robot), propuestas de consultoría que se diferencian, y reportes ejecutivos que convencen. Cada uno de esos entregables mejora con prompts mejor diseñados.</div><div class="t-en">In your CRM and RevOps work, expert prompting translates directly into: pipeline analysis that truly reveals actionable insights, outreach emails that sound like you (not a robot), differentiated consulting proposals, and persuasive executive reports. Every one of those deliverables improves with better prompts.</div></p></div>
+      <h2>El Estándar de Calidad Personal</h2>
+      <p>Adopta esta regla desde hoy: <strong>antes de enviar cualquier prompt, hazte tres preguntas:</strong></p>
+      <p>1. ¿Di suficiente contexto para que alguien que no sabe nada de mi situación pueda ayudarme bien?</p>
+      <p>2. ¿Le dije claramente qué formato quiero en el output?</p>
+      <p>3. ¿Le dije qué rol o expertise debe tener al responder esto?</p>
+      <p>Si la respuesta a cualquiera de las tres es "no", el prompt necesita trabajo antes de enviarlo.</p>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul>
+      <li>Prompting experto = ahorro de 50-100 minutos diarios de iteraciones innecesarias</li>
+      <li>El prompt es un brief profesional, no una búsqueda de Google</li>
+      <li>Las 5 dimensiones de un prompt experto: contexto, rol, acción, formato, restricciones</li>
+      <li>Estándar mínimo: contexto suficiente + formato especificado + rol asignado</li>
+    </ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Módulo 0</div><div class="t-en">← Module 0</div></button><button class="lnbtn nx" onclick="next()"><div class="t-es">Siguiente: Framework CRAFT →</div><div class="t-en">Next: The CRAFT Framework →</div></button></div>
+  </div>
+<div class="ca ca-g"><div class="ca-lbl"><div class="t-es">✨ Nueva Capacidad: Extended Thinking Mode</div><div class="t-en">✨ New Capability: Extended Thinking Mode</div></div><p><div class="t-es">Claude ahora supporte el modo "extended thinking" — un tipo de razonamiento profundo donde el modelo muestra su proceso de pensamiento paso a paso. Es especialmente útil para prompts complejos sobre análisis de datos, diagnóstico de problemas o estrategia. El pensamiento extendido toma más tiempo pero produce resultados significativamente mejores para tareas que requieren razonamiento profundo.</div><div class="t-en">Claude now supports "extended thinking" mode — a deeper reasoning capability where the model shows its thinking process step-by-step. It's especially useful for complex prompts involving data analysis, problem diagnosis, or strategy. Extended thinking takes more time but produces significantly better results for tasks requiring deep reasoning.</div></p></div>
+
+  <div id="e0" class="tc">
+    <div class="ex">
+      <h2>✏️ <div class="t-es">Ejercicio 1.1:</div><div class="t-en">Exercise 1.1:</div> El Diagnóstico de tus Prompts Actuales</h2>
+      <p class="ex-m"><div class="t-es">⏱ 25 min · Claude · Entregable: Audit de calidad de tus prompts</div><div class="t-en">⏱ 25 min · Claude · Deliverable: Prompt quality audit</div></p>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4><div class="t-es">Reúne tus últimos 5 prompts</div><div class="t-en">Gather your last 5 prompts</div></h4><p>Busca en tu historial de Claude o ChatGPT los 5 prompts más recientes que hayas usado para trabajo real. Cópialos en un documento.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4><div class="t-es">Evalúa cada uno con la tabla de 5 dimensiones</div><div class="t-en">Evaluate each with the 5-dimension table</div></h4><p>Para cada prompt, puntúa del 1-3: ¿Tiene contexto suficiente? ¿Especifica un rol? ¿Indica el formato? ¿Tiene restricciones? ¿Pediste verificación? Suma el puntaje total de cada prompt (max 15).</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4><div class="t-es">Reescribe el peor prompt</div><div class="t-en">Rewrite the worst prompt</div></h4><p>Toma el prompt con menor puntaje y reescríbelo aplicando las 5 dimensiones. Envía ambas versiones a Claude y compara los outputs.</p><pre class="code">Compara estos dos prompts y sus outputs:
+PROMPT ORIGINAL: [pega aquí]
+PROMPT MEJORADO: [pega aquí]
+¿Qué diferencias de calidad ves en los outputs? ¿Cuál es más accionable para mi trabajo de [RevOps/CRM]?</pre></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4><div class="t-es">Documenta tus hallazgos</div><div class="t-en">Document your findings</div></h4><p>En tu AI Learning Vault en Notion, crea una nota "1.1 - Audit de Prompts" con: los puntajes de tus 5 prompts, el prompt original vs mejorado, y 2-3 patrones que notes en tus debilidades actuales.</p></div></div>
+      <div class="dv"><h4>📦 <div class="t-es">Entregable</div><div class="t-en">Deliverable</div></h4><p><div class="t-es">Nota en Notion con tu audit de 5 prompts, el rewrite del peor, y tu diagnóstico personal de áreas de mejora.</div><div class="t-en">Notion note with your audit of 5 prompts, rewrite of the worst, and your personal diagnosis of improvement areas.</div></p></div>
+    </div>
+  </div>
+  <div id="q0" class="tc">
+    <div class="qz">
+      <h2>🧠 <div class="t-es">Quiz 1.1</div><div class="t-en">Quiz 1.1</div></h2><p class="qi"><div class="t-es">4 preguntas de comprensión aplicada.</div><div class="t-en">4 applied comprehension questions.</div></p>
+      <div class="qb"><div class="qt">1. Tu CEO te pide que "uses IA para analizar por qué perdemos deals". ¿Cuál es el primer paso antes de escribir el prompt?</div>
+        <ul class="opts" id="g0">
+          <li class="opt" onclick="sel(this,'g0',false,'x0')"><input type="radio"> Abrir Claude y escribir "analiza por qué perdemos deals"</li>
+          <li class="opt" onclick="sel(this,'g0',true,'x0')"><input type="radio"> Reunir contexto: últimos 20 deals perdidos, etapa donde se caen, razones anotadas en CRM, ICP actual</li>
+          <li class="opt" onclick="sel(this,'g0',false,'x0')"><input type="radio"> Usar ChatGPT porque tiene más datos de ventas</li>
+          <li class="opt" onclick="sel(this,'g0',false,'x0')"><input type="radio"> Buscar en Google "cómo analizar pérdida de deals con IA"</li>
+        </ul><div id="x0" class="exp"><div class="t-es">✅ El contexto es siempre el primer paso. Sin datos reales de deals perdidos, la IA solo puede darte consejos genéricos que cualquier libro de ventas ya tiene. Con datos específicos, puede revelar patrones únicos de tu empresa.</div><div class="t-en">✅ Context is always the first step. Without actual lost deal data, AI can only give generic advice that any sales book already has. With specific data, it can reveal unique patterns in your business.</div></div>
+      </div>
+      <div class="qb"><div class="qt">2. Dos personas usan el mismo modelo de IA para escribir emails de seguimiento de ventas. Persona A obtiene emails genéricos, Persona B obtiene emails que se sienten escritos por un humano experto. ¿Cuál es la explicación más probable?</div>
+        <ul class="opts" id="g1">
+          <li class="opt" onclick="sel(this,'g1',false,'x1')"><input type="radio"> Persona B tiene un plan de suscripción más caro</li>
+          <li class="opt" onclick="sel(this,'g1',true,'x1')"><input type="radio"> Persona B especifica el rol, el tono de la empresa, el contexto del deal y el objetivo del email; Persona A solo dice "escribe un email de seguimiento"</li>
+          <li class="opt" onclick="sel(this,'g1',false,'x1')"><input type="radio"> Persona B usa un prompt más largo</li>
+          <li class="opt" onclick="sel(this,'g1',false,'x1')"><input type="radio"> Hay suerte involucrada — la IA es aleatoria</li>
+        </ul><div id="x1" class="exp"><div class="t-es">✅ La calidad del output es casi siempre función de la calidad del prompt. Más información específica + rol claro + tono definido = outputs que se sienten personalizados. Un email genérico es resultado de un brief genérico.</div><div class="t-en">✅ Output quality is almost always a function of prompt quality. More specific information + clear role + defined tone = outputs that feel personalized. A generic email results from a generic brief.</div></div>
+      </div>
+      <div class="qb"><div class="qt">3. ¿Cuál de estas NO es una "restricción" válida en un prompt experto?</div>
+        <ul class="opts" id="g2">
+          <li class="opt" onclick="sel(this,'g2',false,'x2')"><input type="radio"> "Máximo 200 palabras en la respuesta"</li>
+          <li class="opt" onclick="sel(this,'g2',false,'x2')"><input type="radio"> "No uses bullet points — usa prosa"</li>
+          <li class="opt" onclick="sel(this,'g2',true,'x2')"><input type="radio"> "Sé muy inteligente y creativo"</li>
+          <li class="opt" onclick="sel(this,'g2',false,'x2')"><input type="radio"> "No incluyas disclaimers ni advertencias legales"</li>
+        </ul><div id="x2" class="exp"><div class="t-es">✅ "Sé muy inteligente y creativo" no es una restricción — es un deseo vago que el modelo no puede operacionalizar. Las restricciones útiles son específicas y medibles: longitud máxima, formato, qué excluir, idioma, nivel de formalidad.</div><div class="t-en">✅ "Be very intelligent and creative" is not a constraint — it's a vague wish the model can't operationalize. Useful constraints are specific and measurable: max length, format, what to exclude, language, formality level.</div></div>
+      </div>
+      <div class="qb"><div class="qt">4. Acabas de enviar un prompt y el output no es lo que necesitabas. ¿Cuál es la respuesta de un experto?</div>
+        <ul class="opts" id="g3">
+          <li class="opt" onclick="sel(this,'g3',false,'x3')"><input type="radio"> Cambiar a otro modelo — este no funciona bien</li>
+          <li class="opt" onclick="sel(this,'g3',false,'x3')"><input type="radio"> Escribir "hazlo mejor" y esperar</li>
+          <li class="opt" onclick="sel(this,'g3',true,'x3')"><input type="radio"> Analizar qué dimensión del prompt faltó (contexto, rol, formato, restricción) y reescribir esa parte específica</li>
+          <li class="opt" onclick="sel(this,'g3',false,'x3')"><input type="radio"> Aceptar el output y editarlo manualmente</li>
+        </ul><div id="x3" class="exp"><div class="t-es">✅ El experto diagnostica antes de iterar. "¿Qué faltó en el prompt?" casi siempre tiene una respuesta clara. Identificarla y corregirla produce mejores resultados que pedir vagamente que "lo mejore".</div><div class="t-en">✅ The expert diagnoses before iterating. "What was missing in the prompt?" almost always has a clear answer. Identifying and fixing it produces better results than vaguely asking to "improve it."</div></div>
+      </div>
+      <button class="qbtn" onclick="score('r0',4)">Ver Resultados</button>
+      <div id="r0" class="qr"><div class="rs" id="s0">0/4</div><p id="m0"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 1.2 ══ -->
+<div id="L1" class="lp" style="display:none">
+  <div class="lh">
+    <div class="badge"><div class="t-es">Módulo 1 · Lección 1.2 · 50 min</div><div class="t-en">Module 1 · Lesson 1.2 · 50 min</div></div>
+    <h1 class="lt"><div class="t-es">Framework CRAFT: la anatomía del prompt perfecto</div><div class="t-en">The CRAFT Framework: Anatomy of the Perfect Prompt</div></h1>
+    <div class="lm"><span class="mc">⏱ <span class="t-es">50 min</span><span class="t-en">50 min</span></span><span class="mc">🔧 <span class="t-es">Framework</span><span class="t-en">Framework</span></span><span class="mc">⭐ <span class="t-es">Lección Core</span><span class="t-en">Core Lesson</span></span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c1')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e1')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q1')">🧠 Quiz</button>
+  </div>
+  <div id="c1" class="tc active">
+    <div class="obj"><h3><div class="t-es">Al terminar esta lección podrás:</div><div class="t-en">By the end of this lesson, you'll be able to:</div></h3><ul>
+      <li>Aplicar el framework CRAFT a cualquier prompt de trabajo</li>
+      <li>Construir system prompts completos para asistentes especializados</li>
+      <li>Diagnosticar qué componente falla en un prompt que no da buenos resultados</li>
+    </ul></div>
+    <div class="lb">
+      <h2>Por Qué Necesitas un Framework</h2>
+      <p>Sin un framework, cada prompt que escribes empieza desde cero. Con CRAFT, tienes un checklist mental de 5 segundos que garantiza que cada prompt cubra los elementos esenciales. No lo usarás mecánicamente para siempre — lo internalizarás hasta que sea instinto.</p>
+      <div class="fw"><div class="fw-t"><div class="t-es">Framework CRAFT — Los 5 Componentes de un Prompt Experto</div><div class="t-en">CRAFT Framework — The 5 Components of an Expert Prompt</div></div> de un Prompt Experto</div>
+        <div class="fi"><div class="fl">C</div><div class="fc"><h4><div class="t-es">Context — El Contexto de la Situación</div><div class="t-en">Context — The Context of the Situation</div></h4><p><div class="t-es">Todo lo que la IA necesita saber sobre tu situación específica. Tu empresa, tu industria, tu ICP, el problema actual, datos relevantes. Sin contexto, la respuesta es genérica. Con contexto rico, es específica y accionable.</div><div class="t-en">Everything the AI needs to know about your specific situation. Your company, industry, ICP, current problem, relevant data. Without context, the response is generic. With rich context, it's specific and actionable.</div></p></div></div>
+        <div class="fi"><div class="fl">R</div><div class="fc"><h4><div class="t-es">Role — El Rol o Expertise que debe asumir</div><div class="t-en">Role — The Role or Expertise it Should Assume</div></h4><p><div class="t-es">"Eres un consultor senior de RevOps con 15 años en SaaS B2B." Este simple cambio activa los patrones de razonamiento más relevantes del modelo y mejora la calidad dramáticamente.</div><div class="t-en">"You are a senior RevOps consultant with 15 years in SaaS B2B." This simple change activates the model's most relevant reasoning patterns and dramatically improves quality.</div></p></div></div>
+        <div class="fi"><div class="fl">A</div><div class="fc"><h4><div class="t-es">Action — La Acción específica que necesitas</div><div class="t-en">Action — The Specific Action You Need</div></h4><p><div class="t-es">Qué exactamente debe hacer. No "analiza", sino "identifica los 3 cuellos de botella principales y ordénalos por impacto en revenue". Verbos específicos y acciones concretas.</div><div class="t-en">What exactly should it do. Not "analyze," but "identify the 3 main bottlenecks and rank them by revenue impact." Specific verbs and concrete actions.</div></p></div></div>
+        <div class="fi"><div class="fl">F</div><div class="fc"><h4><div class="t-es">Format — El Formato del output</div><div class="t-en">Format — The Output Format</div></h4><p><div class="t-es">Cómo quieres que llegue la respuesta. Tabla, bullets, prosa, número de palabras, estructura específica. El modelo puede dar la misma información en 10 formatos diferentes — dile cuál necesitas.</div><div class="t-en">How you want the response to arrive. Table, bullets, prose, word count, specific structure. The model can deliver the same information in 10 different formats — tell it which you need.</div></p></div></div>
+        <div class="fi"><div class="fl">T</div><div class="fc"><h4><div class="t-es">Tone — El Tono y las Restricciones</div><div class="t-en">Tone — The Tone and Constraints</div></h4><p><div class="t-es">El nivel de formalidad, el idioma, qué evitar, qué no incluir. "Tono ejecutivo, sin jerga técnica, sin introducción innecesaria, máximo 300 palabras."</div><div class="t-en">Formality level, language, what to avoid, what not to include. "Executive tone, no technical jargon, no unnecessary intro, max 300 words."</div></p></div></div>
+      </div>
+      <h2>CRAFT en Acción: Antes y Después</h2>
+      <div class="ca ca-w"><div class="ca-lbl"><div class="t-es">❌ Prompt Amateur</div><div class="t-en">❌ Amateur Prompt</div></div><p><div class="t-es">"Dame ideas para mejorar nuestro proceso de ventas."</div><div class="t-en">"Give me ideas to improve our sales process."</div></p></div>
+      <div class="ca ca-g"><div class="ca-lbl">✅ Prompt con CRAFT</div><p><strong>Context:</strong> "Somos una empresa SaaS B2B de [industria], ciclo de venta de 60-90 días, ACV de $15K, equipo de 8 SDRs y 4 AEs. El problema principal es que los deals se quedan estancados en la etapa de 'propuesta enviada' durante semanas sin respuesta."<br><strong>Role:</strong> "Actúa como un consultor senior de RevOps especializado en reducir deal velocity en empresas SaaS."<br><strong>Action:</strong> "Identifica las 5 causas más probables de este estancamiento y para cada una dame una acción específica que podamos implementar esta semana."<br><strong>Format:</strong> "Tabla con columnas: Causa probable | Por qué ocurre | Acción inmediata | Métrica para medir mejora."<br><strong>Tone:</strong> "Lenguaje ejecutivo, sin teoría, solo acciones concretas. Máximo una página."</p></div>
+      <p>La diferencia en calidad del output es radical. El primer prompt puede producir consejos genéricos. El segundo produce un plan de acción específico para tu empresa.</p>
+      <h2>System Prompts: CRAFT al Nivel de Conversación</h2>
+      <p>Un system prompt es CRAFT aplicado permanentemente al inicio de una conversación. Define cómo debe comportarse la IA en toda esa sesión o proyecto. Es el "job description" de tu asistente de IA.</p>
+      <p>Ejemplo de System Prompt para un asistente de RevOps:</p>
+      <pre class="code">Eres el asistente de RevOps de [Empresa], especializado en HubSpot CRM, email automation y análisis de pipeline.
+
+CONTEXTO PERMANENTE:
+- ICP: directores de operaciones en empresas B2B de 50-500 empleados en LATAM
+- Ciclo de venta promedio: 45 días
+- Herramientas: HubSpot CRM, Apollo, Outreach, Slack
+
+REGLAS DE TRABAJO:
+- Siempre comienza con un diagnóstico antes de dar recomendaciones
+- Prioriza acciones por impacto en revenue vs esfuerzo de implementación
+- Cuando no tengas datos suficientes, pide aclaración antes de asumir
+- Los outputs deben ser ejecutables sin expertise técnico profundo
+
+FORMATO PREFERIDO:
+- Diagnóstico → Recomendaciones priorizadas → Próximos pasos con dueño y timeline
+- Máximo 400 palabras a menos que se pida más detalle</pre>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ Regla de Experto</div><p>Crea un system prompt para cada "modo" de trabajo recurrente: análisis de pipeline, redacción de emails, propuestas de consultoría, investigación de mercado. Guárdalos en tu Prompt Library. El tiempo de crear un buen system prompt se recupera en la primera conversación que lo usa.</p></div>
+      <h2>La "T" de CRAFT: Restricciones como Herramienta de Calidad</h2>
+      <p>Las restricciones son contraintuitivas — parece que limitar al modelo reduciría la calidad. Ocurre lo opuesto. Las restricciones enfocan la energía del modelo en lo que importa y eliminan el relleno.</p>
+      <p>Restricciones más poderosas para trabajo de RevOps: límite de palabras ("máximo 200 palabras"), formato negativo ("sin bullet points, usa prosa ejecutiva"), exclusiones ("no incluyas soluciones que requieran más de 2 semanas de implementación"), nivel de audiencia ("para un VP de Ventas que no sabe de tecnología").</p>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul>
+      <li>CRAFT = Context + Role + Action + Format + Tone — el checklist de 5 segundos para prompts profesionales</li>
+      <li>El Rol activa el modo de razonamiento más relevante — siempre especifícalo</li>
+      <li>Las restricciones mejoran la calidad — no la limitan</li>
+      <li>Los System Prompts son CRAFT aplicado permanentemente — crea uno por cada modo de trabajo recurrente</li>
+    </ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><button class="lnbtn nx" onclick="next()"><div class="t-es">Siguiente: Zero-Shot y Few-Shot →</div><div class="t-en">Next: Zero-Shot and Few-Shot →</div></button></div>
+  </div>
+  <div id="e1" class="tc">
+    <div class="ex">
+      <h2>✏️ <div class="t-es">Ejercicio 1.2:</div><div class="t-en">Exercise 1.2:</div> Construye tu Primer System Prompt</h2>
+      <p class="ex-m"><div class="t-es">⏱ 30 min · Claude · Entregable: 3 System Prompts guardados en tu Prompt Library</div><div class="t-en">⏱ 30 min · Claude · Deliverable: 3 System Prompts saved to your Prompt Library</div></p>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Identifica tus 3 modos de trabajo más frecuentes</h4><p>Ejemplos: análisis de pipeline, escritura de emails/outreach, preparación de reportes ejecutivos, brainstorming de estrategia, auditoría de Martech.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Escribe un System Prompt para cada modo usando CRAFT</h4><p>Para cada modo, define: el rol experto que necesitas, el contexto permanente de tu empresa, las reglas de trabajo, y el formato preferido de outputs.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Prueba y refina cada System Prompt</h4><p>Pega cada System Prompt al inicio de una conversación en Claude y haz una tarea real de ese modo. Si algo no funciona como esperas, identifica qué componente CRAFT faltó o fue impreciso y ajústalo.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Guarda en tu Prompt Library</h4><p>Crea una sección "System Prompts" en tu Prompt Library de Notion. Agrega los 3 con: nombre del modo, el prompt completo, y una nota de cuándo usarlo.</p></div></div>
+      <div class="dv"><h4>📦 Entregable</h4><p>3 System Prompts funcionales en tu Prompt Library, cada uno probado con una tarea real de trabajo.</p></div>
+    </div>
+  </div>
+  <div id="q1" class="tc">
+    <div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> 1.2: Framework CRAFT</h2><p class="qi"><div class="t-es">4 preguntas de aplicación del framework.</div><div class="t-en">4 framework application questions.</div></p>
+      <div class="qb"><div class="qt">1. Analiza este prompt: "Escribe un análisis de nuestra estrategia de ABM." ¿Qué componentes de CRAFT están completamente ausentes?</div>
+        <ul class="opts" id="g10">
+          <li class="opt" onclick="sel(this,'g10',false,'x10')"><input type="radio"> Solo falta el formato</li>
+          <li class="opt" onclick="sel(this,'g10',true,'x10')"><input type="radio"> Context (sin datos de la estrategia actual), Role (qué tipo de experto debe ser), Format (cómo debe presentarse), Tone (para qué audiencia)</li>
+          <li class="opt" onclick="sel(this,'g10',false,'x10')"><input type="radio"> El prompt está bien — es claro y específico</li>
+          <li class="opt" onclick="sel(this,'g10',false,'x10')"><input type="radio"> Solo falta el contexto de la empresa</li>
+        </ul><div id="x10" class="exp"><div class="t-es">✅ Le faltan casi todos los componentes. Sin saber qué estrategia de ABM tienes, a qué cuentas apunta, con qué herramientas, qué métricas mides y en qué formato quieres el análisis, el output será un análisis genérico de ABM que podrías encontrar en cualquier blog.</div><div class="t-en">✅ Almost all components are missing. Without knowing what ABM strategy you have, which accounts you target, what tools you use, what metrics you measure, and what format you want, the output will be a generic ABM analysis you could find on any blog.</div></div>
+      </div>
+      <div class="qb"><div class="qt">2. ¿Por qué el componente "Role" mejora la calidad de las respuestas?</div>
+        <ul class="opts" id="g11">
+          <li class="opt" onclick="sel(this,'g11',false,'x11')"><input type="radio"> Porque hace que el modelo se esfuerce más</li>
+          <li class="opt" onclick="sel(this,'g11',true,'x11')"><input type="radio"> Porque activa los patrones de razonamiento y vocabulario más relevantes del modelo para esa expertise específica</li>
+          <li class="opt" onclick="sel(this,'g11',false,'x11')"><input type="radio"> Es un efecto placebo — el modelo responde igual sin el rol</li>
+          <li class="opt" onclick="sel(this,'g11',false,'x11')"><input type="radio"> Porque le da permiso al modelo de ser más preciso</li>
+        </ul><div id="x11" class="exp">✅ Correcto. El modelo fue entrenado con texto de miles de consultores, analistas, y expertos. Al especificar un rol, el prompt dirige al modelo hacia los patrones de razonamiento, el vocabulario y el tipo de recomendaciones que esa expertise produce. "Consultor de RevOps con 15 años en SaaS" activa un conjunto de patterns muy diferente a "asistente general".</div>
+      </div>
+      <div class="qb"><div class="qt">3. ¿Cuándo tiene más valor invertir tiempo en crear un System Prompt detallado?</div>
+        <ul class="opts" id="g12">
+          <li class="opt" onclick="sel(this,'g12',false,'x12')"><input type="radio"> Para preguntas rápidas y tareas de un solo uso</li>
+          <li class="opt" onclick="sel(this,'g12',true,'x12')"><input type="radio"> Para modos de trabajo recurrentes donde haces el mismo tipo de tarea repetidamente</li>
+          <li class="opt" onclick="sel(this,'g12',false,'x12')"><input type="radio"> Solo para equipos grandes que necesitan estandarización</li>
+          <li class="opt" onclick="sel(this,'g12',false,'x12')"><input type="radio"> Nunca — es mejor escribir el contexto cada vez</li>
+        </ul><div id="x12" class="exp">✅ El ROI de un System Prompt es proporcional a la frecuencia de uso. Si análisis de pipeline es algo que haces semanalmente, un System Prompt que tarda 30 minutos en crearse se amortiza en 3-4 usos. Para tareas de un solo uso, el contexto inline es suficiente.</div>
+      </div>
+      <button class="qbtn" onclick="score('r1',3)">Ver Resultados</button>
+      <div id="r1" class="qr"><div class="rs" id="s1">0/3</div><p id="m1"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 1.3 ══ -->
+<div id="L2" class="lp" style="display:none">
+  <div class="lh"><div class="badge"><div class="t-es">Módulo 1 · Lección 1.3 · 40 min</div><div class="t-en">Module 1 · Lesson 1.3 · 40 min</div></div>
+    <h1 class="lt"><div class="t-es">Zero-Shot, Few-Shot y sus variantes</div><div class="t-en">Zero-Shot, Few-Shot, and Their Variants</div></h1>
+    <div class="lm"><span class="mc">⏱ <span class="t-es">40 min</span><span class="t-en">40 min</span></span><span class="mc">🎯 <span class="t-es">Técnicas core</span><span class="t-en">Core techniques</span></span></div>
+  </div>
+  <div class="tabs"><button class="tab active" onclick="tab(this,'c2')">📖 Lección</button><button class="tab" onclick="tab(this,'e2')">✏️ Ejercicio</button><button class="tab" onclick="tab(this,'q2')">🧠 Quiz</button></div>
+  <div id="c2" class="tc active">
+    <div class="obj"><h3><div class="t-es">Al terminar esta lección podrás:</div><div class="t-en">By the end of this lesson, you'll be able to:</div></h3><ul>
+      <li>Elegir entre Zero-Shot y Few-Shot según el tipo de tarea</li>
+      <li>Escribir ejemplos efectivos para prompts Few-Shot</li>
+      <li>Aplicar estas técnicas para tareas de clasificación y generación en RevOps</li>
+    </ul></div>
+    <div class="lb">
+      <h2>La Lógica Detrás de "Shots"</h2>
+      <p>El término "shot" en prompting se refiere a cuántos ejemplos le das al modelo antes de pedirle que ejecute la tarea. Zero ejemplos = Zero-Shot. Un ejemplo = One-Shot. Varios ejemplos = Few-Shot. Cada enfoque tiene su caso de uso óptimo.</p>
+      <div class="ca ca-a"><div class="ca-lbl">🔮 Analogía</div><p>Imagina que contratas a un consultor externo para calificar leads de tu CRM. Zero-Shot: "Clasifica estos leads en A, B, o C." Le das cero ejemplos de tu criterio. One-Shot: Le muestras un deal ganado y uno perdido para que entienda tu ICP. Few-Shot: Le das 5 ejemplos de cada categoría con las notas de por qué los clasificaste así. ¿Cuál crees que producirá resultados más alineados con tu definición de "lead bueno"?</p></div>
+      <h2>Zero-Shot: Cuando el Modelo ya Sabe lo que Necesitas</h2>
+      <p>Zero-Shot funciona bien cuando la tarea es suficientemente general para que el entrenamiento del modelo la cubra bien: resumir un texto, traducir un email, explicar un concepto, generar ideas de brainstorming. No necesitas ejemplos porque el modelo tiene suficiente contexto de su entrenamiento.</p>
+      <p>Funciona menos bien para: tareas con criterios específicos de tu empresa, clasificaciones según tu definición propia de categorías, generación de contenido en tu estilo personal.</p>
+      <h2>Few-Shot: Enseñar con Ejemplos en el Prompt</h2>
+      <p>Few-Shot es la técnica de mayor ROI en prompting. Dar al modelo 3-5 ejemplos de input → output deseado mejora la precisión dramáticamente para tareas de clasificación, generación con estilo específico, y análisis con criterios propios.</p>
+      <p><strong>Clave:</strong> Los ejemplos deben ser diversos (cubrir diferentes casos), representativos (reflejar el rango real de inputs), y de alta calidad (ser exactamente lo que quieres como output).</p>
+      <pre class="code">Clasifica estos emails de prospects como: CALIENTE (listo para llamada), TIBIO (necesita nurturing), o FRÍO (no es ICP).
+
+EJEMPLOS:
+Email: "Estamos evaluando soluciones de RevOps para Q2, tenemos presupuesto aprobado y el equipo está alineado." → CALIENTE
+Email: "Me interesa saber más sobre sus servicios, ¿pueden enviarme información?" → TIBIO
+Email: "Solo estoy investigando el mercado por curiosidad." → FRÍO
+Email: "Somos una startup de 3 personas, ¿tienen planes económicos?" → FRÍO (fuera de ICP)
+
+AHORA CLASIFICA:
+Email A: "Nuestra dirección aprobó el proyecto y necesitamos implementar antes de fin de año."
+Email B: "Vi su contenido en LinkedIn, parece interesante."
+Email C: "Tenemos un problema urgente de churn y necesitamos una solución ya."</pre>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ Regla de Experto</div><p>Para clasificaciones repetitivas (lead scoring, categorización de tickets, intención de emails) el Few-Shot con 4-6 ejemplos es la técnica más poderosa. Invierte 20 minutos en crear buenos ejemplos y úsalos en un System Prompt permanente. Tu clasificador de IA se vuelve tan bueno como tus ejemplos.</p></div>
+      <h2>One-Shot: El Balance</h2>
+      <p>Un solo ejemplo es a veces suficiente para tareas de formato — cuando necesitas que el output tenga una estructura específica pero el contenido puede variar. "Aquí hay un ejemplo del reporte que necesito [ejemplo]. Ahora genera uno para el período anterior."</p>
+      <div class="ca ca-g"><div class="ca-lbl">🎯 Aplicación RevOps</div><p>Few-Shot es ideal para: (1) Scoring de leads según tu ICP específico, (2) Clasificar objeciones de deals para el análisis win/loss, (3) Generar emails de outreach en el estilo aprobado por tu empresa, (4) Categorizar feedback de clientes en temas para el roadmap de producto.</p></div>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul>
+      <li>Zero-Shot para tareas generales que el modelo maneja bien; Few-Shot para tareas con criterios específicos tuyos</li>
+      <li>3-5 ejemplos diversos y de alta calidad son suficientes para Few-Shot efectivo</li>
+      <li>Los ejemplos deben cubrir el rango de casos, no solo los fáciles</li>
+      <li>Para clasificaciones repetitivas en RevOps, el Few-Shot con System Prompt es tu mejor herramienta</li>
+    </ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><button class="lnbtn nx" onclick="next()">Siguiente: Chain-of-Thought →</button></div>
+  </div>
+  <div id="e2" class="tc"><div class="ex"><h2>✏️ Ejercicio 1.3: Tu Lead Classifier con Few-Shot</h2><p class="ex-m">⏱ 25 min · Claude · Entregable: Prompt clasificador de leads listo para usar</p>
+    <div class="es"><div class="sn">1</div><div class="sc"><h4>Define tus categorías de clasificación</h4><p>Para tu contexto real: ¿qué hace a un lead Caliente vs Tibio vs Frío? Define 3-4 criterios específicos para cada categoría según tu ICP.</p></div></div>
+    <div class="es"><div class="sn">2</div><div class="sc"><h4>Crea 3 ejemplos reales por categoría</h4><p>Usa emails o notas reales de tu CRM (anonimizados si es necesario). La realidad supera cualquier ejemplo inventado.</p></div></div>
+    <div class="es"><div class="sn">3</div><div class="sc"><h4>Construye el prompt clasificador con Few-Shot</h4><p>Combina CRAFT + Few-Shot: rol (experto en calificación de leads para tu industria), ejemplos reales, criterios claros de clasificación, y formato de output (clasificación + razón en 1 línea).</p></div></div>
+    <div class="es"><div class="sn">4</div><div class="sc"><h4>Prueba con 10 leads reales</h4><p>Evalúa si las clasificaciones coinciden con tu propio juicio. Ajusta los ejemplos donde no coincidan.</p></div></div>
+    <div class="dv"><h4>📦 Entregable</h4><p>Un prompt clasificador de leads funcional guardado en tu Prompt Library, probado con 10 leads reales.</p></div>
+  </div></div>
+  <div id="q2" class="tc"><div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> 1.3</h2><p class="qi">3 preguntas.</p>
+    <div class="qb"><div class="qt">1. Necesitas que Claude genere emails de outreach exactamente en el estilo que tu empresa usa. ¿Qué técnica usas?</div>
+      <ul class="opts" id="g20"><li class="opt" onclick="sel(this,'g20',false,'x20')"><input type="radio"> Zero-Shot — Claude ya sabe escribir emails</li><li class="opt" onclick="sel(this,'g20',true,'x20')"><input type="radio"> Few-Shot con 3-5 ejemplos de emails que tu empresa ya usa como referencia</li><li class="opt" onclick="sel(this,'g20',false,'x20')"><input type="radio"> One-Shot — un ejemplo es suficiente</li><li class="opt" onclick="sel(this,'g20',false,'x20')"><input type="radio"> No se puede lograr con prompting — necesitas fine-tuning</li></ul>
+      <div id="x20" class="exp">✅ Few-Shot es ideal aquí. Al dar ejemplos reales del estilo de tu empresa, el modelo calibra tono, longitud, estructura y vocabulario específicos. Zero-Shot produce emails genéricos que "suenan a IA".</div>
+    </div>
+    <div class="qb"><div class="qt">2. ¿Cuál es la mayor causa de que un prompt Few-Shot no funcione bien?</div>
+      <ul class="opts" id="g21"><li class="opt" onclick="sel(this,'g21',false,'x21')"><input type="radio"> Dar demasiados ejemplos (más de 3)</li><li class="opt" onclick="sel(this,'g21',true,'x21')"><input type="radio"> Ejemplos que no cubren el rango completo de casos o que no son representativos de la variedad real</li><li class="opt" onclick="sel(this,'g21',false,'x21')"><input type="radio"> Que los ejemplos sean demasiado buenos</li><li class="opt" onclick="sel(this,'g21',false,'x21')"><input type="radio"> Que el modelo no acepte ejemplos en español</li></ul>
+      <div id="x21" class="exp">✅ Los ejemplos sesgados o no representativos producen clasificadores sesgados. Si todos tus ejemplos de "lead caliente" son de una sola industria, el modelo aprende ese sesgo y falla con otras industrias.</div>
+    </div>
+    <button class="qbtn" onclick="score('r2',2)">Ver Resultados</button>
+    <div id="r2" class="qr"><div class="rs" id="s2">0/2</div><p id="m2"></p></div>
+  </div></div>
+</div>
+
+<!-- ══ LECCIÓN 1.4 ══ -->
+<div id="L3" class="lp" style="display:none">
+  <div class="lh"><div class="badge"><div class="t-es">Módulo 1 · Lección 1.4 · 45 min</div><div class="t-en">Module 1 · Lesson 1.4 · 45 min</div></div>
+    <h1 class="lt"><div class="t-es">Chain-of-Thought: la IA piensa paso a paso</div><div class="t-en">Chain-of-Thought: Getting AI to Think Step by Step</div></h1>
+    <div class="lm"><span class="mc">⏱ <span class="t-es">45 min</span><span class="t-en">45 min</span></span><span class="mc">🧠 <span class="t-es">Razonamiento</span><span class="t-en">Reasoning</span></span></div>
+  </div>
+  <div class="tabs"><button class="tab active" onclick="tab(this,'c3')">📖 Lección</button><button class="tab" onclick="tab(this,'e3')">✏️ Ejercicio</button><button class="tab" onclick="tab(this,'q3')">🧠 Quiz</button></div>
+  <div id="c3" class="tc active">
+    <div class="obj"><h3><div class="t-es">Al terminar esta lección podrás:</div><div class="t-en">By the end of this lesson, you'll be able to:</div></h3><ul>
+      <li>Activar el razonamiento paso a paso en modelos para mejorar precisión</li>
+      <li>Distinguir cuándo usar CoT vs cuándo no es necesario</li>
+      <li>Usar CoT para análisis complejos de RevOps y decisiones estratégicas</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El Problema de "Dame la Respuesta Ya"</h2>
+      <p>Cuando le preguntas a un LLM algo complejo sin pedirle que razone, el modelo a veces "adivina" hacia el final de la respuesta en lugar de razonar cuidadosamente. Esto ocurre porque el modelo genera texto token por token — si saltas directo a la respuesta, el primer token "comprometido" limita el razonamiento que puede seguir.</p>
+      <p>Chain-of-Thought (CoT) resuelve esto pidiendo explícitamente que el modelo "piense en voz alta" antes de dar una conclusión. La calidad del razonamiento mejora significativamente.</p>
+      <div class="ca ca-a"><div class="ca-lbl">🔮 Analogía</div><p>Piensa en un analista de ventas que tiene que decirte si un deal va a cerrar este trimestre. Si le preguntas "¿cierra o no?" la respuesta depende de su primer instinto. Pero si le pides "primero dime qué factores analizaste, luego dame tu conclusión", el proceso de articular los factores mejora la calidad del análisis — tanto en humanos como en IA.</p></div>
+      <h2>Cómo Activar Chain-of-Thought</h2>
+      <p>Hay varias formas. La más simple: añade frases como "Piensa paso a paso", "Razona antes de responder", o "Muéstrame tu análisis antes de la conclusión".</p>
+      <pre class="code">SIN CoT:
+"¿Cuáles son las 3 razones más probables de que nuestro pipeline haya caído 40% este trimestre?"
+
+CON CoT:
+"Antes de responder, razona paso a paso:
+1. ¿Qué factores externos podrían afectar el pipeline?
+2. ¿Qué factores internos podrían afectarlo?
+3. ¿Cómo determinarías cuál tiene mayor impacto?
+
+Después de este análisis, dame las 3 razones más probables ordenadas por impacto."</pre>
+      <h2>CoT Estructurado para Decisiones de RevOps</h2>
+      <p>Para decisiones estratégicas, puedes estructurar el CoT explícitamente:</p>
+      <pre class="code">Necesito decidir si invertir en una herramienta de Intent Data para nuestro proceso de ABM.
+
+Analiza esto en este orden:
+PASO 1 — SITUACIÓN ACTUAL: ¿Cuál es el estado típico del ABM sin intent data? ¿Qué problemas resuelve intent data?
+PASO 2 — CASO A FAVOR: ¿Cuándo SÍ tiene sentido invertir en intent data? (criteria de empresa, madurez de proceso)
+PASO 3 — CASO EN CONTRA: ¿Cuándo NO tiene sentido o es prematuro?
+PASO 4 — FACTORES DE DECISIÓN: ¿Qué preguntas debe responder yo mismo antes de decidir?
+PASO 5 — RECOMENDACIÓN: Dado el análisis anterior, ¿cuál es tu recomendación y por qué?
+
+Contexto de mi empresa: [describe situación]</pre>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ Cuándo NO usar CoT</div><p>No necesitas CoT para tareas simples: traducir un texto, reformatear datos, generar un email de bienvenida, resumir un párrafo. CoT añade latencia (más tokens = más tiempo) y es innecesario cuando la tarea no requiere razonamiento multi-paso. Úsalo para análisis, decisiones, diagnósticos y problemas con múltiples factores.</p></div>
+      <h2>Self-Consistency: Múltiples Razonamientos, Una Respuesta</h2>
+      <p>Una variante avanzada: pide al modelo que razone la misma pregunta desde 3 perspectivas diferentes y luego sintetice la respuesta más consistente.</p>
+      <pre class="code">"Analiza si debemos expandir a México este año desde 3 perspectivas:
+1. Desde la perspectiva de un CFO conservador
+2. Desde la perspectiva de un VP de Ventas agresivo
+3. Desde la perspectiva de un consultor de estrategia neutral
+
+Después de los 3 análisis, dame la recomendación más equilibrada considerando los 3 puntos de vista."</pre>
+      <div class="ca ca-g"><div class="ca-lbl">🎯 Aplicación RevOps</div><p>CoT es especialmente valioso para: análisis de causa raíz de caída en conversiones, decisiones de stack tecnológico, evaluación de si un deal en el pipeline realmente va a cerrar, y diagnóstico de problemas en flujos de automatización.</p></div>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul>
+      <li>CoT = pedir al modelo que razone antes de concluir — mejora precisión en tareas complejas</li>
+      <li>Actívalo con: "Piensa paso a paso", "Razona antes de responder", o estructurando los pasos explícitamente</li>
+      <li>Self-Consistency: múltiples perspectivas → conclusión más equilibrada y robusta</li>
+      <li>No uses CoT en tareas simples — añade latencia innecesaria</li>
+    </ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><button class="lnbtn nx" onclick="next()">Siguiente: Role Prompting →</button></div>
+  </div>
+  <div id="e3" class="tc"><div class="ex"><h2>✏️ Ejercicio 1.4: Diagnóstico CoT de un Problema Real</h2><p class="ex-m">⏱ 30 min · Claude · Entregable: Análisis estructurado con CoT de un problema real de RevOps</p>
+    <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige un problema real de tu trabajo</h4><p>Algo que requiera análisis multi-factor: ¿Por qué cayó X métrica? ¿Debemos implementar herramienta Y? ¿Por qué se están perdiendo deals en la etapa Z?</p></div></div>
+    <div class="es"><div class="sn">2</div><div class="sc"><h4>Primero: prompt sin CoT</h4><p>Envía el problema directamente a Claude sin pedir razonamiento. Guarda el output.</p></div></div>
+    <div class="es"><div class="sn">3</div><div class="sc"><h4>Segundo: prompt con CoT estructurado</h4><p>Reescribe el prompt definiendo explícitamente los pasos de razonamiento que quieres ver (situación, factores, análisis, conclusión). Guarda ese output.</p></div></div>
+    <div class="es"><div class="sn">4</div><div class="sc"><h4>Compara y documenta</h4><p>¿Cuál análisis es más accionable? ¿Qué insights nuevos apareció con el CoT que no estaban en el primer intento?</p></div></div>
+    <div class="dv"><h4>📦 Entregable</h4><p>Nota en Notion con: el problema, los 2 outputs (sin CoT y con CoT), y tu análisis de la diferencia.</p></div>
+  </div></div>
+  <div id="q3" class="tc"><div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> 1.4</h2><p class="qi">3 preguntas.</p>
+    <div class="qb"><div class="qt">1. ¿Por qué Chain-of-Thought mejora la calidad del razonamiento?</div>
+      <ul class="opts" id="g30"><li class="opt" onclick="sel(this,'g30',false,'x30')"><input type="radio"> Porque hace que el modelo procese más datos</li><li class="opt" onclick="sel(this,'g30',true,'x30')"><input type="radio"> Porque al articular pasos intermedios, cada token condiciona mejor el siguiente, reduciendo saltos lógicos incorrectos</li><li class="opt" onclick="sel(this,'g30',false,'x30')"><input type="radio"> Porque usa un modelo diferente internamente</li><li class="opt" onclick="sel(this,'g30',false,'x30')"><input type="radio"> Es un efecto placebo — no mejora realmente</li></ul>
+      <div id="x30" class="exp">✅ El mecanismo es preciso: al forzar al modelo a generar tokens de razonamiento intermedio, cada paso siguiente está mejor condicionado. Es como resolver matemáticas en papel — el proceso de escribir los pasos reduce errores vs. calcular mentalmente de golpe.</div>
+    </div>
+    <div class="qb"><div class="qt">2. Estás automatizando la clasificación de 500 emails de clientes diariamente. ¿Usarías CoT en el prompt?</div>
+      <ul class="opts" id="g31"><li class="opt" onclick="sel(this,'g31',false,'x31')"><input type="radio"> Sí — siempre mejora la calidad</li><li class="opt" onclick="sel(this,'g31',true,'x31')"><input type="radio"> No — la clasificación repetitiva a escala necesita velocidad. Few-Shot con criterios claros es más eficiente</li><li class="opt" onclick="sel(this,'g31',false,'x31')"><input type="radio"> Solo para los emails difíciles</li><li class="opt" onclick="sel(this,'g31',false,'x31')"><input type="radio"> Depende del modelo</li></ul>
+      <div id="x31" class="exp">✅ Para automatizaciones a escala, la velocidad importa. CoT genera más tokens → más tiempo → más costo. Para 500 emails diarios, Few-Shot con criterios claros es más eficiente. CoT resérvalo para análisis complejos one-off donde la calidad supera a la velocidad.</div>
+    </div>
+    <button class="qbtn" onclick="score('r3',2)">Ver Resultados</button>
+    <div id="r3" class="qr"><div class="rs" id="s3">0/2</div><p id="m3"></p></div>
+  </div></div>
+</div>
+
+<!-- ══ LECCIONES 1.5–1.8: contenido compacto pero completo ══ -->
+<div id="L4" class="lp" style="display:none">
+  <div class="lh"><div class="badge"><div class="t-es">Módulo 1 · Lección 1.5 · 40 min</div><div class="t-en">Module 1 · Lesson 1.5 · 40 min</div></div><h1 class="lt"><div class="t-es">Role Prompting y System Prompts avanzados</div><div class="t-en">Role Prompting and Advanced System Prompts</div></h1><div class="lm"><span class="mc">⏱ <span class="t-es">40 min</span><span class="t-en">40 min</span></span><span class="mc">🎭 <span class="t-es">Personas</span><span class="t-en">Personas</span></span></div></div>
+  <div class="tabs"><button class="tab active" onclick="tab(this,'c4')">📖 Lección</button><button class="tab" onclick="tab(this,'e4')">✏️ Ejercicio</button><button class="tab" onclick="tab(this,'q4')">🧠 Quiz</button></div>
+  <div id="c4" class="tc active">
+    <div class="obj"><h3>Al terminar podrás:</h3><ul><li>Diseñar personas de IA expertas para cada tipo de tarea</li><li>Construir system prompts en capas para comportamiento sofisticado</li><li>Crear tu biblioteca de roles reutilizables</li></ul></div>
+    <div class="lb">
+      <h2>Más Allá de "Eres un Experto"</h2>
+      <p>El role prompting amateur dice: "Eres un experto en ventas." El role prompting experto construye una persona completa con: nivel de seniority, sector específico, filosofía de trabajo, qué valora y qué le preocupa, y cómo comunica.</p>
+      <pre class="code">PERSONA EXPERTA:
+"Eres María, Directora de RevOps con 12 años de experiencia en empresas SaaS B2B de LATAM (50-500 empleados).
+Has implementado procesos en HubSpot, Salesforce y herramientas de outreach como Apollo y Outreach.
+Tu filosofía: los procesos deben ser simples, medibles y adoptados por el equipo — si el equipo no lo sigue, el proceso no existe.
+Cuando analizas problemas, siempre preguntas: ¿cuál es el impacto en revenue? ¿Quién es el dueño? ¿Cómo lo medimos?
+Comunicas de forma directa, usas ejemplos concretos y siempre das un próximo paso accionable."</pre>
+      <p>Esta persona produce outputs completamente diferentes a "eres un experto en ventas". El nivel de especificidad activa patrones de razonamiento mucho más relevantes.</p>
+      <h2>System Prompts en Capas</h2>
+      <p>Un system prompt sofisticado tiene 4 capas: (1) <strong>Identidad</strong> — quién es y cuál es su expertise, (2) <strong>Contexto permanente</strong> — información sobre tu empresa y situación, (3) <strong>Reglas de comportamiento</strong> — cómo debe actuar, qué hacer y qué evitar, (4) <strong>Protocolo de output</strong> — formato y estructura preferida.</p>
+      <pre class="code">## IDENTIDAD
+Eres Ana, consultora senior de Marketing Automation especializada en B2B SaaS latinoamericano.
+
+## CONTEXTO DE MI EMPRESA
+Empresa: [X]. Stack: HubSpot + Apollo + Slack. ICP: [definición]. Equipo: 3 personas de marketing.
+
+## REGLAS DE COMPORTAMIENTO
+- Siempre pregunta qué métrica mejoramos con esta acción antes de recomendar
+- Prioriza soluciones que no requieran más de 1 semana de implementación
+- Cuando no tengas suficiente contexto, formula 2-3 preguntas antes de recomendar
+- Nunca asumas presupuesto disponible — siempre pregunta
+
+## PROTOCOLO DE OUTPUT
+Usa siempre: Diagnóstico → Recomendación → Por qué → Próximo paso con dueño
+Máximo 400 palabras a menos que se pida análisis extendido.</pre>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ Práctica avanzada</div><p>Crea "Equipos de IA" — 3-4 personas distintas para diferentes perspectivas. Un CFO analítico, un VP de Ventas agresivo, y un Customer Success empático. Pide que "debatan" una decisión. Las perspectivas contradictorias producen análisis más robustos que una sola voz.</p></div>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul><li>Una persona con identidad, filosofía y protocolo supera por mucho a "eres un experto"</li><li>System Prompts en capas: identidad + contexto + reglas + protocolo de output</li><li>Los "equipos de IA" con perspectivas distintas producen análisis más equilibrados</li></ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><button class="lnbtn nx" onclick="next()">Siguiente: Meta-Prompting →</button></div>
+  </div>
+  <div id="e4" class="tc"><div class="ex"><h2>✏️ Ejercicio 1.5: Tu Equipo de IA Personalizado</h2><p class="ex-m">⏱ 35 min · Claude · Entregable: 3 personas de IA expertas en tu Prompt Library</p>
+    <div class="es"><div class="sn">1</div><div class="sc"><h4>Diseña 3 personas expertas para tus necesidades</h4><p>Elige 3 roles que necesitas frecuentemente: ej. Consultor de RevOps, Estratega de Contenido B2B, Analista de Datos de CRM. Para cada uno, escribe: nombre, experiencia, filosofía, qué valora, cómo comunica.</p></div></div>
+    <div class="es"><div class="sn">2</div><div class="sc"><h4>Prueba el "debate de equipo"</h4><p>Plantea una decisión real que tengas pendiente. Pide a Claude que adopte las 3 personas en secuencia y que cada una dé su perspectiva. Luego pide una síntesis equilibrada.</p></div></div>
+    <div class="dv"><h4>📦 Entregable</h4><p>3 personas de IA completas en tu Prompt Library, con al menos una probada en un debate de decisión real.</p></div>
+  </div></div>
+  <div id="q4" class="tc"><div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> 1.5</h2><p class="qi">2 preguntas.</p>
+    <div class="qb"><div class="qt">1. ¿Cuál componente de un system prompt en capas define cómo debe actuar el modelo cuando no tiene suficiente información?</div>
+      <ul class="opts" id="g40"><li class="opt" onclick="sel(this,'g40',false,'x40')"><input type="radio"> Identidad</li><li class="opt" onclick="sel(this,'g40',false,'x40')"><input type="radio"> Contexto permanente</li><li class="opt" onclick="sel(this,'g40',true,'x40')"><input type="radio"> Reglas de comportamiento</li><li class="opt" onclick="sel(this,'g40',false,'x40')"><input type="radio"> Protocolo de output</li></ul>
+      <div id="x40" class="exp">✅ Las reglas de comportamiento definen el "cómo actúa" — incluyendo qué hacer cuando falta información: ¿asume? ¿pregunta? ¿da rangos? Esta es la capa más crítica para evitar que la IA invente información cuando no la tiene.</div>
+    </div>
+    <button class="qbtn" onclick="score('r4',1)">Ver Resultados</button>
+    <div id="r4" class="qr"><div class="rs" id="s4">0/1</div><p id="m4"></p></div>
+  </div></div>
+</div>
+
+<div id="L5" class="lp" style="display:none">
+  <div class="lh"><div class="badge"><div class="t-es">Módulo 1 · Lección 1.6 · 35 min</div><div class="t-en">Module 1 · Lesson 1.6 · 35 min</div></div><h1 class="lt"><div class="t-es">Meta-Prompting: la IA mejora tus prompts</div><div class="t-en">Meta-Prompting: AI Improves Your Prompts</div></h1><div class="lm"><span class="mc">⏱ <span class="t-es">35 min</span><span class="t-en">35 min</span></span><span class="mc">🔄 <span class="t-es">Iteración</span><span class="t-en">Iteration</span></span></div></div>
+  <div class="tabs"><button class="tab active" onclick="tab(this,'c5')">📖 Lección</button><button class="tab" onclick="tab(this,'e5')">✏️ Ejercicio</button><button class="tab" onclick="tab(this,'q5')">🧠 Quiz</button></div>
+  <div id="c5" class="tc active">
+    <div class="obj"><h3>Al terminar podrás:</h3><ul><li>Usar IA para mejorar tus propios prompts automáticamente</li><li>Iterar prompts de forma sistemática hasta obtener calidad óptima</li><li>Crear un proceso de refinamiento de prompts escalable</li></ul></div>
+    <div class="lb">
+      <h2>El Loop de Mejora Continua</h2>
+      <p>Meta-prompting es la técnica de usar un LLM para mejorar, criticar, o generar prompts. En lugar de iterar manualmente por ensayo y error, le pides al modelo que analice qué falta en tu prompt y cómo mejorarlo.</p>
+      <pre class="code">META-PROMPT BÁSICO:
+"Aquí está mi prompt para [tarea]: [PEGA TU PROMPT]
+
+Eres un experto en prompt engineering. Analiza este prompt y dime:
+1. ¿Qué información falta que degradaría la calidad del output?
+2. ¿Qué instrucciones son ambiguas o podrían interpretarse de múltiples formas?
+3. ¿Qué componentes de CRAFT (Context, Role, Action, Format, Tone) están débiles?
+4. Dame una versión mejorada del prompt con tus correcciones aplicadas."</pre>
+      <h2>El Ciclo de 3 Pasos</h2>
+      <p><strong>Paso 1 — Draft rápido:</strong> Escribe un primer prompt sin preocuparte demasiado por la perfección. El objetivo es capturar la intención.</p>
+      <p><strong>Paso 2 — Meta-critique:</strong> Envía ese prompt a Claude con el meta-prompt de arriba. Lee el análisis y la versión mejorada.</p>
+      <p><strong>Paso 3 — Ejecuta y evalúa:</strong> Usa el prompt mejorado para la tarea real. Si el output es lo que necesitabas, guárdalo en tu Prompt Library. Si no, repite el ciclo.</p>
+      <pre class="code">META-PROMPT AVANZADO (para prompts de alto impacto):
+"Tengo este prompt que usaré para [tarea crítica de negocio]:
+[PROMPT]
+
+Evalúalo en estas dimensiones del 1-10:
+- Claridad de la tarea: ¿Sabe exactamente qué hacer?
+- Suficiencia del contexto: ¿Tiene todo lo necesario para ser específico?
+- Especificidad del output: ¿Sabe exactamente en qué formato responder?
+- Manejo de edge cases: ¿Qué pasa si X o Y?
+
+Para cualquier dimensión < 8, dame instrucciones específicas de mejora y la versión corregida."</pre>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ Uso avanzado</div><p>Para tu Prompt Library: una vez por semana, toma los 3 prompts que más usaste esa semana y páralos por el meta-prompt de evaluación. En 30 minutos mejoras tus herramientas más usadas sistemáticamente. En 3 meses tienes una library de prompts de alta calidad comprobada.</p></div>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul><li>Meta-prompting = usar IA para mejorar tus propios prompts — acelera el ciclo de iteración</li><li>El ciclo de 3 pasos: draft → meta-critique → ejecutar</li><li>Aplica meta-prompting regularmente a tus prompts más usados para mantener tu library en óptimas condiciones</li></ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><button class="lnbtn nx" onclick="next()">Siguiente: Prompt Chaining →</button></div>
+  </div>
+  <div id="e5" class="tc"><div class="ex"><h2>✏️ Ejercicio 1.6: Meta-critique de tu Prompt Library</h2><p class="ex-m">⏱ 30 min · Claude · Entregable: 5 prompts mejorados con meta-prompting</p>
+    <div class="es"><div class="sn">1</div><div class="sc"><h4>Selecciona 5 prompts de tu library actual</h4><p>Los 5 que más usas o los que peor funcionan.</p></div></div>
+    <div class="es"><div class="sn">2</div><div class="sc"><h4>Aplica el meta-prompt de evaluación a cada uno</h4><p>Usa el meta-prompt avanzado de esta lección. Documenta el score de cada dimensión antes y después.</p></div></div>
+    <div class="es"><div class="sn">3</div><div class="sc"><h4>Prueba las versiones mejoradas en tareas reales</h4><p>¿Hay diferencia notable en la calidad? ¿Cuánto tiempo ahorró no tener que iterar manualmente?</p></div></div>
+    <div class="dv"><h4>📦 Entregable</h4><p>5 prompts mejorados en tu library con nota de qué cambió y el impacto observado.</p></div>
+  </div></div>
+  <div id="q5" class="tc"><div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> 1.6</h2><p class="qi">2 preguntas.</p>
+    <div class="qb"><div class="qt">1. Meta-prompting es más útil cuando:</div>
+      <ul class="opts" id="g50"><li class="opt" onclick="sel(this,'g50',false,'x50')"><input type="radio"> Tienes mucho tiempo y quieres explorar</li><li class="opt" onclick="sel(this,'g50',true,'x50')"><input type="radio"> Tienes un prompt importante y quieres asegurarte de que está bien estructurado antes de usarlo en una tarea crítica</li><li class="opt" onclick="sel(this,'g50',false,'x50')"><input type="radio"> El modelo no entendió tu primer prompt</li><li class="opt" onclick="sel(this,'g50',false,'x50')"><input type="radio"> Quieres probar diferentes modelos</li></ul>
+      <div id="x50" class="exp">✅ Meta-prompting brilla en prompts de alto impacto que usarás repetidamente o que afectan decisiones importantes. El ROI de 5 minutos de meta-critique en un prompt que usarás 50 veces es enorme.</div>
+    </div>
+    <button class="qbtn" onclick="score('r5',1)">Ver Resultados</button>
+    <div id="r5" class="qr"><div class="rs" id="s5">0/1</div><p id="m5"></p></div>
+  </div></div>
+</div>
+
+<div id="L6" class="lp" style="display:none">
+  <div class="lh"><div class="badge"><div class="t-es">Módulo 1 · Lección 1.7 · 45 min</div><div class="t-en">Module 1 · Lesson 1.7 · 45 min</div></div><h1 class="lt"><div class="t-es">Prompt Chaining: divide y vencerás</div><div class="t-en">Prompt Chaining: Divide and Conquer</div></h1><div class="lm"><span class="mc">⏱ <span class="t-es">45 min</span><span class="t-en">45 min</span></span><span class="mc">⛓️ <span class="t-es">Flujos complejos</span><span class="t-en">Complex flows</span></span></div></div>
+  <div class="tabs"><button class="tab active" onclick="tab(this,'c6')">📖 Lección</button><button class="tab" onclick="tab(this,'e6')">✏️ Ejercicio</button><button class="tab" onclick="tab(this,'q6')">🧠 Quiz</button></div>
+  <div id="c6" class="tc active">
+    <div class="obj"><h3>Al terminar podrás:</h3><ul><li>Descomponer tareas complejas en cadenas de prompts manejables</li><li>Diseñar flujos de trabajo de múltiples pasos con IA</li><li>Construir pipelines de análisis para RevOps usando prompt chaining</li></ul></div>
+    <div class="lb">
+      <h2>El Límite del Prompt Único</h2>
+      <p>Hay tareas que son demasiado complejas para un solo prompt: escribir una propuesta de consultoría completa, analizar una estrategia de go-to-market, crear un playbook de ventas completo. Intentar hacerlo en un prompt resulta en outputs superficiales o desordenados.</p>
+      <p>Prompt Chaining divide la tarea en pasos secuenciales donde el output de cada paso es el input del siguiente. Como una línea de producción — cada estación hace una cosa bien.</p>
+      <div class="ca ca-a"><div class="ca-lbl">🔮 Analogía</div><p>Crear un análisis de pipeline completo en un prompt es como pedirle a un chef que prepare un banquete de 5 tiempos en 20 minutos con un solo sartén. Prompt Chaining es darle el equipamiento completo y el tiempo adecuado para cada plato — el resultado final es incomparablemente mejor.</p></div>
+      <h2>Ejemplo de Cadena: Análisis de Pipeline</h2>
+      <pre class="code">PROMPT 1 — DIAGNÓSTICO:
+"Analiza este pipeline [datos] e identifica: etapas con mayor drop-off, deals sin actividad >14 días, y la
+distribución de deals por etapa. Solo dame el diagnóstico, sin recomendaciones todavía."
+
+→ [Output: diagnóstico estructurado]
+
+PROMPT 2 — ANÁLISIS DE CAUSAS:
+"Dado este diagnóstico: [pega output del Prompt 1]
+Ahora analiza las causas más probables de cada problema identificado.
+Usa Chain-of-Thought: para cada causa, explica por qué podría estar ocurriendo."
+
+→ [Output: análisis de causas]
+
+PROMPT 3 — RECOMENDACIONES:
+"Con el diagnóstico y causas identificadas: [pega outputs anteriores]
+Genera un plan de acción con: top 3 prioridades, acción específica para cada una, dueño,
+timeline y métrica de éxito. Formato: tabla ejecutiva."
+
+→ [Output: plan de acción ejecutivo]</pre>
+      <h2>Cuándo Usar Chaining</h2>
+      <p>Usa chaining cuando: la tarea tiene fases naturales (investigar → analizar → recomendar), cuando diferentes partes requieren diferentes roles o perspectivas, cuando el output de un paso necesita validación antes de continuar al siguiente, o cuando el resultado final es muy largo para un solo prompt.</p>
+      <div class="ca ca-g"><div class="ca-lbl">🎯 Pipeline de Propuesta de Consultoría</div><p>Prompt 1: Investiga la empresa del cliente (Perplexity → Claude) → Prompt 2: Define el problema específico basado en el research → Prompt 3: Diseña la solución y metodología → Prompt 4: Construye el business case y ROI → Prompt 5: Formatea todo como propuesta ejecutiva. Resultado: propuestas de calidad de consultoría senior en 45 minutos.</p></div>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul><li>Chaining = dividir tareas complejas en pasos donde cada output alimenta el siguiente</li><li>Cada prompt en la cadena hace una sola cosa bien — eso es su poder</li><li>Ideal para: análisis de pipeline, propuestas, playbooks, estrategias de go-to-market</li></ul></div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><button class="lnbtn nx" onclick="next()">Siguiente: Tu Prompt Library →</button></div>
+  </div>
+  <div id="e6" class="tc"><div class="ex"><h2>✏️ Ejercicio 1.7: Pipeline de Análisis de Cuenta</h2><p class="ex-m">⏱ 40 min · Claude + Perplexity · Entregable: Cadena de 4 prompts para análisis de cuenta</p>
+    <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige una cuenta real (cliente o prospect)</h4><p>Usarás esta cuenta para construir tu cadena de análisis.</p></div></div>
+    <div class="es"><div class="sn">2</div><div class="sc"><h4>Diseña una cadena de 4 prompts</h4><p>Paso 1: Research de la empresa (Perplexity) → Paso 2: Análisis de fit con tu ICP (Claude) → Paso 3: Identificación de pain points y oportunidades (Claude) → Paso 4: Estrategia de engagement y next steps (Claude)</p></div></div>
+    <div class="es"><div class="sn">3</div><div class="sc"><h4>Ejecuta la cadena completa</h4><p>Documenta el output de cada paso. Evalúa: ¿el análisis final es más profundo que lo que habrías logrado con un solo prompt?</p></div></div>
+    <div class="dv"><h4>📦 Entregable</h4><p>Tu cadena de 4 prompts para análisis de cuenta, guardada en Prompt Library, con el output real de prueba.</p></div>
+  </div></div>
+  <div id="q6" class="tc"><div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> 1.7</h2><p class="qi">2 preguntas.</p>
+    <div class="qb"><div class="qt">1. ¿Cuál es la ventaja principal del Prompt Chaining vs. un mega-prompt único?</div>
+      <ul class="opts" id="g60"><li class="opt" onclick="sel(this,'g60',false,'x60')"><input type="radio"> Ahorra tokens y es más económico</li><li class="opt" onclick="sel(this,'g60',true,'x60')"><input type="radio"> Cada paso puede ser optimizado independientemente y el output de cada fase puede validarse antes de continuar</li><li class="opt" onclick="sel(this,'g60',false,'x60')"><input type="radio"> Funciona mejor con modelos menos capaces</li><li class="opt" onclick="sel(this,'g60',false,'x60')"><input type="radio"> Es más rápido de ejecutar</li></ul>
+      <div id="x60" class="exp">✅ La modularidad es el poder del chaining. Si el análisis de causas (paso 2) no es correcto, puedes iterarlo sin rehacerlo todo. Además, cada prompt puede tener un rol diferente — el diagnóstico puede ser analítico, las recomendaciones pueden ser estratégicas.</div>
+    </div>
+    <button class="qbtn" onclick="score('r6',1)">Ver Resultados</button>
+    <div id="r6" class="qr"><div class="rs" id="s6">0/1</div><p id="m6"></p></div>
+  </div></div>
+</div>
+
+<div id="L7" class="lp" style="display:none">
+  <div class="lh"><div class="badge"><div class="t-es">Módulo 1 · Lección 1.8 · 50 min</div><div class="t-en">Module 1 · Lesson 1.8 · 50 min</div></div><h1 class="lt"><div class="t-es">Tu Prompt Library profesional</div><div class="t-en">Your Professional Prompt Library</div></h1><div class="lm"><span class="mc">⏱ <span class="t-es">50 min</span><span class="t-en">50 min</span></span><span class="mc">📚 <span class="t-es">Sistema</span><span class="t-en">System</span></span><span class="mc">🏆 <span class="t-es">Proyecto del Módulo</span><span class="t-en">Module Project</span></span></div></div>
+  <div class="tabs"><button class="tab active" onclick="tab(this,'c7')">📖 Lección</button><button class="tab" onclick="tab(this,'e7')">✏️ Ejercicio</button><button class="tab" onclick="tab(this,'q7')">🧠 Quiz</button></div>
+  <div id="c7" class="tc active">
+    <div class="obj"><h3>Al terminar habrás:</h3><ul><li>Construido una Prompt Library funcional con 20+ prompts</li><li>Establecido un sistema de organización y mantenimiento</li><li>Creado tu activo más valioso de productividad con IA</li></ul></div>
+    <div class="lb">
+      <h2>Por Qué una Library Cambia Todo</h2>
+      <p>Los mejores prompts no se escriben cada vez de cero. Se construyen una vez, se refinan con el uso y se reutilizan. Tu Prompt Library es tu activo más valioso de productividad con IA — y también es el primer producto que puedes vender como consultor.</p>
+      <h2>Estructura de la Library en Notion</h2>
+      <p>Crea una base de datos en Notion con estas columnas: Nombre del Prompt | Categoría | Herramienta | Caso de Uso | El Prompt | Ejemplo de Output | Última Actualización | Rating Personal.</p>
+      <p><strong>Categorías recomendadas para RevOps:</strong> Análisis de Pipeline | Inteligencia de Cuentas | Marketing &amp; Contenido | Operaciones de CRM | Estrategia y Decisiones | System Prompts | Cadenas de Prompts.</p>
+      <h2>Los 20 Prompts Esenciales para Empezar</h2>
+      <div class="tw"><table><thead><tr><th>Categoría</th><th>Prompt</th><th>Caso de Uso</th></tr></thead><tbody>
+        <tr><td>Pipeline</td><td>Diagnóstico de Pipeline con CoT</td><td>Análisis semanal del equipo de ventas</td></tr>
+        <tr><td>Pipeline</td><td>Análisis de Deal en Riesgo</td><td>Identificar deals que necesitan atención urgente</td></tr>
+        <tr><td>Pipeline</td><td>Forecast de Cierre con Escenarios</td><td>Proyección trimestral con pesimista/base/optimista</td></tr>
+        <tr><td>Cuentas</td><td>Account Intelligence Brief</td><td>Preparar para reunión con prospecto</td></tr>
+        <tr><td>Cuentas</td><td>Clasificador de Leads (Few-Shot)</td><td>Calificación automática de nuevos leads</td></tr>
+        <tr><td>Cuentas</td><td>Análisis de Churn Risk</td><td>Identificar clientes en riesgo</td></tr>
+        <tr><td>Marketing</td><td>Generador de Email Outreach</td><td>Secuencias de outbound personalizadas</td></tr>
+        <tr><td>Marketing</td><td>ABM Account Research</td><td>Research profundo para cuentas target</td></tr>
+        <tr><td>Marketing</td><td>Análisis de Campaña</td><td>Post-mortem de campañas con insights</td></tr>
+        <tr><td>Operaciones</td><td>CRM Data Audit</td><td>Identificar problemas de calidad de datos</td></tr>
+        <tr><td>Operaciones</td><td>Proceso → Agente Blueprint</td><td>Diseñar automatización de proceso manual</td></tr>
+        <tr><td>Estrategia</td><td>Decisión con Multi-perspectiva</td><td>Analizar decisiones importantes desde 3 ángulos</td></tr>
+        <tr><td>Estrategia</td><td>Análisis Competitivo</td><td>Research de competidores con Perplexity</td></tr>
+        <tr><td>Consultoría</td><td>Propuesta de Consultoría (Cadena)</td><td>Generar propuestas para clientes</td></tr>
+        <tr><td>Consultoría</td><td>AI Maturity Assessment</td><td>Auditar madurez de IA de un cliente</td></tr>
+      </tbody></table></div>
+      <h2>El Sistema de Mantenimiento</h2>
+      <p>Una library sin mantenimiento se deteriora. Sistema simple: (1) Después de cada uso, puntúa el prompt del 1-5 en Notion. (2) Si un prompt da menos de 4 consistentemente, aplica meta-prompting para mejorarlo. (3) Una vez por semana, agrega prompts nuevos que hayas descubierto. (4) Cada trimestre, archiva los prompts que ya no usas.</p>
+      <div class="ca ca-k"><div class="ca-lbl">⚡ Tu Primer Producto</div><p>Una Prompt Library especializada en RevOps + CRM + Marketing Automation es un producto vendible. En el Módulo 5 verás cómo empaquetar y venderla. Por ahora, constrúyela bien — la calidad que pongas en ella ahora determina el valor que tendrá después.</p></div>
+    </div>
+    <div class="tk"><h3><div class="t-es">Puntos Clave</div><div class="t-en">Key Takeaways</div></h3><ul><li>La Prompt Library es tu activo de productividad más valioso — y tu primer producto vendible</li><li>Estructura en Notion con categorías relevantes para RevOps</li><li>Sistema de mantenimiento: puntuar, mejorar, agregar, archivar</li><li>20 prompts esenciales como punto de partida — llegar a 50 es tu objetivo de los próximos 3 meses</li></ul></div>
+    <div class="mod-complete">
+      <div style="font-size:1.2rem;font-weight:900;color:var(--accent3);margin-bottom:.5rem">🎓 ¡Módulo 1 Completado!</div>
+      <p style="font-size:.88rem;color:var(--text2);margin-bottom:1rem">Dominas Prompt Engineering. Ahora construiremos sistemas que trabajan solos: AI Agents.</p>
+      <a href="curso-ai-m2.html" style="display:inline-block;padding:.7rem 1.8rem;background:var(--accent3);color:#000;border-radius:9px;text-decoration:none;font-weight:800;font-size:.88rem">→ Ir al Módulo 2: AI Agents</a>
+    </div>
+    <div class="lnb"><button class="lnbtn" onclick="prev()"><div class="t-es">← Lección anterior</div><div class="t-en">← Previous Lesson</div></button><a href="curso-ai-m2.html" class="lnbtn nx">Módulo 2: AI Agents →</a></div>
+  </div>
+  <div id="e7" class="tc"><div class="ex"><h2>✏️ Ejercicio 1.8: Construye tu Prompt Library v1.0</h2><p class="ex-m">⏱ 60 min · Notion + Claude · Entregable: Tu Prompt Library con 20+ prompts</p>
+    <div class="es"><div class="sn">1</div><div class="sc"><h4>Crea la base de datos en Notion</h4><p>Configura las columnas: Nombre | Categoría | Herramienta | El Prompt | Caso de Uso | Rating. Crea las categorías de RevOps de esta lección.</p></div></div>
+    <div class="es"><div class="sn">2</div><div class="sc"><h4>Migra los prompts de las lecciones anteriores</h4><p>Tienes al menos 8-10 prompts de los ejercicios de este módulo. Agrégralos todos con su categoría correcta.</p></div></div>
+    <div class="es"><div class="sn">3</div><div class="sc"><h4>Completa hasta 20 con prompts nuevos</h4><p>Usa la tabla de 20 prompts esenciales como guía. Para los que no tengas aún, escríbelos usando CRAFT y meta-prompting para asegurar calidad.</p></div></div>
+    <div class="es"><div class="sn">4</div><div class="sc"><h4>Prueba 5 de ellos en tareas reales esta semana</h4><p>Documenta el rating y cualquier mejora identificada.</p></div></div>
+    <div class="dv"><h4>📦 Entregable del Módulo 1</h4><p>Tu Prompt Library en Notion con mínimo 20 prompts categorizados, probados y con rating inicial. Este es el entregable oficial del Módulo 1.</p></div>
+  </div></div>
+  <div id="q7" class="tc"><div class="qz"><h2>🧠 <span class="t-es">Quiz</span><span class="t-en">Quiz</span> Final del Módulo 1</h2><p class="qi">Consolidación de todo el módulo.</p>
+    <div class="qb"><div class="qt">1. Ordena las técnicas de prompting de mayor a menor especificidad de instrucción requerida:</div>
+      <ul class="opts" id="g70"><li class="opt" onclick="sel(this,'g70',false,'x70')"><input type="radio"> CoT → Zero-Shot → Few-Shot → System Prompt</li><li class="opt" onclick="sel(this,'g70',true,'x70')"><input type="radio"> System Prompt → Few-Shot → CoT → Zero-Shot</li><li class="opt" onclick="sel(this,'g70',false,'x70')"><input type="radio"> Zero-Shot → Few-Shot → CoT → System Prompt</li><li class="opt" onclick="sel(this,'g70',false,'x70')"><input type="radio"> Todas requieren el mismo nivel</li></ul>
+      <div id="x70" class="exp">✅ System Prompt es la técnica más compleja de preparar (requiere definir identidad, contexto, reglas, protocolo). Few-Shot requiere construir ejemplos de calidad. CoT requiere estructurar los pasos de razonamiento. Zero-Shot es el punto de partida más simple.</div>
+    </div>
+    <div class="qb"><div class="qt">2. Un cliente te pide que implementes un sistema de IA para clasificar automáticamente 200 emails diarios de clientes en categorías de soporte. ¿Qué técnicas combinarías?</div>
+      <ul class="opts" id="g71"><li class="opt" onclick="sel(this,'g71',false,'x71')"><input type="radio"> Solo CoT para asegurar máxima precisión</li><li class="opt" onclick="sel(this,'g71',true,'x71')"><input type="radio"> System Prompt (definir el clasificador) + Few-Shot (ejemplos de cada categoría) + temperatura baja (consistencia)</li><li class="opt" onclick="sel(this,'g71',false,'x71')"><input type="radio"> Meta-prompting para mejorar el prompt cada vez</li><li class="opt" onclick="sel(this,'g71',false,'x71')"><input type="radio"> Zero-Shot con instrucciones muy detalladas</li></ul>
+      <div id="x71" class="exp">✅ Esta combinación es la estándar para clasificadores de producción: System Prompt define el comportamiento permanente, Few-Shot enseña los criterios específicos del cliente, temperatura baja asegura consistencia. CoT añadiría latencia innecesaria para 200 emails diarios.</div>
+    </div>
+    <button class="qbtn" onclick="score('r7',2)">Ver Resultados</button>
+    <div id="r7" class="qr"><div class="rs" id="s7">0/2</div><p id="m7"></p></div>
+  </div></div>
+</div>
+
+  </div>
+</div>
+
+<script>
+const lessons=[
+  {n:'1.1',t:'Por qué el prompting es una habilidad real'},
+  {n:'1.2',t:'Framework CRAFT: anatomía del prompt perfecto'},
+  {n:'1.3',t:'Zero-Shot, Few-Shot y sus variantes'},
+  {n:'1.4',t:'Chain-of-Thought: la IA piensa paso a paso'},
+  {n:'1.5',t:'Role Prompting y System Prompts avanzados'},
+  {n:'1.6',t:'Meta-Prompting: la IA mejora tus prompts'},
+  {n:'1.7',t:'Prompt Chaining: divide y vencerás'},
+  {n:'1.8',t:'Tu Prompt Library profesional'}
+];
+const lessonsEN=[
+  {n:'1.1',t:'Why Prompting Is a Real Skill'},
+  {n:'1.2',t:'The CRAFT Framework: Anatomy of the Perfect Prompt'},
+  {n:'1.3',t:'Zero-Shot, Few-Shot, and Their Variants'},
+  {n:'1.4',t:'Chain-of-Thought: Getting AI to Think Step by Step'},
+  {n:'1.5',t:'Role Prompting and System Prompts'},
+  {n:'1.6',t:'Meta-Prompting: AI Improves Your Prompts'},
+  {n:'1.7',t:'Prompt Chaining: Divide and Conquer'},
+  {n:'1.8',t:'Your Professional Prompt Library'}
+];
+let cur=0;const done=new Set();
+function show(i){
+  document.querySelectorAll('.lp').forEach(p=>p.style.display='none');
+  document.getElementById('L'+i).style.display='block';
+  document.querySelectorAll('.ll').forEach((l,j)=>l.classList.toggle('active',j===i));
+  cur=i;
+  const isEN=document.body.classList.contains('lang-en');
+  const currentLessons=isEN?lessonsEN:lessons;
+  const modLabel=isEN?'Module 1 · Lesson':'Módulo 1 · Lección';
+  document.getElementById('tl').textContent=modLabel+' '+currentLessons[i].n;
+  document.getElementById('tt').textContent=currentLessons[i].t;
+  window.scrollTo({top:0,behavior:'smooth'});
+  // reset tabs for this lesson
+  const lp=document.getElementById('L'+i);
+  lp.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',j===0));
+  lp.querySelectorAll('.tc').forEach((tc,j)=>tc.classList.toggle('active',j===0));
+}
+function next(){if(cur<ls.length-1){done.add(cur);upd();show(cur+1);}}
+function prev(){if(cur>0)show(cur-1);}
+function tab(btn,id){
+  const lp=btn.closest('.lp');
+  lp.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  lp.querySelectorAll('.tc').forEach(tc=>tc.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+function sel(el,gid,ok,xid){
+  document.getElementById(gid).querySelectorAll('.opt').forEach(o=>{o.classList.remove('correct','wrong');o.onclick=null;});
+  el.classList.add(ok?'correct':'wrong');
+  const x=document.getElementById(xid);if(x)x.classList.add('show');
+}
+function score(rid,tot){
+  const r=document.getElementById(rid);
+  const si=rid.replace('r','s');
+  let c=0;
+  r.closest('.qz').querySelectorAll('.opt.correct').forEach(()=>c++);
+  const el=document.getElementById(si);if(el)el.textContent=c+'/'+tot;
+  const pct=Math.round(c/tot*100);
+  const mi=rid.replace('r','m');const mel=document.getElementById(mi);
+  if(mel)mel.textContent=pct>=80?'✅ Excelente. Listo para continuar.':pct>=60?'👍 Buen avance. Revisa lo que fallaste.':'📖 Releer la lección antes de continuar.';
+  r.classList.add('show');
+  if(pct>=80)done.add(cur);
+  upd();
+}
+function upd(){const p=Math.round(done.size/ls.length*100);document.getElementById('pp').textContent=p+'%';document.getElementById('pf').style.width=p+'%';}
+
+/* ── LANG TOGGLE ── */
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.documentElement.classList.add('lang-en');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.classList.add('lang-en');
+        var b=document.getElementById('langBtn');
+        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>

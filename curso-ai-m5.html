@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 5: Experticia y Monetización</title>
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--border:#2a2a3a;--accent:#c471ed;--accent2:#f64f59;--accentG:#43e97b;--accentB:#4facfe;--text:#e8e8f0;--text2:#9898b0;--card:#14141e;--mod:#c471ed}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+.sidebar{width:270px;min-width:270px;background:var(--bg2);border-right:1px solid var(--border);height:100vh;position:fixed;top:0;left:0;overflow-y:auto;z-index:50;padding-bottom:2rem}
+.sidebar-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.sidebar-logo{font-size:.85rem;font-weight:800;background:linear-gradient(135deg,#c471ed,#f64f59);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{display:block;font-size:.72rem;color:var(--text2);text-decoration:none;margin-top:.2rem}
+.sidebar-back:hover{color:var(--accent)}
+.mod-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod);padding:.8rem 1.2rem .3rem}
+.ll{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem 1.2rem;cursor:pointer;border:none;background:none;width:100%;text-align:left;color:var(--text2);font-size:.8rem;line-height:1.4;transition:background .2s}
+.ll:hover{background:rgba(196,113,237,.08);color:var(--text)}
+.ll.active{background:rgba(196,113,237,.15);color:var(--accent);font-weight:700}
+.ln{font-size:.62rem;font-weight:900;color:var(--mod);min-width:26px;padding-top:.1rem}
+.sp{padding:.8rem 1.2rem;border-top:1px solid var(--border);margin-top:.5rem}
+.sl{font-size:.7rem;color:var(--text2);margin-bottom:.3rem}
+.pb{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+.main{margin-left:270px;flex:1}
+.topbar{position:sticky;top:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;gap:1rem;z-index:40;backdrop-filter:blur(10px)}
+.tl{font-size:.75rem;color:var(--text2)}
+.tt{font-size:.9rem;font-weight:800}
+.tnav{margin-left:auto;display:flex;gap:.4rem}
+.nb{padding:.35rem .8rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s}
+.nb:hover{border-color:var(--accent);color:var(--accent)}
+.nb.p{background:var(--accent);color:#fff;border-color:var(--accent)}
+.nb.p:hover{opacity:.85}
+.content{max-width:800px;margin:0 auto;padding:2.5rem 2rem}
+.tabs{display:flex;gap:.4rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+.tab{padding:.5rem 1rem;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tc{display:none}.tc.active{display:block}
+.lp{display:none}.lp.active{display:block}
+.lh{margin-bottom:2rem}
+.badge{display:inline-flex;align-items:center;background:rgba(196,113,237,.12);border:1px solid rgba(196,113,237,.3);border-radius:7px;padding:.25rem .8rem;font-size:.68rem;font-weight:800;color:var(--mod);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.8rem}
+.lt{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:.6rem}
+.lm{display:flex;gap:.8rem;flex-wrap:wrap;color:var(--text2);font-size:.8rem}
+.mc{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.15rem .6rem;border-radius:5px}
+.obj{background:rgba(196,113,237,.06);border:1px solid rgba(196,113,237,.25);border-radius:12px;padding:1.2rem;margin-bottom:2rem}
+.obj h3{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.obj ul{list-style:none}
+.obj li{font-size:.87rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.obj li::before{content:'✓';color:var(--accent);font-weight:900;flex-shrink:0}
+.lb h2{font-size:1.2rem;font-weight:800;margin:1.8rem 0 .7rem;color:var(--text)}
+.lb h3{font-size:1rem;font-weight:800;margin:1.3rem 0 .5rem;color:var(--mod)}
+.lb p{font-size:.9rem;color:var(--text2);margin-bottom:.9rem;line-height:1.75}
+.lb strong{color:var(--text);font-weight:700}
+.ca{border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+.ca-a{background:rgba(108,99,255,.08);border-left:3px solid #6c63ff}
+.ca-k{background:rgba(196,113,237,.07);border-left:3px solid var(--accent)}
+.ca-w{background:rgba(246,79,89,.07);border-left:3px solid var(--accent2)}
+.ca-g{background:rgba(67,233,123,.07);border-left:3px solid var(--accentG)}
+.ca-lbl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+.ca-a .ca-lbl{color:#a09fff}.ca-k .ca-lbl{color:var(--accent)}.ca-w .ca-lbl{color:var(--accent2)}.ca-g .ca-lbl{color:var(--accentG)}
+.ca p{font-size:.87rem;color:var(--text);margin:0;line-height:1.65}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.6rem .9rem;background:rgba(255,255,255,.03);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:.6rem .9rem;font-size:.83rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+td:first-child{font-weight:700;color:var(--text)}
+tr:last-child td{border-bottom:none}
+.fw{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}
+.fw-t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.8rem}
+.fi{display:flex;gap:.8rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.fi:last-child{border-bottom:none}
+.fl{font-size:1.1rem;font-weight:900;color:var(--accent);min-width:28px}
+.fc h4{font-size:.88rem;font-weight:800;color:var(--text)}
+.fc p{font-size:.8rem;color:var(--text2);margin:0}
+pre.code{background:rgba(0,0,0,.4);border:1px solid rgba(196,113,237,.2);border-radius:8px;padding:.8rem;font-size:.77rem;color:#e8a0ff;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:.6rem 0}
+.tk{background:rgba(196,113,237,.07);border:1px solid rgba(196,113,237,.25);border-radius:10px;padding:1.2rem;margin-top:1.8rem}
+.tk h3{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.tk ul{list-style:none}
+.tk li{font-size:.86rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.tk li::before{content:'★';color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:.2rem}
+.ex{background:rgba(196,113,237,.07);border:1px solid rgba(196,113,237,.25);border-radius:14px;padding:1.8rem;margin-top:.5rem}
+.ex h2{font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+.ex-m{font-size:.76rem;color:var(--text2);margin-bottom:1.3rem}
+.es{display:flex;gap:.8rem;margin-bottom:1.1rem;align-items:flex-start}
+.sn{min-width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;margin-top:.1rem}
+.sc h4{font-size:.87rem;font-weight:800;margin-bottom:.2rem}
+.sc p{font-size:.83rem;color:var(--text2);margin:0}
+.dv{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.25);border-radius:9px;padding:.9rem;margin-top:1.3rem}
+.dv h4{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accentG);margin-bottom:.2rem}
+.dv p{font-size:.83rem;color:var(--text2);margin:0}
+.qz h2{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.qi{font-size:.86rem;color:var(--text2);margin-bottom:1.8rem}
+.qb{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;margin-bottom:1rem}
+.qt{font-size:.92rem;font-weight:700;margin-bottom:.9rem}
+.opts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.85rem;background:rgba(255,255,255,.02);transition:all .2s}
+.opt:hover{border-color:var(--accent);background:rgba(196,113,237,.08)}
+.opt.correct{background:rgba(67,233,123,.12);border-color:var(--accentG);color:var(--accentG)}
+.opt.wrong{background:rgba(246,79,89,.1);border-color:var(--accent2);color:var(--accent2)}
+.opt input[type=radio]{accent-color:var(--accent);flex-shrink:0;margin-top:.2rem}
+.exp{font-size:.81rem;color:var(--text2);background:rgba(255,255,255,.03);border-radius:7px;padding:.7rem .9rem;margin-top:.7rem;display:none;line-height:1.6}
+.exp.show{display:block}
+.qbtn{padding:.55rem 1.3rem;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.qr{background:rgba(196,113,237,.1);border:1px solid rgba(196,113,237,.3);border-radius:10px;padding:1.2rem;text-align:center;margin-top:1.3rem;display:none}
+.qr.show{display:block}
+.rs{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lnb{display:flex;gap:.8rem;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.lnbtn{padding:.7rem 1.2rem;border-radius:9px;text-decoration:none;font-size:.85rem;font-weight:700;border:1px solid var(--border);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
+.lnbtn:hover{border-color:var(--accent);color:var(--accent)}
+.lnbtn.nx{background:var(--accent);color:#fff;border-color:var(--accent)}
+.lnbtn.nx:hover{opacity:.85}
+.final-card{background:linear-gradient(135deg,rgba(196,113,237,.12),rgba(246,79,89,.08));border:1px solid rgba(196,113,237,.35);border-radius:20px;padding:2.5rem;margin-top:2rem;text-align:center}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">💰 Módulo 5 · Experticia y Monetización</div>
+    <a href="curso-ai-index.html" class="sidebar-back"><span class="t-es">← Volver al inicio</span><span class="t-en" style="display:none">← Back to start</span></a>
+  <div class="lang-toggle">
+    <button id="langBtn" class="lang-btn" onclick="toggleLang()">🌐 EN</button>
+  </div>
+  </div>
+  <div class="mod-label">4 Lecciones · ~5 horas</div>
+  <button class="ll active" onclick="show(0)"><span class="ln">5.1</span><span class="t-es" style="display:inline">Cómo construir autoridad real en IA</span><span class="t-en" style="display:none">How to Build Real AI Authority</span></button>
+  <button class="ll" onclick="show(1)"><span class="ln">5.2</span><span class="t-es" style="display:inline">Diseña tu oferta de consultoría</span><span class="t-en" style="display:none">Design Your Consulting Offer</span></button>
+  <button class="ll" onclick="show(2)"><span class="ln">5.3</span><span class="t-es" style="display:inline">Personal Brand: IA + RevOps Expert</span><span class="t-en" style="display:none">Personal Brand: AI + RevOps Expert</span></button>
+  <button class="ll" onclick="show(3)"><span class="ln">5.4</span><span class="t-es" style="display:inline">Escala: producto, curso, agencia</span><span class="t-en" style="display:none">Scale: Product, Course, Agency</span></button>
+  <div class="sp">
+    <div class="sl">Progreso: <span id="pp">0%</span></div>
+    <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div><div class="tl" id="tl">Módulo 5 · Lección 5.1</div><div class="tt" id="tt">Cómo construir autoridad real en IA</div></div>
+    <div class="tnav">
+      <button class="nb" onclick="prev()">← Anterior</button>
+      <button class="nb p" onclick="next()">Siguiente →</button>
+    </div>
+  </div>
+  <div class="content">
+
+<!-- ══ LECCIÓN 5.1 ══ -->
+<div id="L0" class="lp active">
+  <div class="lh">
+    <div class="badge">Módulo 5 · Lección 5.1 · 70 min</div>
+    <h1 class="lt">Cómo construir autoridad real en IA</h1>
+    <div class="lm"><span class="mc">⏱ 70 min</span><span class="mc">🏆 Autoridad</span><span class="mc">🔑 Estratégico</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c0')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e0')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q0')">🧠 Quiz</button>
+  </div>
+  <div id="c0" class="tc active">
+    <div class="obj">
+      <div class="t-es"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Distinguir autoridad real de autoridad percibida y por qué la real gana</li>
+      <li>Aplicar el sistema de 3 pilares para construir autoridad en IA</li>
+      <li>Diseñar tu plan de contenido de autoridad para los próximos 90 días</li>
+    </ul></div>
+      <div class="t-en"><h3>By the end of this lesson you'll be able to:</h3><ul>
+      <li>Distinguish real authority from perceived authority and why real wins</li>
+      <li>Apply the 3-pillar system for building AI authority</li>
+      <li>Design your authority content plan for the next 90 days</li>
+    </ul></div>
+    </div>
+    <div class="lb">
+      <div class="t-es"><h2>El problema de la autoridad en IA: todo el mundo es "experto"</h2>
+      <p>En 2026, LinkedIn está lleno de "AI Experts" que aprendieron a usar ChatGPT hace seis meses y se declararon expertos. El mercado está saturado de personas que hablan de IA pero no la aplican.</p>
+      <p>Esto crea una oportunidad enorme para los que sí tienen profundidad real: la señal de calidad genuina destaca sobre el ruido. <strong>La autoridad real en IA se construye demostrando resultados, no declarando títulos.</strong></p></div>
+      <div class="t-en"><h2>The Authority Problem in AI: Everyone's an "Expert"</h2>
+      <p>In 2026, LinkedIn is full of "AI Experts" who learned ChatGPT six months ago and declared themselves experts. The market is saturated with people talking about AI but not applying it.</p>
+      <p>This creates a huge opportunity for those with real depth: genuine quality signals stand out from the noise. <strong>Real AI authority is built by demonstrating results, not declaring titles.</strong></p></div>
+
+      <h2>Autoridad real vs. autoridad percibida</h2>
+      <div class="tw"><table><thead><tr><th>Autoridad percibida</th><th>Autoridad real</th></tr></thead><tbody>
+        <tr><td>"Soy experto en IA" (se auto-declara)</td><td>Demuestra resultados específicos documentados</td></tr>
+        <tr><td>Habla de tendencias en abstracto</td><td>Construye y muestra cosas reales</td></tr>
+        <tr><td>Roba crédito de otros pensadores</td><td>Genera perspectivas originales basadas en experiencia</td></tr>
+        <tr><td>Sabe de todo, profundidad en nada</td><td>Especialización clara + habilidades transferibles</td></tr>
+        <tr><td>Tiene seguidores pero no clientes</td><td>Tiene clientes que generan referidos</td></tr>
+      </tbody></table></div>
+
+      <div class="t-es"><h2>El sistema de 3 pilares de autoridad</h2></div>
+      <div class="t-en"><h2>The 3-Pillar Authority System</h2></div>
+      <div class="t-es"><h3>Pilar 1: El portafolio (prueba de que puedes)</h3></div>
+      <div class="t-en"><h3>Pillar 1: The Portfolio (Proof You Can)</h3></div>
+      <p>Cada proyecto que completas en este curso es una pieza de portafolio. Los agentes que construiste, las apps de Vibecoding, el AI RevOps Playbook. Documentados y publicados, demuestran que haces, no solo que sabes.</p>
+      <div class="ca ca-k"><div class="ca-lbl">Tu portafolio de este curso</div><p>Al terminar tienes: análisis de agente real (M2) + app publicada con URL (M3) + AI RevOps Playbook (M4) + sistema RAG configurado (M2) + biblioteca de prompts (M1). Eso es un portafolio de consultor de IA, no de estudiante.</p></div>
+
+      <div class="t-es"><h3>Pilar 2: El pensamiento (prueba de que entiendes)</h3></div>
+      <div class="t-en"><h3>Pillar 2: The Thinking (Proof You Understand)</h3></div>
+      <p>El contenido que publicas demuestra tu forma de pensar sobre IA. No es el volumen lo que importa — es la profundidad y la perspectiva original.</p>
+      <p>Los formatos más efectivos para construir autoridad en IA:</p>
+      <div class="fw"><div class="fw-t">Formatos de contenido de autoridad</div>
+        <div class="fi"><span class="fl">📊</span><div class="fc"><h4>Análisis de casos reales</h4><p>"Implementé X agente y aprendí estas 5 cosas inesperadas". Específico, honesto, con números.</p></div></div>
+        <div class="fi"><span class="fl">🔍</span><div class="fc"><h4>Desmitificación</h4><p>"Por qué [hype popular] no funciona como esperabas y qué sí funciona". Contra-intuitivo, basado en experiencia.</p></div></div>
+        <div class="fi"><span class="fl">🏗️</span><div class="fc"><h4>Frameworks propios</h4><p>Sistemas que desarrollaste: el framework ARIA, tu proceso de Vibecoding, tu metodología de scoring. Los frameworks con nombre propio se comparten.</p></div></div>
+        <div class="fi"><span class="fl">📚</span><div class="fc"><h4>Proyectos documentados</h4><p>"Construí [algo] paso a paso, aquí está el proceso completo". La transparencia del proceso es una forma poderosa de autoridad.</p></div></div>
+      </div>
+
+      <div class="t-es"><h3>Pilar 3: La red (prueba de que eres reconocido)</h3></div>
+      <div class="t-en"><h3>Pillar 3: The Network (Proof You're Recognized)</h3></div>
+      <p>La autoridad es social por naturaleza. Necesitas ser reconocido por otros en tu campo. Esto se construye a través de: colaboraciones, menciones en contenido de otros, hablar en eventos y el referido de clientes satisfechos.</p>
+      <p>El paso más efectivo que puedes dar hoy: conectar auténticamente con 5-10 personas que estén construyendo en el mismo espacio de IA + RevOps/CRM.</p>
+
+      <div class="t-es"><h2>El plan de 90 días para autoridad en IA</h2></div>
+      <div class="t-en"><h2>The 90-Day Plan for AI Authority</h2></div>
+      <div class="tw"><table><thead><tr><th>Fase</th><th>Semanas</th><th>Foco</th><th>Acción clave</th></tr></thead><tbody>
+        <tr><td>Fundación</td><td>1-4</td><td>Portafolio + presencia base</td><td>Publica 2 proyectos, optimiza LinkedIn</td></tr>
+        <tr><td>Momentum</td><td>5-8</td><td>Contenido consistente</td><td>1 post semanal de análisis profundo</td></tr>
+        <tr><td>Aceleración</td><td>9-12</td><td>Colaboración + visibilidad</td><td>1 colaboración, 1 aparición externa</td></tr>
+      </tbody></table></div>
+
+      <div class="tk">
+      <div class="t-es"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>Autoridad real: resultados demostrados + pensamiento original + red reconocida</li>
+        <li>3 pilares: portafolio (prueba que puedes) + contenido (prueba que entiendes) + red (prueba que eres reconocido)</li>
+        <li>Los mejores formatos: análisis de casos reales, desmitificación, frameworks propios</li>
+        <li>Plan de 90 días: fundación → momentum → aceleración</li>
+      </ul></div>
+      <div class="t-en"><h3>Key Concepts from This Lesson</h3><ul>
+        <li>Real authority: demonstrated results + original thinking + recognized network</li>
+        <li>3 pillars: portfolio (proof you can) + content (proof you understand) + network (proof you're recognized)</li>
+        <li>Best formats: real case analysis, demystification, proprietary frameworks</li>
+        <li>90-day plan: foundation → momentum → acceleration</li>
+      </ul></div>
+      </div>
+    </div>
+  </div>
+  <div id="e0" class="tc">
+    <div class="ex">
+      <div class="t-es"><h2>Ejercicio 5.1: Tu plan de autoridad de 90 días</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + documento</div></div>
+      <div class="t-en"><h2>Exercise 5.1: Your 90-Day Authority Plan</h2>
+      <div class="ex-m">⏱ 60 min · Tool: Claude + document</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Audita tu presencia actual</h4><p>LinkedIn: ¿tienes perfil optimizado para IA + RevOps? ¿Qué has publicado en los últimos 90 días? ¿Qué piezas de portafolio tienes publicadas?</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>Audit your current presence</h4><p>LinkedIn: is your profile optimized for AI + RevOps? What have you published in the last 90 days? What portfolio pieces do you have published?</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Lista tus activos de portafolio del curso</h4><p>Todo lo que construiste: agentes, apps, playbooks, sistemas RAG, biblioteca de prompts. Para cada uno: ¿está publicado? ¿Cómo lo presentarías en LinkedIn?</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>List your course portfolio assets</h4><p>Everything you built: agents, apps, playbooks, RAG systems, prompt libraries. For each: is it published? How would you present it on LinkedIn?</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Define tu perspectiva de autoridad única</h4><p>La intersección IA + RevOps/CRM es tu nicho. ¿Qué perspectiva específica tienes dentro de ese nicho? ¿Qué experiencias, fracasos o victorias te dan una voz única?</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Define your unique authority perspective</h4><p>The intersection of AI + RevOps/CRM is your niche. What specific perspective do you have within that niche? What experiences, failures, or wins give you a unique voice?</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Crea tu plan de contenido de 90 días con Claude</h4><p>Prompt: "Soy experto en IA aplicada a RevOps y CRM. Tengo estas piezas de portafolio [lista]. Mi perspectiva única es [perspectiva]. Diseña un plan de contenido de 90 días para construir autoridad en LinkedIn, con 1 post semanal. Cada post debe ser profundo, no genérico."</p></div></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Create your 90-day content plan with Claude</h4><p>Prompt: "I'm an expert in AI applied to RevOps and CRM. I have these portfolio pieces [list]. My unique perspective is [perspective]. Design a 90-day content plan to build authority on LinkedIn with 1 post weekly. Each post must be deep, not generic."</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable</h4><p>Plan de contenido de 90 días con 12 posts descritos (tema + ángulo + formato). Ya tienes tu hoja de ruta de autoridad.</p></div>
+      <div class="t-en"><h4>Deliverable</h4><p>90-day content plan with 12 described posts (topic + angle + format). You now have your authority roadmap.</p></div></div>
+    </div>
+  </div>
+  <div id="q0" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 5.1</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb0">
+        <div class="qt">1. ¿Cuál es la diferencia fundamental entre autoridad real y autoridad percibida en IA?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">La autoridad real requiere más seguidores</li>
+          <li class="opt" onclick="ans(this,'qb0',true)"><input type="radio">La autoridad real demuestra resultados específicos; la percibida se auto-declara sin evidencia</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">La autoridad real requiere certificaciones</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">No hay diferencia práctica</li>
+        </ul>
+        <div class="exp">La autoridad percibida se declara ("soy experto en IA"). La real se demuestra: proyectos construidos, resultados documentados, perspectivas originales basadas en experiencia real. El mercado cada vez mejor discrimina entre las dos.</div>
+      </div>
+      <div class="qb" id="qb1">
+        <div class="qt">2. ¿Cuál de los 3 pilares de autoridad es más difícil de construir pero más duradero?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">El portafolio</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">El contenido</li>
+          <li class="opt" onclick="ans(this,'qb1',true)"><input type="radio">La red — la autoridad es social por naturaleza y el reconocimiento de pares es el más difícil de falsificar</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Los tres son igual de difíciles</li>
+        </ul>
+        <div class="exp">La red es el pilar más difícil de construir — requiere años de contribuciones genuinas, colaboraciones y relaciones de confianza. Pero también es el más duradero y el más difícil de replicar para la competencia.</div>
+      </div>
+      <div class="qb" id="qb2">
+        <div class="qt">3. ¿Cuál formato de contenido es más efectivo para construir autoridad en IA?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Compartir noticias de IA todos los días</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Publicar resúmenes de papers de investigación</li>
+          <li class="opt" onclick="ans(this,'qb2',true)"><input type="radio">Análisis de casos reales con resultados específicos y perspectiva original</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Tutoriales básicos de herramientas populares</li>
+        </ul>
+        <div class="exp">Los análisis de casos reales con resultados específicos son la forma más efectiva de construir autoridad. "Implementé X, aprendí Y, el resultado fue Z" es mucho más valioso que compartir noticias o tutoriales genéricos.</div>
+      </div>
+      <button class="qbtn" onclick="score('q0r',3)">Ver resultado</button>
+      <div class="qr" id="q0r"><div class="rs" id="q0s">0/3</div><p id="q0m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <a href="curso-ai-m4.html" class="lnbtn">← Módulo 4</a>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 5.2 ══ -->
+<div id="L1" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 5 · Lección 5.2 · 75 min</div>
+    <h1 class="lt">Diseña tu oferta de consultoría de IA</h1>
+    <div class="lm"><span class="mc">⏱ 75 min</span><span class="mc">💼 Consultoría</span><span class="mc">💰 Monetización</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c1')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e1')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q1')">🧠 Quiz</button>
+  </div>
+  <div id="c1" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Diseñar una oferta de consultoría de IA clara y diferenciada</li>
+      <li>Establecer precios que reflejen el valor entregado</li>
+      <li>Crear tu proceso de ventas de consultoría</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El error más costoso en consultoría de IA</h2>
+      <p>La mayoría de los consultores de IA venden tiempo ("te cobro $X por hora"). Este modelo tiene un techo claro: hay solo 8 horas en un día, y compites directamente en precio contra miles de freelancers.</p>
+      <p>Los consultores que ganan bien venden <strong>resultados</strong>. La oferta no es "te cobro por mi tiempo" — es "te entrego X resultado que vale Y para tu negocio, mi fee es Z". La diferencia de ingresos puede ser 5-10x.</p>
+
+      <h2>Los 3 modelos de oferta de IA</h2>
+      <h3>Modelo 1: Proyecto de implementación</h3>
+      <p>Entregables claros, timeline definido, precio fijo. Ejemplos: "Implemento tu sistema de lead scoring con IA en 6 semanas" o "Construyo el agente de calificación de leads de tu equipo en 4 semanas".</p>
+      <div class="ca ca-k"><div class="ca-lbl">Precio típico</div><p>$3,000-$15,000+ dependiendo del alcance y del tamaño de la empresa cliente. El precio fijo elimina la objeción de "¿cuántas horas tomará?" y te incentiva a ser eficiente.</p></div>
+
+      <h3>Modelo 2: Retainer mensual</h3>
+      <p>Acceso continuo a tu expertise, iteración mensual sobre el stack de IA. El cliente paga mensualmente por evolución, no por proyectos puntuales.</p>
+      <div class="ca ca-k"><div class="ca-lbl">Precio típico</div><p>$1,500-$5,000/mes. El retainer crea ingresos recurrentes predecibles y permite construir una relación profunda con el cliente donde el valor compuesto crece con el tiempo.</p></div>
+
+      <h3>Modelo 3: AI Assessment / Audit</h3>
+      <p>Un engagement de entrada de bajo riesgo para nuevos clientes: auditas su stack, identificas oportunidades de IA, entregas un roadmap. Es la puerta de entrada natural hacia implementación y retainer.</p>
+      <div class="ca ca-k"><div class="ca-lbl">Precio típico</div><p>$1,500-$4,000. Entregable: el AI Readiness Report + Roadmap de 12 meses (del Módulo 4). El cliente paga por el mapa; tú ganas la confianza para ejecutarlo.</p></div>
+
+      <h2>Diseñando tu oferta con el método CORE</h2>
+      <div class="fw"><div class="fw-t">Método CORE para diseño de oferta</div>
+        <div class="fi"><span class="fl">C</span><div class="fc"><h4>Cliente ideal (quién)</h4><p>¿Para quién es esta oferta específicamente? Cuanto más específico, más fácil de vender. "Empresas B2B SaaS de 50-200 empleados con equipo de ventas de 5-20 AEs" es mejor que "cualquier empresa".</p></div></div>
+        <div class="fi"><span class="fl">O</span><div class="fc"><h4>Outcome (qué resultado)</h4><p>¿Qué resultado específico y medible produce? "Reducir el tiempo de calificación de leads de 30 min a 2 min" es más vendible que "mejorar el proceso de ventas".</p></div></div>
+        <div class="fi"><span class="fl">R</span><div class="fc"><h4>Roadmap (cómo)</h4><p>El proceso de entrega: qué hacemos en cada fase, qué entregables tiene el cliente en cada punto. Reduce el riesgo percibido del cliente.</p></div></div>
+        <div class="fi"><span class="fl">E</span><div class="fc"><h4>Evidencia (por qué tú)</h4><p>Casos de éxito, portafolio, testimonios o experiencia relevante. El "por qué este experto" cierra la venta.</p></div></div>
+      </div>
+
+      <h2>Precios basados en valor</h2>
+      <p>El precio de valor se calcula de arriba hacia abajo:</p>
+      <pre class="code">Ejemplo de cálculo de precio basado en valor:
+
+Cliente: empresa con 15 AEs, $800K ARR pipeline mensual
+Problema: califican leads manualmente — 30 min por lead
+Solución: agente de calificación automática
+Impacto: ahorra 6 horas/día de AE time = $3,000/mes en tiempo AE
++ mejora calidad de calificación en 20% = ~$80K ARR adicional potencial
+
+Valor documentado: ~$80K ARR al año
+Tu fee: $12,000 (15% del valor de un año)
+ROI para el cliente: 567% en el primer año</pre>
+      <p>Cuando puedes documentar el valor así, el precio deja de ser una objeción y se convierte en una conversación de ROI.</p>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>Vende resultados, no tiempo — 5-10x diferencia en ingresos potenciales</li>
+        <li>3 modelos: proyecto de implementación, retainer mensual, assessment/audit</li>
+        <li>Método CORE: Cliente ideal + Outcome + Roadmap + Evidencia</li>
+        <li>Precio de valor: calcula el ROI para el cliente, cobra un % del valor creado</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e1" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 5.2: Diseña tu oferta de consultoría</h2>
+      <div class="ex-m">⏱ 75 min · Herramienta: Claude + documento</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige tu oferta de entrada</h4><p>Para la mayoría, el AI Assessment es la mejor oferta de inicio: bajo riesgo para el cliente, entregable claro, abre la puerta a proyectos más grandes. ¿Estás de acuerdo para tu caso? Si no, ¿cuál modelo tiene más sentido?</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Aplica el método CORE</h4><p>Para tu oferta elegida: define el cliente ideal exacto, el outcome medible que produces, el roadmap de entrega (fases y entregables), y la evidencia que tienes (del portafolio del curso).</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Calcula el precio basado en valor</h4><p>Para tu cliente ideal típico: ¿qué problema resuelves? ¿Cuánto vale ese problema? ¿Cuál sería un precio que sea 3-10x menor al valor creado?</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Crea el one-pager de tu oferta con Claude</h4><p>Prompt: "Basado en estos elementos CORE [pega tu análisis], crea un one-pager de consultoría para [tu oferta]. Debe comunicar el valor claramente, no sonar a plantilla genérica, e incluir el outcome, proceso, inversión e indicadores de éxito."</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>One-pager de tu oferta de consultoría de IA. Esto es lo que envías a un potencial cliente antes de una primera llamada.</p></div>
+    </div>
+  </div>
+  <div id="q1" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 5.2</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb10">
+        <div class="qt">1. ¿Por qué vender resultados es mejor que vender tiempo en consultoría de IA?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Porque el tiempo es difícil de facturar</li>
+          <li class="opt" onclick="ans(this,'qb10',true)"><input type="radio">Porque elimina el techo de ingresos, desconecta el precio de las horas y posiciona en ROI en vez de costo</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Porque los clientes prefieren precios variables</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">No es mejor — el tiempo es más fácil de justificar</li>
+        </ul>
+        <div class="exp">Vender resultados: 1) elimina el techo de horas/día, 2) te incentiva a ser eficiente (menos horas = más margen), 3) la conversación de ventas es de ROI no de costo, 4) puedes cobrar 5-10x más que por hora.</div>
+      </div>
+      <div class="qb" id="qb11">
+        <div class="qt">2. ¿Por qué el AI Assessment es la mejor oferta de entrada para un nuevo consultor?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Porque es la más rentable</li>
+          <li class="opt" onclick="ans(this,'qb11',true)"><input type="radio">Bajo riesgo para el cliente + entregable claro + crea confianza que lleva a proyectos más grandes</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Porque no requiere mucho trabajo</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">No hay razón — el retainer es siempre mejor</li>
+        </ul>
+        <div class="exp">El Assessment es la puerta de entrada perfecta: el cliente paga poco (bajo riesgo), obtiene valor inmediato (el roadmap), y tú demuestras tu expertise. El porcentaje de conversión a proyectos más grandes desde un Assessment bien ejecutado es muy alto.</div>
+      </div>
+      <div class="qb" id="qb12">
+        <div class="qt">3. En el cálculo de precio basado en valor, ¿qué porcentaje del valor creado es un fee razonable?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">50-70% del valor creado</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Menos del 1%</li>
+          <li class="opt" onclick="ans(this,'qb12',true)"><input type="radio">10-20% del valor de un año, generando un ROI de 500-900% para el cliente</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">El precio basado en valor no funciona en la práctica</li>
+        </ul>
+        <div class="exp">El rango de 10-20% del valor anual es el sweet spot: rentable para ti, ROI claramente positivo para el cliente (5-10x su inversión). Con un ROI documentado así, el precio deja de ser objeción.</div>
+      </div>
+      <button class="qbtn" onclick="score('q1r',3)">Ver resultado</button>
+      <div class="qr" id="q1r"><div class="rs" id="q1s">0/3</div><p id="q1m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 5.3 ══ -->
+<div id="L2" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 5 · Lección 5.3 · 60 min</div>
+    <h1 class="lt">Personal Brand: IA + RevOps Expert</h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">🎯 Branding</span><span class="mc">📱 LinkedIn</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c2')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e2')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q2')">🧠 Quiz</button>
+  </div>
+  <div id="c2" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Definir tu posicionamiento único como experto de IA en RevOps</li>
+      <li>Optimizar tu perfil de LinkedIn para atraer oportunidades</li>
+      <li>Crear un sistema de contenido consistente que no te agote</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El nicho que nadie más tiene</h2>
+      <p>La intersección de IA + RevOps + CRM es tu ventaja competitiva única. No compites con los generalistas de IA que no conocen el ciclo de ventas. No compites con los RevOps que no usan IA. Eres la intersección.</p>
+      <div class="ca ca-k"><div class="ca-lbl">Tu posicionamiento en una oración</div><p>Formula: "Ayudo a [cliente ideal] a [lograr resultado] usando [tu especialidad única]". Ejemplo: "Ayudo a equipos de ventas B2B a aumentar su pipeline con sistemas de IA para RevOps y CRM".</p></div>
+
+      <h2>Optimizando tu LinkedIn para oportunidades de IA</h2>
+      <p>LinkedIn es el canal principal para profesionales de RevOps y B2B. Estos son los 5 elementos que más impactan:</p>
+      <div class="fw"><div class="fw-t">Los 5 elementos críticos del perfil</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Headline (el más importante)</h4><p>No uses tu título de trabajo — usa tu propuesta de valor. "AI RevOps Consultant | Automatizo pipelines con IA para equipos de ventas B2B" > "Senior RevOps Manager at ACME Corp"</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>About / Resumen</h4><p>Primera línea: quién ayudas y cómo. Segunda parte: tu expertise específico. Tercera: evidencia (proyectos, resultados). CTA claro al final.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Sección Featured</h4><p>Tus 3 mejores piezas de portafolio. El playbook del M4, la app del M3, el agente del M2. Enlazados, con descripción de valor.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Experiencia reformulada</h4><p>Cada rol descrito con ángulo de IA y resultados: "Implementé el primer sistema de lead scoring predictivo que redujo el tiempo de calificación un 70%".</p></div></div>
+        <div class="fi"><span class="fl">5</span><div class="fc"><h4>Skills y Endorsements</h4><p>AI, LLMs, RevOps, CRM, HubSpot, Salesforce, Marketing Automation, Clay, n8n. Las keywords que aparecen en búsquedas.</p></div></div>
+      </div>
+
+      <h2>El sistema de contenido sostenible</h2>
+      <p>El error del 80% de las personas que intentan construir personal brand: son inconsistentes. Publican mucho 2 semanas, desaparecen 3 meses, vuelven a publicar. El algoritmo y la audiencia requieren consistencia.</p>
+      <p>El sistema que funciona:</p>
+      <div class="ca ca-g"><div class="ca-lbl">El sistema de 1-1-1</div><p><strong>1 post de profundidad por semana:</strong> análisis, framework o caso real. Este construye autoridad.<br><strong>1 comentario valioso por día:</strong> en posts de personas clave de tu industria. Esto amplifica tu visibilidad.<br><strong>1 conversación directa por semana:</strong> un mensaje a alguien interesante para conectar genuinamente. Esto construye red.</p></div>
+      <p>El secreto de la consistencia es el <strong>banco de contenido</strong>: dedica 2-3 horas un domingo al mes a escribir los posts del mes completo con Claude. Así el lunes solo copias y publicas — sin decision fatigue.</p>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>Tu posicionamiento único: la intersección IA + RevOps — no compites con nadie en ambos lados</li>
+        <li>5 elementos LinkedIn: headline (el más importante), about, featured, experiencia, skills</li>
+        <li>Sistema 1-1-1: 1 post profundo/semana + 1 comentario/día + 1 DM/semana</li>
+        <li>Banco de contenido: planea un mes completo con Claude en una sesión</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e2" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 5.3: Optimiza tu perfil de LinkedIn</h2>
+      <div class="ex-m">⏱ 90 min · Herramienta: Claude + LinkedIn</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Escribe tu posicionamiento en una oración</h4><p>Usa la fórmula: "Ayudo a [cliente ideal] a [resultado] usando [especialidad]". Pide a Claude que genere 5 variantes y elige la más auténtica.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Reescribe tu Headline con Claude</h4><p>Prompt: "Soy experto en [especialidad] con foco en [cliente ideal]. Reescribe mi headline de LinkedIn para comunicar valor, no cargo. Dame 5 opciones de diferentes estilos."</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Reescribe tu About Section</h4><p>Prompt: "Usando esta información sobre mi experiencia y proyectos [pega tu contexto], escribe un About section de LinkedIn de 250-300 palabras que comunique mi expertise en IA + RevOps, incluya evidencia de portafolio y tenga un CTA claro."</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Publica las 3 mejores piezas en Featured</h4><p>El AI RevOps Playbook (PDF o imagen), la mini-app publicada (URL), el análisis de agente documentado. Agrega descripción de valor a cada uno.</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Screenshot de tu perfil de LinkedIn actualizado con el nuevo Headline, About y Featured. Antes y después. La diferencia será notable.</p></div>
+    </div>
+  </div>
+  <div id="q2" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 5.3</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb20">
+        <div class="qt">1. ¿Por qué la intersección IA + RevOps es un posicionamiento poderoso?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Porque hay muchos clientes buscando IA en general</li>
+          <li class="opt" onclick="ans(this,'qb20',true)"><input type="radio">No compites ni con generalistas de IA (que no conocen RevOps) ni con RevOps tradicionales (que no usan IA) — eres la intersección única</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Porque RevOps es el área que más paga</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">No hay ventaja real en la especialización</li>
+        </ul>
+        <div class="exp">El poder de la intersección es que defines tu propio mercado. Los generalistas de IA no tienen tu profundidad en RevOps. Los RevOps tradicionales no tienen tu expertise en IA. Eres el único en ambas dimensiones.</div>
+      </div>
+      <div class="qb" id="qb21">
+        <div class="qt">2. ¿Por qué el Headline de LinkedIn es el elemento más importante del perfil?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Porque aparece en todos los resultados de búsqueda y es lo primero que se ve</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Porque LinkedIn le da más peso para el algoritmo</li>
+          <li class="opt" onclick="ans(this,'qb21',true)"><input type="radio">Ambas: es lo primero que se ve en búsquedas, posts, mensajes y conexiones — define si alguien hace clic o no</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">No es tan importante como el About</li>
+        </ul>
+        <div class="exp">El Headline aparece en todos los puntos de contacto: resultados de búsqueda, comentarios, mensajes, sugerencias de conexión. Es la primera impresión en cada interacción. Si no comunica valor en 2 segundos, perdes la atención.</div>
+      </div>
+      <div class="qb" id="qb22">
+        <div class="qt">3. ¿Cuál es el secreto para mantener consistencia en el personal brand sin agotarse?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Publicar menos frecuentemente</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Contratar a alguien que publique por ti</li>
+          <li class="opt" onclick="ans(this,'qb22',true)"><input type="radio">El banco de contenido: planear un mes completo en una sesión con Claude, luego solo publicar</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Publicar solo cuando tengas algo muy bueno que decir</li>
+        </ul>
+        <div class="exp">El banco de contenido elimina la decision fatigue: en una sesión de 2-3 horas al mes, con Claude, produces los posts del mes completo. Luego solo copias y publicas — sin presión creativa diaria.</div>
+      </div>
+      <button class="qbtn" onclick="score('q2r',3)">Ver resultado</button>
+      <div class="qr" id="q2r"><div class="rs" id="q2s">0/3</div><p id="q2m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 5.4 ══ -->
+<div id="L3" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 5 · Lección 5.4 · Proyecto Final · 90 min</div>
+    <h1 class="lt">Escala: producto, curso, agencia</h1>
+    <div class="lm"><span class="mc">⏱ 90 min</span><span class="mc">🚀 Escala</span><span class="mc">💰 Top 1%</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c3')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e3')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q3')">🧠 Quiz Final</button>
+  </div>
+  <div id="c3" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Elegir el modelo de escala correcto para tu contexto</li>
+      <li>Diseñar tu roadmap de 12-24 meses hacia el top 1%</li>
+      <li>Saber exactamente cuál es tu próximo paso después del curso</li>
+    </ul></div>
+    <div class="lb">
+      <h2>Los 3 caminos para escalar</h2>
+      <p>Una vez que tienes tu expertise demostrado y tus primeros clientes, hay tres caminos para escalar. No son excluyentes — muchos expertos eventualmente combinan los tres — pero es útil entender hacia cuál te diriges primero.</p>
+
+      <h2>Camino 1: Producto digital (escala con IA)</h2>
+      <p>Creas un activo que se vende sin tu tiempo presente. Un curso, una plantilla premium, un framework empaquetado, un prompt library profesional.</p>
+      <div class="ca ca-k"><div class="ca-lbl">Por qué la IA lo hace viable para ti ahora</div><p>La IA reduce el costo de producción de productos digitales drásticamente. Un curso que antes tomaba 6 meses producir puede hacerse en 6 semanas con IA. El resultado: puedes experimentar con productos a bajo costo y solo escalar lo que funciona.</p></div>
+      <p><strong>Timeline típico:</strong> 3-6 meses para lanzar el primer producto después de establecer audiencia.</p>
+      <p><strong>Potencial:</strong> $5K-$50K/mes con el producto correcto y audiencia establecida.</p>
+
+      <h2>Camino 2: Curso y educación</h2>
+      <p>Enseñas lo que sabes a otros profesionales que quieren desarrollar las mismas habilidades. Este curso que estás tomando es un ejemplo — y hay demanda enorme de educación específica en IA aplicada a RevOps.</p>
+      <p>Las ventajas del modelo de curso:</p>
+      <div class="fw"><div class="fw-t">Por qué crear cursos en 2026</div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>Alta demanda de upskilling</h4><p>Las empresas y profesionales pagan bien para aprender IA aplicada a su dominio específico.</p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>Activo que aprecia con el tiempo</h4><p>Un buen curso se vende años después de crearlo. Es trabajo que compuesto.</p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>Construye autoridad masiva</h4><p>Cientos de personas aprendiendo de ti → referidos, testimonios, visibilidad compuesta.</p></div></div>
+      </div>
+
+      <h2>Camino 3: Agencia / equipo</h2>
+      <p>Escalas tu capacidad de entrega contratando y formando a otros que ejecutan bajo tu metodología. Pasas de "yo hago el trabajo" a "mi equipo hace el trabajo usando mis sistemas".</p>
+      <p>Este camino requiere más capital inicial y habilidades de gestión, pero tiene el mayor potencial de escala.</p>
+      <div class="ca ca-g"><div class="ca-lbl">El momento correcto para la agencia</div><p>Solo escala a agencia cuando tienes: 1) demanda que supera tu capacidad individual, 2) sistemas y procesos documentados, 3) al menos un cliente recurrente que justifica la primera contratación. Antes de ese punto, es prematuro.</p></div>
+
+      <h2>El roadmap hacia el top 1%</h2>
+      <div class="tw"><table><thead><tr><th>Etapa</th><th>Timeline</th><th>Foco</th><th>Meta</th></tr></thead><tbody>
+        <tr><td>Fundación</td><td>Meses 1-3</td><td>Portafolio + primeros clientes</td><td>2-3 clientes de Assessment</td></tr>
+        <tr><td>Momentum</td><td>Meses 4-6</td><td>Autoridad + proyectos</td><td>$5-10K MRR en consultoría</td></tr>
+        <tr><td>Escala inicial</td><td>Meses 7-12</td><td>Primero producto/curso</td><td>$15-25K/mes combinado</td></tr>
+        <tr><td>Escala avanzada</td><td>Año 2+</td><td>Agencia o producto principal</td><td>$50K+/mes</td></tr>
+      </tbody></table></div>
+
+      <h2>Tu próximo paso: los 7 días después de terminar este curso</h2>
+      <div class="fw"><div class="fw-t">El plan de acción de 7 días</div>
+        <div class="fi"><span class="fl">D1</span><div class="fc"><h4>Actualiza LinkedIn</h4><p>Nuevo headline, about y featured con los proyectos del curso.</p></div></div>
+        <div class="fi"><span class="fl">D2</span><div class="fc"><h4>Publica tu primer post de autoridad</h4><p>El primer post sobre un aprendizaje concreto del curso o un proyecto que construiste.</p></div></div>
+        <div class="fi"><span class="fl">D3</span><div class="fc"><h4>Contacta 5 personas para tu red</h4><p>Personas en RevOps + IA que quieres conocer. Mensaje genuino, sin vender nada.</p></div></div>
+        <div class="fi"><span class="fl">D4</span><div class="fc"><h4>Envía tu first Assessment</h4><p>Identifica 3 empresas donde conoces al CRO/RevOps Manager. Envía el one-pager del ejercicio 5.2.</p></div></div>
+        <div class="fi"><span class="fl">D5-7</span><div class="fc"><h4>Crea tu banco de contenido del mes</h4><p>4 posts de profundidad para el mes completo con Claude. Sistema de consistencia activado.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div id="e3" class="tc">
+    <div class="ex">
+      <h2>Proyecto Final — Módulo 5 y Curso Completo</h2>
+      <div class="ex-m">⏱ 90 min · Herramienta: Claude + todos tus materiales del curso</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Define tu camino de escala</h4><p>De los 3 caminos (producto, curso, agencia), ¿cuál resuena más con tus objetivos de 12-24 meses? Escribe 1 párrafo de por qué.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Crea tu roadmap de 12 meses</h4><p>Prompt a Claude: "Soy experto en IA aplicada a RevOps y CRM. Tengo estos activos de portafolio [lista]. Quiero escalar hacia [camino elegido]. Diseña un roadmap realista y accionable de 12 meses con metas trimestrales específicas y acciones concretas por semana."</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Escribe tu plan de 7 días</h4><p>Los 7 días concretos después de terminar el curso. Acciones específicas, no intenciones vagas. ¿Qué harás el lunes a las 9am?</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Conecta todos tus entregables del curso</h4><p>Lista todos los activos que creaste: prompts library (M1), trace de agente (M2), sistema RAG (M2), app publicada (M3), playbook (M4), oferta de consultoría (M5), plan de contenido (M5). Tienes un portafolio completo.</p></div></div>
+      <div class="dv"><h4>Entregable Final del Curso</h4><p>Roadmap de 12 meses + plan de 7 días. Este es el cierre del curso — no es el fin, es el inicio. Todo lo que aprendiste aquí se convierte en valor solo cuando lo aplicas.</p></div>
+    </div>
+  </div>
+  <div id="q3" class="tc">
+    <div class="qz">
+      <h2>Quiz Final — Módulo 5 y Curso Completo</h2>
+      <p class="qi">5 preguntas · El cierre del curso</p>
+      <div class="qb" id="qb30">
+        <div class="qt">1. ¿Cuál es la señal de que es el momento correcto para escalar a agencia?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Cuando tengas 1 año de experiencia</li>
+          <li class="opt" onclick="ans(this,'qb30',true)"><input type="radio">Cuando la demanda supera tu capacidad individual y tienes sistemas documentados</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Desde el primer cliente</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Cuando ganes $10K al mes</li>
+        </ul>
+        <div class="exp">Escala a agencia cuando: 1) hay más demanda de la que puedes atender solo, 2) tienes sistemas documentados que otros pueden ejecutar, 3) tienes al menos un cliente recurrente que justifica la primera contratación.</div>
+      </div>
+      <div class="qb" id="qb31">
+        <div class="qt">2. ¿Por qué la IA hace más viable crear productos digitales para un experto individual?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Porque los vende automáticamente</li>
+          <li class="opt" onclick="ans(this,'qb31',true)"><input type="radio">Reduce drásticamente el costo de producción — un curso de 6 meses puede producirse en 6 semanas</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Porque atrae a más compradores</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">No cambia nada en la producción de productos digitales</li>
+        </ul>
+        <div class="exp">La IA comprime radicalmente el tiempo de producción de contenido, diseño, scripts y materiales educativos. Lo que antes requería 6 meses de producción ahora se puede hacer en semanas, bajando la barrera de entrada masivamente.</div>
+      </div>
+      <div class="qb" id="qb32">
+        <div class="qt">3. En el roadmap hacia el top 1%, ¿cuál es la meta de la etapa "Fundación" (meses 1-3)?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Lanzar un curso propio</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">$50K/mes en ingresos</li>
+          <li class="opt" onclick="ans(this,'qb32',true)"><input type="radio">2-3 clientes de Assessment + portafolio publicado</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Contratar al primer empleado</li>
+        </ul>
+        <div class="exp">La etapa de Fundación es de demostración y confianza: conseguir los primeros clientes (aunque sea Assessment de bajo precio) y publicar el portafolio. Esto crea la base de credibilidad para todo lo que sigue.</div>
+      </div>
+      <div class="qb" id="qb33">
+        <div class="qt">4. ¿Cuál es la acción más importante del día 1 después de terminar el curso?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb33',false)"><input type="radio">Buscar más cursos de IA</li>
+          <li class="opt" onclick="ans(this,'qb33',true)"><input type="radio">Actualizar el perfil de LinkedIn con el nuevo posicionamiento y los activos del portafolio</li>
+          <li class="opt" onclick="ans(this,'qb33',false)"><input type="radio">Esperar a tener más experiencia antes de actuar</li>
+          <li class="opt" onclick="ans(this,'qb33',false)"><input type="radio">Crear una empresa formal</li>
+        </ul>
+        <div class="exp">LinkedIn actualizado es la primera acción porque: 1) es lo más visible inmediatamente, 2) tienes activos concretos del curso para poner en Featured, 3) cambia cómo te percibe tu red existente instantáneamente.</div>
+      </div>
+      <div class="qb" id="qb34">
+        <div class="qt">5. ¿Qué hace que el posicionamiento IA + RevOps + CRM sea especialmente poderoso en 2026?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb34',false)"><input type="radio">Que hay mucha oferta de consultores en esa área</li>
+          <li class="opt" onclick="ans(this,'qb34',true)"><input type="radio">La combinación de expertise de dominio (RevOps/CRM) + habilidades técnicas de IA crea una ventaja compuesta difícil de replicar</li>
+          <li class="opt" onclick="ans(this,'qb34',false)"><input type="radio">Que es la especialización con más pago del mundo</li>
+          <li class="opt" onclick="ans(this,'qb34',false)"><input type="radio">Que la IA pronto reemplazará a todos los RevOps managers</li>
+        </ul>
+        <div class="exp">La ventaja compuesta: tu expertise en RevOps/CRM dice qué hacer (estrategia), tu expertise en IA dice cómo automatizarlo (ejecución). Muy pocas personas tienen ambas dimensiones al mismo nivel. Eso es difícil de replicar y fácil de valorar en el mercado.</p></div>
+      </div>
+      <button class="qbtn" onclick="score('q3r',5)">Ver resultado</button>
+      <div class="qr" id="q3r"><div class="rs" id="q3s">0/5</div><p id="q3m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div style="max-width:800px;margin:3rem auto;padding:2rem;background:rgba(196,113,237,.07);border:1px solid rgba(196,113,237,.25);border-radius:14px">
+    <div class="t-es"><h3 style="font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:1rem">Recursos Adicionales: Certificaciones de Anthropic 2026</h3>
+    <p style="color:var(--text2);margin-bottom:1rem">El siguiente paso en tu carrera: las 13 certificaciones de Anthropic son ahora el estándar de la industria para consultores de IA senior. Combinadas con tu experiencia en RevOps, posicionan en el top 1%.</p>
+    <a href="curso-ai-recursos.html" style="display:inline-block;color:var(--accent);text-decoration:none;font-weight:700">Ver todas las certificaciones →</a></div>
+    <div class="t-en"><h3 style="font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:1rem">Additional Resources: Anthropic Certifications 2026</h3>
+    <p style="color:var(--text2);margin-bottom:1rem">Next steps in your career: the 13 Anthropic certifications are now the industry standard for senior AI consultants. Combined with your RevOps expertise, they position you in the top 1%.</p>
+    <a href="curso-ai-recursos.html" style="display:inline-block;color:var(--accent);text-decoration:none;font-weight:700">View all certifications →</a></div>
+  </div>
+
+  <div class="final-card">
+    <div style="font-size:3rem;margin-bottom:.8rem">🏆</div>
+    <div style="font-size:1.5rem;font-weight:900;margin-bottom:.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent"><div class="t-es">¡Curso Completado!</div><div class="t-en">Course Complete!</div></div>
+    <div style="font-size:1rem;color:var(--text);font-weight:700;margin-bottom:.8rem">AI Expert Mastery — Sergio AM</div>
+    <div class="t-es"><div style="font-size:.9rem;color:var(--text2);max-width:550px;margin:0 auto 1.5rem;line-height:1.7">Completaste 6 módulos, 33 lecciones, 33 ejercicios y 6 proyectos reales. Ya no eres estudiante de IA — eres un profesional que construye, aplica y entrega valor con ella.</div>
+    <div style="font-size:.85rem;color:var(--text2);margin-bottom:1.5rem;font-style:italic">"Serás el experto de IA en CRM y RevOps más valioso de cualquier sala en la que entres."</div></div>
+    <div class="t-en"><div style="font-size:.9rem;color:var(--text2);max-width:550px;margin:0 auto 1.5rem;line-height:1.7">You completed 6 modules, 33 lessons, 33 exercises, and 6 real projects. You're no longer an AI student — you're a professional who builds, applies, and delivers value with AI.</div>
+    <div style="font-size:.85rem;color:var(--text2);margin-bottom:1.5rem;font-style:italic">"You'll be the most valuable AI expert in CRM and RevOps in any room you enter."</div></div>
+    <a href="curso-ai-index.html" style="display:inline-block;padding:.8rem 2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:12px;text-decoration:none;font-weight:800;font-size:1rem;margin-right:1rem"><div class="t-es" style="display:inline">Ver todos los módulos</div><div class="t-en" style="display:none">View all modules</div></a>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <a href="curso-ai-index.html" class="lnbtn nx">Inicio del curso</a>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script>
+const lessons=[
+  {num:'5.1',title:'Cómo construir autoridad real en IA'},
+  {num:'5.2',title:'Diseña tu oferta de consultoría de IA'},
+  {num:'5.3',title:'Personal Brand: IA + RevOps Expert'},
+  {num:'5.4',title:'Escala: producto, curso, agencia'}
+];
+let cur=0;
+const btns=document.querySelectorAll('.ll');
+const completed=new Set();
+
+function show(i){
+  document.querySelectorAll('.lp').forEach(l=>l.classList.remove('active'));
+  document.getElementById('L'+i).classList.add('active');
+  btns.forEach(b=>b.classList.remove('active'));
+  btns[i].classList.add('active');
+  cur=i;
+  document.getElementById('tl').textContent='Módulo 5 · Lección '+lessons[i].num;
+  document.getElementById('tt').textContent=lessons[i].title;
+  completed.add(i);
+  const p=Math.round(completed.size/lessons.length*100);
+  document.getElementById('pp').textContent=p+'%';
+  document.getElementById('pf').style.width=p+'%';
+  window.scrollTo(0,0);
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  const lp=document.getElementById('L'+i);
+  lp.querySelectorAll('.tab')[0].classList.add('active');
+  lp.querySelectorAll('.tc')[0].classList.add('active');
+}
+
+function next(){if(cur<lessons.length-1)show(cur+1);}
+function prev(){if(cur>0)show(cur-1);}
+
+function tab(el,id){
+  const lp=el.closest('.lp');
+  lp.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  lp.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function ans(el,qbId,correct){
+  const qb=document.getElementById(qbId);
+  if(qb.dataset.answered)return;
+  qb.dataset.answered='1';
+  qb.dataset.correct=correct?'1':'0';
+  el.classList.add(correct?'correct':'wrong');
+  const exp=qb.querySelector('.exp');
+  if(exp)exp.classList.add('show');
+}
+
+function score(rid,total){
+  const prefix=rid.replace('r','');
+  let correct=0;
+  const num=prefix.slice(1);
+  document.querySelectorAll('[id^="qb'+num+'"]').forEach(qb=>{
+    if(qb.dataset.correct==='1')correct++;
+  });
+  const el=document.getElementById(rid);
+  el.classList.add('show');
+  document.getElementById(prefix+'s').textContent=correct+'/'+total;
+  const msgs=['Sigue repasando — vuelve a la lección','Bien, pero hay oportunidad de mejora','¡Muy bien! Sólido entendimiento','¡Perfecto! Dominas este tema'];
+  const idx=Math.floor((correct/total)*3);
+  document.getElementById(prefix+'m').textContent=msgs[Math.min(idx,3)];
+}
+
+/* ── LANG TOGGLE ── */
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.documentElement.classList.add('lang-en');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.classList.add('lang-en');
+        var b=document.getElementById('langBtn');
+        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>

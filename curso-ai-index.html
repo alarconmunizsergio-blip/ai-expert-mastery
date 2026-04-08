@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Expert Mastery — Curso Completo | Sergio AM</title>
+<style>
+:root {
+  --bg:#0a0a0f; --bg2:#111118; --bg3:#1a1a24; --border:#2a2a3a;
+  --accent:#6c63ff; --accent2:#ff6584; --accent3:#43e97b; --accent4:#f7971e;
+  --text:#e8e8f0; --text2:#9898b0; --card:#14141e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(10,10,15,0.97);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2rem;gap:2rem;z-index:100}
+.logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+nav a{color:var(--text2);text-decoration:none;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;transition:color .2s}
+nav a:hover{color:var(--accent)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(108,99,255,0.15) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(255,101,132,0.08) 0%,transparent 60%)}
+.hero-content{position:relative;max-width:850px}
+.badge{display:inline-block;background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.4);color:#a09fff;padding:.4rem 1.2rem;border-radius:100px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff 0%,#c0baff 40%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;color:var(--text2);max-width:680px;margin:0 auto 3rem}
+.stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.8rem;text-align:center}
+.stat-n{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{font-size:.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}
+
+/* MODULES GRID */
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:.75rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:1rem;line-height:1.2}
+.section-sub{color:var(--text2);font-size:1.05rem;max-width:680px;margin-bottom:3rem}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.module-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .3s,transform .2s;display:block}
+.module-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.m0::before{background:linear-gradient(90deg,#6c63ff,#a09fff)}
+.m1::before{background:linear-gradient(90deg,#f7971e,#ffd200)}
+.m2::before{background:linear-gradient(90deg,#43e97b,#38f9d7)}
+.m3::before{background:linear-gradient(90deg,#ff6584,#ff8c42)}
+.m4::before{background:linear-gradient(90deg,#4facfe,#00f2fe)}
+.m5::before{background:linear-gradient(90deg,#c471ed,#f64f59)}
+.module-num{font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.n0{color:#a09fff} .n1{color:#ffd200} .n2{color:#43e97b} .n3{color:#ff8c42} .n4{color:#4facfe} .n5{color:#c471ed}
+.module-title{font-size:1.3rem;font-weight:800;margin-bottom:.5rem}
+.module-desc{font-size:.88rem;color:var(--text2);margin-bottom:1.2rem}
+.module-meta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.meta-tag{font-size:.72rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:.2rem .7rem;border-radius:6px;color:var(--text2)}
+.lessons-list{margin-top:1.2rem;list-style:none;border-top:1px solid var(--border);padding-top:1rem}
+.lessons-list li{font-size:.82rem;color:var(--text2);padding:.3rem 0;display:flex;gap:.5rem;align-items:flex-start}
+.lessons-list li::before{content:'→';color:var(--accent);font-weight:700;flex-shrink:0}
+.btn{display:inline-block;margin-top:1.5rem;padding:.7rem 1.5rem;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-outline{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+.how-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center}
+.how-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.how-card h3{font-size:1rem;font-weight:800;margin-bottom:.5rem}
+.how-card p{font-size:.83rem;color:var(--text2)}
+
+/* DIVIDER */
+hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0}
+
+/* PROMISE */
+.promise{background:linear-gradient(135deg,rgba(108,99,255,.1),rgba(255,101,132,.07));border:1px solid rgba(108,99,255,.3);border-radius:24px;padding:3rem;text-align:center;margin:3rem 0}
+.promise p{color:var(--text2);font-size:1rem;max-width:700px;margin:.8rem auto}
+.big{font-size:1.5rem;font-weight:800;line-height:1.4;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+footer{border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--text2);font-size:.8rem}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">🎓 AI Expert Mastery</span>
+  <a href="#modulos">Módulos</a>
+  <a href="#metodologia">Metodología</a>
+  <a href="curso-ai-recursos.html" style="color:var(--accent4)">⭐ Recursos</a>
+  <a href="curso-ai-m0.html">Empezar →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="badge">Curso Completo · Sergio AM · 2026</div>
+    <h1>Conviértete en Experto de IA<br>para RevOps y CRM</h1>
+    <p>Un programa de estudio real — con lecciones, ejercicios, quizzes y proyectos — para dominar IA, Agentic Tools y Vibecoding aplicado a tu carrera.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Módulos</div></div>
+      <div class="stat"><div class="stat-n">33</div><div class="stat-l">Lecciones</div></div>
+      <div class="stat"><div class="stat-n">33</div><div class="stat-l">Ejercicios</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Proyectos</div></div>
+      <div class="stat"><div class="stat-n">13</div><div class="stat-l">Certif. Gratis</div></div>
+    </div>
+    <a href="curso-ai-m0.html" class="btn" style="margin-right:1rem;font-size:1rem;padding:.9rem 2rem">🚀 Comenzar el Curso</a>
+    <a href="curso-ai-recursos.html" class="btn" style="margin-right:1rem;font-size:1rem;padding:.9rem 2rem;background:var(--accent2);color:#000">⭐ Recursos &amp; Setup</a>
+    <a href="#modulos" class="btn btn-outline" style="font-size:1rem;padding:.9rem 2rem">Ver Contenido</a>
+  </div>
+</div>
+
+<hr class="div">
+
+<section class="section" id="metodologia">
+  <div class="section-label">Metodología</div>
+  <h2>Cómo funciona este curso</h2>
+  <p class="section-sub">Diseñado para aprender haciendo, a tu ritmo, con aplicación directa a tu trabajo actual de CRM y RevOps.</p>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-num">1</div><h3>Lee y Entiende</h3><p>Cada lección tiene contenido real — explicaciones, analogías y frameworks. No solo bullets, sino comprensión profunda.</p></div>
+    <div class="how-card"><div class="how-num">2</div><h3>Ejercicio Práctico</h3><p>Cada lección tiene un ejercicio que haces con tus herramientas actuales (Claude, ChatGPT, etc.) aplicado a tu contexto.</p></div>
+    <div class="how-card"><div class="how-num">3</div><h3>Quiz de Comprensión</h3><p>Evalúa si realmente entendiste. No memorización — comprensión aplicada. Puedes retomar las veces que quieras.</p></div>
+    <div class="how-card"><div class="how-num">4</div><h3>Proyecto de Módulo</h3><p>Al final de cada módulo, un proyecto real que puedes mostrar como portafolio y usar en tu trabajo o consultoría.</p></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section class="section" id="modulos">
+  <div class="section-label">Contenido del Curso</div>
+  <h2>6 Módulos · 33 Lecciones</h2>
+  <p class="section-sub">Progresión desde los fundamentos hasta convertirte en experto y monetizar tu conocimiento.</p>
+
+  <div class="modules-grid">
+
+    <a href="curso-ai-m0.html" class="module-card m0">
+      <div class="module-num n0">Módulo 0 · 4 Lecciones · ~3 hrs</div>
+      <div class="module-title">Fundamentos de IA Moderna</div>
+      <div class="module-desc">Entiende cómo funciona realmente la IA antes de usarla. La base que el 90% de la gente se salta.</div>
+      <div class="module-meta">
+        <span class="meta-tag">⏱ 3 horas</span>
+        <span class="meta-tag">🟢 Nivel: Base</span>
+        <span class="meta-tag">📍 Empieza aquí</span>
+      </div>
+      <ul class="lessons-list">
+        <li>Cómo funcionan los LLMs realmente</li>
+        <li>El mapa completo del ecosistema IA 2026</li>
+        <li>Terminología esencial para profesionales</li>
+        <li>Tu setup profesional de IA</li>
+      </ul>
+      <span class="btn" style="margin-top:1rem">Empezar Módulo →</span>
+    </a>
+
+    <a href="curso-ai-m1.html" class="module-card m1">
+      <div class="module-num n1">Módulo 1 · 8 Lecciones · ~8 hrs</div>
+      <div class="module-title">Prompt Engineering Mastery</div>
+      <div class="module-desc">La habilidad más valiosa de 2026. De prompts casuales a prompts de nivel experto con frameworks probados.</div>
+      <div class="module-meta">
+        <span class="meta-tag">⏱ 8 horas</span>
+        <span class="meta-tag">🟡 Nivel: Intermedio</span>
+        <span class="meta-tag">🔑 Habilidad Core</span>
+      </div>
+      <ul class="lessons-list">
+        <li>Por qué el prompting es una habilidad real</li>
+        <li>La anatomía del prompt perfecto (Framework CRAFT)</li>
+        <li>Zero-Shot, Few-Shot y sus variantes</li>
+        <li>Chain-of-Thought (CoT)</li>
+        <li>Role Prompting y System Prompts</li>
+        <li>Meta-Prompting y refinamiento iterativo</li>
+        <li>Prompt Chaining para tareas complejas</li>
+        <li>Tu Prompt Library profesional</li>
+      </ul>
+      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+    </a>
+
+    <a href="curso-ai-m2.html" class="module-card m2">
+      <div class="module-num n2">Módulo 2 · 6 Lecciones · ~7 hrs</div>
+      <div class="module-title">AI Agents &amp; Sistemas Agénticos</div>
+      <div class="module-desc">Construye sistemas que trabajan solos. La frontera donde los expertos de IA crean valor real y diferenciado.</div>
+      <div class="module-meta">
+        <span class="meta-tag">⏱ 7 horas</span>
+        <span class="meta-tag">🟠 Nivel: Avanzado</span>
+        <span class="meta-tag">🤖 Skill del Futuro</span>
+      </div>
+      <ul class="lessons-list">
+        <li>Qué es un agente de IA — anatomía completa</li>
+        <li>Patrones de arquitectura: ReAct, Plan-Execute</li>
+        <li>Herramientas: n8n, Make, Zapier AI</li>
+        <li>Memoria y RAG — tu base de conocimiento con IA</li>
+        <li>Diseño de agentes para procesos de negocio</li>
+        <li>Construye tu primer agente funcional</li>
+      </ul>
+      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+    </a>
+
+    <a href="curso-ai-m3.html" class="module-card m3">
+      <div class="module-num n3">Módulo 3 · 5 Lecciones · ~6 hrs</div>
+      <div class="module-title">Vibecoding</div>
+      <div class="module-desc">Construye productos reales sin ser programador. El superpoder de 2026 que democratiza la creación de software.</div>
+      <div class="module-meta">
+        <span class="meta-tag">⏱ 6 horas</span>
+        <span class="meta-tag">🔴 Nivel: Avanzado</span>
+        <span class="meta-tag">⚡ Crear Productos</span>
+      </div>
+      <ul class="lessons-list">
+        <li>Qué es Vibecoding y por qué cambia todo</li>
+        <li>Las herramientas: Lovable, Bolt, Cursor, v0</li>
+        <li>El flujo completo: idea → producto live</li>
+        <li>Suficiente código para no perderte</li>
+        <li>Construye tu primera mini-app de RevOps</li>
+      </ul>
+      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+    </a>
+
+    <a href="curso-ai-m4.html" class="module-card m4">
+      <div class="module-num n4">Módulo 4 · 6 Lecciones · ~7 hrs</div>
+      <div class="module-title">IA para CRM, RevOps &amp; Martech</div>
+      <div class="module-desc">Tu ventaja competitiva única. Expertise de dominio + IA = posición imbatible en el mercado.</div>
+      <div class="module-meta">
+        <span class="meta-tag">⏱ 7 horas</span>
+        <span class="meta-tag">🔵 Nivel: Experto</span>
+        <span class="meta-tag">💼 Tu Dominio</span>
+      </div>
+      <ul class="lessons-list">
+        <li>El nuevo stack de RevOps con IA</li>
+        <li>CRM Intelligence: scoring, enriquecimiento, predicción</li>
+        <li>Marketing Automation con LLMs</li>
+        <li>ABM con IA a escala</li>
+        <li>Martech Audit y diseño de stack</li>
+        <li>Tu AI RevOps Playbook</li>
+      </ul>
+      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+    </a>
+
+    <a href="curso-ai-m5.html" class="module-card m5">
+      <div class="module-num n5">Módulo 5 · 4 Lecciones · ~5 hrs</div>
+      <div class="module-title">Experticia y Monetización</div>
+      <div class="module-desc">Convierte tu conocimiento en autoridad, clientes y negocio. De aprendiz a experto reconocido y bien pagado.</div>
+      <div class="module-meta">
+        <span class="meta-tag">⏱ 5 horas</span>
+        <span class="meta-tag">🟣 Nivel: Estratégico</span>
+        <span class="meta-tag">💰 Top 1%</span>
+      </div>
+      <ul class="lessons-list">
+        <li>Cómo construir autoridad real en IA</li>
+        <li>Diseña tu oferta de consultoría</li>
+        <li>Personal Brand: IA + RevOps Expert</li>
+        <li>Escala: producto, curso, agencia</li>
+      </ul>
+      <span class="btn btn-outline" style="margin-top:1rem">Ir al Módulo →</span>
+    </a>
+
+    <a href="curso-ai-recursos.html" class="module-card" style="border-color:rgba(255,210,0,.3);background:linear-gradient(135deg,rgba(247,151,30,.07),rgba(255,210,0,.03))">
+      <div class="module-num" style="color:#ffd200">⭐ BONUS · Recursos Esenciales · Referencia Permanente</div>
+      <div class="module-title">Setup, Recursos &amp; Casos de Uso</div>
+      <div class="module-desc">Tu hub de referencia: AI Station óptimo, guías de todos los modelos (Claude, GPT, Gemini, Llama, Gemma), IA local con Ollama, 13 certificaciones gratuitas, recursos de Ruben Hassid y casos de uso por profesión.</div>
+      <div class="module-meta">
+        <span class="meta-tag">💻 AI Station Setup</span>
+        <span class="meta-tag">🏆 13 Certificaciones</span>
+        <span class="meta-tag">👥 20+ Profesiones</span>
+      </div>
+      <ul class="lessons-list">
+        <li>Setup óptimo: Mac Mini M4 Pro y alternativas (todos los tiers)</li>
+        <li>Guía completa de todos los modelos: Claude, GPT, Gemini, Llama, Gemma, DeepSeek</li>
+        <li>IA Local: Ollama + Open WebUI + VPS — instalación y setup detallado</li>
+        <li>13 certificaciones gratuitas de Anthropic + Google + HubSpot</li>
+        <li>Casos de uso específicos para 20+ profesiones</li>
+        <li>Recursos de Ruben Hassid + Lo último de Abril 2026</li>
+      </ul>
+      <span class="btn" style="margin-top:1rem;background:var(--accent2);color:#000">Ver Recursos →</span>
+    </a>
+
+  </div>
+</section>
+
+<hr class="div">
+
+<section class="section">
+  <div class="promise">
+    <div class="section-label">La Promesa</div>
+    <h2>Al completar este curso:</h2>
+    <div class="big">"Serás el experto de IA en CRM y RevOps más valioso de cualquier sala en la que entres."</div>
+    <p>No porque hayas memorizado conceptos — sino porque habrás construido cosas reales, resuelto problemas reales y desarrollado un framework mental que te permite adaptarte a cualquier nueva herramienta que salga.</p>
+    <p>El campo de IA cambia cada semana. Este curso no te da peces — te enseña a pescar en cualquier lago.</p>
+    <br>
+    <a href="curso-ai-m0.html" class="btn" style="font-size:1rem;padding:.9rem 2rem">🚀 Comenzar con el Módulo 0</a>
+  </div>
+</section>
+
+<footer>
+  <p style="font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Expert Mastery · Sergio AM · 2026</p>
+  <p style="margin-top:.5rem">Estudio serio. Resultados reales. Top 1% global.</p>
+</footer>
+
+</body>
+</html>

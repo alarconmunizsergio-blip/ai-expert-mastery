@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 4: IA para CRM, RevOps & Martech</title>
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--border:#2a2a3a;--accent:#4facfe;--accent2:#00f2fe;--accentR:#ff6584;--accentG:#43e97b;--text:#e8e8f0;--text2:#9898b0;--card:#14141e;--mod:#00f2fe}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+.sidebar{width:270px;min-width:270px;background:var(--bg2);border-right:1px solid var(--border);height:100vh;position:fixed;top:0;left:0;overflow-y:auto;z-index:50;padding-bottom:2rem}
+.sidebar-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.sidebar-logo{font-size:.85rem;font-weight:800;background:linear-gradient(135deg,#4facfe,#00f2fe);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{display:block;font-size:.72rem;color:var(--text2);text-decoration:none;margin-top:.2rem}
+.sidebar-back:hover{color:var(--accent)}
+.mod-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod);padding:.8rem 1.2rem .3rem}
+.ll{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem 1.2rem;cursor:pointer;border:none;background:none;width:100%;text-align:left;color:var(--text2);font-size:.8rem;line-height:1.4;transition:background .2s}
+.ll:hover{background:rgba(79,172,254,.08);color:var(--text)}
+.ll.active{background:rgba(79,172,254,.15);color:var(--accent);font-weight:700}
+.ln{font-size:.62rem;font-weight:900;color:var(--mod);min-width:26px;padding-top:.1rem}
+.sp{padding:.8rem 1.2rem;border-top:1px solid var(--border);margin-top:.5rem}
+.sl{font-size:.7rem;color:var(--text2);margin-bottom:.3rem}
+.pb{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+.main{margin-left:270px;flex:1}
+.topbar{position:sticky;top:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;gap:1rem;z-index:40;backdrop-filter:blur(10px)}
+.tl{font-size:.75rem;color:var(--text2)}
+.tt{font-size:.9rem;font-weight:800}
+.tnav{margin-left:auto;display:flex;gap:.4rem}
+.nb{padding:.35rem .8rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s}
+.nb:hover{border-color:var(--accent);color:var(--accent)}
+.nb.p{background:var(--accent);color:#000;border-color:var(--accent)}
+.nb.p:hover{opacity:.85}
+.content{max-width:800px;margin:0 auto;padding:2.5rem 2rem}
+.tabs{display:flex;gap:.4rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+.tab{padding:.5rem 1rem;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tc{display:none}.tc.active{display:block}
+.lp{display:none}.lp.active{display:block}
+.lh{margin-bottom:2rem}
+.badge{display:inline-flex;align-items:center;background:rgba(79,172,254,.12);border:1px solid rgba(79,172,254,.3);border-radius:7px;padding:.25rem .8rem;font-size:.68rem;font-weight:800;color:var(--mod);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.8rem}
+.lt{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:.6rem}
+.lm{display:flex;gap:.8rem;flex-wrap:wrap;color:var(--text2);font-size:.8rem}
+.mc{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.15rem .6rem;border-radius:5px}
+.obj{background:rgba(79,172,254,.06);border:1px solid rgba(79,172,254,.25);border-radius:12px;padding:1.2rem;margin-bottom:2rem}
+.obj h3{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.obj ul{list-style:none}
+.obj li{font-size:.87rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.obj li::before{content:'✓';color:var(--accent);font-weight:900;flex-shrink:0}
+.lb h2{font-size:1.2rem;font-weight:800;margin:1.8rem 0 .7rem;color:var(--text)}
+.lb h3{font-size:1rem;font-weight:800;margin:1.3rem 0 .5rem;color:var(--mod)}
+.lb p{font-size:.9rem;color:var(--text2);margin-bottom:.9rem;line-height:1.75}
+.lb strong{color:var(--text);font-weight:700}
+.ca{border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+.ca-a{background:rgba(108,99,255,.08);border-left:3px solid #6c63ff}
+.ca-k{background:rgba(79,172,254,.07);border-left:3px solid var(--accent)}
+.ca-w{background:rgba(255,101,132,.07);border-left:3px solid var(--accentR)}
+.ca-g{background:rgba(67,233,123,.07);border-left:3px solid var(--accentG)}
+.ca-lbl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+.ca-a .ca-lbl{color:#a09fff}.ca-k .ca-lbl{color:var(--accent)}.ca-w .ca-lbl{color:var(--accentR)}.ca-g .ca-lbl{color:var(--accentG)}
+.ca p{font-size:.87rem;color:var(--text);margin:0;line-height:1.65}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.6rem .9rem;background:rgba(255,255,255,.03);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:.6rem .9rem;font-size:.83rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+td:first-child{font-weight:700;color:var(--text)}
+tr:last-child td{border-bottom:none}
+.fw{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}
+.fw-t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.8rem}
+.fi{display:flex;gap:.8rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.fi:last-child{border-bottom:none}
+.fl{font-size:1.1rem;font-weight:900;color:var(--accent);min-width:28px}
+.fc h4{font-size:.88rem;font-weight:800;color:var(--text)}
+.fc p{font-size:.8rem;color:var(--text2);margin:0}
+pre.code{background:rgba(0,0,0,.4);border:1px solid rgba(79,172,254,.2);border-radius:8px;padding:.8rem;font-size:.77rem;color:#a0e0ff;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:.6rem 0}
+.tk{background:rgba(79,172,254,.07);border:1px solid rgba(79,172,254,.25);border-radius:10px;padding:1.2rem;margin-top:1.8rem}
+.tk h3{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.tk ul{list-style:none}
+.tk li{font-size:.86rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.tk li::before{content:'★';color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:.2rem}
+.ex{background:rgba(79,172,254,.07);border:1px solid rgba(79,172,254,.25);border-radius:14px;padding:1.8rem;margin-top:.5rem}
+.ex h2{font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+.ex-m{font-size:.76rem;color:var(--text2);margin-bottom:1.3rem}
+.es{display:flex;gap:.8rem;margin-bottom:1.1rem;align-items:flex-start}
+.sn{min-width:26px;height:26px;background:var(--accent);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;margin-top:.1rem}
+.sc h4{font-size:.87rem;font-weight:800;margin-bottom:.2rem}
+.sc p{font-size:.83rem;color:var(--text2);margin:0}
+.dv{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.25);border-radius:9px;padding:.9rem;margin-top:1.3rem}
+.dv h4{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accentG);margin-bottom:.2rem}
+.dv p{font-size:.83rem;color:var(--text2);margin:0}
+.qz h2{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.qi{font-size:.86rem;color:var(--text2);margin-bottom:1.8rem}
+.qb{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;margin-bottom:1rem}
+.qt{font-size:.92rem;font-weight:700;margin-bottom:.9rem}
+.opts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.85rem;background:rgba(255,255,255,.02);transition:all .2s}
+.opt:hover{border-color:var(--accent);background:rgba(79,172,254,.08)}
+.opt.correct{background:rgba(67,233,123,.12);border-color:var(--accentG);color:var(--accentG)}
+.opt.wrong{background:rgba(255,101,132,.1);border-color:var(--accentR);color:var(--accentR)}
+.opt input[type=radio]{accent-color:var(--accent);flex-shrink:0;margin-top:.2rem}
+.exp{font-size:.81rem;color:var(--text2);background:rgba(255,255,255,.03);border-radius:7px;padding:.7rem .9rem;margin-top:.7rem;display:none;line-height:1.6}
+.exp.show{display:block}
+.qbtn{padding:.55rem 1.3rem;background:var(--accent);color:#000;border:none;border-radius:7px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.qr{background:rgba(79,172,254,.1);border:1px solid rgba(79,172,254,.3);border-radius:10px;padding:1.2rem;text-align:center;margin-top:1.3rem;display:none}
+.qr.show{display:block}
+.rs{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lnb{display:flex;gap:.8rem;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.lnbtn{padding:.7rem 1.2rem;border-radius:9px;text-decoration:none;font-size:.85rem;font-weight:700;border:1px solid var(--border);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
+.lnbtn:hover{border-color:var(--accent);color:var(--accent)}
+.lnbtn.nx{background:var(--accent);color:#000;border-color:var(--accent)}
+.lnbtn.nx:hover{opacity:.85}
+.mod-complete{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.3);border-radius:12px;padding:1.5rem;margin-top:2rem;text-align:center}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">💼 Módulo 4 · IA para CRM & RevOps</div>
+    <a href="curso-ai-index.html" class="sidebar-back"><span class="t-es">← Volver al inicio</span><span class="t-en" style="display:none">← Back to start</span></a>
+    <a href="curso-ai-recursos.html" style="display:block;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-es">⭐ Setup &amp; Recursos</a><a href="curso-ai-recursos.html" style="display:none;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-en">⭐ Resources &amp; Setup</a>
+  <div class="lang-toggle">
+    <button id="langBtn" class="lang-btn" onclick="toggleLang()">🌐 EN</button>
+  </div>
+  </div>
+  <div class="mod-label">6 Lecciones · ~7 horas</div>
+  <button class="ll active" onclick="show(0)"><span class="ln">4.1</span><span class="t-es" style="display:inline">El nuevo stack de RevOps con IA</span><span class="t-en" style="display:none">The New RevOps Stack with AI</span></button>
+  <button class="ll" onclick="show(1)"><span class="ln">4.2</span><span class="t-es" style="display:inline">CRM Intelligence: scoring, enriquecimiento, predicción</span><span class="t-en" style="display:none">CRM Intelligence: Scoring, Enrichment, Prediction</span></button>
+  <button class="ll" onclick="show(2)"><span class="ln">4.3</span><span class="t-es" style="display:inline">Marketing Automation con LLMs</span><span class="t-en" style="display:none">Marketing Automation with LLMs</span></button>
+  <button class="ll" onclick="show(3)"><span class="ln">4.4</span><span class="t-es" style="display:inline">ABM con IA a escala</span><span class="t-en" style="display:none">ABM with AI at Scale</span></button>
+  <button class="ll" onclick="show(4)"><span class="ln">4.5</span><span class="t-es" style="display:inline">Martech Audit y diseño de stack</span><span class="t-en" style="display:none">Martech Audit & Stack Design</span></button>
+  <button class="ll" onclick="show(5)"><span class="ln">4.6</span><span class="t-es" style="display:inline">Tu AI RevOps Playbook</span><span class="t-en" style="display:none">Your AI RevOps Playbook</span></button>
+  <div class="sp">
+    <div class="sl">Progreso: <span id="pp">0%</span></div>
+    <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div><div class="tl" id="tl">Módulo 4 · Lección 4.1</div><div class="tt" id="tt">El nuevo stack de RevOps con IA</div></div>
+    <div class="tnav">
+      <button class="nb" onclick="prev()">← Anterior</button>
+      <button class="nb p" onclick="next()">Siguiente →</button>
+    </div>
+  </div>
+  <div class="content">
+
+<!-- ══ LECCIÓN 4.1 ══ -->
+<div id="L0" class="lp active">
+  <div class="lh">
+    <div class="badge">Módulo 4 · Lección 4.1 · 60 min</div>
+    <h1 class="lt">El nuevo stack de RevOps con IA</h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">🏗️ Stack</span><span class="mc">🔑 Fundacional</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c0')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e0')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q0')">🧠 Quiz</button>
+  </div>
+  <div id="c0" class="tc active">
+    <div class="obj">
+      <div class="t-es"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Describir cómo la IA transforma cada capa del stack de RevOps</li>
+      <li>Identificar dónde aplicar IA en tu stack actual</li>
+      <li>Priorizar las oportunidades de mayor impacto</li>
+    </ul></div>
+      <div class="t-en"><h3>By the end of this lesson you'll be able to:</h3><ul>
+      <li>Describe how AI transforms each layer of the RevOps stack</li>
+      <li>Identify where to apply AI in your current stack</li>
+      <li>Prioritize the highest-impact opportunities</li>
+    </ul></div>
+    </div>
+    <div class="lb">
+      <div class="t-es"><h2>El stack de RevOps 2026: IA en cada capa</h2>
+      <p>El stack de RevOps siempre tuvo las mismas capas: datos, CRM, automatización, analytics. Lo que cambió en 2025-2026 es que la IA se insertó en <em>cada una de esas capas</em>, multiplicando su capacidad.</p>
+      <p>Ya no se trata de agregar "una herramienta de IA" al stack. Se trata de repensar cómo opera cada componente con IA integrada de forma nativa.</p></div>
+      <div class="t-en"><h2>The RevOps Stack 2026: AI in Every Layer</h2>
+      <p>The RevOps stack always had the same layers: data, CRM, automation, analytics. What changed in 2025-2026 is that AI inserted itself into <em>every one of those layers</em>, multiplying its capacity.</p>
+      <p>It's no longer about adding "one AI tool" to your stack. It's about rethinking how each component operates with AI integrated natively.</p></div>
+
+      <div class="t-es"><h2>Las 6 capas del stack y cómo las transforma la IA</h2></div>
+      <div class="t-en"><h2>The 6 Layers of the Stack and How AI Transforms Them</h2></div>
+      <div class="t-es"><h3>Capa 1: Datos e Inteligencia</h3></div>
+      <div class="t-en"><h3>Layer 1: Data and Intelligence</h3></div>
+      <div class="t-es"><p>Antes: bases de datos estáticas, enriquecimiento manual, deduplicación ad-hoc.</p>
+      <p>Con IA: <strong>enriquecimiento automático continuo</strong> (LinkedIn, web, señales de intención), deduplicación inteligente que entiende contexto, datos de intención predictiva que dicen quién está buscando comprar ahora.</p></div>
+      <div class="t-en"><p>Before: static databases, manual enrichment, ad-hoc deduplication.</p>
+      <p>With AI: <strong>continuous automatic enrichment</strong> (LinkedIn, web, intent signals), intelligent deduplication that understands context, predictive intent data that tells you who's ready to buy now.</p></div>
+      <div class="ca ca-k"><div class="ca-lbl">Herramientas clave</div><p>Apollo, Clay, ZoomInfo Copilot, HubSpot Breeze AI (now powered by GPT-5.4 for enhanced content generation and CRM intelligence). Clay is the most powerful for automating enrichment with multi-source waterfalls.</p></div>
+      <div class="ca ca-k" style="display:none" class="t-en"><div class="ca-lbl">KEY TOOLS</div><p>Apollo, Clay, ZoomInfo Copilot, HubSpot Breeze AI (powered by GPT-5.4 for enhanced content generation and CRM intelligence). Clay is the most powerful for automating enrichment with multi-source waterfalls.</p></div>
+
+      <div class="t-es"><h3>Capa 2: CRM e Inteligencia de Cuentas</h3>
+      <p>Antes: CRM como repositorio de datos que alguien tiene que actualizar manualmente.</p>
+      <p>Con IA: <strong>CRM que se actualiza solo</strong>, scoring de leads predictivo, resúmenes automáticos de cuentas, recomendaciones de próximos pasos, detección de riesgo de churn.</p></div>
+      <div class="t-en"><h3>Layer 2: CRM and Account Intelligence</h3>
+      <p>Before: CRM as a data repository that someone has to manually update.</p>
+      <p>With AI: <strong>self-updating CRM</strong>, predictive lead scoring, automatic account summaries, next-step recommendations, churn risk detection.</p></div>
+
+      <div class="t-es"><h3>Capa 3: Outbound y Prospección</h3>
+      <p>Antes: listas de prospectos compradas, secuencias genéricas, personalización manual laboriosa.</p>
+      <p>Con IA: <strong>personalización a escala</strong> — cada email se genera con el contexto específico del prospecto (empresa, noticias recientes, señales de intención). Investigación de cuentas en segundos.</p></div>
+      <div class="t-en"><h3>Layer 3: Outbound and Prospecting</h3>
+      <p>Before: purchased prospect lists, generic sequences, laborious manual personalization.</p>
+      <p>With AI: <strong>personalization at scale</strong> — each email is generated with the prospect's specific context (company, recent news, intent signals). Account research in seconds.</p></div>
+
+      <div class="t-es"><h3>Capa 4: Marketing y Nurturing</h3>
+      <p>Antes: segmentación estática, contenido genérico, A/B tests lentos.</p>
+      <p>Con IA: <strong>personalización dinámica</strong>, generación automática de variantes de contenido, optimización continua de mensajes, scoring de engagement predictivo.</p></div>
+      <div class="t-en"><h3>Layer 4: Marketing and Nurturing</h3>
+      <p>Before: static segmentation, generic content, slow A/B tests.</p>
+      <p>With AI: <strong>dynamic personalization</strong>, automatic content variant generation, continuous message optimization, predictive engagement scoring.</p></div>
+
+      <div class="t-es"><h3>Capa 5: Sales Execution</h3>
+      <p>Antes: call recording como archivo, prep manual, follow-ups genéricos.</p>
+      <p>Con IA: <strong>inteligencia de conversación</strong> (Gong con 90%+ accuracy en predicción de deal outcomes, Clari, Chorus), resúmenes automáticos de calls, recomendaciones de objeciones en tiempo real, análisis de deal health predictivo.</p></div>
+      <div class="t-en"><h3>Layer 5: Sales Execution</h3>
+      <p>Before: call recording as a file, manual prep, generic follow-ups.</p>
+      <p>With AI: <strong>conversation intelligence</strong> (Gong with 90%+ accuracy in deal outcome prediction, Clari, Chorus), automatic call summaries, real-time objection recommendations, predictive deal health analysis.</p></div>
+
+      <div class="t-es"><h3>Capa 6: Revenue Analytics</h3>
+      <p>Antes: dashboards que muestran lo que pasó, forecasting manual e inexacto.</p>
+      <p>Con IA: <strong>forecasting predictivo</strong> con alta precisión, detección temprana de riesgo de deals, análisis de cohort automatizado, attribution multi-touch real.</p></div>
+      <div class="t-en"><h3>Layer 6: Revenue Analytics</h3>
+      <p>Before: dashboards showing what happened, manual and inaccurate forecasting.</p>
+      <p>With AI: <strong>predictive forecasting</strong> with high accuracy, early detection of deal risk, automated cohort analysis, true multi-touch attribution.</p></div>
+
+      <div class="t-es"><h2>Dónde empezar: el framework de priorización</h2>
+      <p>Con tantas oportunidades, la pregunta es: ¿por dónde empezar? Usa este framework de dos ejes:</p></div>
+      <div class="t-en"><h2>Where to Start: The Prioritization Framework</h2>
+      <p>With so many opportunities, the question is: where do you start? Use this two-axis framework:</p></div>
+      <div class="tw"><table><thead><tr><th>Cuadrante</th><th>Impacto</th><th>Esfuerzo</th><th>Prioridad</th></tr></thead><tbody>
+        <tr><td>Quick wins</td><td>Alto</td><td>Bajo</td><td>⭐ Empieza aquí</td></tr>
+        <tr><td>Proyectos grandes</td><td>Alto</td><td>Alto</td><td>Planifica con cuidado</td></tr>
+        <tr><td>Fill-ins</td><td>Bajo</td><td>Bajo</td><td>Si sobra tiempo</td></tr>
+        <tr><td>Evitar</td><td>Bajo</td><td>Alto</td><td>❌ No hagas</td></tr>
+      </tbody></table></div>
+      <p>En RevOps, los quick wins más comunes con IA son: enriquecimiento automático de leads, scoring predictivo, y resúmenes automáticos de cuentas para el equipo de ventas.</p>
+
+      <div class="tk">
+      <div class="t-es"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>La IA se integra en las 6 capas del stack: datos, CRM, outbound, marketing, sales, analytics</li>
+        <li>El shift: de herramientas que responden a herramientas que actúan y predicen</li>
+        <li>Quick wins: enriquecimiento automático, scoring, resúmenes de cuentas</li>
+        <li>Clay es la herramienta más poderosa para enriquecimiento con múltiples fuentes</li>
+      </ul></div>
+      <div class="t-en"><h3>Key Concepts from This Lesson</h3><ul>
+        <li>AI integrates across all 6 layers: data, CRM, outbound, marketing, sales, analytics</li>
+        <li>The shift: from reactive tools to proactive tools that act and predict</li>
+        <li>Quick wins: automatic enrichment, scoring, account summaries</li>
+        <li>Clay is the most powerful tool for multi-source enrichment</li>
+      </ul></div>
+      </div>
+    </div>
+  </div>
+  <div id="e0" class="tc">
+    <div class="ex">
+      <div class="t-es"><h2>Ejercicio 4.1: Audita tu stack actual</h2>
+      <div class="ex-m">⏱ 45 min · Herramienta: Claude + tus herramientas actuales</div></div>
+      <div class="t-en"><h2>Exercise 4.1: Audit Your Current Stack</h2>
+      <div class="ex-m">⏱ 45 min · Tool: Claude + your current tools</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Lista todas las herramientas de tu stack actual</h4><p>Por capa: datos/enriquecimiento, CRM, outbound, marketing, sales tools, analytics. Incluye herramientas que "debería" tener pero no tiene.</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>List all tools in your current stack</h4><p>By layer: data/enrichment, CRM, outbound, marketing, sales tools, analytics. Include tools you "should" have but don't.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Para cada herramienta: ¿tiene IA nativa?</h4><p>Revisa si la herramienta tiene funcionalidades de IA activadas. Muchos CRMs ya tienen IA pero nadie la usa porque no la conocen.</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>For each tool: does it have native AI?</h4><p>Check if the tool has AI capabilities enabled. Many CRMs already have AI but nobody uses it because they don't know about it.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Identifica los 3 mayores dolores del stack</h4><p>¿Qué es más manual y doloroso? ¿Qué consume más tiempo del equipo? ¿Dónde se pierden más oportunidades?</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Identify the top 3 stack pain points</h4><p>What's most manual and painful? What takes most of your team's time? Where are most opportunities being lost?</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Mapea los dolores al framework de priorización</h4><p>Para cada dolor: impacto si se resuelve con IA (1-5) y esfuerzo de implementación (1-5). Identifica tus top 2 quick wins.</p></div></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Map pain points to the prioritization framework</h4><p>For each pain: impact if solved with AI (1-5) and implementation effort (1-5). Identify your top 2 quick wins.</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable</h4><p>Mapa de tu stack con columna de "¿usa IA?" + lista de 3 dolores + top 2 quick wins priorizados. Base para el ejercicio 4.6.</p></div>
+      <div class="t-en"><h4>Deliverable</h4><p>Map of your stack with "uses AI?" column + list of 3 pain points + top 2 prioritized quick wins. Foundation for exercise 4.6.</p></div></div>
+    </div>
+  </div>
+  <div id="q0" class="tc">
+    <div class="qz">
+      <div class="t-es"><h2>Quiz — Lección 4.1</h2>
+      <p class="qi">3 preguntas</p></div>
+      <div class="t-en"><h2>Quiz — Lesson 4.1</h2>
+      <p class="qi">3 questions</p></div>
+      <div class="qb" id="qb0">
+        <div class="t-es"><div class="qt">1. ¿Cuál es la transformación más importante que trae la IA a la capa de datos e inteligencia?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Hace las bases de datos más grandes</li>
+          <li class="opt" onclick="ans(this,'qb0',true)"><input type="radio">Enriquecimiento automático continuo y datos de intención predictiva que identifican quién está listo para comprar</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Permite exportar datos más fácilmente</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Reemplaza la necesidad de un CRM</li>
+        </ul>
+        <div class="exp">La IA transforma los datos de estáticos a dinámicos: enriquecimiento automático continuo desde múltiples fuentes + señales de intención que predicen quién está en mercado activamente.</div></div>
+        <div class="t-en"><div class="qt">1. What is the most important transformation AI brings to the data and intelligence layer?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Makes databases bigger</li>
+          <li class="opt" onclick="ans(this,'qb0',true)"><input type="radio">Continuous automatic enrichment and predictive intent data that identify who's ready to buy</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Makes it easier to export data</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Eliminates the need for a CRM</li>
+        </ul>
+        <div class="exp">AI transforms data from static to dynamic: continuous automatic enrichment from multiple sources + intent signals that predict who's actively in market.</div></div>
+      </div>
+      <div class="qb" id="qb1">
+        <div class="t-es"><div class="qt">2. ¿Cuál es el cambio fundamental que trae la IA a la capa de Sales Execution?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Automatiza completamente el proceso de ventas</li>
+          <li class="opt" onclick="ans(this,'qb1',true)"><input type="radio">Inteligencia de conversación: resúmenes de calls, recomendaciones en tiempo real, análisis predictivo de deal health</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Elimina la necesidad de AEs humanos</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Solo mejora el email de seguimiento</li>
+        </ul>
+        <div class="exp">La IA en Sales Execution transforma el call recording de archivo a inteligencia activa: resúmenes automáticos, identificación de next steps, análisis de objeciones, y deal health predictivo.</div></div>
+        <div class="t-en"><div class="qt">2. What is the fundamental change AI brings to the Sales Execution layer?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Completely automates the sales process</li>
+          <li class="opt" onclick="ans(this,'qb1',true)"><input type="radio">Conversation intelligence: call summaries, real-time recommendations, predictive deal health analysis</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Eliminates the need for human AEs</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Only improves follow-up emails</li>
+        </ul>
+        <div class="exp">AI in Sales Execution transforms call recording from file to active intelligence: automatic summaries, next-step identification, objection analysis, and predictive deal health.</div></div>
+      </div>
+      <div class="qb" id="qb2">
+        <div class="t-es"><div class="qt">3. Según el framework de priorización, ¿qué tipo de iniciativa deberías atacar primero?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Proyectos de alto impacto y alto esfuerzo</li>
+          <li class="opt" onclick="ans(this,'qb2',true)"><input type="radio">Quick wins: alto impacto y bajo esfuerzo</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Lo más tecnológicamente avanzado disponible</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Lo que piden los vendedores</li>
+        </ul>
+        <div class="exp">Los quick wins (alto impacto + bajo esfuerzo) generan valor rápido, crean momentum y demuestran el ROI de la IA, lo que facilita conseguir presupuesto para proyectos más grandes.</div></div>
+        <div class="t-en"><div class="qt">3. According to the prioritization framework, what type of initiative should you tackle first?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">High impact, high effort projects</li>
+          <li class="opt" onclick="ans(this,'qb2',true)"><input type="radio">Quick wins: high impact and low effort</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">The most technologically advanced available</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">What the sales team asks for</li>
+        </ul>
+        <div class="exp">Quick wins (high impact + low effort) generate fast value, create momentum, and demonstrate AI ROI, making it easier to get budget for bigger projects.</div></div>
+      </div>
+      <button class="qbtn" onclick="score('q0r',3)">Ver resultado</button>
+      <div class="qr" id="q0r"><div class="rs" id="q0s">0/3</div><p id="q0m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <a href="curso-ai-m3.html" class="lnbtn">← Módulo 3</a>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 4.2 ══ -->
+<div id="L1" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 4 · Lección 4.2 · 75 min</div>
+    <h1 class="lt">CRM Intelligence: scoring, enriquecimiento y predicción</h1>
+    <div class="lm"><span class="mc">⏱ 75 min</span><span class="mc">🧠 CRM</span><span class="mc">📊 Datos</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c1')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e1')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q1')">🧠 Quiz</button>
+  </div>
+  <div id="c1" class="tc active">
+    <div class="obj">
+      <div class="t-es"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Diseñar un modelo de scoring predictivo para tu CRM</li>
+      <li>Implementar enriquecimiento automático de contactos y cuentas</li>
+      <li>Usar IA para predicción de churn y deal forecast</li>
+    </ul></div>
+      <div class="t-en"><h3>By the end of this lesson you'll be able to:</h3><ul>
+      <li>Design a predictive scoring model for your CRM</li>
+      <li>Implement automatic enrichment of contacts and accounts</li>
+      <li>Use AI for churn prediction and deal forecasting</li>
+    </ul></div>
+    </div>
+    <div class="lb">
+      <div class="t-es"><h2>CRM Intelligence: el salto de datos a decisiones</h2>
+      <p>Un CRM tradicional es un repositorio: guarda lo que pasó. Un CRM con inteligencia es un sistema de decisiones: te dice qué va a pasar y qué debes hacer.</p>
+      <p>Las tres dimensiones de CRM Intelligence son el scoring, el enriquecimiento y la predicción. Las tres se retroalimentan y juntas crean una ventaja competitiva compuesta.</p></div>
+      <div class="t-en"><h2>CRM Intelligence: From Data to Decisions</h2>
+      <p>A traditional CRM is a repository: it stores what happened. A CRM with intelligence is a decision system: it tells you what will happen and what you should do.</p>
+      <p>The three dimensions of CRM Intelligence are scoring, enrichment, and prediction. All three feed into each other and together create compound competitive advantage.</p></div>
+
+      <div class="t-es"><h2>1. Scoring de Leads y Cuentas</h2>
+      <p><strong>Lead scoring tradicional:</strong> reglas manuales ("si es VP y abrió 3 emails = 80 puntos"). Subjetivo, desactualizado, no escala.</p>
+      <p><strong>Lead scoring con IA (predictivo):</strong> el modelo aprende de los patrones de tus leads convertidos históricos y asigna scores basados en docenas de señales simultáneamente.</p></div>
+      <div class="t-en"><h2>1. Lead and Account Scoring</h2>
+      <p><strong>Traditional lead scoring:</strong> manual rules ("if VP and opened 3 emails = 80 points"). Subjective, outdated, doesn't scale.</p>
+      <p><strong>Lead scoring with AI (predictive):</strong> the model learns from patterns in your historical converted leads and assigns scores based on dozens of signals simultaneously.</p></div>
+      <div class="fw"><div class="fw-t"><div class="t-es">Señales que usa el scoring predictivo</div>
+<div class="t-en">Signals Used by Predictive Scoring</div></div>
+        <div class="fi"><span class="fl">📊</span><div class="fc"><h4><div class="t-es">Fit de empresa (firmographics)</div>
+<div class="t-en">Company Fit (Firmographics)</div></h4><p>Industria, tamaño, tecnología usada, financiamiento, crecimiento reciente. Datos de fuentes externas.</p></div></div>
+        <div class="fi"><span class="fl">🎯</span><div class="fc"><h4><div class="t-es">Fit de persona (demographics)</div>
+<div class="t-en">Person Fit (Demographics)</div></h4><p>Cargo, seniority, responsabilidades, historial profesional. La persona correcta en la empresa correcta.</p></div></div>
+        <div class="fi"><span class="fl">⚡</span><div class="fc"><h4><div class="t-es">Señales de comportamiento</div>
+<div class="t-en">Behavioral Signals</div></h4><p>Abre emails, visita pricing page, descarga contenido, busca en G2, visita LinkedIn de tus AEs.</p></div></div>
+        <div class="fi"><span class="fl">🔥</span><div class="fc"><h4><div class="t-es">Señales de intención (third-party)</div>
+<div class="t-en">Intent Signals (Third-Party)</div></h4><p>Está buscando activamente tu categoría de solución. Herramientas: Bombora, G2 Intent, Demandbase. Salesforce Agentforce (ahora $540M ARR) ejecuta agentes Einstein autónomos para workflows de ventas completos.</p></div></div>
+      </div>
+
+      <h2>2. Enriquecimiento automático</h2>
+      <p>El enriquecimiento agrega datos que no tienes directamente al CRM. El workflow moderno con IA:</p>
+      <pre class="code">Trigger: Nuevo lead creado en CRM
+↓
+Clay / Apollo / ZoomInfo: busca datos de la empresa
+↓
+LinkedIn enrichment: cargo, seniority, historial
+↓
+Web scraping IA: noticias recientes de la empresa
+↓
+LLM: genera resumen de cuenta + fit assessment
+↓
+CRM: actualiza todos los campos + score automático
+↓
+Slack/email: notifica al AE con el brief completo</pre>
+      <p>Este proceso que tomaba 20-30 minutos manual ahora ocurre en 30-60 segundos, automáticamente, en cada lead.</p>
+
+      <h2>3. Predicción: Churn, Upsell y Forecast</h2>
+      <h3>Detección de churn temprana (ahora con 90 días de anticipación usando señales comportamentales)</h3>
+      <p>Los modelos predictivos de churn analizan señales de uso, engagement, NPS scores, interacciones de soporte, y patrones históricos de clientes que cancelaron. Cuando el score de riesgo supera un umbral → alerta al CSM para intervenir.</p>
+      <h3>Identificación de oportunidades de upsell</h3>
+      <p>La IA analiza patrones de cuentas que expandieron: qué señales mostraron antes de comprar más. Aplica ese patrón a la base activa para identificar quién está listo para una conversación de expansión.</p>
+      <h3>Forecast predictivo</h3>
+      <p>En lugar de confiar en el "gut feeling" de los managers, los modelos analizan todos los deals activos vs. patrones históricos de deals ganados/perdidos y producen forecasts con intervalos de confianza.</p>
+
+      <div class="ca ca-k"><div class="ca-lbl">Herramientas para implementar</div><p><strong>Scoring:</strong> HubSpot AI Scoring, Salesforce Einstein, madkudu. <strong>Enriquecimiento:</strong> Clay (el más poderoso), Apollo, ZoomInfo. <strong>Forecast:</strong> Clari, BoostUp, Salesforce Einstein Forecasting.</p></div>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>CRM Intelligence: de repositorio de datos a sistema de decisiones</li>
+        <li>Scoring predictivo: aprende de patrones históricos vs. reglas manuales</li>
+        <li>Enriquecimiento automático: Clay + LLM producen briefs completos en segundos</li>
+        <li>Predicción: churn temprano, upsell opportunities, forecast con confianza</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e1" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 4.2: Diseña tu modelo de scoring</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + tu CRM</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Define tu ICP (Ideal Customer Profile)</h4><p>Si no tienes uno documentado: describe las características de tus 5 mejores clientes actuales (industria, tamaño, cargo de comprador, problema principal). Ese es tu ICP empírico.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Lista las señales que mejor predicen conversión</h4><p>De tus leads históricos: ¿qué señales mostraron los que convirtieron? ¿Cargo, industria, comportamiento en web, fuente? Si tienes CRM: extrae datos. Si no: usa intuición documentada.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Diseña el modelo de scoring con Claude</h4><p>Prompt: "Basado en este ICP y estas señales de conversión [lista], ayúdame a diseñar un modelo de scoring de leads con pesos por señal. El score debe ir de 0-100. Justifica los pesos."</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa el modelo con 5 leads reales</h4><p>Toma 5 leads de tu CRM (2 convertidos, 3 no). Aplica el modelo manualmente. ¿Discrimina bien?</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Documento: ICP + señales + modelo de scoring con pesos + evaluación de 5 leads. Este es tu primer modelo predictivo propio.</p></div>
+    </div>
+  </div>
+  <div id="q1" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 4.2</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb10">
+        <div class="qt">1. ¿Cuál es la diferencia clave entre el lead scoring tradicional y el predictivo con IA?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">El predictivo usa más señales pero funciona igual</li>
+          <li class="opt" onclick="ans(this,'qb10',true)"><input type="radio">El tradicional usa reglas manuales subjetivas; el predictivo aprende de patrones reales de conversión histórica</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">El tradicional es más preciso porque lo define un experto</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">No hay diferencia práctica</li>
+        </ul>
+        <div class="exp">El scoring tradicional es subjetivo y se desactualiza. El predictivo aprende continuamente de los patrones de tus deals reales — qué señales predijeron conversión — y se vuelve más preciso con el tiempo.</div>
+      </div>
+      <div class="qb" id="qb11">
+        <div class="qt">2. En el workflow de enriquecimiento automático, ¿cuál es el rol del LLM?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Buscar los datos en LinkedIn</li>
+          <li class="opt" onclick="ans(this,'qb11',true)"><input type="radio">Generar el resumen de cuenta y el fit assessment a partir de los datos recolectados</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Actualizar el CRM directamente</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Enviar la notificación al AE</li>
+        </ul>
+        <div class="exp">En el pipeline de enriquecimiento, Clay/Apollo/LinkedIn recolectan los datos. El LLM sintetiza esos datos en un resumen coherente + evaluación de fit, que es lo que realmente ayuda al AE.</div>
+      </div>
+      <div class="qb" id="qb12">
+        <div class="qt">3. ¿Cuál es la herramienta más poderosa actualmente para enriquecimiento automático con múltiples fuentes?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Salesforce</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">HubSpot</li>
+          <li class="opt" onclick="ans(this,'qb12',true)"><input type="radio">Clay</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Mailchimp</li>
+        </ul>
+        <div class="exp">Clay es el estándar de oro para enriquecimiento con waterfalls — conecta docenas de fuentes de datos y aplica LLMs para generar insights. Es la herramienta favorita de los RevOps avanzados.</div>
+      </div>
+      <button class="qbtn" onclick="score('q1r',3)">Ver resultado</button>
+      <div class="qr" id="q1r"><div class="rs" id="q1s">0/3</div><p id="q1m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 4.3 ══ -->
+<div id="L2" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 4 · Lección 4.3 · 70 min</div>
+    <h1 class="lt">Marketing Automation con LLMs</h1>
+    <div class="lm"><span class="mc">⏱ 70 min</span><span class="mc">📧 Marketing</span><span class="mc">⚡ Automation</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c2')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e2')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q2')">🧠 Quiz</button>
+  </div>
+  <div id="c2" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Diseñar secuencias de nurturing con personalización a escala usando LLMs</li>
+      <li>Aplicar IA para generación de contenido de marketing operacional</li>
+      <li>Construir un sistema de scoring de engagement con IA</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El problema del marketing automation tradicional</h2>
+      <p>Las plataformas de automation generaron un fenómeno de paradoja: la capacidad de enviar a todos no justifica hacerlo de forma genérica. Los prospectos aprendieron a ignorar los emails automatizados porque suenan exactamente eso — automatizados.</p>
+      <p>La IA resuelve esta paradoja: <strong>personalización real a escala</strong>. No "Hola [NOMBRE]" sino emails que demuestran que conoces la empresa, el momento de negocio y el reto específico.</p>
+
+      <h2>Personalización a escala: el nuevo estándar</h2>
+      <p>El workflow que define el outbound moderno:</p>
+      <div class="fw"><div class="fw-t">Pipeline de personalización con IA</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Segmento + señal de timing</h4><p>No mandas emails a todo el mundo. Identificas el segmento correcto + el momento correcto (señal de intención, evento de negocio, funding).</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>Investigación automatizada</h4><p>Clay o similar recolecta: noticias recientes de la empresa, crecimiento de headcount, stack tecnológico, publicaciones del prospecto.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Generación personalizada con LLM</h4><p>El LLM genera el email usando el contexto de la empresa + el template de tu mejor email convertido + la propuesta de valor específica para ese segmento.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Review humano (opcional)</h4><p>Para cuentas enterprise, el AE revisa antes de enviar. Para mid-market y SMB, puede ser 100% automático con los guardrails correctos.</p></div></div>
+        <div class="fi"><span class="fl">5</span><div class="fc"><h4>Envío y tracking</h4><p>Tu plataforma de email (Outreach, Salesloft, Apollo) gestiona el envío, seguimiento y secuencias de follow-up.</p></div></div>
+      </div>
+
+      <h2>Contenido de nurturing: el rol del LLM</h2>
+      <p>Para el contenido de marketing (nurturing, newsletters, contenido del blog), el LLM no reemplaza la estrategia — la ejecuta. El workflow efectivo:</p>
+      <div class="ca ca-k"><div class="ca-lbl">Workflow de contenido con IA</div><p><strong>Tú defines:</strong> tema, ángulo, audiencia, objetivo de conversión, tono de marca.<br><strong>El LLM genera:</strong> múltiples variantes, ajusta para diferentes segmentos, produce versiones para diferentes canales.<br><strong>Tú editas:</strong> el 20% que requiere juicio humano — ejemplos específicos, perspectivas únicas, actualizaciones de última hora.</p></div>
+
+      <h2>Scoring de engagement con IA</h2>
+      <p>No todos los que abren emails están igualmente interesados. El scoring de engagement combina:</p>
+      <div class="tw"><table><thead><tr><th>Señal</th><th>Peso relativo</th><th>Interpretación</th></tr></thead><tbody>
+        <tr><td>Abre email</td><td>Bajo</td><td>Curiosidad mínima</td></tr>
+        <tr><td>Clic en link</td><td>Medio</td><td>Interés real</td></tr>
+        <tr><td>Visita pricing page</td><td>Alto</td><td>Evaluando seriamente</td></tr>
+        <tr><td>Vuelve múltiples veces</td><td>Muy alto</td><td>En proceso de decisión</td></tr>
+        <tr><td>Comparte con colega</td><td>Muy alto</td><td>Interno haciendo caso</td></tr>
+      </tbody></table></div>
+      <p>Cuando el score de engagement cruza un umbral → alert al SDR para intervención en tiempo real. Esta es la forma más efectiva de captar prospectos en su momento de máximo interés.</p>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>Personalización a escala: señal de timing + investigación automática + LLM + review</li>
+        <li>El LLM ejecuta la estrategia de contenido; tú defines el ángulo y editas el 20% crítico</li>
+        <li>Scoring de engagement: combina señales comportamentales para identificar el momento de mayor interés</li>
+        <li>Plataformas: Apollo o Clay para investigación + Outreach/Salesloft para envío</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e2" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 4.3: Construye una secuencia de outbound personalizado</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige un segmento objetivo</h4><p>Un ICP específico: industria + cargo + tamaño de empresa. Ejemplo: "CTOs de scale-ups SaaS B2B de 50-200 empleados en LATAM".</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Define la señal de timing</h4><p>¿Qué evento hace relevante contactar a alguien de este segmento ahora? Ejemplos: acaban de recibir funding, publicaron oferta de empleo en RevOps, mencionaron un pain en LinkedIn.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Usa Claude para generar 3 variantes de email</h4><p>Prompt: "Soy experto en [tu especialidad]. Escribe 3 variantes de email de outbound para [segmento], usando como señal de timing [señal]. El email debe ser personalizado, corto (3-4 párrafos), y no sonar a template. Propuesta de valor: [tu valor único]."</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa y refina</h4><p>¿Cuál de las 3 variantes suena más genuino? ¿Cuál tiene el mejor hook? Pide a Claude que mejore el mejor de los 3 con más especificidad.</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>3 variantes de email + tu análisis de cuál es mejor y por qué. Este es el template fundacional de tu secuencia de outbound con IA.</p></div>
+    </div>
+  </div>
+  <div id="q2" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 4.3</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb20">
+        <div class="qt">1. ¿Qué resuelve la IA en el marketing automation que las plataformas tradicionales no podían?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Enviar más emails</li>
+          <li class="opt" onclick="ans(this,'qb20',true)"><input type="radio">Personalización real a escala — emails que suenan genuinos para cada prospecto</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Reducir el costo del email marketing</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Mejorar la tasa de entregabilidad</li>
+        </ul>
+        <div class="exp">La paradoja del automation tradicional: podías enviar a todos, pero genérico. La IA resuelve esto: investigación automática + generación personalizada = emails que demuestran conocimiento real del prospecto a escala.</div>
+      </div>
+      <div class="qb" id="qb21">
+        <div class="qt">2. En el workflow de contenido con IA, ¿cuál es el rol correcto del humano?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Escribir todo el contenido (la IA solo corrige)</li>
+          <li class="opt" onclick="ans(this,'qb21',true)"><input type="radio">Definir estrategia, ángulo y audiencia; editar el 20% que requiere juicio humano</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Solo aprobar o rechazar lo que genera la IA</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Ninguno — la IA lo hace todo</li>
+        </ul>
+        <div class="exp">El rol humano es estratégico: definir qué comunicar, a quién y con qué ángulo. La IA ejecuta. El humano edita el 20% que necesita perspectiva única, ejemplos específicos y juicio de negocio.</div>
+      </div>
+      <div class="qb" id="qb22">
+        <div class="qt">3. ¿Qué señal de engagement tiene el mayor peso para identificar a un prospecto en momento de decisión?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Abre un email</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Sigue tu empresa en LinkedIn</li>
+          <li class="opt" onclick="ans(this,'qb22',true)"><input type="radio">Visita la página de pricing múltiples veces o comparte contenido con un colega</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Descarga un ebook</li>
+        </ul>
+        <div class="exp">Visitar pricing (evaluando activamente) y compartir con un colega (construyendo caso interno) son las señales más fuertes de que hay una decisión de compra en proceso. Estas deben activar outreach inmediato.</div>
+      </div>
+      <button class="qbtn" onclick="score('q2r',3)">Ver resultado</button>
+      <div class="qr" id="q2r"><div class="rs" id="q2s">0/3</div><p id="q2m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 4.4 ══ -->
+<div id="L3" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 4 · Lección 4.4 · 65 min</div>
+    <h1 class="lt">ABM con IA a escala</h1>
+    <div class="lm"><span class="mc">⏱ 65 min</span><span class="mc">🎯 ABM</span><span class="mc">🚀 Escala</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c3')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e3')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q3')">🧠 Quiz</button>
+  </div>
+  <div id="c3" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Diseñar una estrategia de ABM habilitada por IA</li>
+      <li>Automatizar la investigación y el engagement de cuentas target</li>
+      <li>Crear un programa de ABM 1:1, 1:few y 1:many con IA</li>
+    </ul></div>
+    <div class="lb">
+      <h2>ABM: el modelo que la IA finalmente hace viable</h2>
+      <p>Account-Based Marketing siempre fue la estrategia correcta para B2B. El problema: era extraordinariamente caro y lento hacerlo bien. Investigar cada cuenta, crear contenido personalizado, coordinar ventas y marketing — solo era viable para las 10-20 cuentas más grandes.</p>
+      <p>La IA cambia la ecuación: lo que antes tomaba semanas por cuenta ahora toma horas. Esto hace viable ABM a tres niveles:</p>
+
+      <h2>Los 3 niveles de ABM con IA</h2>
+      <div class="tw"><table><thead><tr><th>Nivel</th><th>Cuentas</th><th>Personalización</th><th>Con IA</th></tr></thead><tbody>
+        <tr><td>ABM 1:1 (Estratégico)</td><td>5-25</td><td>Hyper-personalizada</td><td>Investigación profunda en horas vs. semanas</td></tr>
+        <tr><td>ABM 1:few (Sectorial)</td><td>25-250</td><td>Segmento-personalizada</td><td>Templates inteligentes + contexto automático</td></tr>
+        <tr><td>ABM 1:many (Programático)</td><td>250-2500</td><td>Señal-personalizada</td><td>Automation completa basada en intención</td></tr>
+      </tbody></table></div>
+
+      <h2>El proceso de ABM 1:1 con IA</h2>
+      <p>Para tus cuentas más estratégicas, la IA amplifica lo que hace el equipo humano:</p>
+      <div class="fw"><div class="fw-t">Workflow ABM 1:1 con IA</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Investigación profunda de la cuenta</h4><p>LLM + búsqueda web: estructura organizacional, iniciativas estratégicas del año, pain points inferidos de job postings y noticias, stack tecnológico actual.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>Mapeo del buying committee</h4><p>Identificar los 5-8 stakeholders clave: el economic buyer, el champion, los influencers, los blockers. Con LinkedIn + LLM, inferir motivaciones y objeciones probables de cada uno.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Account intelligence brief</h4><p>El LLM compila todo en un brief accionable: resumen ejecutivo, fit con ICP, stakeholders mapeados, ángulos de entrada recomendados, objeciones anticipadas y cómo manejarlas.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Contenido y mensajes personalizados</h4><p>Para cada stakeholder: mensaje personalizado a su rol y preocupaciones. Contenido de valor específico para la cuenta (estudio de caso en su industria, benchmarks relevantes).</p></div></div>
+      </div>
+
+      <h2>ABM 1:many: intención en tiempo real</h2>
+      <p>Para el volumen más grande, la IA monitorea señales de intención y activa el engagement automáticamente:</p>
+      <div class="ca ca-k"><div class="ca-lbl">Ejemplo de trigger de intención</div><p>La empresa ACME Corp empieza a mostrar actividad en G2 buscando tu categoría de solución. Bombora detecta spike de contenido en tu categoría. Esto activa automáticamente: personalización de la homepage para visitas de ACME + email de outbound contextualizado + alert al AE asignado. Todo en tiempo real.</p></div>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>La IA hace viable ABM a los 3 niveles: 1:1, 1:few y 1:many</li>
+        <li>ABM 1:1 con IA: investigación profunda + mapeo del buying committee en horas</li>
+        <li>ABM 1:many: monitoreo de señales de intención + engagement automático en tiempo real</li>
+        <li>El account intelligence brief es la pieza central: une investigación y acción</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e3" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 4.4: Crea un account intelligence brief con IA</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + LinkedIn + web</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige una cuenta target real</h4><p>Una empresa a la que estás prospectando o te gustaría prospectar. Puede ser un lead actual en tu CRM.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Investiga en LinkedIn y web (15 min)</h4><p>Job postings actuales de la empresa (revelan prioridades estratégicas), noticias recientes, LinkedIn del CEO/CRO, página de About. Guarda lo que encuentras.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Genera el brief con Claude</h4><p>Pega toda la información que recopilaste y pide: "Basado en esta información sobre [empresa], genera un account intelligence brief para nuestro equipo de ventas que incluya: resumen ejecutivo, iniciativas estratégicas probables, pains inferidos, stakeholders clave y sus motivaciones probables, ángulos de entrada recomendados, objeciones anticipadas."</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa la calidad del brief</h4><p>¿Qué tan útil sería este brief para un AE antes de una primera call? ¿Qué faltó? ¿Qué información adicional necesitarías?</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Account intelligence brief completo de una cuenta real. Muéstraselo a un AE de tu equipo y documenta su feedback.</p></div>
+    </div>
+  </div>
+  <div id="q3" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 4.4</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb30">
+        <div class="qt">1. ¿Por qué la IA finalmente hace viable el ABM a escala?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Porque el ABM ahora es más barato como estrategia</li>
+          <li class="opt" onclick="ans(this,'qb30',true)"><input type="radio">Porque reduce el tiempo de investigación y personalización por cuenta de semanas a horas</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Porque automatiza completamente las decisiones de qué cuentas atacar</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">El ABM siempre fue viable — la IA no cambia nada fundamental</li>
+        </ul>
+        <div class="exp">El ABM profundo siempre fue la estrategia correcta pero solo viable para pocas cuentas por el costo de tiempo. La IA comprime de semanas a horas la investigación y personalización, haciendo viable los 3 niveles.</div>
+      </div>
+      <div class="qb" id="qb31">
+        <div class="qt">2. ¿Cuántas cuentas abarca típicamente el ABM 1:few (sectorial)?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">5-25 cuentas</li>
+          <li class="opt" onclick="ans(this,'qb31',true)"><input type="radio">25-250 cuentas</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">250-2500 cuentas</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Más de 10,000 cuentas</li>
+        </ul>
+        <div class="exp">ABM 1:1 = 5-25 cuentas con hyper-personalización. ABM 1:few = 25-250 cuentas con personalización por segmento. ABM 1:many = 250-2500 cuentas con personalización por señal de intención.</div>
+      </div>
+      <div class="qb" id="qb32">
+        <div class="qt">3. ¿Qué información de los job postings de una empresa revela el ABM inteligente?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Solo el tamaño del equipo</li>
+          <li class="opt" onclick="ans(this,'qb32',true)"><input type="radio">Sus iniciativas estratégicas actuales y los problemas que están priorizando resolver</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">El presupuesto disponible para compras</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Los job postings no son útiles para ABM</li>
+        </ul>
+        <div class="exp">Los job postings son una de las señales más valiosas para ABM: revelan en qué áreas está invirtiendo la empresa, qué problemas están intentando resolver y qué tecnologías están adoptando — todo sin que te lo digan directamente.</div>
+      </div>
+      <button class="qbtn" onclick="score('q3r',3)">Ver resultado</button>
+      <div class="qr" id="q3r"><div class="rs" id="q3s">0/3</div><p id="q3m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 4.5 ══ -->
+<div id="L4" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 4 · Lección 4.5 · 65 min</div>
+    <h1 class="lt">Martech Audit y diseño de stack con IA</h1>
+    <div class="lm"><span class="mc">⏱ 65 min</span><span class="mc">🔍 Audit</span><span class="mc">🏗️ Stack Design</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c4')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e4')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q4')">🧠 Quiz</button>
+  </div>
+  <div id="c4" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Hacer un audit completo del Martech stack actual</li>
+      <li>Diseñar un stack óptimo para los próximos 12-24 meses</li>
+      <li>Priorizar inversiones en herramientas de IA con ROI claro</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El problema del Martech Sprawl</h2>
+      <p>El Martech stack promedio de una empresa B2B mediana tiene 15-40 herramientas. El 30-40% están subutilizadas, duplican funcionalidades o se usan de formas que no generan valor.</p>
+      <p>Con la explosión de herramientas de IA, el riesgo de sprawl se multiplicó. Cada semana sale una "IA que revoluciona X". El profesional de RevOps necesita un framework para evaluar, consolidar y priorizar.</p>
+
+      <h2>El Framework de Audit en 4 dimensiones</h2>
+      <div class="fw"><div class="fw-t">4 dimensiones del audit</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Utilización real</h4><p>¿Quién usa esta herramienta? ¿Con qué frecuencia? ¿Para qué? No lo que dice el proveedor — los datos de login y actividad real.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>ROI documentado</h4><p>¿Qué resultado medible produce? Si no puedes documentar el ROI, la herramienta es candidata para cortar o consolidar.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Integración y calidad de datos</h4><p>¿Se integra limpiamente con el CRM? ¿Produce datos de calidad? Las herramientas mal integradas generan más problemas que resuelven.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Capacidad de IA nativa</h4><p>¿La herramienta ya tiene IA o la está agregando? ¿Es IA "de marketing" (badge) o IA que realmente mejora el workflow?</p></div></div>
+      </div>
+
+      <h2>Evaluando nuevas herramientas de IA: el test de 5 preguntas</h2>
+      <div class="ca ca-k"><div class="ca-lbl">Antes de agregar cualquier herramienta de IA</div><p><strong>1.</strong> ¿Resuelve un problema documentado con ROI claro?<br><strong>2.</strong> ¿Se integra limpiamente con mi CRM y stack actual?<br><strong>3.</strong> ¿Mi equipo tiene capacidad para adoptarla y cambiar el proceso?<br><strong>4.</strong> ¿Alguna herramienta que ya tengo podría hacer esto con la IA que ya incluye?<br><strong>5.</strong> ¿Cuál es el plan B si el proveedor cierra o pivota?</p></div>
+
+      <h2>El stack mínimo viable de AI-first RevOps (2026)</h2>
+      <div class="tw"><table><thead><tr><th>Función</th><th>Opción consolidada</th><th>Alternativas</th></tr></thead><tbody>
+        <tr><td>CRM</td><td>HubSpot o Salesforce con IA nativa</td><td>Pipedrive, Monday CRM</td></tr>
+        <tr><td>Enriquecimiento</td><td>Clay</td><td>Apollo, ZoomInfo</td></tr>
+        <tr><td>Outbound</td><td>Apollo o Outreach con AI Writer</td><td>Salesloft, Instantly</td></tr>
+        <tr><td>Intención</td><td>Bombora o G2 Intent</td><td>Demandbase, 6sense</td></tr>
+        <tr><td>Conversación</td><td>Gong</td><td>Chorus, Fireflies</td></tr>
+        <tr><td>Forecast</td><td>Clari</td><td>BoostUp, Salesforce Einstein</td></tr>
+      </tbody></table></div>
+
+      <div class="ca ca-g"><div class="ca-lbl">La regla de consolidación</div><p>Antes de agregar una herramienta nueva, pregunta: ¿puedo hacer esto con algo que ya tengo, con IA? Los grandes CRMs (HubSpot, Salesforce) están agregando capacidades de IA que eliminan la necesidad de herramientas puntuales. Consolida antes de agregar.</p></div>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>Martech sprawl: 30-40% de herramientas están subutilizadas — el audit es la primera acción</li>
+        <li>4 dimensiones: utilización real, ROI documentado, integración, IA nativa</li>
+        <li>Test de 5 preguntas antes de agregar cualquier herramienta de IA</li>
+        <li>Consolidar antes de agregar: los CRMs principales ya incluyen mucha IA</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e4" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 4.5: Audit y diseño de tu stack</h2>
+      <div class="ex-m">⏱ 75 min · Herramienta: Claude + inventario de herramientas</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Haz inventario completo de herramientas</h4><p>Lista todas las herramientas que paga tu empresa: CRM, email, automation, analytics, sales tools, enrichment, BI, etc. Incluye el costo mensual/anual si lo sabes.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Aplica las 4 dimensiones a cada herramienta</h4><p>Para cada una: utilización (1-5), ROI documentado (sí/no/parcial), integración (buena/mala/ninguna), IA nativa (sí/no/básica). Crea una tabla.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Identifica candidatos a consolidar o cortar</h4><p>Utilización baja + ROI no documentado = candidato a cortar. Funcionalidad duplicada = consolidar en la mejor opción. Esto te da el presupuesto para herramientas de IA.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Diseña el stack objetivo para los próximos 12 meses</h4><p>Prompt a Claude: "Basado en este stack actual [lista] y estos dolores principales [dolores de 4.1], diseña el stack óptimo para los próximos 12 meses. Qué cortar, qué agregar, qué migrar y en qué orden."</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Audit del stack actual (tabla) + stack objetivo para 12 meses con justificación. Este documento es de consultoría real — vale dinero.</p></div>
+    </div>
+  </div>
+  <div id="q4" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 4.5</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb40">
+        <div class="qt">1. ¿Qué porcentaje del Martech stack típico está subutilizado?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">5-10%</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">15-20%</li>
+          <li class="opt" onclick="ans(this,'qb40',true)"><input type="radio">30-40%</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Menos del 5%</li>
+        </ul>
+        <div class="exp">El 30-40% del Martech stack promedio está subutilizado, duplica funcionalidades o no genera valor documentado. Un audit bien hecho típicamente libera presupuesto significativo para reinvertir en herramientas que sí impactan.</div>
+      </div>
+      <div class="qb" id="qb41">
+        <div class="qt">2. En el framework de audit, ¿cuál dimensión es la más importante?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Que la herramienta tenga IA</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Que tenga muchas integraciones</li>
+          <li class="opt" onclick="ans(this,'qb41',true)"><input type="radio">ROI documentado — si no puedes medir el impacto, la herramienta es candidata a cortar</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">El precio mensual</li>
+        </ul>
+        <div class="exp">El ROI documentado es la dimensión más crítica. Si no puedes conectar la herramienta a un resultado de negocio medible (pipeline generado, tiempo ahorrado, conversión mejorada), es candidata a consolidar o eliminar.</div>
+      </div>
+      <div class="qb" id="qb42">
+        <div class="qt">3. ¿Cuál debe ser la primera pregunta antes de agregar una nueva herramienta de IA al stack?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">¿Tiene una demo buena?</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">¿La usan otras empresas de mi industria?</li>
+          <li class="opt" onclick="ans(this,'qb42',true)"><input type="radio">¿Alguna herramienta que ya tengo podría hacer esto con la IA que ya incluye?</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">¿Cuánto cuesta?</li>
+        </ul>
+        <div class="exp">Antes de agregar, consolidar. Los CRMs principales están incorporando IA que elimina la necesidad de herramientas puntuales. Primero verifica si algo que ya tienes puede cubrir la necesidad.</div>
+      </div>
+      <button class="qbtn" onclick="score('q4r',3)">Ver resultado</button>
+      <div class="qr" id="q4r"><div class="rs" id="q4s">0/3</div><p id="q4m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 4.6 ══ -->
+<div id="L5" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 4 · Lección 4.6 · Proyecto · 90 min</div>
+    <h1 class="lt">Tu AI RevOps Playbook</h1>
+    <div class="lm"><span class="mc">⏱ 90 min</span><span class="mc">📋 Playbook</span><span class="mc">🏗️ Proyecto</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c5')">📖 Guía</button>
+    <button class="tab" onclick="tab(this,'e5')">🏗️ Proyecto</button>
+    <button class="tab" onclick="tab(this,'q5')">🧠 Quiz Final</button>
+  </div>
+  <div id="c5" class="tc active">
+    <div class="obj"><h3>Al completar este proyecto tendrás:</h3><ul>
+      <li>Un playbook completo de AI RevOps para tu contexto específico</li>
+      <li>Documento de consultoría de alta calidad y valor real</li>
+      <li>Tu hoja de ruta de implementación de IA para los próximos 12 meses</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El AI RevOps Playbook: qué es y por qué importa</h2>
+      <p>Un playbook es el documento que convierte estrategia en ejecución. Sin él, las iniciativas de IA quedan en conversaciones y demos. Con él, tienes un plan claro: qué hacer, en qué orden, con qué herramientas, con qué métricas de éxito.</p>
+      <p>Este playbook es también la base de tu posicionamiento como experto: es el entregable que muestras a clientes, que publicas para generar autoridad, que usas para estructurar conversaciones con directivos.</p>
+
+      <h2>Estructura del AI RevOps Playbook</h2>
+      <div class="fw"><div class="fw-t">Las 6 secciones del playbook</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Executive Summary</h4><p>El estado actual, la oportunidad de IA, y el ROI esperado en 12 meses. Media página, para el CEO/CRO.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>Audit del estado actual</h4><p>Stack actual, dolores documentados, quick wins identificados. Del ejercicio 4.1.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Iniciativas priorizadas</h4><p>Las 5-7 iniciativas de IA a implementar, ordenadas por impacto/esfuerzo, con descripción y herramientas.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Stack objetivo</h4><p>El Martech stack recomendado para los próximos 12-24 meses. Del ejercicio 4.5.</p></div></div>
+        <div class="fi"><span class="fl">5</span><div class="fc"><h4>Hoja de ruta de implementación</h4><p>Timeline de 12 meses: qué se implementa en cada trimestre, dependencias, recursos necesarios.</p></div></div>
+        <div class="fi"><span class="fl">6</span><div class="fc"><h4>Framework de métricas</h4><p>KPIs por iniciativa: cómo medirás el éxito de cada implementación de IA.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div id="e5" class="tc">
+    <div class="ex">
+      <h2>Proyecto Final — Módulo 4: Tu AI RevOps Playbook</h2>
+      <div class="ex-m">⏱ 90 min · Herramienta: Claude + todos los ejercicios anteriores</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Consolida todos los ejercicios del módulo</h4><p>Del 4.1: audit de stack y quick wins. Del 4.2: modelo de scoring. Del 4.3: secuencias de outbound. Del 4.4: account brief template. Del 4.5: stack objetivo. Todo esto forma las secciones del playbook.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Escribe el Executive Summary con Claude</h4><p>Prompt: "Basado en este análisis de RevOps [pega el resumen de tus ejercicios], escribe un Executive Summary de media página para el CRO que explique el estado actual, la oportunidad de IA y el ROI esperado en 12 meses."</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Crea la hoja de ruta de 12 meses</h4><p>Con Claude: prioriza las iniciativas identificadas en un timeline trimestral. Q1: quick wins. Q2: foundation. Q3-Q4: iniciativas avanzadas. Incluye recursos necesarios y dependencias.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Define el framework de métricas</h4><p>Para cada iniciativa: métrica de proceso (leading indicator) y métrica de resultado (lagging indicator). Ejemplo: "Enriquecimiento automático → % de leads con score completo (proceso) → conversión de MQL a SQL (resultado)".</p></div></div>
+      <div class="es"><div class="sn">5</div><div class="sc"><h4>Compila el playbook completo</h4><p>En un documento de Google Docs o Word: todas las secciones juntas. Agrega tu nombre, fecha y el logo de tu empresa/proyecto.</p></div></div>
+      <div class="dv"><h4>Entregable del Módulo 4</h4><p>Tu AI RevOps Playbook completo (6-10 páginas). Este es el activo de consultoría más valioso que habrás creado hasta ahora en el curso.</p></div>
+    </div>
+  </div>
+  <div id="q5" class="tc">
+    <div class="qz">
+      <h2>Quiz Final — Módulo 4</h2>
+      <p class="qi">5 preguntas · Repaso completo</p>
+      <div class="qb" id="qb50">
+        <div class="qt">1. ¿Cuál herramienta es actualmente el estándar para enriquecimiento con múltiples fuentes en RevOps?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Salesforce</li>
+          <li class="opt" onclick="ans(this,'qb50',true)"><input type="radio">Clay</li>
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Notion</li>
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">HubSpot básico</li>
+        </ul>
+        <div class="exp">Clay es la herramienta favorita de los RevOps avanzados para enriquecimiento — conecta docenas de fuentes en waterfalls y permite aplicar LLMs para generar insights como resúmenes y scoring.</div>
+      </div>
+      <div class="qb" id="qb51">
+        <div class="qt">2. ¿Qué transforma la IA en la capa de Revenue Analytics?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Hace los dashboards más bonitos</li>
+          <li class="opt" onclick="ans(this,'qb51',true)"><input type="radio">Pasa de mostrar lo que pasó a predecir lo que va a pasar (forecasting predictivo, deal risk detection)</li>
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Elimina la necesidad de un RevOps Manager</li>
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Solo exporta datos más fácilmente</li>
+        </ul>
+        <div class="exp">El salto fundamental en analytics con IA es de descriptivo (qué pasó) a predictivo (qué va a pasar) y prescriptivo (qué debes hacer). Forecasting con confianza, detección temprana de riesgo de deals.</div>
+      </div>
+      <div class="qb" id="qb52">
+        <div class="qt">3. En ABM 1:1 con IA, ¿qué permite hacer en horas que antes tomaba semanas?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Cerrar deals</li>
+          <li class="opt" onclick="ans(this,'qb52',true)"><input type="radio">Investigación profunda de la cuenta y creación del account intelligence brief</li>
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Enviar emails masivos</li>
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Crear el sitio web de la cuenta</li>
+        </ul>
+        <div class="exp">La investigación profunda (estructura organizacional, iniciativas estratégicas, mapeo del buying committee, ángulos de entrada) se comprimió de semanas a horas. Esto hace viable el ABM 1:1 a escala.</div>
+      </div>
+      <div class="qb" id="qb53">
+        <div class="qt">4. ¿Cuál es la regla de oro antes de agregar una nueva herramienta de IA al Martech stack?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Probar 30 días gratis primero</li>
+          <li class="opt" onclick="ans(this,'qb53',true)"><input type="radio">Consolidar primero: verificar si algo que ya tienes puede cubrir la necesidad</li>
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Pedir una demo al vendor</li>
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Ver si la competencia la usa</li>
+        </ul>
+        <div class="exp">La regla de consolidación: los grandes CRMs están incorporando IA que puede sustituir herramientas puntuales. Antes de gastar en algo nuevo, verifica si ya tienes la funcionalidad en tu stack actual.</div>
+      </div>
+      <div class="qb" id="qb54">
+        <div class="qt">5. ¿Qué hace el AI RevOps Playbook más valioso que una lista de recomendaciones?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Que está en formato PDF</li>
+          <li class="opt" onclick="ans(this,'qb54',true)"><input type="radio">Combina audit + iniciativas priorizadas + stack + roadmap + métricas — convierte estrategia en ejecución</li>
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Que menciona más herramientas</li>
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Que es más largo</li>
+        </ul>
+        <div class="exp">El valor del playbook está en su completitud: no solo dice qué hacer sino por qué, en qué orden, con qué herramientas y cómo medir el éxito. Es la diferencia entre estrategia y ejecución.</div>
+      </div>
+      <button class="qbtn" onclick="score('q5r',5)">Ver resultado</button>
+      <div class="qr" id="q5r"><div class="rs" id="q5s">0/5</div><p id="q5m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="mod-complete">
+    <div style="font-size:2rem;margin-bottom:.5rem">💼</div>
+    <div style="font-size:1.1rem;font-weight:800;margin-bottom:.3rem">¡Módulo 4 Completado!</div>
+    <div style="font-size:.87rem;color:var(--text2);margin-bottom:1rem">Tienes tu AI RevOps Playbook. Un módulo más: convierte todo en experticia y negocio.</div>
+    <a href="curso-ai-m5.html" style="display:inline-block;padding:.7rem 1.5rem;background:var(--accent);color:#000;border-radius:10px;text-decoration:none;font-weight:800;font-size:.9rem">Continuar al Módulo 5 →</a>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()">← Anterior</button>
+    <a href="curso-ai-m5.html" class="lnbtn nx">Módulo 5 →</a>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script>
+const lessons=[
+  {num:'4.1',title:'El nuevo stack de RevOps con IA'},
+  {num:'4.2',title:'CRM Intelligence: scoring, enriquecimiento y predicción'},
+  {num:'4.3',title:'Marketing Automation con LLMs'},
+  {num:'4.4',title:'ABM con IA a escala'},
+  {num:'4.5',title:'Martech Audit y diseño de stack con IA'},
+  {num:'4.6',title:'Tu AI RevOps Playbook'}
+];
+let cur=0;
+const btns=document.querySelectorAll('.ll');
+const completed=new Set();
+
+function show(i){
+  document.querySelectorAll('.lp').forEach(l=>l.classList.remove('active'));
+  document.getElementById('L'+i).classList.add('active');
+  btns.forEach(b=>b.classList.remove('active'));
+  btns[i].classList.add('active');
+  cur=i;
+  document.getElementById('tl').textContent='Módulo 4 · Lección '+lessons[i].num;
+  document.getElementById('tt').textContent=lessons[i].title;
+  completed.add(i);
+  const p=Math.round(completed.size/lessons.length*100);
+  document.getElementById('pp').textContent=p+'%';
+  document.getElementById('pf').style.width=p+'%';
+  window.scrollTo(0,0);
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  const lp=document.getElementById('L'+i);
+  lp.querySelectorAll('.tab')[0].classList.add('active');
+  lp.querySelectorAll('.tc')[0].classList.add('active');
+}
+
+function next(){if(cur<lessons.length-1)show(cur+1);}
+function prev(){if(cur>0)show(cur-1);}
+
+function tab(el,id){
+  const lp=el.closest('.lp');
+  lp.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  lp.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function ans(el,qbId,correct){
+  const qb=document.getElementById(qbId);
+  if(qb.dataset.answered)return;
+  qb.dataset.answered='1';
+  qb.dataset.correct=correct?'1':'0';
+  el.classList.add(correct?'correct':'wrong');
+  const exp=qb.querySelector('.exp');
+  if(exp)exp.classList.add('show');
+}
+
+function score(rid,total){
+  const prefix=rid.replace('r','');
+  let correct=0;
+  const num=prefix.slice(1);
+  document.querySelectorAll('[id^="qb'+num+'"]').forEach(qb=>{
+    if(qb.dataset.correct==='1')correct++;
+  });
+  const el=document.getElementById(rid);
+  el.classList.add('show');
+  document.getElementById(prefix+'s').textContent=correct+'/'+total;
+  const msgs=['Sigue repasando — vuelve a la lección','Bien, pero hay oportunidad de mejora','¡Muy bien! Sólido entendimiento','¡Perfecto! Dominas este tema'];
+  const idx=Math.floor((correct/total)*3);
+  document.getElementById(prefix+'m').textContent=msgs[Math.min(idx,3)];
+}
+
+/* ── LANG TOGGLE ── */
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.documentElement.classList.add('lang-en');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.classList.add('lang-en');
+        var b=document.getElementById('langBtn');
+        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>

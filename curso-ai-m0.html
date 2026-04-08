@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 0: Fundamentos de IA | AI Expert Mastery</title>
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:#2a2a3a;--accent:#6c63ff;--accent2:#ff6584;--accent3:#43e97b;--accent4:#f7971e;--text:#e8e8f0;--text2:#9898b0;--card:#14141e;--mod:#a09fff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:280px;min-width:280px;background:var(--bg2);border-right:1px solid var(--border);height:100vh;position:fixed;top:0;left:0;overflow-y:auto;z-index:50;padding-bottom:2rem}
+.sidebar-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.sidebar-logo{font-size:.85rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{display:block;font-size:.75rem;color:var(--text2);text-decoration:none;margin-top:.3rem}
+.sidebar-back:hover{color:var(--accent)}
+.mod-label{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod);padding:.8rem 1.5rem .3rem}
+.lesson-link{display:flex;align-items:flex-start;gap:.7rem;padding:.6rem 1.5rem;cursor:pointer;transition:background .2s;border:none;background:none;width:100%;text-align:left;color:var(--text2);font-size:.82rem;line-height:1.4}
+.lesson-link:hover{background:rgba(108,99,255,.08);color:var(--text)}
+.lesson-link.active{background:rgba(108,99,255,.15);color:var(--accent);font-weight:700}
+.lesson-num{font-size:.65rem;font-weight:900;color:var(--mod);min-width:28px;padding-top:.1rem}
+.sidebar-progress{padding:1rem 1.5rem;border-top:1px solid var(--border);margin-top:.5rem}
+.progress-label{font-size:.72rem;color:var(--text2);margin-bottom:.4rem}
+.progress-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+
+/* MAIN */
+.main{margin-left:280px;flex:1;padding:0}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:.8rem 2.5rem;display:flex;align-items:center;gap:1rem;z-index:40;backdrop-filter:blur(12px)}
+.topbar-lesson{font-size:.8rem;color:var(--text2)}
+.topbar-title{font-size:.95rem;font-weight:800;color:var(--text)}
+.topbar-nav{margin-left:auto;display:flex;gap:.5rem}
+.nav-btn{padding:.4rem .9rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;color:var(--text2);cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
+.nav-btn:hover{border-color:var(--accent);color:var(--accent)}
+.nav-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.nav-btn.primary:hover{opacity:.85}
+
+/* CONTENT */
+.content{max-width:820px;margin:0 auto;padding:3rem 2.5rem}
+
+/* LESSON TABS */
+.tabs{display:flex;gap:.5rem;margin-bottom:2.5rem;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab{padding:.6rem 1.2rem;cursor:pointer;font-size:.85rem;font-weight:700;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--text)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* LESSON HEADER */
+.lesson-header{margin-bottom:2.5rem}
+.lesson-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:8px;padding:.3rem .9rem;font-size:.72rem;font-weight:800;color:var(--mod);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1rem}
+.lesson-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:.8rem}
+.lesson-meta{display:flex;gap:1rem;flex-wrap:wrap;color:var(--text2);font-size:.82rem}
+.meta-chip{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.2rem .7rem;border-radius:6px}
+
+/* OBJECTIVES */
+.objectives{background:rgba(67,233,123,.06);border:1px solid rgba(67,233,123,.25);border-radius:14px;padding:1.5rem;margin-bottom:2.5rem}
+.objectives h3{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:.8rem}
+.objectives ul{list-style:none}
+.objectives li{font-size:.9rem;color:var(--text);padding:.3rem 0;display:flex;gap:.7rem}
+.objectives li::before{content:'✓';color:var(--accent3);font-weight:900;flex-shrink:0}
+
+/* CONTENT TYPOGRAPHY */
+.lesson-body h2{font-size:1.3rem;font-weight:800;margin:2rem 0 .8rem;color:var(--text)}
+.lesson-body h3{font-size:1.05rem;font-weight:800;margin:1.5rem 0 .6rem;color:var(--mod)}
+.lesson-body p{font-size:.92rem;color:var(--text2);margin-bottom:1rem;line-height:1.75}
+.lesson-body strong{color:var(--text);font-weight:700}
+
+/* CALLOUTS */
+.callout{border-radius:12px;padding:1.2rem 1.5rem;margin:1.5rem 0}
+.callout-analogy{background:rgba(108,99,255,.08);border-left:3px solid var(--accent)}
+.callout-key{background:rgba(247,151,30,.07);border-left:3px solid var(--accent4)}
+.callout-warn{background:rgba(255,101,132,.07);border-left:3px solid var(--accent2)}
+.callout-apply{background:rgba(67,233,123,.07);border-left:3px solid var(--accent3)}
+.callout-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.callout-analogy .callout-label{color:var(--accent)}
+.callout-key .callout-label{color:var(--accent4)}
+.callout-warn .callout-label{color:var(--accent2)}
+.callout-apply .callout-label{color:var(--accent3)}
+.callout p{font-size:.88rem;color:var(--text);margin:0;line-height:1.65}
+
+/* TABLE */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.7rem 1rem;background:rgba(255,255,255,.03);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:.65rem 1rem;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+td:first-child{font-weight:700;color:var(--text)}
+tr:last-child td{border-bottom:none}
+
+/* FRAMEWORK BOX */
+.framework{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin:1.5rem 0}
+.framework-title{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent4);margin-bottom:1rem}
+.framework-item{display:flex;gap:1rem;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.framework-item:last-child{border-bottom:none}
+.fi-letter{font-size:1.3rem;font-weight:900;color:var(--accent);min-width:32px}
+.fi-content h4{font-size:.9rem;font-weight:800;color:var(--text)}
+.fi-content p{font-size:.82rem;color:var(--text2);margin:0}
+
+/* EXERCISE */
+.exercise{background:rgba(108,99,255,.07);border:1px solid rgba(108,99,255,.25);border-radius:16px;padding:2rem;margin-top:1rem}
+.exercise h2{font-size:1.2rem;font-weight:800;color:var(--accent);margin-bottom:.5rem}
+.exercise .ex-meta{font-size:.78rem;color:var(--text2);margin-bottom:1.5rem}
+.exercise-step{display:flex;gap:1rem;margin-bottom:1.2rem;align-items:flex-start}
+.step-num{min-width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;flex-shrink:0;margin-top:.1rem}
+.step-content h4{font-size:.9rem;font-weight:800;margin-bottom:.2rem}
+.step-content p{font-size:.85rem;color:var(--text2);margin:0}
+.step-content pre{background:rgba(0,0,0,.35);border:1px solid rgba(108,99,255,.2);border-radius:8px;padding:.8rem;font-size:.78rem;color:#c0baff;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin-top:.5rem}
+.deliverable{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.25);border-radius:10px;padding:1rem;margin-top:1.5rem}
+.deliverable h4{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:.3rem}
+.deliverable p{font-size:.85rem;color:var(--text2);margin:0}
+
+/* QUIZ */
+.quiz{margin-top:1rem}
+.quiz h2{font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
+.quiz-intro{font-size:.88rem;color:var(--text2);margin-bottom:2rem}
+.question-block{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.2rem}
+.question-text{font-size:.95rem;font-weight:700;margin-bottom:1rem}
+.options{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.option{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:.87rem;background:rgba(255,255,255,.02)}
+.option:hover{border-color:var(--accent);background:rgba(108,99,255,.08)}
+.option.correct{background:rgba(67,233,123,.12);border-color:var(--accent3);color:var(--accent3)}
+.option.wrong{background:rgba(255,101,132,.1);border-color:var(--accent2);color:var(--accent2)}
+.option input[type=radio]{accent-color:var(--accent);flex-shrink:0;margin-top:.2rem}
+.explanation{font-size:.83rem;color:var(--text2);background:rgba(255,255,255,.03);border-radius:8px;padding:.8rem 1rem;margin-top:.8rem;display:none;line-height:1.6}
+.explanation.show{display:block}
+.quiz-btn{padding:.6rem 1.5rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;margin-top:1rem;transition:opacity .2s}
+.quiz-btn:hover{opacity:.85}
+.quiz-result{background:rgba(108,99,255,.1);border:1px solid rgba(108,99,255,.3);border-radius:12px;padding:1.5rem;text-align:center;margin-top:1.5rem;display:none}
+.quiz-result.show{display:block}
+.result-score{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* TAKEAWAYS */
+.takeaways{background:rgba(247,151,30,.07);border:1px solid rgba(247,151,30,.25);border-radius:12px;padding:1.5rem;margin-top:2rem}
+.takeaways h3{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent4);margin-bottom:.8rem}
+.takeaways li{font-size:.88rem;color:var(--text);padding:.3rem 0;display:flex;gap:.7rem;list-style:none}
+.takeaways li::before{content:'★';color:var(--accent4);flex-shrink:0}
+
+/* LESSON NAV */
+.lesson-nav-bottom{display:flex;gap:1rem;justify-content:space-between;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.lnav-btn{padding:.8rem 1.5rem;border-radius:10px;text-decoration:none;font-size:.88rem;font-weight:700;border:1px solid var(--border);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
+.lnav-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lnav-btn.next{background:var(--accent);color:#fff;border-color:var(--accent)}
+.lnav-btn.next:hover{opacity:.85}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">🎓 AI Expert Mastery</div>
+    <a href="curso-ai-index.html" class="sidebar-back"><span class="t-es">← Volver al inicio</span><span class="t-en" style="display:none">← Back to start</span></a>
+    <a href="curso-ai-recursos.html" style="display:block;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-es">⭐ Setup &amp; Recursos</a><a href="curso-ai-recursos.html" style="display:none;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-en">⭐ Resources &amp; Setup</a>
+  <div class="lang-toggle">
+    <button id="langBtn" class="lang-btn" onclick="toggleLang()">🌐 EN</button>
+  </div>
+  </div>
+  <div class="mod-label"><span class="t-es" style="display:inline">Módulo 0 · Fundamentos</span><span class="t-en" style="display:none">Module 0 · Fundamentals</span></div>
+  <button class="lesson-link active" onclick="showLesson(0)">
+    <span class="lesson-num">0.1</span><span class="t-es" style="display:inline">Cómo funcionan los LLMs realmente</span><span class="t-en" style="display:none">How LLMs Really Work</span>
+  </button>
+  <button class="lesson-link" onclick="showLesson(1)">
+    <span class="lesson-num">0.2</span><span class="t-es" style="display:inline">El mapa del ecosistema IA 2026</span><span class="t-en" style="display:none">The AI Ecosystem Map 2026</span>
+  </button>
+  <button class="lesson-link" onclick="showLesson(2)">
+    <span class="lesson-num">0.3</span><span class="t-es" style="display:inline">Terminología esencial para profesionales</span><span class="t-en" style="display:none">Essential Terminology for Pros</span>
+  </button>
+  <button class="lesson-link" onclick="showLesson(3)">
+    <span class="lesson-num">0.4</span><span class="t-es" style="display:inline">Tu setup profesional de IA</span><span class="t-en" style="display:none">Your Professional AI Setup</span>
+  </button>
+  <div class="sidebar-progress">
+    <div class="progress-label">Progreso del módulo: <span id="progress-pct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div>
+      <div class="topbar-lesson" id="topbar-lesson">Módulo 0 · Lección 0.1</div>
+      <div class="topbar-title" id="topbar-title">Cómo funcionan los LLMs realmente</div>
+    </div>
+    <div class="topbar-nav">
+      <button class="nav-btn" onclick="prevLesson()">← Anterior</button>
+      <button class="nav-btn primary" onclick="nextLesson()">Siguiente →</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- ════════════════════════════════════════ -->
+<!-- LECCIÓN 0.1 -->
+<!-- ════════════════════════════════════════ -->
+<div id="lesson-0" class="lesson-pane">
+  <div class="lesson-header">
+    <div class="lesson-badge">Módulo 0 · Lección 0.1 · 45 min</div>
+    <h1 class="lesson-title">Cómo funcionan los LLMs realmente</h1>
+    <div class="lesson-meta">
+      <span class="meta-chip">⏱ 45 minutos</span>
+      <span class="meta-chip">📖 Lección teórica</span>
+      <span class="meta-chip">🔑 Fundacional</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'leccion-0')">📖 Lección</button>
+    <button class="tab" onclick="switchTab(this,'ejercicio-0')">✏️ Ejercicio</button>
+    <button class="tab" onclick="switchTab(this,'quiz-0')">🧠 Quiz</button>
+  </div>
+
+  <!-- TAB: LECCIÓN -->
+  <div id="leccion-0" class="tab-content active">
+    <div class="objectives">
+      <h3><div class="t-es">Al terminar esta lección podrás:</div><div class="t-en">By the end of this lesson, you'll be able to:</div></h3>
+      <ul>
+        <li><div class="t-es">Explicarle a cualquier persona cómo funciona un LLM sin usar jerga técnica</div><div class="t-en">Explain to anyone how an LLM works without using technical jargon</div></li>
+        <li><div class="t-es">Entender por qué los LLMs a veces se equivocan y cómo minimizarlo</div><div class="t-en">Understand why LLMs sometimes err and how to minimize errors</div></li>
+        <li><div class="t-es">Usar los conceptos de token, temperatura y ventana de contexto en tu trabajo</div><div class="t-en">Apply the concepts of tokens, temperature, and context window in your work</div></li>
+        <li><div class="t-es">Tomar decisiones más inteligentes sobre cuándo y cómo usar IA</div><div class="t-en">Make smarter decisions about when and how to use AI</div></li>
+      </ul>
+    </div>
+
+    <div class="lesson-body">
+      <h2><div class="t-es">La Gran Mentira: "La IA sabe cosas"</div><div class="t-en">The Big Lie: "AI Knows Things"</div></h2>
+      <p><div class="t-es">Antes de aprender a usar la IA de forma experta, necesitas desaprender algo que probablemente crees sin darte cuenta: que los modelos de lenguaje <em>saben</em> cosas, o que <em>entienden</em> lo que les dices.</div><div class="t-en">Before learning to use AI expertly, you need to unlearn something you probably believe without realizing it: that language models <em>know</em> things, or that they <em>understand</em> what you tell them.</div></p>
+      <p><div class="t-es">La realidad es diferente y más interesante. Cuando le preguntas algo a Claude, ChatGPT o Gemini, lo que ocurre por debajo no es búsqueda ni consulta a una base de datos. Es algo más parecido a una predicción estadística masiva.</div><div class="t-en">The reality is different and more interesting. When you ask Claude, ChatGPT, or Gemini something, what happens underneath isn't database lookup or retrieval. It's closer to massive statistical prediction.</div></p>
+
+      <div class="callout callout-analogy">
+        <div class="callout-label">🔮 Analogía clave</div>
+        <p>Imagina que eres el ejecutivo de ventas más brillante que ha existido, y que has leído <strong>todo el texto escrito por la humanidad</strong>: cada libro, artículo, email, contrato, post de LinkedIn, guía de RevOps, documentación de HubSpot y millones de conversaciones de negocios. Después de leer todo eso, desarrollas un instinto increíble para completar frases y razonar sobre situaciones. Eso es aproximadamente lo que hace un LLM — pero en lugar de instinto, usa probabilidades matemáticas.</p>
+      </div>
+
+      <h2><div class="t-es">El Mecanismo Real: Predicción de Tokens</div><div class="t-en">The Real Mechanism: Token Prediction</div></h2>
+      <p><div class="t-es">Los LLMs no generan texto completo de un golpe. Lo generan <strong>token por token</strong> — una pieza a la vez. Un token es aproximadamente 3-4 caracteres o 0.75 palabras en inglés (en español suele ser similar).</div><div class="t-en">LLMs don't generate complete text all at once. They generate it <strong>token by token</strong> — one piece at a time. A token is approximately 3-4 characters or 0.75 words in English (Spanish is usually similar).</div></p>
+      <p><div class="t-es">Cada vez que el modelo genera un token, está respondiendo la pregunta: <em>"Dado todo el texto que vino antes (mi entrenamiento + la conversación actual), ¿qué token es más probable que venga a continuación?"</em></div><div class="t-en">Each time the model generates a token, it's answering the question: <em>"Given all the text that came before (my training + this conversation), what token is most likely to come next?"</em></div></p>
+      <p><div class="t-es">Esto tiene implicaciones enormes para cómo usar IA de forma experta:</div><div class="t-en">This has enormous implications for how to use AI expertly:</div></p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Concepto</th><th>Qué significa realmente</th><th>Implicación práctica</th></tr></thead>
+          <tbody>
+            <tr><td>Token</td><td>Pieza mínima de texto (~4 caracteres). "RevOps" = 2-3 tokens</td><td>Los prompts cortos gastan menos tokens pero dan menos contexto</td></tr>
+            <tr><td>Contexto</td><td>Todo el texto que el modelo puede "ver" en una conversación</td><td>Más contexto relevante = mejores respuestas</td></tr>
+            <tr><td>Ventana de Contexto</td><td>El límite máximo de tokens que el modelo puede procesar a la vez</td><td>Conversaciones muy largas pierden información del inicio</td></tr>
+            <tr><td>Temperatura</td><td>Cuánta "aleatoriedad" hay en la selección del siguiente token</td><td>Temp baja = más predecible; Temp alta = más creativo</td></tr>
+            <tr><td>Entrenamiento</td><td>El proceso de ajustar millones de parámetros con billones de tokens</td><td>El modelo tiene un "conocimiento cutoff" — no sabe lo que pasó después</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2><div class="t-es">La Temperatura: El Dial de Creatividad</div><div class="t-en">Temperature: The Creativity Dial</div></h2>
+      <p><div class="t-es">La temperatura es un parámetro que controla cuán "conservador" o "creativo" es el modelo al elegir el siguiente token.</div><div class="t-en">Temperature is a parameter that controls how "conservative" or "creative" the model is when choosing the next token.</div></p>
+
+      <div class="callout callout-analogy">
+        <div class="callout-label">🔮 Analogía</div>
+        <p>Piensa en la temperatura como el nivel de riesgo que un vendedor está dispuesto a tomar en una reunión. Con temperatura baja (0.0-0.3), el vendedor usa el pitch estándar que siempre funciona — predecible, confiable, sin sorpresas. Con temperatura alta (0.8-1.0), el vendedor improvisa, hace analogías inesperadas y puede conectar brillantemente con el cliente... o puede decir algo que no encaja. Para análisis de datos de CRM: temperatura baja. Para brainstorming de campaña: temperatura alta.</p>
+      </div>
+
+      <h2><div class="t-es">Por Qué Suceden las Alucinaciones</div><div class="t-en">Why Hallucinations Happen</div></h2>
+      <p><div class="t-es">El fenómeno más famoso y temido de los LLMs: generar información que parece plausible pero es incorrecta. Una cita falsa, un número inventado, un caso de uso que no existe.</div><div class="t-en">The most famous and feared LLM phenomenon: generating information that seems plausible but is incorrect. A false quote, an invented number, a use case that doesn't exist.</div></p>
+      <p><div class="t-es">Ahora que entiendes el mecanismo, la razón es clara: el modelo está prediciendo el siguiente token más probable, no buscando un hecho en una base de datos. A veces, el texto más probable suena convincente pero está equivocado.</div><div class="t-en">Now that you understand the mechanism, the reason is clear: the model is predicting the most probable next token, not searching for a fact in a database. Sometimes the most probable text sounds convincing but is wrong.</div></p>
+
+      <div class="callout callout-key">
+        <div class="callout-label">⚡ Regla de Experto</div>
+        <p>Las alucinaciones ocurren más frecuentemente en: (1) fechas y números específicos, (2) citas textuales de personas reales, (3) datos de empresas específicas, (4) información muy reciente o muy nicho. La estrategia anti-alucinación es: pídele al modelo que indique su nivel de confianza y que diga explícitamente cuándo no sabe algo. También: verifica con Perplexity cualquier dato crítico antes de usarlo.</p>
+      </div>
+
+      <h2><div class="t-es">La Ventana de Contexto: La Memoria de Trabajo</div><div class="t-en">Context Window: Working Memory</div></h2>
+      <p><div class="t-es">Cada modelo tiene un límite en cuánto texto puede "ver" a la vez. Claude Opus 4.6 puede ver hasta ~200,000 tokens (aproximadamente 150,000 palabras — casi dos novelas). Gemini 3.1 Pro llega a 2 millones de tokens. GPT-5.4 maneja 128,000 con extended reasoning.</div><div class="t-en">Each model has a limit on how much text it can "see" at once. Claude Opus 4.6 can process up to ~200,000 tokens (approximately 150,000 words — nearly two novels). Gemini 3.1 Pro reaches 2 million tokens. GPT-5.4 handles 128,000 with extended reasoning.</div></p>
+      <p>Dentro de una misma conversación, el modelo usa toda esa ventana. Pero entre conversaciones, empieza desde cero. Es como un consultor brillante con amnesia perfecta entre reuniones.</p>
+
+      <div class="callout callout-apply">
+        <div class="callout-label">🎯 Aplicación a RevOps</div>
+        <p>Cuando trabajes con Claude en un análisis de CRM, incluye al inicio de la conversación todo el contexto relevante: el estado del pipeline, el ICP, el proceso de ventas, métricas actuales. Cuanto más contexto de calidad, mejor será el análisis. Esto es exactamente lo que hacen los archivos de contexto (about-me.md, etc.) — cargar contexto permanente al inicio de cada sesión.</p>
+      </div>
+
+      <h2><div class="t-es">Entrenamiento vs. Razonamiento: Una Distinción Clave</div><div class="t-en">Training vs. Reasoning: A Critical Distinction</div></h2>
+      <p><div class="t-es">Los LLMs hacen dos cosas que es importante distinguir:</div><div class="t-en">LLMs do two things that are important to distinguish:</div></p>
+      <p><strong><div class="t-es">Recuperar conocimiento del entrenamiento:</div><div class="t-en">Retrieving training knowledge:</div></strong> <div class="t-es">Explicar qué es RevOps, describir cómo funciona HubSpot, resumir conceptos de marketing automation. Aquí usan lo que "aprendieron" de los datos de entrenamiento.</div><div class="t-en">Explaining what RevOps is, describing how HubSpot works, summarizing marketing automation concepts. Here they use what they "learned" from training data.</div></p>
+      <p><strong><div class="t-es">Razonar sobre información nueva:</div><div class="t-en">Reasoning about new information:</div></strong> <div class="t-es">Analizar el documento que le pegaste, encontrar patrones en los datos que le compartiste, escribir un email para un cliente específico. Aquí el modelo razona sobre el contexto que tú le das en la conversación.</div><div class="t-en">Analyzing the document you pasted, finding patterns in data you shared, writing an email for a specific client. Here the model reasons about the context you provide in the conversation.</div></p>
+
+      <div class="callout callout-key">
+        <div class="callout-label">⚡ Implicación práctica</div>
+        <p>Los expertos en IA se vuelven expertos en el segundo tipo — darle al modelo contexto rico y específico y pedirle que razore sobre él. Los amateurs usan IA solo para el primer tipo (como Google glorificado). Tu ventaja competitiva está en saber cómo combinar tu conocimiento de dominio (CRM, RevOps) con la capacidad de razonamiento del modelo.</p>
+      </div>
+
+      <h2><div class="t-es">Fine-tuning vs. Prompting: ¿Cuál necesitas?</div><div class="t-en">Fine-tuning vs. Prompting: Which Do You Need?</div></h2>
+      <p><strong><div class="t-es">Fine-tuning</div><div class="t-en">Fine-tuning</div></strong> <div class="t-es">es reentrenar un modelo base con datos específicos para cambiar su comportamiento permanentemente. Requiere cientos de ejemplos, costo de compute y expertise técnico. Es para empresas grandes con casos de uso muy específicos y repetitivos.</div><div class="t-en">is retraining a base model with specific data to permanently change its behavior. It requires hundreds of examples, compute costs, and technical expertise. It's for large enterprises with very specific and repetitive use cases.</div></p>
+      <p><strong><div class="t-es">Prompting experto</div><div class="t-en">Expert prompting</div></strong> <div class="t-es">(que es lo que tú necesitas dominar) logra el 90% de los mismos resultados usando instrucciones inteligentes en el momento de la conversación. Sin costo adicional, sin expertise técnico, con resultados inmediatos. La ventaja del prompting es también la velocidad de iteración: cambias el prompt y ves el resultado en segundos.</div><div class="t-en">(what you need to master) achieves 90% of the same results using intelligent instructions at the moment of conversation. No additional cost, no technical expertise, immediate results. The advantage of prompting is also iteration speed: you change the prompt and see results in seconds.</div></p>
+    </div>
+
+    <div class="takeaways">
+      <h3><div class="t-es">Puntos Clave de esta Lección</div><div class="t-en">Key Takeaways from this Lesson</div></h3>
+      <ul>
+        <li><div class="t-es">Los LLMs predicen el siguiente token, no "buscan" ni "saben" — entiende esto y usarás mejor la herramienta</div><div class="t-en">LLMs predict the next token, they don't "search" or "know" — understand this and you'll use the tool better</div></li>
+        <li><div class="t-es">Las alucinaciones son inevitables pero prevenibles: verifica datos críticos y pide al modelo que indique confianza</div><div class="t-en">Hallucinations are inevitable but preventable: verify critical data and ask the model to indicate confidence</div></li>
+        <li><div class="t-es">La temperatura controla creatividad vs. consistencia — ajusta según la tarea</div><div class="t-en">Temperature controls creativity vs. consistency — adjust according to your task</div></li>
+        <li><div class="t-es">La ventana de contexto es tu mayor palanca: más contexto de calidad = mejores outputs</div><div class="t-en">Context window is your biggest lever: more quality context = better outputs</div></li>
+        <li><div class="t-es">Tu ventaja está en combinar razonamiento del modelo con tu contexto de dominio de RevOps</div><div class="t-en">Your advantage lies in combining the model's reasoning with your RevOps domain expertise</div></li>
+      </ul>
+    </div>
+
+    <div class="lesson-nav-bottom">
+      <button class="lnav-btn" onclick="prevLesson()">← Inicio del módulo</button>
+      <button class="lnav-btn next" onclick="nextLesson()">Siguiente: El mapa del ecosistema IA →</button>
+    </div>
+  </div>
+
+  <!-- TAB: EJERCICIO -->
+  <div id="ejercicio-0" class="tab-content">
+    <div class="exercise">
+      <h2>✏️ <div class="t-es">Ejercicio 0.1: Experimenta con el Contexto y la Temperatura</div><div class="t-en">Exercise 0.1: Experiment with Context and Temperature</div></h2>
+      <p class="ex-meta"><div class="t-es">⏱ 20-30 minutos · Herramienta: Claude Plus · Entregable: Documento en Notion</div><div class="t-en">⏱ 20-30 minutes · Tool: Claude Plus · Deliverable: Notion Document</div></p>
+
+      <div class="exercise-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>El experimento de contexto mínimo</h4>
+          <p>Abre Claude y pide esto sin ningún contexto adicional:</p>
+          <pre>"Analiza nuestro pipeline de ventas y dame recomendaciones."</pre>
+          <p>Observa qué tipo de respuesta obtienes. ¿Es útil? ¿Es genérica? Guarda el output.</p>
+        </div>
+      </div>
+
+      <div class="exercise-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>El mismo ejercicio con contexto rico</h4>
+          <p>Ahora prueba esto, agregando contexto real de tu situación:</p>
+          <pre>"Contexto: Soy [tu rol] en una empresa [tipo, tamaño]. Nuestro ciclo de venta promedio es [X días]. Nuestro ICP es [describe]. Tenemos [N] deals en pipeline por un total de [monto]. Los principales cuellos de botella que veo son [lista].
+
+Analiza este pipeline y dame recomendaciones específicas para los próximos 30 días."</pre>
+          <p>Compara con el output anterior. Documenta las diferencias en calidad y especificidad.</p>
+        </div>
+      </div>
+
+      <div class="exercise-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Experimenta con "no sé" y alucinaciones</h4>
+          <p>Pregúntale a Claude algo muy específico que es difícil de verificar:</p>
+          <pre>"¿Cuál fue el revenue exacto de [empresa de tu competencia] en Q3 2025?"</pre>
+          <p>Luego agrega al prompt: "Si no estás seguro de este dato, dímelo explícitamente y dime tu nivel de confianza del 1-10." Observa si el comportamiento cambia.</p>
+        </div>
+      </div>
+
+      <div class="exercise-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Documenta tus aprendizajes</h4>
+          <p>En Notion, crea una nota en tu AI Learning Vault llamada "0.1 - Experimentos de Contexto" y escribe:</p>
+          <pre>- ¿Qué diferencia hizo agregar contexto en la calidad de la respuesta?
+- ¿En qué caso el modelo pareció "inventar" información?
+- ¿Qué aprendí sobre cómo daré contexto en mis prompts futuros?</pre>
+        </div>
+      </div>
+
+      <div class="deliverable">
+        <h4>📦 Entregable</h4>
+        <p>Una nota en Notion con: los 3 outputs de Claude, tu comparación entre ellos, y 2-3 aprendizajes personales sobre cómo usarás contexto en tus prompts de ahora en adelante.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: QUIZ -->
+  <div id="quiz-0" class="tab-content">
+    <div class="quiz">
+      <h2>🧠 Quiz: Fundamentos de LLMs</h2>
+      <p class="quiz-intro">5 preguntas para verificar tu comprensión. No es un examen — es para identificar qué conceptos necesitas reforzar. Puedes verlo cuantas veces quieras.</p>
+
+      <div class="question-block">
+        <div class="question-text">1. Un compañero te dice: "Le pregunté a ChatGPT el revenue de nuestra empresa del año pasado y me dio un número. ¿Lo puedo usar en el reporte?" ¿Cuál es tu respuesta como experto?</div>
+        <ul class="options" id="q0-0">
+          <li class="option" onclick="selectOption(this,'q0-0',false,'explanation-0-0')"><input type="radio"> Sí, los modelos de IA son muy precisos con datos numéricos específicos</li>
+          <li class="option" onclick="selectOption(this,'q0-0',true,'explanation-0-0')"><input type="radio"> No, los LLMs pueden inventar números plausibles. Verifica siempre datos específicos con fuentes reales</li>
+          <li class="option" onclick="selectOption(this,'q0-0',false,'explanation-0-0')"><input type="radio"> Depende del modelo que use — GPT-4 es más preciso que Claude</li>
+          <li class="option" onclick="selectOption(this,'q0-0',false,'explanation-0-0')"><input type="radio"> Sí, si usó Extended Thinking o modo de razonamiento avanzado</li>
+        </ul>
+        <div id="explanation-0-0" class="explanation">✅ Correcto. Los LLMs predicen texto plausible, no buscan datos en bases de datos. Los números específicos de empresas son uno de los casos más comunes de alucinación. Para datos críticos: usa fuentes primarias (CRM, reportes, ERP).</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">2. Estás diseñando un workflow en n8n donde un agente de IA analizará emails de clientes para clasificarlos. ¿Qué temperatura debería tener el modelo de IA en esta tarea?</div>
+        <ul class="options" id="q0-1">
+          <li class="option" onclick="selectOption(this,'q0-1',false,'explanation-0-1')"><input type="radio"> Alta (0.9) para que sea más creativo en la clasificación</li>
+          <li class="option" onclick="selectOption(this,'q0-1',true,'explanation-0-1')"><input type="radio"> Baja (0.1-0.3) para clasificaciones consistentes y predecibles</li>
+          <li class="option" onclick="selectOption(this,'q0-1',false,'explanation-0-1')"><input type="radio"> Media (0.5) siempre es el punto óptimo</li>
+          <li class="option" onclick="selectOption(this,'q0-1',false,'explanation-0-1')"><input type="radio"> La temperatura no afecta tareas de clasificación</li>
+        </ul>
+        <div id="explanation-0-1" class="explanation">✅ Correcto. Para tareas de clasificación, extracción de datos y análisis estructurado quieres consistencia — el modelo siempre debe clasificar el mismo email de la misma forma. Temperatura baja (0.0-0.3) logra esto. Temperatura alta es para generación creativa (brainstorming, copywriting, ideación).</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">3. Empiezas una conversación en Claude con todo el contexto de tu empresa, tus objetivos del trimestre y el estado del pipeline. Después de 50 mensajes de ida y vuelta, notas que Claude parece haber "olvidado" información del inicio. ¿Qué está pasando?</div>
+        <ul class="options" id="q0-2">
+          <li class="option" onclick="selectOption(this,'q0-2',false,'explanation-0-2')"><input type="radio"> Claude tiene un bug — esto no debería ocurrir</li>
+          <li class="option" onclick="selectOption(this,'q0-2',false,'explanation-0-2')"><input type="radio"> Es porque no tienes el plan de pago correcto</li>
+          <li class="option" onclick="selectOption(this,'q0-2',true,'explanation-0-2')"><input type="radio"> La conversación está llegando al límite de la ventana de contexto y la información inicial se está "saliendo"</li>
+          <li class="option" onclick="selectOption(this,'q0-2',false,'explanation-0-2')"><input type="radio"> Claude deliberadamente olvida información para proteger la privacidad</li>
+        </ul>
+        <div id="explanation-0-2" class="explanation">✅ Correcto. La ventana de contexto es como una ventana deslizante — cuando la conversación se vuelve muy larga, el inicio empieza a quedarse fuera de la "vista" del modelo. Estrategia: para proyectos largos, empieza nuevas conversaciones con un resumen del contexto, o usa archivos de contexto permanentes en Cowork.</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">4. ¿Cuál es la principal diferencia entre usar IA para "recuperar conocimiento" vs. "razonar sobre tu contexto"?</div>
+        <ul class="options" id="q0-3">
+          <li class="option" onclick="selectOption(this,'q0-3',false,'explanation-0-3')"><input type="radio"> No hay diferencia — el modelo hace lo mismo en ambos casos</li>
+          <li class="option" onclick="selectOption(this,'q0-3',true,'explanation-0-3')"><input type="radio"> Recuperar conocimiento usa lo aprendido en entrenamiento; razonar sobre contexto procesa información que tú le das en el prompt</li>
+          <li class="option" onclick="selectOption(this,'q0-3',false,'explanation-0-3')"><input type="radio"> Razonar sobre contexto solo funciona con GPT-4, no con Claude</li>
+          <li class="option" onclick="selectOption(this,'q0-3',false,'explanation-0-3')"><input type="radio"> Recuperar conocimiento es más preciso; razonar sobre contexto es menos confiable</li>
+        </ul>
+        <div id="explanation-0-3" class="explanation">✅ Correcto. Los expertos en IA maximizan el segundo tipo: dan al modelo sus datos, documentos, notas de reuniones, pipelines — y piden análisis sobre esa información específica. Esto es más valioso que usar IA como un Google mejorado. Tu expertise en RevOps + la capacidad de razonamiento del modelo = ventaja única.</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">5. Completa la analogía: Fine-tuning es a un modelo de IA como _____ es a un consultor de ventas.</div>
+        <ul class="options" id="q0-4">
+          <li class="option" onclick="selectOption(this,'q0-4',false,'explanation-0-4')"><input type="radio"> Darle instrucciones antes de una reunión</li>
+          <li class="option" onclick="selectOption(this,'q0-4',true,'explanation-0-4')"><input type="radio"> Un programa de entrenamiento intensivo de 6 meses que cambia permanentemente sus habilidades y comportamientos</li>
+          <li class="option" onclick="selectOption(this,'q0-4',false,'explanation-0-4')"><input type="radio"> Mostrarle el deck de ventas por primera vez</li>
+          <li class="option" onclick="selectOption(this,'q0-4',false,'explanation-0-4')"><input type="radio"> Pedirle que use un script específico en la llamada</li>
+        </ul>
+        <div id="explanation-0-4" class="explanation">✅ Correcto. El fine-tuning es costoso, requiere datos y tiempo — como un programa de capacitación extensivo. El prompting experto es darle instrucciones claras antes de la reunión — inmediato y suficiente para el 90% de los casos. Para tu caso de uso en RevOps, el prompting experto es suficiente y mucho más práctico.</div>
+      </div>
+
+      <button class="quiz-btn" onclick="submitQuiz('quiz-0-result',5)">Ver Resultados</button>
+      <div id="quiz-0-result" class="quiz-result">
+        <div class="result-score" id="quiz-0-score">0/5</div>
+        <p id="quiz-0-msg">Completa el quiz para ver tus resultados.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- LECCIÓN 0.2 -->
+<!-- ════════════════════════════════════════ -->
+<div id="lesson-1" class="lesson-pane" style="display:none">
+  <div class="lesson-header">
+    <div class="lesson-badge"><div class="t-es">Módulo 0 · Lección 0.2 · 40 min</div><div class="t-en">Module 0 · Lesson 0.2 · 40 min</div></div>
+    <h1 class="lesson-title"><div class="t-es">El mapa completo del ecosistema IA 2026</div><div class="t-en">The Complete AI Ecosystem Map 2026</div></h1>
+    <div class="lesson-meta">
+      <span class="meta-chip">⏱ <span class="t-es">40 minutos</span><span class="t-en">40 minutes</span></span>
+      <span class="meta-chip">🗺️ <span class="t-es">Orientación</span><span class="t-en">Orientation</span></span>
+      <span class="meta-chip">🌐 <span class="t-es">Actualizado 2026</span><span class="t-en">Updated 2026</span></span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'leccion-1')">📖 Lección</button>
+    <button class="tab" onclick="switchTab(this,'ejercicio-1')">✏️ Ejercicio</button>
+    <button class="tab" onclick="switchTab(this,'quiz-1')">🧠 Quiz</button>
+  </div>
+
+  <div id="leccion-1" class="tab-content active">
+    <div class="objectives">
+      <h3><div class="t-es">Al terminar esta lección podrás:</div><div class="t-en">By the end of this lesson, you'll be able to:</div></h3>
+      <ul>
+        <li><div class="t-es">Explicar la diferencia entre modelos base, productos de IA y aplicaciones</div><div class="t-en">Explain the difference between base models, AI products, and applications</div></li>
+        <li><div class="t-es">Elegir el modelo correcto para cada tipo de tarea profesional</div><div class="t-en">Choose the right model for each type of professional task</div></li>
+        <li><div class="t-es">Entender dónde estamos en el ciclo de adopción de la IA</div><div class="t-en">Understand where we are in the AI adoption cycle</div></li>
+        <li><div class="t-es">Predecir qué tendencias impactarán tu trabajo en los próximos 12 meses</div><div class="t-en">Predict what trends will impact your work in the next 12 months</div></li>
+      </ul>
+    </div>
+
+    <div class="lesson-body">
+      <h2><div class="t-es">Las 3 Capas del Ecosistema IA</div><div class="t-en">The 3 Layers of the AI Ecosystem</div></h2>
+      <p><div class="t-es">El ecosistema de IA en 2026 tiene tres capas distintas. Confundirlas es uno de los errores más comunes. Entenderlas te permite navegar el mercado con claridad.</div><div class="t-en">The AI ecosystem in 2026 has three distinct layers. Confusing them is one of the most common mistakes. Understanding them allows you to navigate the market clearly.</div></p>
+
+      <div class="framework">
+        <div class="framework-title"><div class="t-es">Las 3 Capas del Ecosistema</div><div class="t-en">The 3 Ecosystem Layers</div></div>
+        <div class="framework-item">
+          <div class="fi-letter">1</div>
+          <div class="fi-content">
+            <h4><div class="t-es">Capa de Infraestructura: Los Modelos Base</div><div class="t-en">Infrastructure Layer: Base Models</div></h4>
+            <p><div class="t-es">Los LLMs entrenados con billones de tokens. Son la materia prima. Aquí están: GPT-5.4 (OpenAI), Claude Opus 4.6 (Anthropic), Gemini 3.1 Pro (Google), Llama 3.3 (Meta, open source), Mistral (europeo, open source). Tú no construyes aquí, pero sí eliges cuál usar.</div><div class="t-en">LLMs trained on trillions of tokens. They're the raw material. Here we have: GPT-5.4 (OpenAI), Claude Opus 4.6 (Anthropic), Gemini 3.1 Pro (Google), Llama 3.3 (Meta, open source), Mistral (European, open source). You don't build here, but you do choose which to use.</div></p>
+          </div>
+        </div>
+        <div class="framework-item">
+          <div class="fi-letter">2</div>
+          <div class="fi-content">
+            <h4><div class="t-es">Capa de Plataforma: Los Productos de IA</div><div class="t-en">Platform Layer: AI Products</div></h4>
+            <p><div class="t-es">Interfaces y herramientas construidas sobre los modelos base. Aquí viven: Claude.ai, ChatGPT, Perplexity, GitHub Copilot, Cursor, Notion AI, Microsoft Copilot. Estas son las herramientas que usas día a día. Tu stack actual opera en esta capa.</div><div class="t-en">Interfaces and tools built on top of base models. Here live: Claude.ai, ChatGPT, Perplexity, GitHub Copilot, Cursor, Notion AI, Microsoft Copilot. These are the tools you use daily. Your current stack operates on this layer.</div></p>
+          </div>
+        </div>
+        <div class="framework-item">
+          <div class="fi-letter">3</div>
+          <div class="fi-content">
+            <h4><div class="t-es">Capa de Aplicación: Las Soluciones Verticales</div><div class="t-en">Application Layer: Vertical Solutions</div></h4>
+            <p><div class="t-es">Productos de IA especializados por industria o función. Aquí están: Clay (IA para prospecting), Gong (IA para calls de ventas), Lavender (IA para emails), Smartlead (IA para outreach). Esta es la capa donde hay más oportunidad de negocio para ti como consultor.</div><div class="t-en">AI products specialized by industry or function. Here we have: Clay (AI for prospecting), Gong (AI for sales calls), Lavender (AI for emails), Smartlead (AI for outreach). This is the layer with the most business opportunity for you as a consultant.</div></p>
+          </div>
+        </div>
+      </div>
+
+      <h2><div class="t-es">Los Modelos Principales y Cuándo Usar Cada Uno</div><div class="t-en">Main Models and When to Use Each One</div></h2>
+      <p><div class="t-es">No existe el "mejor modelo" en absoluto — existen modelos mejores para tareas específicas. Aquí está el mapa actualizado para 2026:</div><div class="t-en">There's no "best model" at all — there are better models for specific tasks. Here's the updated map for 2026:</div></p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th><span class="t-es">Modelo</span><span class="t-en">Model</span></th><th><span class="t-es">Mejor para</span><span class="t-en">Best for</span></th><th><span class="t-es">Limitaciones</span><span class="t-en">Limitations</span></th><th><span class="t-es">Tu uso ideal</span><span class="t-en">Your ideal use</span></th></tr></thead>
+          <tbody>
+            <tr><td>Claude Opus 4.6</td><td><span class="t-es">Análisis profundo, razonamiento complejo, documentos largos, prompts con mucho contexto (200K tokens)</span><span class="t-en">Deep analysis, complex reasoning, long documents, high-context prompts (200K tokens)</span></td><td><span class="t-es">Más lento que Sonnet, mayor costo por token</span><span class="t-en">Slower than Sonnet, higher cost per token</span></td><td><span class="t-es">Propuestas de consultoría, análisis estratégico, trabajos importantes</span><span class="t-en">Consulting proposals, strategic analysis, important work</span></td></tr>
+            <tr><td>Claude Sonnet 4.5</td><td><span class="t-es">Balance velocidad/calidad, tareas cotidianas, respuestas rápidas de alta calidad</span><span class="t-en">Speed/quality balance, everyday tasks, fast high-quality responses</span></td><td><span class="t-es">Menos potente que Opus en razonamiento muy complejo</span><span class="t-en">Less powerful than Opus for very complex reasoning</span></td><td><span class="t-es">90% de tus tareas diarias</span><span class="t-en">90% of your daily tasks</span></td></tr>
+            <tr><td>GPT-5.4</td><td><span class="t-es">Análisis de archivos, generación de imágenes multimodal, razonamiento PhD-level, voice mode</span><span class="t-en">File analysis, multimodal image generation, PhD-level reasoning, voice mode</span></td><td><span class="t-es">Context window de 128K (menor que Claude)</span><span class="t-en">128K context window (less than Claude)</span></td><td><span class="t-es">Analizar CSVs de CRM, crear visualizaciones, sesiones de voz, razonamiento avanzado</span><span class="t-en">Analyze CRM CSVs, create visualizations, voice sessions, advanced reasoning</span></td></tr>
+            <tr><td>Gemini 3.1 Pro</td><td><span class="t-es">Contexto masivo (2M tokens), investigación con búsqueda web, análisis de videos y audios largos</span><span class="t-en">Massive context (2M tokens), web search research, long video/audio analysis</span></td><td><span class="t-es">Menos preciso en razonamiento complejo que Claude</span><span class="t-en">Less precise at complex reasoning than Claude</span></td><td><span class="t-es">Research de mercado, análisis de calls grabadas, Google Workspace, documentos muy largos</span><span class="t-en">Market research, recorded call analysis, Google Workspace, very long documents</span></td></tr>
+            <tr><td>Perplexity Pro</td><td><span class="t-es">Búsqueda en tiempo real con citas, investigación de mercado, fact-checking con sources</span><span class="t-en">Real-time search with citations, market research, fact-checking with sources</span></td><td><span class="t-es">No genera contenido creativo profundo, optimizado para búsqueda</span><span class="t-en">Limited creative content generation, optimized for search</span></td><td><span class="t-es">Investigar competidores, tendencias de IA, verificar datos críticos con fuentes</span><span class="t-en">Investigate competitors, AI trends, verify critical data with sources</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2><div class="t-es">El Ciclo de Hype y Dónde Estamos en 2026</div><div class="t-en">The Hype Cycle and Where We Are in 2026</div></h2>
+      <p><div class="t-es">Gartner popularizó el concepto del "Hype Cycle" — la curva de adopción de tecnología que va desde expectativas infladas hasta la productividad real. Es importante saber dónde estamos.</div><div class="t-en">Gartner popularized the concept of the "Hype Cycle" — the technology adoption curve that goes from inflated expectations to real productivity. It's important to know where we are.</div></p>
+
+      <div class="callout callout-key">
+        <div class="callout-label">⚡ <span class="t-es">Dónde estamos en 2026</span><span class="t-en">Where We Are in 2026</span></div>
+        <p><div class="t-es">Los LLMs generativos (chatbots, asistentes) pasaron el "peak of inflated expectations" y están entrando en la "slope of enlightenment" — la gente entiende mejor qué pueden y no pueden hacer. Los AI Agents (sistemas autónomos que ejecutan tareas) están justo en el peak de expectativas — mucho hype, resultados variables. El extended reasoning y multimodalidad están consolidándose. <strong>El momento ideal para aprender es ahora</strong>: suficientemente maduro para ser útil, suficientemente temprano para diferenciarte.</div><div class="t-en">Generative LLMs (chatbots, assistants) have passed the "peak of inflated expectations" and are entering the "slope of enlightenment" — people better understand what they can and cannot do. AI Agents (autonomous systems that execute tasks) are at the peak of expectations — lots of hype, variable results. Extended reasoning and multimodality are consolidating. <strong>The ideal time to learn is now</strong>: mature enough to be useful, early enough to differentiate yourself.</div></p>
+      </div>
+
+      <h2><div class="t-es">Open Source vs. Closed Source: Qué Importa para Ti</div><div class="t-en">Open Source vs. Closed Source: What Matters to You</div></h2>
+      <p><strong><div class="t-es">Modelos de código abierto</div><div class="t-en">Open source models</div></strong> <div class="t-es">(Llama 3.3, Mistral, Qwen, DeepSeek R1): Se pueden descargar y correr localmente, sin enviar datos a terceros. Importantes para empresas con datos sensibles. Como consultor, entender estos modelos abre puertas con clientes en industrias reguladas (finanzas, salud, legal). DeepSeek R1 demostró que el razonamiento de clase mundial puede hacerse económicamente.</div><div class="t-en">(Llama 3.3, Mistral, Qwen, DeepSeek R1): Can be downloaded and run locally, without sending data to third parties. Important for companies with sensitive data. As a consultant, understanding these models opens doors with clients in regulated industries (finance, health, legal). DeepSeek R1 proved that world-class reasoning can be done affordably.</div></p>
+      <p><strong><div class="t-es">Modelos propietarios</div><div class="t-en">Proprietary models</div></strong> <div class="t-es">(Claude, GPT-5.4, Gemini): Acceso vía API o interfaz web, mejor rendimiento actual, actualizaciones constantes. Para el 90% de casos de RevOps, estos son suficientes.</div><div class="t-en">(Claude, GPT-5.4, Gemini): Access via API or web interface, best current performance, constant updates. For 90% of RevOps cases, these are sufficient.</div></p>
+
+      <div class="callout callout-apply">
+        <div class="callout-label">🎯 Aplicación a tu carrera</div>
+        <p>Tu posicionamiento ideal como experto: dominas los modelos propietarios para uso diario y sabes suficiente de open source para asesorar a clientes con restricciones de datos. No necesitas saber ejecutar Llama localmente — sí necesitas saber cuándo recomendarlo y por qué.</p>
+      </div>
+
+      <h2><div class="t-es">Las 5 Tendencias que Definirán los Próximos 12 Meses</div><div class="t-en">The 5 Trends That Will Define the Next 12 Months</div></h2>
+      <p><div class="t-es">Como experto en IA, necesitas estar al tanto de hacia dónde va el campo, no solo de dónde está hoy:</div><div class="t-en">As an AI expert, you need to be aware of where the field is going, not just where it is today:</div></p>
+      <p><strong><div class="t-es">1. Agentes autónomos en producción:</div><div class="t-en">1. Autonomous agents in production:</div></strong> <div class="t-es">2026 es el año en que los AI agents dejan de ser demos y empiezan a correr procesos reales de negocio con MCP (Model Context Protocol) como estándar. Oportunidad enorme para RevOps.</div><div class="t-en">2026 is the year AI agents stop being demos and start running real business processes with MCP (Model Context Protocol) as the standard. Huge opportunity for RevOps.</div></p>
+      <p><strong><div class="t-es">2. Multimodalidad ubicua:</div><div class="t-en">2. Ubiquitous multimodality:</div></strong> <div class="t-es">Los modelos procesan texto, imágenes, audio y video en paralelo. Implicación: análisis de calls de ventas, demos grabadas, materiales de clientes — todo procesable con IA.</div><div class="t-en">Models process text, images, audio, and video in parallel. Implication: analysis of sales calls, recorded demos, client materials — all AI-processable.</div></p>
+      <p><strong><div class="t-es">3. Modelos más pequeños y rápidos:</div><div class="t-en">3. Smaller and faster models:</div></strong> <div class="t-es">Los "small language models" (SLMs) corren en dispositivos sin internet. Para RevOps: análisis offline, integración en apps móviles de ventas, menor costo.</div><div class="t-en">Small language models (SLMs) run on devices without internet. For RevOps: offline analysis, integration in mobile sales apps, lower cost.</div></p>
+      <p><strong>4. IA en cada herramienta SaaS:</strong> HubSpot, Salesforce, Zoom, Slack — todos integrando IA nativa. El experto en RevOps que no entiende IA se vuelve obsoleto en 2-3 años.</p>
+      <p><strong>5. Regulación y gobernanza:</strong> Europa avanza con el AI Act. Las empresas necesitan políticas de uso de IA. Oportunidad: ser el experto que ayuda a clientes a navegar esto.</p>
+    </div>
+
+    <div class="takeaways">
+      <h3>Puntos Clave de esta Lección</h3>
+      <ul>
+        <li>El ecosistema tiene 3 capas: modelos base → plataformas → aplicaciones verticales. Tu oportunidad mayor está en la tercera capa</li>
+        <li>No hay un "mejor modelo" — hay modelos mejores para tareas específicas. Claude para análisis profundo, Perplexity para research, GPT para datos</li>
+        <li>Estamos en el momento óptimo para especializarte: tecnología madura + diferenciación posible + demanda creciente</li>
+        <li>Los AI agents son la próxima gran ola. Quienes los entiendan en RevOps tendrán ventaja masiva en 2026-2027</li>
+      </ul>
+    </div>
+
+    <div class="lesson-nav-bottom">
+      <button class="lnav-btn" onclick="prevLesson()">← Lección anterior</button>
+      <button class="lnav-btn next" onclick="nextLesson()">Siguiente: Terminología esencial →</button>
+    </div>
+  </div>
+
+  <div id="ejercicio-1" class="tab-content">
+    <div class="exercise">
+      <h2>✏️ Ejercicio 0.2: Mapea tu Stack y Elige el Modelo Correcto</h2>
+      <p class="ex-meta">⏱ 25 minutos · Herramientas: Perplexity + Notion · Entregable: Tu "Model Selection Guide"</p>
+      <div class="exercise-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Inventario de tus tareas de IA actuales</h4>
+          <p>Lista las 10 tareas más frecuentes en tu trabajo donde usas o podrías usar IA. Ejemplos: escribir emails de follow-up, analizar datos de pipeline, preparar reportes de marketing, crear presentaciones, resumir reuniones, etc.</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4><div class="t-es">Asigna el modelo óptimo a cada tarea</div><div class="t-en">Assign the optimal model to each task</div></h4>
+          <p><div class="t-es">Para cada una de tus 10 tareas, decide qué herramienta de tu stack es la más adecuada según lo aprendido. Justifica brevemente por qué.</div><div class="t-en">For each of your 10 tasks, decide which tool in your stack is most appropriate based on what you've learned. Briefly justify why.</div></p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4><div class="t-es">Investiga con Perplexity</div><div class="t-en">Research with Perplexity</div></h4>
+          <pre><div class="t-es">"¿Cuáles son las diferencias clave entre Claude, ChatGPT y Gemini para casos de uso de B2B sales y RevOps en 2026? Dame comparaciones específicas con ejemplos."</div><div class="t-en">"What are the key differences between Claude, ChatGPT, and Gemini for B2B sales and RevOps use cases in 2026? Give me specific comparisons with examples."</div></pre>
+          <p><div class="t-es">Contrasta los resultados con tu asignación del paso 2.</div><div class="t-en">Contrast the results with your assignment from step 2.</div></p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <h4>📦 <span class="t-es">Entregable</span><span class="t-en">Deliverable</span></h4>
+        <p><div class="t-es">Una tabla en Notion: "Mi guía de selección de modelos" — tus 10 tareas con el modelo asignado, la justificación y cualquier insight de la investigación en Perplexity.</div><div class="t-en">A table in Notion: "My Model Selection Guide" — your 10 tasks with assigned model, justification, and insights from your Perplexity research.</div></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="quiz-1" class="tab-content">
+    <div class="quiz">
+      <h2>🧠 Quiz: El Ecosistema IA 2026</h2>
+      <p class="quiz-intro">4 preguntas de comprensión aplicada.</p>
+      <div class="question-block">
+        <div class="question-text">1. Un cliente te dice que quiere implementar IA en su proceso de ventas pero tiene datos muy sensibles de clientes y no puede enviarlos a servidores externos. ¿Qué les recomendarías?</div>
+        <ul class="options" id="q1-0">
+          <li class="option" onclick="selectOption(this,'q1-0',false,'explanation-1-0')"><input type="radio"> No usar IA — no es posible con restricciones de datos</li>
+          <li class="option" onclick="selectOption(this,'q1-0',true,'explanation-1-0')"><input type="radio"> Explorar modelos open source como Llama que pueden correr localmente sin enviar datos a terceros</li>
+          <li class="option" onclick="selectOption(this,'q1-0',false,'explanation-1-0')"><input type="radio"> Usar solo Microsoft Copilot porque está en el cloud de Microsoft que es seguro</li>
+          <li class="option" onclick="selectOption(this,'q1-0',false,'explanation-1-0')"><input type="radio"> Pedir a OpenAI un contrato de confidencialidad</li>
+        </ul>
+        <div id="explanation-1-0" class="explanation">✅ Exacto. Los modelos open source (Llama 3.3, Mistral, Qwen) pueden desplegarse localmente — los datos nunca salen de los servidores del cliente. Como consultor especializado, este conocimiento te abre mercados en industrias reguladas donde los modelos propietarios no son opción.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">2. Necesitas investigar qué herramientas de AI para sales outreach están trending en el mercado esta semana. ¿Qué herramienta de tu stack usarías primero?</div>
+        <ul class="options" id="q1-1">
+          <li class="option" onclick="selectOption(this,'q1-1',false,'explanation-1-1')"><input type="radio"> Claude — tiene el mejor razonamiento</li>
+          <li class="option" onclick="selectOption(this,'q1-1',true,'explanation-1-1')"><input type="radio"> Perplexity — accede a información en tiempo real con citas verificables</li>
+          <li class="option" onclick="selectOption(this,'q1-1',false,'explanation-1-1')"><input type="radio"> ChatGPT — tiene más conocimiento de herramientas de ventas</li>
+          <li class="option" onclick="selectOption(this,'q1-1',false,'explanation-1-1')"><input type="radio"> Gemini — tiene Google Search integrado</li>
+        </ul>
+        <div id="explanation-1-1" class="explanation">✅ Correcto. Perplexity está diseñado específicamente para búsqueda en tiempo real con citas. Para investigar tendencias actuales, herramientas nuevas y noticias del sector, Perplexity es el primer paso. Después puedes llevar esos hallazgos a Claude para análisis más profundo.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">3. ¿En cuál de las 3 capas del ecosistema hay mayor oportunidad para un consultor especializado en RevOps + IA?</div>
+        <ul class="options" id="q1-2">
+          <li class="option" onclick="selectOption(this,'q1-2',false,'explanation-1-2')"><input type="radio"> Capa 1 (Modelos base) — ahí está la tecnología fundamental</li>
+          <li class="option" onclick="selectOption(this,'q1-2',false,'explanation-1-2')"><input type="radio"> Capa 2 (Plataformas) — las herramientas son donde todo ocurre</li>
+          <li class="option" onclick="selectOption(this,'q1-2',true,'explanation-1-2')"><input type="radio"> Capa 3 (Aplicaciones verticales) — soluciones específicas para RevOps con IA</li>
+          <li class="option" onclick="selectOption(this,'q1-2',false,'explanation-1-2')"><input type="radio"> Todas las capas por igual</li>
+        </ul>
+        <div id="explanation-1-2" class="explanation">✅ Correcto. La Capa 3 es donde la combinación de expertise de dominio (RevOps) + conocimiento de IA crea valor único. Construir o implementar soluciones específicas para RevOps — scoring de leads, inteligencia de pipeline, agentes de CRM — eso es donde los consultores de nicho ganan proyectos con altos márgenes.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">4. Tienes que analizar la transcripción de 50 calls de ventas de tu equipo (cada una de ~45 minutos). ¿Qué herramienta/modelo usarías?</div>
+        <ul class="options" id="q1-3">
+          <li class="option" onclick="selectOption(this,'q1-3',false,'explanation-1-3')"><input type="radio"> ChatGPT — lo puedes hacer en el chat normal</li>
+          <li class="option" onclick="selectOption(this,'q1-3',true,'explanation-1-3')"><input type="radio"> Gemini o Claude — ambos tienen ventanas de contexto largas para documentos extensos, con Gemini siendo óptimo para audio/video directamente</li>
+          <li class="option" onclick="selectOption(this,'q1-3',false,'explanation-1-3')"><input type="radio"> Perplexity — tiene mejor análisis de documentos</li>
+          <li class="option" onclick="selectOption(this,'q1-3',false,'explanation-1-3')"><input type="radio"> Ninguna IA puede procesar tanto volumen</li>
+        </ul>
+        <div id="explanation-1-3" class="explanation">✅ Correcto. Para volúmenes grandes de texto o audio, Gemini con su ventana de 1M tokens es ideal (puede procesar el audio directamente). Claude con su contexto de 200K es excelente para transcripciones de texto. Para 50 calls: procesa en lotes con Claude o usa Gemini si tienes los archivos de audio.</div>
+      </div>
+      <button class="quiz-btn" onclick="submitQuiz('quiz-1-result',4)">Ver Resultados</button>
+      <div id="quiz-1-result" class="quiz-result">
+        <div class="result-score" id="quiz-1-score">0/4</div>
+        <p id="quiz-1-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- LECCIÓN 0.3 -->
+<!-- ════════════════════════════════════════ -->
+<div id="lesson-2" class="lesson-pane" style="display:none">
+  <div class="lesson-header">
+    <div class="lesson-badge">Módulo 0 · Lección 0.3 · 35 min</div>
+    <h1 class="lesson-title">Terminología esencial para profesionales de IA</h1>
+    <div class="lesson-meta">
+      <span class="meta-chip">⏱ 35 minutos</span>
+      <span class="meta-chip">📚 Glosario aplicado</span>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'leccion-2')">📖 Lección</button>
+    <button class="tab" onclick="switchTab(this,'ejercicio-2')">✏️ Ejercicio</button>
+    <button class="tab" onclick="switchTab(this,'quiz-2')">🧠 Quiz</button>
+  </div>
+  <div id="leccion-2" class="tab-content active">
+    <div class="objectives">
+      <h3>Al terminar esta lección podrás:</h3>
+      <ul>
+        <li>Usar la terminología correcta en reuniones con stakeholders y clientes técnicos</li>
+        <li>Entender artículos y documentación de IA sin perderte en el vocabulario</li>
+        <li>Hablar con autoridad sobre IA aplicada al negocio</li>
+      </ul>
+    </div>
+    <div class="lesson-body">
+      <h2>Por Qué Importa el Vocabulario</h2>
+      <p>El lenguaje de IA tiene mucho jargon innecesario, pero también tiene términos precisos que importan. Como experto, necesitas dos habilidades: entender los términos técnicos cuando lees documentación o hablas con ingenieros, y saber traducirlos al lenguaje de negocio cuando hablas con CEOs y directores de ventas.</p>
+      <div class="callout callout-key">
+        <div class="callout-label">⚡ Regla de Experto</div>
+        <p>En una reunión con el CTO: usa los términos técnicos. En una reunión con el VP de Ventas: tradúcelo a impacto de negocio. La capacidad de navegar ambos mundos es lo que hace valioso a un consultor de IA especializado en RevOps.</p>
+      </div>
+
+      <h2>Glosario Esencial con Analogías de Negocio</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Término</th><th>Definición técnica simplificada</th><th>Analogía de negocio</th></tr></thead>
+          <tbody>
+            <tr><td>LLM (Large Language Model)</td><td>Modelo de IA entrenado con enormes cantidades de texto para generar y entender lenguaje natural</td><td>Un consultor que ha leído todo el conocimiento del mundo y puede ayudarte con casi cualquier tema</td></tr>
+            <tr><td>Token</td><td>Fragmento de texto de ~3-4 caracteres que el modelo procesa</td><td>Como palabras para el modelo, pero más granulares. "RevOps" = 2 tokens</td></tr>
+            <tr><td>Prompt</td><td>El texto que tú escribes para darle instrucciones al modelo</td><td>El brief que le das a un consultor antes de que empiece a trabajar</td></tr>
+            <tr><td>Completion / Output</td><td>La respuesta que genera el modelo</td><td>El entregable que te devuelve el consultor</td></tr>
+            <tr><td>System Prompt</td><td>Instrucciones permanentes que definen el comportamiento del modelo en toda la conversación</td><td>El contrato de trabajo o job description de tu asistente de IA</td></tr>
+            <tr><td>Context Window</td><td>La cantidad máxima de texto que el modelo puede "ver" a la vez</td><td>La capacidad de memoria de trabajo de tu consultor — cuánto puede tener en mente simultáneamente</td></tr>
+            <tr><td>Temperature</td><td>Parámetro que controla la aleatoriedad en las respuestas</td><td>El nivel de creatividad vs. consistencia del consultor. Bajo = conservador y predecible; alto = creativo e impredecible</td></tr>
+            <tr><td>Hallucination</td><td>Cuando el modelo genera información incorrecta pero convincente</td><td>Un consultor que inventa datos de mercado porque suena plausible — peligroso si no verificas</td></tr>
+            <tr><td>Fine-tuning</td><td>Reentrenar un modelo con datos específicos para especializar su comportamiento</td><td>Contratar un consultor y entrenarlo durante meses en los procesos específicos de tu empresa</td></tr>
+            <tr><td>Embedding</td><td>Representación matemática del significado de texto en forma de vector numérico</td><td>Traducir el concepto "CRM" a coordenadas en un mapa del conocimiento — conceptos similares quedan cerca en ese mapa</td></tr>
+            <tr><td>RAG (Retrieval Augmented Generation)</td><td>Técnica que conecta un LLM con una base de conocimiento externa para responder con información actualizada y específica</td><td>Darle a tu consultor acceso a tu intranet, documentación interna y base de datos antes de cada reunión</td></tr>
+            <tr><td>AI Agent</td><td>Sistema que usa un LLM para planear y ejecutar tareas de múltiples pasos usando herramientas externas</td><td>Un empleado autónomo que puede revisar emails, actualizar el CRM, buscar en internet y enviarte un reporte — sin que le digas cada paso</td></tr>
+            <tr><td>Multi-agent System</td><td>Varios agentes de IA que colaboran, cada uno especializado en una tarea</td><td>Un equipo completo de especialistas (un analista, un redactor, un investigador) que trabajan juntos en un proyecto</td></tr>
+            <tr><td>Inference</td><td>El proceso de usar el modelo para generar una respuesta</td><td>El acto de preguntarle al consultor y esperar su respuesta</td></tr>
+            <tr><td>API (Application Programming Interface)</td><td>Protocolo que permite a diferentes softwares comunicarse entre sí</td><td>El conector estándar — como un enchufe universal que permite conectar dos dispositivos aunque sean de marcas diferentes</td></tr>
+            <tr><td>Webhook</td><td>Mecanismo que envía una notificación automática cuando ocurre un evento</td><td>Una alarma automática que se dispara cuando algo ocurre — "cuando llegue un lead nuevo, avísame inmediatamente"</td></tr>
+            <tr><td>Prompt Engineering</td><td>El arte y ciencia de diseñar prompts que producen outputs óptimos de un LLM</td><td>La habilidad de escribir briefs perfectos para tu consultor de IA — la habilidad más rentable de 2026</td></tr>
+            <tr><td>Chain-of-Thought</td><td>Técnica de prompting que hace que el modelo muestre su razonamiento paso a paso</td><td>Pedirle al consultor que explique cómo llegó a su conclusión, no solo que diga la conclusión</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Términos que Oirás en Conversaciones Técnicas</h2>
+      <p>Estos son términos que aparecen en artículos de IA y conversaciones con ingenieros. No necesitas usarlos constantemente, pero sí entenderlos cuando los veas:</p>
+      <p><strong>Transformer:</strong> La arquitectura matemática que hace posibles los LLMs modernos. Inventada por Google en 2017 con el paper "Attention is All You Need". No necesitas entender las matemáticas — solo saber que es la base de todo modelo moderno.</p>
+      <p><strong>Parameters:</strong> Los "ajustes" internos del modelo, aprendidos durante el entrenamiento. GPT-4 tiene ~1.8 billones de parámetros. Más parámetros generalmente = más capaz, pero también más costoso de correr.</p>
+      <p><strong>Tokenizer:</strong> El sistema que convierte texto en tokens. Importante para entender por qué algunos idiomas consumen más tokens que otros (el español usa ~15% más tokens que el inglés).</p>
+      <p><strong>Latency:</strong> El tiempo que tarda el modelo en responder. En agentes, esto se multiplica — si un agente hace 10 llamadas al modelo, la latencia total puede ser de varios minutos.</p>
+
+      <div class="callout callout-apply">
+        <div class="callout-label">🎯 Aplicación inmediata</div>
+        <p>La próxima vez que leas un artículo sobre IA o estés en una reunión con el equipo de tecnología, identifica cuántos de estos términos ya reconoces y puedes explicar en lenguaje de negocio. Esa capacidad de traducción es lo que te hace valioso como consultor puente entre tecnología y negocio.</p>
+      </div>
+    </div>
+    <div class="takeaways">
+      <h3>Puntos Clave</h3>
+      <ul>
+        <li>El vocabulario técnico de IA tiene analogías de negocio claras — úsalas para comunicarte con stakeholders no técnicos</li>
+        <li>RAG y AI Agents son los términos más importantes para tu especialización en RevOps</li>
+        <li>Saber traducir entre lenguaje técnico y lenguaje de negocio es una habilidad core del consultor de IA</li>
+      </ul>
+    </div>
+    <div class="lesson-nav-bottom">
+      <button class="lnav-btn" onclick="prevLesson()">← Lección anterior</button>
+      <button class="lnav-btn next" onclick="nextLesson()">Siguiente: Tu setup profesional →</button>
+    </div>
+  </div>
+
+  <div id="ejercicio-2" class="tab-content">
+    <div class="exercise">
+      <h2>✏️ Ejercicio 0.3: Tu Glosario Personalizado</h2>
+      <p class="ex-meta">⏱ 20 minutos · Herramienta: Notion · Entregable: Tu glosario personal de IA</p>
+      <div class="exercise-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Crea tu glosario en Notion</h4>
+          <p>Crea una base de datos en Notion llamada "Glosario IA". Columnas: Término | Definición técnica | Mi analogía de RevOps | Cuándo lo uso.</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Elige los 10 términos más relevantes para ti</h4>
+          <p>De la tabla de esta lección, selecciona los 10 que más usarás en tu trabajo. Escribe TU propia analogía para cada uno — que conecte con tu experiencia específica en CRM y RevOps. Si "RAG" es como darle acceso a tu intranet a un consultor, ¿cómo lo explicarías tú a tu VP de Ventas?</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Prueba tus explicaciones con Claude</h4>
+          <pre>"Actúa como mi VP de Ventas que no sabe nada de IA pero entiende mucho de CRM. Voy a explicarte qué es RAG: [tu explicación]. ¿Te quedó claro o necesitas que lo explique diferente? ¿Qué preguntas tendrías?"</pre>
+          <p>Refina tu explicación hasta que Claude (como VP de Ventas) la entienda sin confusión.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <h4>📦 Entregable</h4>
+        <p>Tu glosario personal de 10 términos en Notion, con tu propia analogía para cada uno, validada con el ejercicio de Claude.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="quiz-2" class="tab-content">
+    <div class="quiz">
+      <h2>🧠 Quiz: Terminología de IA</h2>
+      <p class="quiz-intro">Pon a prueba tu comprensión del vocabulario aplicado.</p>
+      <div class="question-block">
+        <div class="question-text">1. Tu CTO te pregunta si quieren implementar RAG para el chatbot interno. En términos de negocio, ¿qué le estás proponiendo?</div>
+        <ul class="options" id="q2-0">
+          <li class="option" onclick="selectOption(this,'q2-0',false,'explanation-2-0')"><input type="radio"> Reemplazar el modelo de IA actual con uno más nuevo</li>
+          <li class="option" onclick="selectOption(this,'q2-0',true,'explanation-2-0')"><input type="radio"> Conectar el chatbot de IA a la documentación interna para que responda con información específica de tu empresa en lugar de conocimiento genérico</li>
+          <li class="option" onclick="selectOption(this,'q2-0',false,'explanation-2-0')"><input type="radio"> Crear múltiples chatbots para diferentes departamentos</li>
+          <li class="option" onclick="selectOption(this,'q2-0',false,'explanation-2-0')"><input type="radio"> Hacer que el chatbot aprenda de las conversaciones pasadas</li>
+        </ul>
+        <div id="explanation-2-0" class="explanation">✅ Correcto. RAG conecta el LLM con una base de conocimiento externa (tu documentación, playbooks, políticas, base de datos de clientes). El resultado: el chatbot puede responder preguntas específicas sobre tu empresa con información actualizada y citar las fuentes. Esto es fundamental para chatbots de sales enablement o soporte al cliente.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">2. Un proveedor de IA te dice que su modelo tiene "100K context window". ¿Qué significa en términos prácticos para analizar datos de ventas?</div>
+        <ul class="options" id="q2-1">
+          <li class="option" onclick="selectOption(this,'q2-1',false,'explanation-2-1')"><input type="radio"> Puede analizar 100,000 registros de CRM al mismo tiempo</li>
+          <li class="option" onclick="selectOption(this,'q2-1',true,'explanation-2-1')"><input type="radio"> Puede procesar aproximadamente 75,000 palabras en una sola consulta — suficiente para analizar un año completo de emails o múltiples documentos grandes</li>
+          <li class="option" onclick="selectOption(this,'q2-1',false,'explanation-2-1')"><input type="radio"> Solo puede responder 100,000 preguntas antes de resetear</li>
+          <li class="option" onclick="selectOption(this,'q2-1',false,'explanation-2-1')"><input type="radio"> Tiene acceso a 100,000 fuentes de datos externas</li>
+        </ul>
+        <div id="explanation-2-1" class="explanation">✅ Correcto. 100K tokens ≈ 75,000 palabras ≈ un libro de 300 páginas. En términos prácticos: puedes pegar todo el historial de emails de una cuenta clave, el transcript completo de varias calls, y el historial del CRM — todo en una sola consulta para un análisis unificado.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">3. La diferencia principal entre fine-tuning y prompting es:</div>
+        <ul class="options" id="q2-2">
+          <li class="option" onclick="selectOption(this,'q2-2',false,'explanation-2-2')"><input type="radio"> El fine-tuning es más rápido que el prompting</li>
+          <li class="option" onclick="selectOption(this,'q2-2',true,'explanation-2-2')"><input type="radio"> El fine-tuning cambia el modelo permanentemente con training adicional; el prompting instruye al modelo en el momento sin cambiar sus pesos</li>
+          <li class="option" onclick="selectOption(this,'q2-2',false,'explanation-2-2')"><input type="radio"> El prompting solo funciona con modelos de código abierto</li>
+          <li class="option" onclick="selectOption(this,'q2-2',false,'explanation-2-2')"><input type="radio"> No hay diferencia significativa en los resultados</li>
+        </ul>
+        <div id="explanation-2-2" class="explanation">✅ Correcto. Fine-tuning = cambio permanente + costo alto + requiere datos + tiempo. Prompting experto = instrucciones en el momento + inmediato + sin costo adicional + flexible. Para el 90% de casos de RevOps, el prompting experto es suficiente. El fine-tuning solo vale la pena cuando tienes un caso de uso muy específico y repetitivo con miles de ejemplos.</div>
+      </div>
+      <button class="quiz-btn" onclick="submitQuiz('quiz-2-result',3)">Ver Resultados</button>
+      <div id="quiz-2-result" class="quiz-result">
+        <div class="result-score" id="quiz-2-score">0/3</div>
+        <p id="quiz-2-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- LECCIÓN 0.4 -->
+<!-- ════════════════════════════════════════ -->
+<div id="lesson-3" class="lesson-pane" style="display:none">
+  <div class="lesson-header">
+    <div class="lesson-badge">Módulo 0 · Lección 0.4 · 50 min</div>
+    <h1 class="lesson-title">Tu setup profesional de IA</h1>
+    <div class="lesson-meta">
+      <span class="meta-chip">⏱ 50 minutos</span>
+      <span class="meta-chip">🔧 Setup práctico</span>
+      <span class="meta-chip">📁 Entregable: Tu workspace de IA</span>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'leccion-3')">📖 Lección</button>
+    <button class="tab" onclick="switchTab(this,'ejercicio-3')">✏️ Ejercicio</button>
+    <button class="tab" onclick="switchTab(this,'quiz-3')">🧠 Quiz</button>
+  </div>
+  <div id="leccion-3" class="tab-content active">
+    <div class="objectives">
+      <h3>Al terminar esta lección habrás:</h3>
+      <ul>
+        <li>Creado tus 3 archivos de contexto (about-me, my-voice, my-rules)</li>
+        <li>Configurado tu carpeta de trabajo en Cowork</li>
+        <li>Establecido tu AI Learning Vault en Notion</li>
+        <li>Definido tu ritual semanal de aprendizaje de IA</li>
+      </ul>
+    </div>
+    <div class="lesson-body">
+      <h2>Por Qué el Setup Importa Tanto</h2>
+      <p>La mayoría de personas usan IA en "modo turista" — cada conversación empieza desde cero, sin contexto, sin historial, sin personalización. El resultado son outputs genéricos que podrían ser para cualquier persona en cualquier industria.</p>
+      <p>Los profesionales de IA top 1% trabajan en "modo residente" — la IA conoce su contexto, su voz, sus reglas, sus proyectos actuales. El resultado son outputs que se sienten escritos específicamente para su situación.</p>
+      <p>La diferencia está en el setup. Y el setup se hace una vez y funciona para siempre.</p>
+
+      <h2>Los 3 Archivos de Contexto: Tu Identidad Digital para la IA</h2>
+      <p>Estos tres archivos transforman a Claude de un asistente genérico a tu coworker personalizado. Créalos hoy y actualízalos cada vez que algo relevante cambie en tu vida profesional.</p>
+
+      <div class="framework">
+        <div class="framework-title">Estructura de los 3 Archivos de Contexto</div>
+        <div class="framework-item">
+          <div class="fi-letter">📄</div>
+          <div class="fi-content">
+            <h4>about-me.md — Tu Identidad Profesional</h4>
+            <p>Quién eres, qué haces, en qué empresa, cuál es tu ICP, qué métricas te importan, cuáles son tus objetivos 2026. La IA necesita saber esto para que cada respuesta sea relevante para tu situación.</p>
+          </div>
+        </div>
+        <div class="framework-item">
+          <div class="fi-letter">🗣️</div>
+          <div class="fi-content">
+            <h4>my-voice.md — Tu Voz y Estilo</h4>
+            <p>Tu tono de comunicación, frases que detestas (como "por supuesto" o "ciertamente"), 2-3 ejemplos de emails o posts tuya. Con esto, cualquier texto que genere la IA sonará como tú, no como un robot.</p>
+          </div>
+        </div>
+        <div class="framework-item">
+          <div class="fi-letter">📋</div>
+          <div class="fi-content">
+            <h4>my-rules.md — Tus Reglas de Trabajo</h4>
+            <p>Instrucciones permanentes: siempre lee el contexto antes de responder, siempre pide aclaración si algo es ambiguo, nunca borres nada sin confirmación. Estas reglas van en Global Instructions de Cowork.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Tu AI Learning Vault en Notion</h2>
+      <p>El aprendizaje de IA sin sistema es ruido. El aprendizaje con sistema es crecimiento compuesto. Tu Vault de Aprendizaje tiene 5 secciones:</p>
+      <p><strong>📝 Notas de Lecciones:</strong> Una nota por cada lección de este curso con tus aprendizajes clave. No copies el contenido — escribe con tus palabras.</p>
+      <p><strong>⚡ Prompt Library:</strong> Base de datos de tus mejores prompts, organizados por categoría (análisis, redacción, estrategia, CRM, etc.). Con ejemplos de inputs y outputs.</p>
+      <p><strong>🔬 Experimentos:</strong> Un log de los experimentos que haces con IA. Qué intentaste, qué funcionó, qué no y por qué.</p>
+      <p><strong>📦 Proyectos:</strong> Registro de los proyectos reales donde aplicas IA. Los entregables de cada módulo de este curso van aquí.</p>
+      <p><strong>🌐 Recursos:</strong> Links, artículos, newsletters y herramientas que descubres. Con una nota de por qué es relevante para ti.</p>
+
+      <div class="callout callout-apply">
+        <div class="callout-label">🎯 El Ritual Semanal de 90 Minutos</div>
+        <p><strong>30 min · Lunes:</strong> Completa una lección de este curso y documenta en tu Vault.<br><strong>30 min · Miércoles:</strong> Aplica lo aprendido en un problema real de tu trabajo actual. Documenta el resultado.<br><strong>30 min · Viernes:</strong> Revisa qué funcionó esa semana, actualiza tu Prompt Library con los mejores prompts, comparte un insight en LinkedIn. Este ritual de 90 minutos/semana te coloca en el top 5% de aprendices de IA en 6 meses.</p>
+      </div>
+
+      <h2>Configurar Global Instructions en Cowork</h2>
+      <p>Ve a Settings → Cowork → Edit Global Instructions. Pega esto (personalizado con tu nombre):</p>
+      <p style="background:rgba(0,0,0,.3);border:1px solid rgba(108,99,255,.2);border-radius:8px;padding:1rem;font-family:'Courier New',monospace;font-size:.83rem;color:#c0baff;line-height:1.7">
+        "Eres el asistente de trabajo de Sergio AM, especialista en CRM, RevOps y Marketing Automation con experiencia en [tu industria]. Antes de responder cualquier solicitud: (1) Lee todos los archivos de contexto que Sergio haya subido. (2) Si algo no está claro, usa AskUserQuestion para pedir aclaración antes de ejecutar — nunca asumas ni adivines. (3) Siempre muestra un plan o esquema antes de crear documentos largos. (4) Nunca elimines ni modifiques archivos sin confirmación explícita. (5) Usa el español como idioma por defecto a menos que se especifique inglés. (6) Cuando termines una tarea, explica en 1-2 líneas qué hiciste."
+      </p>
+
+      <h2>El Principio de Mejora Continua</h2>
+      <p>Tu setup no es estático — debe evolucionar. Cada vez que Claude no entienda algo sobre ti, actualiza about-me.md. Cada vez que Claude use un tono que no te gusta, actualiza my-voice.md. Cada vez que algo salga mal en un flujo de trabajo, actualiza my-rules.md.</p>
+      <p>En 3 meses de uso consistente, habrás construido un sistema de contexto tan preciso que Claude trabajará contigo como si te conociera desde hace años. Esa es la ventaja compuesta del profesional de IA.</p>
+    </div>
+    <div class="takeaways">
+      <h3>Puntos Clave</h3>
+      <ul>
+        <li>Los 3 archivos de contexto son la diferencia entre IA genérica e IA personalizada para ti</li>
+        <li>El AI Learning Vault en Notion es tu sistema de crecimiento compuesto — el conocimiento se acumula y conecta</li>
+        <li>El ritual semanal de 90 minutos es suficiente para estar en el top 5% si es consistente</li>
+        <li>Global Instructions configuradas una vez → aplican en cada sesión de Cowork para siempre</li>
+      </ul>
+    </div>
+    <div style="background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.3);border-radius:14px;padding:1.5rem;margin-top:2rem;text-align:center">
+      <div style="font-size:1.2rem;font-weight:900;color:var(--accent3);margin-bottom:.5rem">🎓 ¡Módulo 0 Completado!</div>
+      <p style="font-size:.9rem;color:var(--text2);margin-bottom:1rem">Has establecido la base conceptual y tu setup profesional. Ahora viene la habilidad más valiosa del stack: Prompt Engineering.</p>
+      <a href="curso-ai-m1.html" style="display:inline-block;padding:.8rem 2rem;background:var(--accent3);color:#000;border-radius:10px;text-decoration:none;font-weight:800;font-size:.9rem">→ Ir al Módulo 1: Prompt Engineering Mastery</a>
+    </div>
+    <div class="lesson-nav-bottom">
+      <button class="lnav-btn" onclick="prevLesson()">← Lección anterior</button>
+      <a href="curso-ai-m1.html" class="lnav-btn next">Módulo 1: Prompt Engineering →</a>
+    </div>
+  </div>
+
+  <div id="ejercicio-3" class="tab-content">
+    <div class="exercise">
+      <h2>✏️ Ejercicio 0.4: Construye Tu Setup Completo</h2>
+      <p class="ex-meta">⏱ 45-60 minutos · Herramienta: Notion + Cowork · Entregable: Tu setup profesional operativo</p>
+      <div class="exercise-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Crea tu about-me.md</h4>
+          <p>Abre un editor de texto (o Notion) y crea el archivo. Incluye: tu nombre y rol, empresa actual, tu ICP y vertical de mercado, las herramientas de CRM y Martech que usas, tus objetivos profesionales 2026, y tus 3 proyectos más importantes actualmente.</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Crea tu my-voice.md</h4>
+          <p>Pega 2-3 ejemplos de emails o mensajes que hayas escrito tú. Agrega: tu tono preferido (formal/informal, directo/consultivo), 5 frases o palabras que nunca debes usar, y el idioma principal de trabajo.</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Crea tu my-rules.md y configura Global Instructions</h4>
+          <p>Personaliza las instrucciones del template de esta lección y pégalas en Settings → Cowork → Edit Global Instructions.</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Crea tu AI Learning Vault en Notion</h4>
+          <p>Crea una página en Notion llamada "🧠 AI Learning Vault - Sergio AM" con las 5 secciones de esta lección. En Notas de Lecciones, agrega ya las 4 lecciones del Módulo 0 que acabas de completar.</p>
+        </div>
+      </div>
+      <div class="exercise-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Prueba tu setup</h4>
+          <p>Sube los 3 archivos .md a Cowork y pide:</p>
+          <pre>"He subido mis archivos de contexto. Léelos y dame un resumen de quién soy, qué hago y cuáles son mis prioridades según esos archivos. Dime si falta algo importante que debería agregar."</pre>
+          <p>Si Claude entiende perfectamente tu contexto, el setup está correcto.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <h4>📦 Entregables del Módulo 0</h4>
+        <p>1) Tus 3 archivos de contexto creados y subidos · 2) Global Instructions configuradas · 3) Tu AI Learning Vault en Notion con notas de las 4 lecciones · 4) Captura de Claude entendiendo correctamente tu contexto</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="quiz-3" class="tab-content">
+    <div class="quiz">
+      <h2>🧠 Quiz: Setup Profesional</h2>
+      <p class="quiz-intro">Verifica que entiendes el propósito de tu setup.</p>
+      <div class="question-block">
+        <div class="question-text">1. ¿Por qué los 3 archivos de contexto van en my-voice.md separado de about-me.md?</div>
+        <ul class="options" id="q3-0">
+          <li class="option" onclick="selectOption(this,'q3-0',false,'explanation-3-0')"><input type="radio"> Solo por organización — es lo mismo en un solo archivo</li>
+          <li class="option" onclick="selectOption(this,'q3-0',true,'explanation-3-0')"><input type="radio"> Porque el tono y estilo afectan TODOS los outputs creativos, mientras que la información de identidad profesional solo aplica cuando es relevante para la tarea</li>
+          <li class="option" onclick="selectOption(this,'q3-0',false,'explanation-3-0')"><input type="radio"> Porque Claude solo puede leer archivos pequeños</li>
+          <li class="option" onclick="selectOption(this,'q3-0',false,'explanation-3-0')"><input type="radio"> Para que sea más fácil actualizar solo uno sin tocar el otro</li>
+        </ul>
+        <div id="explanation-3-0" class="explanation">✅ La separación tiene sentido práctico: cuando Claude escribe un email de ventas, necesita saber tu voz (my-voice.md) siempre, pero el contexto de tu empresa (about-me.md) es más relevante para análisis estratégicos. Archivos separados = más modular y mantenible. También la opción D es válida — la modularidad hace el mantenimiento más fácil.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">2. Un colega te dice: "Yo no necesito el setup — simplemente le explico el contexto a Claude cada vez que lo uso." ¿Cuál es el costo real de este enfoque?</div>
+        <ul class="options" id="q3-1">
+          <li class="option" onclick="selectOption(this,'q3-1',false,'explanation-3-1')"><input type="radio"> Ninguno — es equivalente a tener el contexto en archivos</li>
+          <li class="option" onclick="selectOption(this,'q3-1',true,'explanation-3-1')"><input type="radio"> Tiempo perdido explicando el mismo contexto repetidamente, inconsistencia en el tono y falta de aprendizaje acumulado sobre cómo Claude trabaja mejor para él</li>
+          <li class="option" onclick="selectOption(this,'q3-1',false,'explanation-3-1')"><input type="radio"> Claude entiende mejor el contexto cuando se lo explican en el momento</li>
+          <li class="option" onclick="selectOption(this,'q3-1',false,'explanation-3-1')"><input type="radio"> El setup solo vale la pena para usuarios avanzados</li>
+        </ul>
+        <div id="explanation-3-1" class="explanation">✅ Correcto. El costo oculto es enorme: si explicas tu contexto 10 veces por semana (5 minutos cada vez), son 50 minutos semanales = 43 horas al año perdidas en setup manual. Además, la calidad es inconsistente — a veces olvidas mencionar algo clave. El setup permanente es una inversión de 1 hora que da retorno durante años.</div>
+      </div>
+      <button class="quiz-btn" onclick="submitQuiz('quiz-3-result',2)">Ver Resultados</button>
+      <div id="quiz-3-result" class="quiz-result">
+        <div class="result-score" id="quiz-3-score">0/2</div>
+        <p id="quiz-3-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- end .content -->
+</div><!-- end .main -->
+
+<script>
+const lessons=[
+  {id:0,num:'0.1',title:'Cómo funcionan los LLMs realmente'},
+  {id:1,num:'0.2',title:'El mapa del ecosistema IA 2026'},
+  {id:2,num:'0.3',title:'Terminología esencial para profesionales'},
+  {id:3,num:'0.4',title:'Tu setup profesional de IA'}
+];
+let currentLesson=0;
+let completed=new Set();
+let quizScores={};
+
+function showLesson(idx){
+  document.querySelectorAll('.lesson-pane').forEach(p=>p.style.display='none');
+  document.getElementById('lesson-'+idx).style.display='block';
+  document.querySelectorAll('.lesson-link').forEach((l,i)=>l.classList.toggle('active',i===idx));
+  currentLesson=idx;
+  document.getElementById('topbar-lesson').textContent='Módulo 0 · Lección '+lessons[idx].num;
+  document.getElementById('topbar-title').textContent=lessons[idx].title;
+  window.scrollTo({top:0,behavior:'smooth'});
+  // reset tabs
+  document.querySelectorAll('#lesson-'+idx+' .tab').forEach((t,i)=>{
+    t.classList.toggle('active',i===0);
+  });
+  document.querySelectorAll('#lesson-'+idx+' .tab-content').forEach((tc,i)=>{
+    tc.classList.toggle('active',i===0);
+  });
+}
+
+function nextLesson(){
+  if(currentLesson<lessons.length-1){
+    completed.add(currentLesson);
+    updateProgress();
+    showLesson(currentLesson+1);
+  }
+}
+
+function prevLesson(){
+  if(currentLesson>0) showLesson(currentLesson-1);
+}
+
+function switchTab(btn,contentId){
+  const pane=btn.closest('.lesson-pane');
+  pane.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  pane.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(contentId).classList.add('active');
+}
+
+function selectOption(el,groupId,isCorrect,explanationId){
+  const group=document.getElementById(groupId);
+  group.querySelectorAll('.option').forEach(o=>{
+    o.classList.remove('correct','wrong');
+    o.onclick=null;
+  });
+  el.classList.add(isCorrect?'correct':'wrong');
+  const exp=document.getElementById(explanationId);
+  if(exp) exp.classList.add('show');
+  // track for quiz
+  const qi=groupId;
+  if(!quizScores[qi]) quizScores[qi]={answered:true,correct:isCorrect};
+}
+
+function submitQuiz(resultId,total){
+  let score=0;
+  // count correct answers from the result div's context
+  const resultEl=document.getElementById(resultId);
+  // simple: count .option.correct in the quiz pane
+  const quizPane=resultEl.closest('.quiz');
+  quizPane.querySelectorAll('.option.correct').forEach(()=>score++);
+  const pct=Math.round(score/total*100);
+  document.getElementById(resultId.replace('result','score'))&&(document.getElementById(resultId.replace('-result','-score')).textContent=score+'/'+total);
+  let msg='';
+  if(pct>=80) msg='✅ Excelente dominio de los conceptos. Listo para la siguiente lección.';
+  else if(pct>=60) msg='👍 Buen avance. Revisa las preguntas que fallaste antes de continuar.';
+  else msg='📖 Te recomiendo releer la lección antes de continuar — hay conceptos importantes que reforzar.';
+  const msgEl=document.getElementById(resultId.replace('result','msg'));
+  if(msgEl) msgEl.textContent=msg;
+  resultEl.classList.add('show');
+  if(pct>=80) completed.add(currentLesson);
+  updateProgress();
+}
+
+function updateProgress(){
+  const pct=Math.round(completed.size/lessons.length*100);
+  document.getElementById('progress-pct').textContent=pct+'%';
+  document.getElementById('progress-fill').style.width=pct+'%';
+}
+
+/* ── LANG TOGGLE ── */
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.documentElement.classList.add('lang-en');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.classList.add('lang-en');
+        var b=document.getElementById('langBtn');
+        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>

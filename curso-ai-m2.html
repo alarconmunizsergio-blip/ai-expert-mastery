@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2: AI Agents & Sistemas Agénticos</title>
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--border:#2a2a3a;--accent:#43e97b;--accent2:#38f9d7;--accentR:#ff6584;--accentY:#f7971e;--text:#e8e8f0;--text2:#9898b0;--card:#14141e;--mod:#38f9d7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+.sidebar{width:270px;min-width:270px;background:var(--bg2);border-right:1px solid var(--border);height:100vh;position:fixed;top:0;left:0;overflow-y:auto;z-index:50;padding-bottom:2rem}
+.sidebar-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.sidebar-logo{font-size:.85rem;font-weight:800;background:linear-gradient(135deg,#43e97b,#38f9d7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{display:block;font-size:.72rem;color:var(--text2);text-decoration:none;margin-top:.2rem}
+.sidebar-back:hover{color:var(--accent)}
+.mod-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod);padding:.8rem 1.2rem .3rem}
+.ll{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem 1.2rem;cursor:pointer;border:none;background:none;width:100%;text-align:left;color:var(--text2);font-size:.8rem;line-height:1.4;transition:background .2s}
+.ll:hover{background:rgba(67,233,123,.08);color:var(--text)}
+.ll.active{background:rgba(67,233,123,.15);color:var(--accent);font-weight:700}
+.ln{font-size:.62rem;font-weight:900;color:var(--mod);min-width:26px;padding-top:.1rem}
+.sp{padding:.8rem 1.2rem;border-top:1px solid var(--border);margin-top:.5rem}
+.sl{font-size:.7rem;color:var(--text2);margin-bottom:.3rem}
+.pb{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+.main{margin-left:270px;flex:1}
+.topbar{position:sticky;top:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;gap:1rem;z-index:40;backdrop-filter:blur(10px)}
+.tl{font-size:.75rem;color:var(--text2)}
+.tt{font-size:.9rem;font-weight:800}
+.tnav{margin-left:auto;display:flex;gap:.4rem}
+.nb{padding:.35rem .8rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s}
+.nb:hover{border-color:var(--accent);color:var(--accent)}
+.nb.p{background:var(--accent);color:#000;border-color:var(--accent)}
+.nb.p:hover{opacity:.85}
+.content{max-width:800px;margin:0 auto;padding:2.5rem 2rem}
+.tabs{display:flex;gap:.4rem;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab{padding:.5rem 1rem;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tc{display:none}.tc.active{display:block}
+.lp{display:none}.lp.active{display:block}
+.lh{margin-bottom:2rem}
+.badge{display:inline-flex;align-items:center;background:rgba(67,233,123,.12);border:1px solid rgba(67,233,123,.3);border-radius:7px;padding:.25rem .8rem;font-size:.68rem;font-weight:800;color:var(--mod);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.8rem}
+.lt{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:.6rem}
+.lm{display:flex;gap:.8rem;flex-wrap:wrap;color:var(--text2);font-size:.8rem}
+.mc{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.15rem .6rem;border-radius:5px}
+.obj{background:rgba(67,233,123,.06);border:1px solid rgba(67,233,123,.25);border-radius:12px;padding:1.2rem;margin-bottom:2rem}
+.obj h3{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.obj ul{list-style:none}
+.obj li{font-size:.87rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.obj li::before{content:'✓';color:var(--accent);font-weight:900;flex-shrink:0}
+.lb h2{font-size:1.2rem;font-weight:800;margin:1.8rem 0 .7rem;color:var(--text)}
+.lb h3{font-size:1rem;font-weight:800;margin:1.3rem 0 .5rem;color:var(--mod)}
+.lb p{font-size:.9rem;color:var(--text2);margin-bottom:.9rem;line-height:1.75}
+.lb strong{color:var(--text);font-weight:700}
+.ca{border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+.ca-a{background:rgba(108,99,255,.08);border-left:3px solid #6c63ff}
+.ca-k{background:rgba(67,233,123,.07);border-left:3px solid var(--accent)}
+.ca-w{background:rgba(255,101,132,.07);border-left:3px solid var(--accentR)}
+.ca-g{background:rgba(247,151,30,.07);border-left:3px solid var(--accentY)}
+.ca-lbl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+.ca-a .ca-lbl{color:#a09fff}.ca-k .ca-lbl{color:var(--accent)}.ca-w .ca-lbl{color:var(--accentR)}.ca-g .ca-lbl{color:var(--accentY)}
+.ca p{font-size:.87rem;color:var(--text);margin:0;line-height:1.65}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.6rem .9rem;background:rgba(255,255,255,.03);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:.6rem .9rem;font-size:.83rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+td:first-child{font-weight:700;color:var(--text)}
+tr:last-child td{border-bottom:none}
+.fw{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}
+.fw-t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.8rem}
+.fi{display:flex;gap:.8rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.fi:last-child{border-bottom:none}
+.fl{font-size:1.1rem;font-weight:900;color:var(--accent);min-width:28px}
+.fc h4{font-size:.88rem;font-weight:800;color:var(--text)}
+.fc p{font-size:.8rem;color:var(--text2);margin:0}
+pre.code{background:rgba(0,0,0,.4);border:1px solid rgba(67,233,123,.2);border-radius:8px;padding:.8rem;font-size:.77rem;color:#a0ffcc;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:.6rem 0}
+.tk{background:rgba(67,233,123,.07);border:1px solid rgba(67,233,123,.25);border-radius:10px;padding:1.2rem;margin-top:1.8rem}
+.tk h3{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.tk ul{list-style:none}
+.tk li{font-size:.86rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem;list-style:none}
+.tk li::before{content:'★';color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:.2rem}
+.ex{background:rgba(67,233,123,.07);border:1px solid rgba(67,233,123,.25);border-radius:14px;padding:1.8rem;margin-top:.5rem}
+.ex h2{font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+.ex-m{font-size:.76rem;color:var(--text2);margin-bottom:1.3rem}
+.es{display:flex;gap:.8rem;margin-bottom:1.1rem;align-items:flex-start}
+.sn{min-width:26px;height:26px;background:var(--accent);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;margin-top:.1rem}
+.sc h4{font-size:.87rem;font-weight:800;margin-bottom:.2rem}
+.sc p{font-size:.83rem;color:var(--text2);margin:0}
+.dv{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.25);border-radius:9px;padding:.9rem;margin-top:1.3rem}
+.dv h4{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.2rem}
+.dv p{font-size:.83rem;color:var(--text2);margin:0}
+.qz{margin-top:.5rem}
+.qz h2{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.qi{font-size:.86rem;color:var(--text2);margin-bottom:1.8rem}
+.qb{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;margin-bottom:1rem}
+.qt{font-size:.92rem;font-weight:700;margin-bottom:.9rem}
+.opts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.85rem;background:rgba(255,255,255,.02);transition:all .2s}
+.opt:hover{border-color:var(--accent);background:rgba(67,233,123,.08)}
+.opt.correct{background:rgba(67,233,123,.12);border-color:var(--accent);color:var(--accent)}
+.opt.wrong{background:rgba(255,101,132,.1);border-color:var(--accentR);color:var(--accentR)}
+.opt input[type=radio]{accent-color:var(--accent);flex-shrink:0;margin-top:.2rem}
+.exp{font-size:.81rem;color:var(--text2);background:rgba(255,255,255,.03);border-radius:7px;padding:.7rem .9rem;margin-top:.7rem;display:none;line-height:1.6}
+.exp.show{display:block}
+.qbtn{padding:.55rem 1.3rem;background:var(--accent);color:#000;border:none;border-radius:7px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.qr{background:rgba(67,233,123,.1);border:1px solid rgba(67,233,123,.3);border-radius:10px;padding:1.2rem;text-align:center;margin-top:1.3rem;display:none}
+.qr.show{display:block}
+.rs{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lnb{display:flex;gap:.8rem;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.lnbtn{padding:.7rem 1.2rem;border-radius:9px;text-decoration:none;font-size:.85rem;font-weight:700;border:1px solid var(--border);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
+.lnbtn:hover{border-color:var(--accent);color:var(--accent)}
+.lnbtn.nx{background:var(--accent);color:#000;border-color:var(--accent)}
+.lnbtn.nx:hover{opacity:.85}
+.mod-complete{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.3);border-radius:12px;padding:1.5rem;margin-top:2rem;text-align:center}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo"><div class="t-es">🤖 <span class="t-es" style="display:inline">Módulo 2 · AI Agents</span><span class="t-en" style="display:none">Module 2 · AI Agents</span></div><div class="t-en">🤖 Module 2 · AI Agents</div></div>
+    <a href="curso-ai-index.html" class="sidebar-back"><span class="t-es">← Volver al inicio</span><span class="t-en" style="display:none">← Back to start</span></a>
+    <a href="curso-ai-recursos.html" style="display:block;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-es">⭐ Setup &amp; Recursos</a><a href="curso-ai-recursos.html" style="display:none;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-en">⭐ Resources &amp; Setup</a>
+  <div class="lang-toggle">
+    <button id="langBtn" class="lang-btn" onclick="toggleLang()">🌐 EN</button>
+  </div>
+  </div>
+  <div class="mod-label"><div class="t-es">6 Lecciones · ~7 horas</div><div class="t-en">6 Lessons · ~7 hours</div></div>
+  <button class="ll active" onclick="show(0)"><span class="ln">2.1</span><span class="t-es" style="display:inline">Qué es un agente de IA — anatomía completa</span><span class="t-en" style="display:none">What Is an AI Agent — Full Anatomy</span></button>
+  <button class="ll" onclick="show(1)"><span class="ln">2.2</span><span class="t-es" style="display:inline">Patrones de arquitectura: ReAct, Plan-Execute</span><span class="t-en" style="display:none">Architecture Patterns: ReAct, Plan-Execute</span></button>
+  <button class="ll" onclick="show(2)"><span class="ln">2.3</span><span class="t-es" style="display:inline">Herramientas: n8n, Make, Zapier AI</span><span class="t-en" style="display:none">Tools: n8n, Make, Zapier AI</span></button>
+  <button class="ll" onclick="show(3)"><span class="ln">2.4</span><span class="t-es" style="display:inline">Memoria y RAG — tu base de conocimiento</span><span class="t-en" style="display:none">Memory & RAG — Your Knowledge Base</span></button>
+  <button class="ll" onclick="show(4)"><span class="ln">2.5</span><span class="t-es" style="display:inline">Diseño de agentes para procesos de negocio</span><span class="t-en" style="display:none">Agent Design for Business Processes</span></button>
+  <button class="ll" onclick="show(5)"><span class="ln">2.6</span><span class="t-es" style="display:inline">Construye tu primer agente funcional</span><span class="t-en" style="display:none">Build Your First Functional Agent</span></button>
+  <div class="sp">
+    <div class="sl">Progreso: <span id="pp">0%</span></div>
+    <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div><div class="tl" id="tl"><div class="t-es">Módulo 2 · Lección 2.1</div><div class="t-en">Module 2 · Lesson 2.1</div></div><div class="tt" id="tt">Qué es un agente de IA — anatomía completa</div></div>
+    <div class="tnav">
+      <button class="nb" onclick="prev()"><span class="t-es"><span class="t-es">← Anterior</span><span class="t-en">← Previous</span></span><span class="t-en">← Previous</span></button>
+      <button class="nb p" onclick="next()"><span class="t-es"><span class="t-es">Siguiente →</span><span class="t-en">Next →</span></span><span class="t-en">Next →</span></button>
+    </div>
+  </div>
+  <div class="content">
+
+<!-- ══ LECCIÓN 2.1 ══ -->
+<div id="L0" class="lp active">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.1 · 60 min</div>
+    <h1 class="lt"><div class="t-es">Qué es un agente de IA — anatomía completa</div><div class="t-en">What Is an AI Agent — Complete Anatomy</div></h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">🤖 Conceptual</span><span class="mc">🔑 Fundacional</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c0')"><span class="t-es"><span class="t-es">📖 Lección</span><span class="t-en">📖 Lesson</span></span><span class="t-en">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e0')"><span class="t-es"><span class="t-es">✏️ Ejercicio</span><span class="t-en">✏️ Exercise</span></span><span class="t-en">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q0')"><span class="t-es"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span><span class="t-en"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span></button>
+  </div>
+  <div id="c0" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li><div class="t-es">Definir con precisión qué es un agente de IA y en qué se diferencia de un LLM simple</div><div class="t-en">Define precisely what an AI agent is and how it differs from a simple LLM</div></li>
+      <li><div class="t-es">Identificar los 5 componentes que forman cualquier agente</div><div class="t-en">Identify the 5 components that form any agent</div></li>
+      <li><div class="t-es">Distinguir cuándo usar un agente vs. cuándo es overkill</div><div class="t-en">Distinguish when to use an agent vs. when it's overkill</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">El salto conceptual más importante de 2026</div><div class="t-en">The Most Important Conceptual Leap of 2026</div></h2>
+      <p><div class="t-es">Hasta ahora, cuando usas Claude o ChatGPT, tú eres el agente. Tú piensas, tú decides qué preguntar, tú interpretas la respuesta, tú actúas. El LLM es solo una herramienta muy sofisticada que responde cuando se le pregunta.</div><div class="t-en">Until now, when you use Claude or ChatGPT, you are the agent. You think, you decide what to ask, you interpret the response, you act. The LLM is just a very sophisticated tool that responds when questioned.</div></p>
+      <p>Un <strong>agente de IA</strong> cambia eso radicalmente: el modelo se convierte en el que toma decisiones, ejecuta acciones, observa resultados y ajusta. Tú le das un objetivo — él se encarga de alcanzarlo.</p>
+      <div class="ca ca-a"><div class="ca-lbl">Analogía</div><p>Un LLM normal es como un consultor genial que solo puede responder cuando le preguntas. Un agente es ese mismo consultor, pero con acceso a tu email, tu CRM, tu calendario, capaz de hacer cosas solo y volverte a decir "ya lo hice".</p></div>
+
+      <h2><div class="t-es">Los 5 componentes de cualquier agente</div><div class="t-en">The 5 Components of Any Agent</div></h2>
+      <h3><div class="t-es">1. El Cerebro (LLM)</div><div class="t-en">1. The Brain (LLM)</div></h3>
+      <p><div class="t-es">El modelo de lenguaje que razona y toma decisiones. GPT-4o, Claude 3.5 Sonnet, Gemini. Sin este componente no hay agente — es el núcleo cognitivo que interpreta objetivos, planifica pasos y decide acciones.</div><div class="t-en">The language model that reasons and makes decisions. GPT-4o, Claude 3.5 Sonnet, Gemini. Without this component there is no agent — it is the cognitive core that interprets objectives, plans steps, and decides actions.</div></p>
+      <h3><div class="t-es">2. Las Herramientas (Tools) — MCP</div><div class="t-en">2. The Tools (Tools) — MCP</div></h3>
+      <p><div class="t-es">Las capacidades de acción del agente. Sin tools, el agente solo puede hablar. Con tools puede: buscar en la web, leer/escribir archivos, enviar emails, consultar APIs, ejecutar código, modificar un CRM. Cada herramienta es una función que el LLM puede "llamar". En 2026, MCP (Model Context Protocol) de Anthropic es el estándar de facto para conectar LLMs con herramientas externas — reemplaza frameworks anteriores con una especificación abierta que permite que cualquier herramienta sea accesible a cualquier modelo.</div><div class="t-en">The agent's action capabilities. Without tools, the agent can only talk. With tools it can: search the web, read/write files, send emails, query APIs, execute code, modify a CRM. Each tool is a function the LLM can "call". As of 2026, MCP (Model Context Protocol) by Anthropic is the industry standard for connecting LLMs to external tools — replacing previous frameworks with an open specification that makes any tool accessible to any model.</div></p>
+      <h3><div class="t-es">3. La Memoria</div><div class="t-en">3. Memory</div></h3>
+      <p>Los agentes tienen distintos tipos de memoria: <strong>memoria de contexto</strong> (lo que está en la ventana de conversación actual), <strong>memoria de corto plazo</strong> (scratchpad para notas temporales), <strong>memoria de largo plazo</strong> (bases de datos vectoriales, RAG). Sin memoria, cada tarea empieza desde cero.</p>
+      <h3><div class="t-es">4. El Loop de Percepción-Acción</div><div class="t-en">4. The Perception-Action Loop</div></h3>
+      <p>El patrón básico de todo agente: <em>Percibe → Razona → Actúa → Observa → Percibe de nuevo</em>. El agente no ejecuta un script lineal — entra en un ciclo que continúa hasta cumplir el objetivo o alcanzar un límite.</p>
+      <h3><div class="t-es">5. El Orquestador</div><div class="t-en">5. The Orchestrator</div></h3>
+      <p><div class="t-es">El sistema que coordina todo: le da objetivos al agente, gestiona el contexto, maneja errores, decide cuándo parar. En sistemas complejos, el orquestador puede ser otro LLM (multi-agent systems).</div><div class="t-en">The system that coordinates everything: gives objectives to the agent, manages context, handles errors, decides when to stop. In complex systems, the orchestrator can be another LLM (multi-agent systems).</div></p>
+
+      <div class="ca ca-k"><div class="ca-lbl">Ejemplo Real — RevOps</div><p>Un agente de calificación de leads: recibe un nuevo contacto en Salesforce → busca en LinkedIn y web la empresa → calcula fit con ICP → escribe un resumen de enriquecimiento → actualiza el CRM con score y notas → notifica al AE. Objetivo dado: "califica todos los leads nuevos". Ejecución: autónoma.</p></div>
+
+      <h2><div class="t-es">¿Cuándo usar un agente? El test de los 3 criterios</div><div class="t-en">When to Use an Agent? The 3-Criteria Test</div></h2>
+      <p>Los agentes no son la respuesta a todo. Son overkill para tareas simples y esenciales para otras. Usa este test:</p>
+      <div class="fw"><div class="fw-t"><div class="t-es">Cuándo SÍ tiene sentido un agente</div><div class="t-en">When an Agent DOES Make Sense</div></div>
+        <div class="fi"><span class="fl">✓</span><div class="fc"><h4>Tarea multi-paso con decisiones en el camino</h4><p>Si necesitas tomar decisiones basadas en resultados intermedios, un agente es más efectivo que prompts secuenciales.</p></div></div>
+        <div class="fi"><span class="fl">✓</span><div class="fc"><h4>Acceso a herramientas externas requerido</h4><p>Si la tarea requiere buscar info, modificar sistemas o interactuar con APIs, necesitas tools.</p></div></div>
+        <div class="fi"><span class="fl">✓</span><div class="fc"><h4>El trabajo se repite frecuentemente</h4><p>ROI positivo cuando el agente hace en 2 min lo que tú harías en 45 min, y se ejecuta 20 veces al día.</p></div></div>
+      </div>
+      <div class="ca ca-w"><div class="ca-lbl">Cuándo NO usar agentes</div><p>Para una tarea única y simple (resume este documento, responde este email), un buen prompt es mucho más rápido, barato y confiable. Los agentes fallan más, son más lentos y más caros. Úsalos donde el ROI justifica la complejidad.</p></div>
+
+      <h2><div class="t-es">El espectro de autonomía</div><div class="t-en">The Autonomy Spectrum</div></h2>
+      <p>No existe solo "hay agente" o "no hay agente". Es un espectro:</p>
+      <div class="tw"><table><thead><tr><th>Nivel</th><th>Nombre</th><th>Descripción</th><th>Ejemplo</th></tr></thead><tbody>
+        <tr><td>1</td><td>Asistente pasivo</td><td>Responde cuando preguntas</td><td>ChatGPT básico</td></tr>
+        <tr><td>2</td><td>Con tools (MCP)</td><td>Puede buscar/ejecutar si se lo pides con MCP protocol</td><td>Claude con MCP, ChatGPT web browsing</td></tr>
+        <tr><td>3</td><td>Semi-autónomo</td><td>Ejecuta subtareas, pide confirmación</td><td>Claude Code, Claude Opus 4.6 con computer use, Gemini bot</td></tr>
+        <tr><td>4</td><td>Autónomo supervisado</td><td>Completa objetivos complejos, reporta</td><td>Agentes n8n con LLM, Salesforce Agentforce</td></tr>
+        <tr><td>5</td><td>Completamente autónomo</td><td>Opera sin intervención humana, coordina con otros agentes</td><td>Agentes de producción, Salesforce Agentforce ($540M ARR, 2026), A2A (Agent-to-Agent) coordination</td></tr>
+      </tbody></table></div>
+
+      <div class="ca ca-g"><div class="ca-lbl"><div class="t-es">2026 GARTNER INSIGHT</div><div class="t-en">2026 GARTNER INSIGHT</div></div><p><div class="t-es">40% de todas las aplicaciones empresariales tendrán agentes de IA embebidos antes de fin de 2026. Ya no es opcional — los agentes son el nuevo estándar de automatización empresarial. Computer use (capacidad de controlar navegadores, desktops, aplicaciones) se ha vuelto mainstream — Claude Opus 4.6 puede hacer cosas que antes solo un humano podía hacer.</div><div class="t-en">40% of all enterprise applications will have embedded AI agents by end of 2026. It's no longer optional — agents are the new standard for enterprise automation. Computer use (ability to control browsers, desktops, applications) has gone mainstream — Claude Opus 4.6 can do things only humans could do before.</div></p></div>
+
+      <div class="tk"><h3><div class="t-es">Conceptos clave de esta lección</div><div class="t-en">Key Concepts from This Lesson</div></h3><ul>
+        <li>Agente = LLM + Tools + Memory + Perception-Action loop + Orchestrator</li>
+        <li>El LLM normal responde, el agente actúa</li>
+        <li>Usa agentes cuando hay múltiples pasos con decisiones intermedias y/o acceso a herramientas</li>
+        <li>El espectro de autonomía va del 1 (pasivo) al 5 (completamente autónomo)</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e0" class="tc">
+    <div class="ex">
+      <h2><div class="t-es">Ejercicio 2.1: Mapea un proceso como agente</div><div class="t-en">Exercise 2.1: Map a Process as an Agent</div></h2>
+      <div class="ex-m"><div class="t-es">⏱ 30 min · Herramienta: papel + Claude para validar</div><div class="t-en">⏱ 30 min · Tool: paper + Claude to validate</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige un proceso repetitivo de tu trabajo</h4><p>Algo que hagas semanalmente: enriquecer leads, preparar reportes, actualizar el CRM, calificar prospectos. Escríbelo en una oración.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Descompón el proceso en pasos</h4><p>Lista cada paso que haces. Sin saltarte nada. Incluye las decisiones ("si X, entonces Y").</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Identifica los 5 componentes del agente</h4><p>Para tu proceso: ¿qué sería el cerebro? ¿qué tools necesitaría? ¿qué memoria? ¿cuál sería el loop? ¿quién orquestaría?</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa con el test de 3 criterios</h4><p>¿Multi-paso con decisiones? ¿Requiere herramientas externas? ¿Se repite frecuentemente? Si sí a 2+, tienes un candidato ideal para agentar.</p></div></div>
+      <div class="es"><div class="sn">5</div><div class="sc"><h4>Valida con Claude</h4><p>Comparte tu análisis con Claude y pídele: "Estoy diseñando un agente de IA para este proceso. ¿El diseño de los 5 componentes tiene sentido? ¿Qué mejorarías?"</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Un documento de 1 página con: proceso elegido, pasos detallados, mapeo a los 5 componentes, evaluación de viabilidad. Este será la base del proyecto de módulo.</p></div>
+    </div>
+  </div>
+  <div id="q0" class="tc">
+    <div class="qz">
+      <h2><div class="t-es">Quiz — Lección 2.1</div><div class="t-en">Quiz — Lesson 2.1</div></h2>
+      <p class="qi">4 preguntas · Sin límite de tiempo · Puedes retomar cuantas veces quieras</p>
+      <div class="qb" id="qb0">
+        <div class="qt"><div class="t-es">1. ¿Cuál es la diferencia fundamental entre un LLM normal y un agente de IA?</div><div class="t-en">1. What is the fundamental difference between a normal LLM and an AI agent?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">El LLM normal es más inteligente</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">El agente usa modelos más avanzados</li>
+          <li class="opt" onclick="ans(this,'qb0',true)"><input type="radio">El agente puede tomar decisiones, usar herramientas y actuar autónomamente; el LLM solo responde</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">No hay diferencia real, es solo marketing</li>
+        </ul>
+        <div class="exp">Correcto. El LLM normal responde preguntas cuando se las haces. El agente puede percibir, razonar, actuar y observar en un loop autónomo para cumplir objetivos.</div>
+      </div>
+      <div class="qb" id="qb1">
+        <div class="qt"><div class="t-es">2. ¿Cuáles son los 5 componentes de un agente de IA?</div><div class="t-en">2. What are the 5 components of an AI agent?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Modelo, API, Frontend, Backend, Base de datos</li>
+          <li class="opt" onclick="ans(this,'qb1',true)"><input type="radio">Cerebro (LLM), Tools, Memoria, Loop percepción-acción, Orquestador</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Input, Procesamiento, Output, Storage, Network</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Prompt, Contexto, Respuesta, Iteración, Finalización</li>
+        </ul>
+        <div class="exp">Los 5 componentes son: Cerebro (LLM para razonar), Tools (para actuar), Memoria (corto y largo plazo), Loop percepción-acción (el ciclo), y el Orquestador (que coordina todo).</div>
+      </div>
+      <div class="qb" id="qb2">
+        <div class="qt"><div class="t-es">3. Según el test de los 3 criterios, ¿cuándo SÍ tiene sentido usar un agente?</div><div class="t-en">3. According to the 3-criteria test, when does it make sense to use an agent?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Para cualquier tarea que involucre IA</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Solo para empresas grandes con presupuesto</li>
+          <li class="opt" onclick="ans(this,'qb2',true)"><input type="radio">Cuando hay múltiples pasos con decisiones, se requieren herramientas externas, y la tarea se repite frecuentemente</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Solo cuando los prompts normales no funcionan</li>
+        </ul>
+        <div class="exp">Los 3 criterios: tareas multi-paso con decisiones, acceso a herramientas externas requerido, y frecuencia de repetición que justifique el ROI. Con 2 de 3 ya tienes un buen candidato.</div>
+      </div>
+      <div class="qb" id="qb3">
+        <div class="qt"><div class="t-es">4. En el espectro de autonomía de nivel 1 a 5, ¿qué nivel sería un agente n8n que completa un flujo de calificación de leads sin intervención humana?</div><div class="t-en">4. On the autonomy spectrum of levels 1-5, what level would an n8n agent be that completes a lead qualification workflow without human intervention?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb3',false)"><input type="radio">Nivel 1-2: asistente básico</li>
+          <li class="opt" onclick="ans(this,'qb3',false)"><input type="radio">Nivel 3: semi-autónomo</li>
+          <li class="opt" onclick="ans(this,'qb3',true)"><input type="radio">Nivel 4-5: autónomo supervisado o completamente autónomo</li>
+          <li class="opt" onclick="ans(this,'qb3',false)"><input type="radio">No está en el espectro porque n8n no es IA</li>
+        </ul>
+        <div class="exp">Un agente que completa objetivos complejos con mínima intervención humana está en nivel 4 (autónomo supervisado). Si opera totalmente sin humanos, sería nivel 5.</div>
+      </div>
+      <button class="qbtn" onclick="score('q0r',4)"><span class="t-es"><span class="t-es">Ver resultado</span><span class="t-en">View Result</span></span><span class="t-en">View Result</span></button>
+      <div class="qr" id="q0r"><div class="rs" id="q0s">0/4</div><p id="q0m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <a href="curso-ai-m1.html" class="lnbtn">← Módulo 1</a>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 2.2 ══ -->
+<div id="L1" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.2 · 75 min</div>
+    <h1 class="lt"><div class="t-es">Patrones de arquitectura: ReAct, Plan-Execute y más</div><div class="t-en">Architecture Patterns: ReAct, Plan-Execute, and More</div></h1>
+    <div class="lm"><span class="mc">⏱ 75 min</span><span class="mc">🏗️ Arquitectura</span><span class="mc">🔬 Técnico</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c1')"><span class="t-es"><span class="t-es">📖 Lección</span><span class="t-en">📖 Lesson</span></span><span class="t-en">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e1')"><span class="t-es"><span class="t-es">✏️ Ejercicio</span><span class="t-en">✏️ Exercise</span></span><span class="t-en">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q1')"><span class="t-es"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span><span class="t-en"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span></button>
+  </div>
+  <div id="c1" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li><div class="t-es">Explicar cómo funciona el patrón ReAct y cuándo usarlo</div><div class="t-en">Explain how the ReAct pattern works and when to use it</div></li>
+      <li><div class="t-es">Distinguir Plan-Execute de ReAct y elegir el correcto</div><div class="t-en">Distinguish Plan-Execute from ReAct and choose the right one</div></li>
+      <li><div class="t-es">Describir architecturas multi-agente y reflexión</div><div class="t-en">Describe multi-agent architectures and reflection</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">Por qué existen los patrones de arquitectura</div><div class="t-en">Why Architecture Patterns Exist</div></h2>
+      <p><div class="t-es">Cuando construyes un agente, enfrentas una decisión fundamental: ¿cómo debe razonar y actuar? Los patrones de arquitectura son soluciones probadas a este problema. No son teoría académica — son recetas que funcionan en producción.</div><div class="t-en">When building an agent, you face a fundamental decision: how should it reason and act? Architecture patterns are proven solutions to this problem. They are not academic theory — they are recipes that work in production.</div></p>
+      <p><div class="t-es">Conocerlos te permite diseñar agentes más efectivos, entender por qué un agente falla y elegir la arquitectura correcta según el tipo de tarea.</div><div class="t-en">Knowing them allows you to design more effective agents, understand why an agent fails, and choose the right architecture for the task type.</div></p>
+
+      <h2><div class="t-es">Patrón 1: ReAct (Reasoning + Acting)</div><div class="t-en">Pattern 1: ReAct (Reasoning + Acting)</div></h2>
+      <p><div class="t-es">El patrón más usado y más importante para entender. ReAct intercala razonamiento y acción en un loop continuo. El agente piensa en voz alta y actúa al mismo tiempo. <strong>Claude Extended Thinking</strong> es una implementación nativa de este patrón en el modelo Claude Opus 4.6, permitiendo razonamiento profundo antes de actuar. Claude también soporta computer use (controlar navegadores, desktops) como tools integradas, haciendo ReAct aplicable a flujos de trabajo completamente autónomos.</div><div class="t-en">The most used and most important pattern to understand. ReAct interleaves reasoning and action in a continuous loop. The agent thinks aloud and acts simultaneously. <strong>Claude Extended Thinking</strong> is a native implementation of this pattern in Claude Opus 4.6, allowing deep reasoning before acting. Claude also supports computer use (controlling browsers, desktops) as integrated tools, making ReAct applicable to fully autonomous workflows.</div></p>
+      <div class="fw"><div class="fw-t">El loop ReAct</div>
+        <div class="fi"><span class="fl">T</span><div class="fc"><h4>Thought (Pensamiento)</h4><p>El agente razona sobre el estado actual: "Necesito saber el revenue de la empresa. Voy a buscar en el CRM."</p></div></div>
+        <div class="fi"><span class="fl">A</span><div class="fc"><h4>Action (Acción)</h4><p>Ejecuta una herramienta: "Busca en Salesforce: revenue empresa Acme Corp"</p></div></div>
+        <div class="fi"><span class="fl">O</span><div class="fc"><h4>Observation (Observación)</h4><p>Recibe el resultado: "Resultado: $2.3M ARR, 45 empleados, Serie B"</p></div></div>
+        <div class="fi"><span class="fl">T</span><div class="fc"><h4>Thought nuevo</h4><p>"Ahora que sé el revenue, puedo calcular el ICP fit. Con $2.3M ARR encaja en nuestro segmento mid-market..."</p></div></div>
+      </div>
+      <p>Este loop se repite hasta que el agente tiene suficiente información para responder o completar la tarea. La clave de ReAct es que el <strong>pensamiento y la acción están entrelazados</strong> — el agente decide qué hacer basado en lo que acaba de aprender.</p>
+      <pre class="code">Ejemplo de trace ReAct para calificación de lead:
+
+Thought: Tengo un nuevo lead: María González, CTO de TechCorp. Necesito enriquecer este contacto.
+Action: search_linkedin("María González TechCorp CTO")
+Observation: Perfil encontrado. 15 años exp. Ex-Salesforce. 200 conexiones. TechCorp: 150 empleados, B2B SaaS.
+
+Thought: Buena señal. Ahora necesito datos de la empresa.
+Action: search_web("TechCorp revenue funding 2025")
+Observation: TechCorp levantó $12M Serie A en 2024. ~$5M ARR estimado según Crunchbase.
+
+Thought: Encaja con nuestro ICP (50-500 empleados, $3-20M ARR, B2B SaaS). Score: Alto.
+Action: update_crm(lead_id="lg-001", score="A", notes="CTO técnica, empresa en crecimiento...")
+Observation: CRM actualizado correctamente.
+
+Final: Lead calificado como A. CRM actualizado. Notificación enviada al AE.</pre>
+
+      <h2><div class="t-es">Patrón 2: Plan-Execute</div><div class="t-en">Pattern 2: Plan-Execute</div></h2>
+      <p>En lugar de razonar y actuar al mismo tiempo, Plan-Execute tiene dos fases distintas. Primero el agente hace un plan completo. Luego ejecuta ese plan paso a paso.</p>
+      <div class="ca ca-a"><div class="ca-lbl">Cuándo usar Plan-Execute vs ReAct</div><p><strong>ReAct:</strong> cuando los pasos siguientes dependen de los resultados anteriores y no puedes planear de antemano. <strong>Plan-Execute:</strong> cuando puedes planear todo de antemano y la ejecución es más predecible. Plan-Execute es más eficiente (menos tokens) pero menos flexible.</p></div>
+
+      <h2><div class="t-es">Patrón 3: Reflexión y Autocrítica</div><div class="t-en">Pattern 3: Reflection and Self-Criticism</div></h2>
+      <p>El agente evalúa su propio output antes de entregarlo. Después de generar una respuesta o completar una tarea, se pregunta: "¿Qué tan bueno fue esto? ¿Qué mejoraría?"</p>
+      <p>Este patrón mejora dramáticamente la calidad cuando la tarea tiene criterios de evaluación claros. Un agente que escribe copy puede auto-evaluarlo contra un rubric antes de enviarlo.</p>
+
+      <h2><div class="t-es">Patrón 4: Multi-Agent Systems</div><div class="t-en">Pattern 4: Multi-Agent Systems</div></h2>
+      <p>En lugar de un solo agente super-complejo, tienes múltiples agentes especializados que colaboran. Un <strong>orquestador</strong> recibe el objetivo y lo delega a agentes especializados: uno para research, uno para escritura, uno para actualizar sistemas.</p>
+      <div class="ca ca-k"><div class="ca-lbl">Ejemplo Multi-Agente — Pipeline de Contenido</div><p>Orquestador recibe: "Crea una campaña ABM para TechCorp." → Delega a: Agente Research (perfil empresa) + Agente Copywriter (emails) + Agente CRM (actualizar Salesforce) + Agente Calendar (agendar follow-ups). Cada agente es experto en su área y opera en paralelo.</p></div>
+
+      <div class="tk"><h3><div class="t-es">Conceptos clave de esta lección</div><div class="t-en">Key Concepts from This Lesson</div></h3><ul>
+        <li>ReAct: razonamiento y acción entrelazados en loop Thought-Action-Observation</li>
+        <li>Plan-Execute: planear todo primero, luego ejecutar — más eficiente pero menos flexible</li>
+        <li>Reflexión: el agente auto-evalúa su trabajo para mejorar calidad</li>
+        <li>Multi-agent: múltiples agentes especializados colaborando bajo un orquestador</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e1" class="tc">
+    <div class="ex">
+      <h2><div class="t-es">Ejercicio 2.2: Simula un trace de ReAct</div><div class="t-en">Exercise 2.2: Simulate a ReAct Trace</div></h2>
+      <div class="ex-m"><div class="t-es">⏱ 45 min · Herramienta: Claude</div><div class="t-en">⏱ 45 min · Tool: Claude</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige una tarea agéntica de tu trabajo</h4><p>Ejemplo: "Enriquecer y calificar un lead", "Preparar brief de cuenta para AE", "Generar reporte semanal de pipeline".</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Define las tools disponibles</h4><p>Lista las "herramientas" que un agente tendría para tu tarea. Ejemplo: search_linkedin, query_crm, search_web, send_email, update_record.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Pídele a Claude que simule el trace ReAct</h4><p>Prompt: "Simula un agente de IA que resuelve esta tarea usando el patrón ReAct. Las tools disponibles son [lista]. Muestra cada Thought, Action y Observation. Tarea: [tu tarea]."</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa el trace</h4><p>¿El agente tomó decisiones razonables? ¿Usó las herramientas bien? ¿Llegó a una conclusión correcta? Identifica 2 cosas que mejorarías.</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>El trace completo de ReAct (puede ser el generado por Claude) + tu evaluación de 2-3 párrafos. Guárdalo — lo usarás en la lección 2.6.</p></div>
+    </div>
+  </div>
+  <div id="q1" class="tc">
+    <div class="qz">
+      <h2><div class="t-es">Quiz — Lección 2.2</div><div class="t-en">Quiz — Lesson 2.2</div></h2>
+      <p class="qi">3 preguntas · Sin límite de tiempo</p>
+      <div class="qb" id="qb10">
+        <div class="qt"><div class="t-es">1. En el patrón ReAct, ¿qué significa el acrónimo y cuál es su secuencia?</div><div class="t-en">1. In the ReAct pattern, what does the acronym mean and what is its sequence?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Retrieve-Act: busca información y luego actúa</li>
+          <li class="opt" onclick="ans(this,'qb10',true)"><input type="radio">Reasoning + Acting: alterna pensamiento (Thought), acción (Action) y observación (Observation) en loop</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">React: el agente reacciona a eventos externos</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Read-Evaluate-Act-Check-Think: un proceso de 5 pasos</li>
+        </ul>
+        <div class="exp">ReAct = Reasoning + Acting. El loop es Thought → Action → Observation → Thought → ... Esta interleaving de razonamiento y acción es lo que lo hace poderoso para tareas donde los pasos dependen de resultados anteriores.</div>
+      </div>
+      <div class="qb" id="qb11">
+        <div class="qt"><div class="t-es">2. ¿En qué situación Plan-Execute es mejor que ReAct?</div><div class="t-en">2. In what situation is Plan-Execute better than ReAct?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Siempre — Plan-Execute es superior</li>
+          <li class="opt" onclick="ans(this,'qb11',true)"><input type="radio">Cuando puedes planear todos los pasos de antemano y la ejecución es predecible</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Cuando la tarea tiene muchas decisiones contingentes</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Plan-Execute nunca es mejor — ReAct siempre gana</li>
+        </ul>
+        <div class="exp">Plan-Execute es más eficiente (menos tokens, más rápido) cuando puedes anticipar los pasos. ReAct es mejor cuando los pasos siguientes dependen de lo que descubres en los anteriores.</div>
+      </div>
+      <div class="qb" id="qb12">
+        <div class="qt"><div class="t-es">3. ¿Cuál es la ventaja principal de los sistemas multi-agente?</div><div class="t-en">3. What is the main advantage of multi-agent systems?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Son más baratos que un solo agente</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Son más fáciles de construir</li>
+          <li class="opt" onclick="ans(this,'qb12',true)"><input type="radio">Permiten especialización, paralelismo y separación de responsabilidades entre agentes</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Eliminan la necesidad de un orquestador</li>
+        </ul>
+        <div class="exp">Los multi-agent systems permiten que cada agente sea experto en una cosa, operen en paralelo y el orquestador coordine el trabajo. Esto escala mejor y produce mayor calidad que un agente generalista intentando hacer todo.</div>
+      </div>
+      <button class="qbtn" onclick="score('q1r',3)"><span class="t-es"><span class="t-es">Ver resultado</span><span class="t-en">View Result</span></span><span class="t-en">View Result</span></button>
+      <div class="qr" id="q1r"><div class="rs" id="q1s">0/3</div><p id="q1m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><span class="t-es"><span class="t-es">← Anterior</span><span class="t-en">← Previous</span></span><span class="t-en">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 2.3 ══ -->
+<div id="L2" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.3 · 70 min</div>
+    <h1 class="lt"><div class="t-es">Herramientas: n8n, Make y Zapier AI</div><div class="t-en">Tools: n8n, Make, and Zapier AI</div></h1>
+    <div class="lm"><span class="mc">⏱ 70 min</span><span class="mc">🔧 Herramientas</span><span class="mc">⚡ Práctico</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c2')"><span class="t-es"><span class="t-es">📖 Lección</span><span class="t-en">📖 Lesson</span></span><span class="t-en">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e2')"><span class="t-es"><span class="t-es">✏️ Ejercicio</span><span class="t-en">✏️ Exercise</span></span><span class="t-en">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q2')"><span class="t-es"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span><span class="t-en"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span></button>
+  </div>
+  <div id="c2" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li><div class="t-es">Comparar n8n, Make y Zapier AI y elegir la herramienta correcta</div><div class="t-en">Compare n8n, Make and Zapier AI and choose the right tool</div></li>
+      <li><div class="t-es">Entender cómo integrar LLMs en flujos de automatización</div><div class="t-en">Understand how to integrate LLMs in automation workflows</div></li>
+      <li><div class="t-es">Diseñar tu primer flujo agéntico en papel</div><div class="t-en">Design your first agentic workflow on paper</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">El stack de herramientas para agentes sin código</div><div class="t-en">The No-Code Agent Tools Stack</div></h2>
+      <p>No necesitas ser programador para construir agentes funcionales en 2026. Las herramientas no-code/low-code han madurado hasta el punto donde puedes crear sistemas agénticos sofisticados visualmente. Además, existen soluciones especializadas como <strong>Claude Code</strong> — una herramienta que actúa como un agente autónomo de nivel 4-5 para ingeniería de software, capaz de codificar, debuggear y desplegar sin intervención.</p>
+      <p><div class="t-es">Aquí están las 3 más importantes para profesionales de RevOps y CRM:</div><div class="t-en">Here are the 3 most important ones for RevOps and CRM professionals:</div></p>
+
+      <h2><div class="t-es">n8n — El favorito de los builders serios</div><div class="t-en">n8n — The Serious Builders' Favorite</div></h2>
+      <p>n8n (pronunciado "n-eight-n") es open-source, self-hosteable y tiene nodos de IA nativos con Claude, OpenAI y Gemini integrados. Es más técnico que Zapier pero mucho más poderoso. <strong>Es la elección de los builders serios que quieren control total y flexibilidad máxima.</strong></p>
+      <div class="tw"><table><thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead><tbody>
+        <tr><td>Modelo</td><td>Open-source + cloud (n8n Cloud). Puedes auto-hostearlo.</td></tr>
+        <tr><td>LLM Integration</td><td>Native nodes for OpenAI, Anthropic (Claude/Anthropic), Gemini + agents with tools</td></tr>
+        <tr><td>Precio</td><td>Gratis si self-host; cloud desde ~$20/mes</td></tr>
+        <tr><td>Curva de aprendizaje</td><td>Media — más técnico que Make/Zapier</td></tr>
+        <tr><td>Mejor para</td><td>Agentes complejos, flujos con lógica avanzada, datos sensibles</td></tr>
+      </tbody></table></div>
+      <div class="ca ca-k"><div class="ca-lbl">Caso de uso RevOps</div><p>Flujo en n8n: webhook recibe nuevo lead de HubSpot → nodo LLM enriquece con búsqueda web → nodo de decisión: si ICP fit alto, crea tarea en Salesforce y notifica Slack; si bajo, mueve a nurture. Todo con un modelo de lenguaje tomando las decisiones de calificación.</p></div>
+
+      <h2><div class="t-es">Make (antes Integromat) — El equilibrio perfecto</div><div class="t-en">Make (formerly Integromat) — The Perfect Balance</div></h2>
+      <p><div class="t-es">Make tiene la mejor relación potencia/facilidad de uso. Visual, intuitivo, con integraciones de IA robustas. Es el punto de entrada ideal para la mayoría.</div><div class="t-en">Make has the best power-to-ease-of-use ratio. Visual, intuitive, with robust AI integrations. It's the ideal entry point for most.</div></p>
+      <div class="tw"><table><thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead><tbody>
+        <tr><td>Modelo</td><td>Cloud only. Interfaz visual tipo "blueprint"</td></tr>
+        <tr><td>LLM Integration</td><td>Enhanced AI modules with Claude Opus 4.6, Claude Code support, OpenAI, Gemini</td></tr>
+        <tr><td>Precio</td><td>Gratis (1,000 ops/mes); de pago desde ~$9/mes</td></tr>
+        <tr><td>Curva de aprendizaje</td><td>Baja-media — muy visual e intuitivo</td></tr>
+        <tr><td>Mejor para</td><td>Automatizaciones con IA para usuarios de negocio</td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Zapier AI — El más accesible</div><div class="t-en">Zapier AI — The Most Accessible</div></h2>
+      <p><div class="t-es">Zapier tiene la mayor biblioteca de integraciones (6,000+ apps) y recientemente agregó AI Actions y Agents. Es el más fácil de usar pero el más limitado para lógica compleja.</div><div class="t-en">Zapier has the largest integration library (6,000+ apps) and recently added AI Actions and Agents. It's the easiest to use but most limited for complex logic.</div></p>
+      <div class="tw"><table><thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead><tbody>
+        <tr><td>Modelo</td><td>Cloud only. El más simple y accesible</td></tr>
+        <tr><td>LLM Integration</td><td>GPT-4.5, Zapier AI (native), agent integration, Claude support</td></tr>
+        <tr><td>Precio</td><td>Gratis (100 tasks/mes); de pago desde ~$20/mes</td></tr>
+        <tr><td>Curva de aprendizaje</td><td>Muy baja — el más fácil de todos</td></tr>
+        <tr><td>Mejor para</td><td>Automatizaciones sencillas, usuarios no técnicos</td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Cómo elegir la herramienta correcta</div><div class="t-en">How to Choose the Right Tool</div></h2>
+      <div class="fw"><div class="fw-t"><div class="t-es">Árbol de decisión</div><div class="t-en">Decision Tree</div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>¿Necesitas control total, datos sensibles o es muy complejo?</h4><p>→ n8n (self-hosted)</p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>¿Es un proyecto de negocio con lógica media y quieres equilibrio?</h4><p>→ Make</p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>¿Es una automatización simple y ya usas Zapier?</h4><p>→ Zapier AI</p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4>¿Eres developer o quieres máximo control?</h4><p>→ LangChain / LlamaIndex directamente en código</p></div></div>
+      </div>
+
+      <div class="ca ca-g"><div class="ca-lbl">Mi recomendación para RevOps (2026)</div><p>Empieza con <strong>Make</strong> para aprender los conceptos con la menor fricción posible. Cuando outgrowas sus limitaciones, muévete a <strong>n8n</strong>. Para desarrolladores que quieren frameworks dedicados, tanto OpenAI Agents SDK como Anthropic Agents SDK (con MCP) están disponibles. Para automatizaciones simples que ya tienes en Zapier, agrega los módulos de IA ahí mismo.</p></div>
+
+      <div class="tk"><h3><div class="t-es">Conceptos clave de esta lección</div><div class="t-en">Key Concepts from This Lesson</div></h3><ul>
+        <li>n8n: más poderoso y flexible, ideal para builders serios y datos sensibles</li>
+        <li>Make: mejor equilibrio potencia/facilidad, ideal punto de entrada</li>
+        <li>Zapier AI: más accesible, ideal para automatizaciones simples ya en Zapier</li>
+        <li>Elige según complejidad, privacidad de datos y tu nivel técnico</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e2" class="tc">
+    <div class="ex">
+      <h2><div class="t-es">Ejercicio 2.3: Diseña un flujo agéntico</div><div class="t-en">Exercise 2.3: Design an Agentic Workflow</div></h2>
+      <div class="ex-m"><div class="t-es">⏱ 40 min · Herramienta: papel/Figma + Claude</div><div class="t-en">⏱ 40 min · Tool: paper/Figma + Claude</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Toma el proceso del ejercicio 2.1</h4><p>El proceso repetitivo de tu trabajo que identificaste. Ahora lo vas a diseñar como flujo visual.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Dibuja el flujo en papel o herramienta de diagrama</h4><p>Cajas para cada paso, flechas para el flujo, rombos para las decisiones. Incluye: trigger (qué inicia el flujo), pasos del LLM, condiciones if/else, acciones en sistemas externos.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Elige tu herramienta y justifica</h4><p>Basado en los criterios de esta lección, ¿usarías n8n, Make o Zapier AI? Escribe 3 razones de tu elección.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Valida con Claude</h4><p>Prompt: "Tengo este flujo de automatización con IA [describe el flujo]. ¿Está bien diseñado? ¿Qué casos edge no estoy cubriendo? ¿Hay una forma más eficiente?"</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Diagrama del flujo (foto si es papel, export si es digital) + justificación de herramienta elegida. Esto será la especificación para construir en la lección 2.6.</p></div>
+    </div>
+  </div>
+  <div id="q2" class="tc">
+    <div class="qz">
+      <h2><div class="t-es">Quiz — Lección 2.3</div><div class="t-en">Quiz — Lesson 2.3</div></h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb20">
+        <div class="qt"><div class="t-es">1. ¿Cuál es la principal ventaja de n8n sobre Make y Zapier?</div><div class="t-en">1. What is the main advantage of n8n over Make and Zapier?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Es más barato siempre</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Tiene más integraciones disponibles</li>
+          <li class="opt" onclick="ans(this,'qb20',true)"><input type="radio">Es open-source, self-hosteable y da control total sobre los datos</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Es más fácil de usar para principiantes</li>
+        </ul>
+        <div class="exp">La ventaja clave de n8n es que es open-source y self-hosteable, lo que da control total sobre los datos (ideal para datos sensibles) y máxima flexibilidad técnica, aunque requiere más conocimiento para configurar.</div>
+      </div>
+      <div class="qb" id="qb21">
+        <div class="qt"><div class="t-es">2. Para un profesional de RevOps que quiere aprender automatización con IA desde cero, ¿qué herramienta es el mejor punto de entrada?</div><div class="t-en">2. For a RevOps professional who wants to learn AI automation from scratch, what tool is the best entry point?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">n8n self-hosted</li>
+          <li class="opt" onclick="ans(this,'qb21',true)"><input type="radio">Make — mejor equilibrio entre potencia y facilidad de uso</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">LangChain en Python</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Zapier AI — siempre es la mejor opción</li>
+        </ul>
+        <div class="exp">Make es el punto de entrada recomendado por su interfaz visual intuitiva y potencia suficiente para la mayoría de casos. Una vez dominas los conceptos, puedes migrar a n8n si necesitas más control.</div>
+      </div>
+      <div class="qb" id="qb22">
+        <div class="qt"><div class="t-es">3. ¿Cuándo tiene sentido usar Zapier AI en lugar de n8n o Make?</div><div class="t-en">3. When does it make sense to use Zapier AI instead of n8n or Make?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Para agentes complejos con lógica avanzada</li>
+          <li class="opt" onclick="ans(this,'qb22',true)"><input type="radio">Para automatizaciones simples cuando ya usas Zapier o quieres la menor fricción posible</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Cuando necesitas self-hosting por privacidad</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Zapier AI nunca es la elección correcta</li>
+        </ul>
+        <div class="exp">Zapier AI es ideal cuando ya tienes automatizaciones en Zapier y quieres agregar IA, o cuando la tarea es simple y prefieres la menor fricción. Para lógica compleja o datos sensibles, n8n o Make son mejores.</div>
+      </div>
+      <button class="qbtn" onclick="score('q2r',3)"><span class="t-es"><span class="t-es">Ver resultado</span><span class="t-en">View Result</span></span><span class="t-en">View Result</span></button>
+      <div class="qr" id="q2r"><div class="rs" id="q2s">0/3</div><p id="q2m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><span class="t-es"><span class="t-es">← Anterior</span><span class="t-en">← Previous</span></span><span class="t-en">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 2.4 ══ -->
+<div id="L3" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.4 · 75 min</div>
+    <h1 class="lt"><div class="t-es">Memoria y RAG — tu base de conocimiento con IA</div><div class="t-en">Memory and RAG — Your Knowledge Base</div></h1>
+    <div class="lm"><span class="mc">⏱ 75 min</span><span class="mc">🧠 Memoria</span><span class="mc">🔍 RAG</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c3')"><span class="t-es"><span class="t-es">📖 Lección</span><span class="t-en">📖 Lesson</span></span><span class="t-en">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e3')"><span class="t-es"><span class="t-es">✏️ Ejercicio</span><span class="t-en">✏️ Exercise</span></span><span class="t-en">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q3')"><span class="t-es"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span><span class="t-en"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span></button>
+  </div>
+  <div id="c3" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li><div class="t-es">Explicar qué es RAG y por qué resuelve las limitaciones de los LLMs</div><div class="t-en">Explain what RAG is and why it solves LLM limitations</div></li>
+      <li><div class="t-es">Distinguir los 4 tipos de memoria en agentes</div><div class="t-en">Distinguish the 4 types of memory in agents</div></li>
+      <li><div class="t-es">Diseñar una base de conocimiento básica para tu trabajo</div><div class="t-en">Design a basic knowledge base for your work</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">El problema de la memoria en los LLMs</div><div class="t-en">The Memory Problem in LLMs</div></h2>
+      <p>Los LLMs tienen un problema fundamental: <strong>no recuerdan nada entre conversaciones</strong>. Cada vez que abres una nueva conversación con Claude, empieza desde cero. No sabe quiénes son tus clientes, no conoce tu proceso de ventas, no tiene contexto de tu empresa.</p>
+      <p>Además, los modelos tienen una <strong>fecha de corte</strong> — no conocen información reciente y no conocen información privada de tu empresa.</p>
+      <p><div class="t-es">RAG y los sistemas de memoria resuelven ambos problemas. Son el puente entre los LLMs y el conocimiento específico que necesitas.</div><div class="t-en">RAG and memory systems solve both problems. They are the bridge between LLMs and the specific knowledge you need.</div></p>
+
+      <h2><div class="t-es">Los 4 tipos de memoria en sistemas agénticos</div><div class="t-en">The 4 Types of Memory in Agentic Systems</div></h2>
+      <h3><div class="t-es">1. Memoria en contexto (In-context)</div><div class="t-en">1. In-Context Memory</div></h3>
+      <p>Lo que está dentro de la ventana de contexto actual. Toda la conversación, instrucciones del sistema, documentos proporcionados. <em>Limitación: se borra al cerrar la conversación. Costosa si incluyes mucho texto.</em></p>
+      <h3><div class="t-es">2. Memoria externa (RAG)</div><div class="t-en">2. External Memory (RAG)</div></h3>
+      <p><div class="t-es">Base de datos de documentos que el agente puede consultar. No todo está en el contexto — solo lo relevante se recupera cuando se necesita. Esta es la clave para escalar.</div><div class="t-en">A database of documents the agent can query. Not everything is in context — only what's relevant is retrieved when needed. This is the key to scaling.</div></p>
+      <h3><div class="t-es">3. Memoria episódica</div><div class="t-en">3. Episodic Memory</div></h3>
+      <p>Historial de conversaciones e interacciones pasadas, almacenado externamente y recuperable. "La última vez que hablé con este cliente, dijo que..."</p>
+      <h3><div class="t-es">4. Memoria semántica (entidades)</div><div class="t-en">4. Semantic Memory (Entities)</div></h3>
+      <p>Hechos extraídos y almacenados sobre entidades: empresas, personas, productos. Ejemplo: "TechCorp: 150 empleados, $5M ARR, CTO es María González, interés confirmado en módulo de reporting."</p>
+
+      <h2><div class="t-es">RAG: Retrieval-Augmented Generation explicado</div><div class="t-en">RAG: Retrieval-Augmented Generation Explained</div></h2>
+      <p>RAG es el patrón más importante para construir sistemas de IA con conocimiento privado. Funciona así:</p>
+      <div class="fw"><div class="fw-t">El pipeline RAG</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Indexación (offline)</h4><p>Tus documentos se dividen en chunks, se convierten en vectores (embeddings) y se guardan en una base de datos vectorial.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>Query del usuario</h4><p>El usuario hace una pregunta. La pregunta también se convierte en embedding.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Búsqueda semántica</h4><p>Se buscan los chunks más similares semánticamente a la pregunta (no solo por palabras clave).</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Generación aumentada</h4><p>Los chunks relevantes + la pregunta se pasan al LLM, que genera una respuesta basada en ese contexto específico.</p></div></div>
+      </div>
+      <div class="ca ca-a"><div class="ca-lbl">Analogía</div><p>RAG es como darle al LLM acceso a una biblioteca privada gigante. No necesita memorizar todos los libros — cuando le preguntas algo, busca los fragmentos más relevantes, los lee, y responde basado en ellos.</p></div>
+
+      <h2><div class="t-es">Casos de uso de RAG para RevOps</div><div class="t-en">RAG Use Cases for RevOps</div></h2>
+      <div class="tw"><table><thead><tr><th>Caso de uso</th><th>Documentos en la base</th><th>Resultado</th></tr></thead><tbody>
+        <tr><td>Sales Intelligence Bot</td><td>Playbooks, battlecards, case studies</td><td>AEs consultan en tiempo real durante calls</td></tr>
+        <tr><td>CRM Knowledge Base</td><td>Notas de cuentas, historiales de deals</td><td>Contexto automático al abrir una cuenta</td></tr>
+        <tr><td>Onboarding Assistant</td><td>Procesos, políticas, guías internas</td><td>Responde preguntas del equipo 24/7</td></tr>
+        <tr><td>Competitive Intel</td><td>Análisis competitivos, objeciones comunes</td><td>Respuestas a objeciones en tiempo real</td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Herramientas para implementar RAG sin código</div><div class="t-en">Tools to Implement RAG Without Code</div></h2>
+      <p><strong>NotebookLM (Google):</strong> Sube documentos, hace preguntas sobre ellos. Gratis, sin código. Perfecto para empezar.</p>
+      <p><strong>Claude Projects:</strong> La solución RAG cero-código más potente. Carga documentos en un proyecto de Claude. El modelo los usa como contexto en todas las conversaciones del proyecto, con recuperación automática y sin necesidad de configuración.</p>
+      <p><strong>Notion AI:</strong> Tu base de conocimiento en Notion se vuelve consultable con IA de forma nativa.</p>
+      <p><strong>Para builders:</strong> Pinecone, Weaviate, Chroma (bases de datos vectoriales) + LangChain/LlamaIndex.</p>
+
+      <div class="tk"><h3><div class="t-es">Conceptos clave de esta lección</div><div class="t-en">Key Concepts from This Lesson</div></h3><ul>
+        <li>RAG resuelve el problema de memoria y conocimiento privado de los LLMs</li>
+        <li>Pipeline RAG: indexar → query → búsqueda semántica → generación aumentada</li>
+        <li>4 tipos de memoria: contexto, externa (RAG), episódica, semántica</li>
+        <li>Para empezar sin código: NotebookLM o Claude Projects</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e3" class="tc">
+    <div class="ex">
+      <h2><div class="t-es">Ejercicio 2.4: Construye tu primera base de conocimiento RAG</div><div class="t-en">Exercise 2.4: Build Your First RAG Knowledge Base</div></h2>
+      <div class="ex-m"><div class="t-es">⏱ 45 min · Herramienta: Claude Projects o NotebookLM</div><div class="t-en">⏱ 45 min · Tool: Claude Projects or NotebookLM</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige 3-5 documentos de tu trabajo</h4><p>Playbooks de ventas, battlecards, procesos de RevOps, guías de tu CRM, notas de cuentas importantes. Documentos que consultas regularmente.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Crea un Proyecto en Claude o sube a NotebookLM</h4><p>Claude Projects: crea un nuevo proyecto, carga los documentos. NotebookLM: crea un notebook, sube los PDFs.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Prueba con 5 preguntas reales</h4><p>Las preguntas que tú o tu equipo hacen regularmente. Evalúa: ¿las respuestas son correctas? ¿Cita las fuentes? ¿Qué no sabe?</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Identifica gaps</h4><p>¿Qué preguntas no pudo responder? ¿Qué documentos adicionales necesitarías agregar? Haz una lista de mejoras.</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Screenshot de tu base de conocimiento configurada + las 5 preguntas con sus respuestas + lista de gaps identificados. Ya tienes tu primer sistema RAG funcionando.</p></div>
+    </div>
+  </div>
+  <div id="q3" class="tc">
+    <div class="qz">
+      <h2><div class="t-es">Quiz — Lección 2.4</div><div class="t-en">Quiz — Lesson 2.4</div></h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb30">
+        <div class="qt"><div class="t-es">1. ¿Qué problema resuelve RAG que los LLMs por sí solos no pueden resolver?</div><div class="t-en">1. What problem does RAG solve that LLMs alone cannot?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Hace que los modelos sean más inteligentes</li>
+          <li class="opt" onclick="ans(this,'qb30',true)"><input type="radio">Permite acceder a conocimiento privado y actualizado sin estar en el entrenamiento del modelo</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Reduce el costo de las llamadas a la API</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Hace las respuestas más cortas</li>
+        </ul>
+        <div class="exp">RAG resuelve el problema de que los LLMs solo conocen lo que estaba en su entrenamiento. Con RAG, puedes darle acceso a tus documentos privados, información actualizada y cualquier contenido específico de tu empresa.</div>
+      </div>
+      <div class="qb" id="qb31">
+        <div class="qt"><div class="t-es">2. En el pipeline RAG, ¿en qué orden ocurren los pasos?</div><div class="t-en">2. In the RAG pipeline, in what order do the steps occur?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Query → Indexación → Búsqueda → Generación</li>
+          <li class="opt" onclick="ans(this,'qb31',true)"><input type="radio">Indexación (offline) → Query → Búsqueda semántica → Generación aumentada</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Generación → Búsqueda → Indexación → Query</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Query → Generación → Indexación → Búsqueda</li>
+        </ul>
+        <div class="exp">Primero indexas los documentos (proceso offline, una sola vez). Luego cuando hay una query, se hace búsqueda semántica y los fragmentos relevantes se pasan al LLM para la generación aumentada.</div>
+      </div>
+      <div class="qb" id="qb32">
+        <div class="qt"><div class="t-es">3. Para un profesional de RevOps sin experiencia técnica, ¿cuál es la forma más rápida de crear un sistema RAG?</div><div class="t-en">3. For a RevOps professional without technical experience, what is the fastest way to create a RAG system?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Implementar Pinecone con LangChain en Python</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Esperar a que RAG sea más fácil de usar</li>
+          <li class="opt" onclick="ans(this,'qb32',true)"><input type="radio">Usar NotebookLM o Claude Projects — carga documentos, empieza a preguntar</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Contratar un desarrollador para implementarlo</li>
+        </ul>
+        <div class="exp">NotebookLM y Claude Projects son herramientas no-code que permiten crear un sistema RAG funcional en minutos. Sube documentos y puedes hacer preguntas sobre ellos. Perfecto para empezar sin código.</div>
+      </div>
+      <button class="qbtn" onclick="score('q3r',3)"><span class="t-es"><span class="t-es">Ver resultado</span><span class="t-en">View Result</span></span><span class="t-en">View Result</span></button>
+      <div class="qr" id="q3r"><div class="rs" id="q3s">0/3</div><p id="q3m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><span class="t-es"><span class="t-es">← Anterior</span><span class="t-en">← Previous</span></span><span class="t-en">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 2.5 ══ -->
+<div id="L4" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.5 · 60 min</div>
+    <h1 class="lt"><div class="t-es">Diseño de agentes para procesos de negocio</div><div class="t-en">Designing Agents for Business Processes</div></h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">📐 Diseño</span><span class="mc">💼 Negocio</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c4')"><span class="t-es"><span class="t-es">📖 Lección</span><span class="t-en">📖 Lesson</span></span><span class="t-en">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e4')"><span class="t-es"><span class="t-es">✏️ Ejercicio</span><span class="t-en">✏️ Exercise</span></span><span class="t-en">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q4')"><span class="t-es"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span><span class="t-en"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span></button>
+  </div>
+  <div id="c4" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li><div class="t-es">Aplicar el framework ARIA para diseñar cualquier agente de negocio</div><div class="t-en">Apply the ARIA framework to design any business agent</div></li>
+      <li><div class="t-es">Identificar los riesgos y puntos de control necesarios</div><div class="t-en">Identify risks and necessary control points</div></li>
+      <li><div class="t-es">Crear la especificación completa de tu agente</div><div class="t-en">Create your agent's complete specification</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">El error más común al diseñar agentes</div><div class="t-en">The Most Common Mistake in Agent Design</div></h2>
+      <p><div class="t-es">La mayoría de la gente empieza a construir antes de diseñar. Abren n8n o Make, empiezan a conectar nodos y se preguntan por qué el agente falla o produce resultados inconsistentes.</div><div class="t-en">Most people start building before designing. They open n8n or Make, start connecting nodes, and wonder why the agent fails or produces inconsistent results.</div></p>
+      <p><div class="t-es">El diseño primero es más eficiente. Un buen diseño identifica los puntos de falla antes de construir y ahorra horas de debugging.</div><div class="t-en">Design first is more efficient. Good design identifies failure points before building and saves hours of debugging.</div></p>
+
+      <h2><div class="t-es">El Framework ARIA para diseño de agentes</div><div class="t-en">The ARIA Framework for Agent Design</div></h2>
+      <p>ARIA: <strong>A</strong>cciones, <strong>R</strong>eglas, <strong>I</strong>nformación, <strong>A</strong>utonomía.</p>
+      <div class="fw"><div class="fw-t">Framework ARIA</div>
+        <div class="fi"><span class="fl">A</span><div class="fc"><h4>Acciones</h4><p>¿Qué puede hacer el agente? Lista exhaustiva de tools y capacidades. Sé específico: no "puede escribir emails" sino "puede crear drafts en Gmail con el template X".</p></div></div>
+        <div class="fi"><span class="fl">R</span><div class="fc"><h4>Reglas</h4><p>¿Qué NO puede hacer? Los guardrails. Ejemplos: "nunca envía emails sin aprobación humana", "solo modifica registros en el CRM de pruebas", "siempre escala a humano si score de confianza < 80%".</p></div></div>
+        <div class="fi"><span class="fl">I</span><div class="fc"><h4>Información</h4><p>¿Qué información necesita? Inputs: datos del trigger, contexto del CRM, reglas de negocio. Outputs: qué produce, en qué formato, a quién notifica.</p></div></div>
+        <div class="fi"><span class="fl">A</span><div class="fc"><h4>Autonomía</h4><p>¿Cuánto puede decidir solo vs. cuándo escala a humano? Define el nivel de autonomía para cada tipo de acción.</p></div></div>
+      </div>
+
+      <h2><div class="t-es">Human-in-the-loop: cuándo y cómo</div><div class="t-en">Human-in-the-Loop: When and How</div></h2>
+      <p>Un error común es diseñar agentes completamente autónomos desde el inicio. <strong>Siempre empieza con high human oversight y reduce gradualmente conforme el agente demuestra confiabilidad.</strong></p>
+      <div class="tw"><table><thead><tr><th>Tipo de acción</th><th>Autonomía recomendada al inicio</th></tr></thead><tbody>
+        <tr><td>Leer datos (read-only)</td><td>100% autónomo — sin riesgo</td></tr>
+        <tr><td>Crear registros</td><td>Agente propone, humano aprueba</td></tr>
+        <tr><td>Modificar registros</td><td>Siempre aprobación humana al inicio</td></tr>
+        <tr><td>Enviar comunicaciones</td><td>Review y aprobación obligatoria</td></tr>
+        <tr><td>Eliminar datos</td><td>Nunca autónomo — siempre humano</td></tr>
+      </tbody></table></div>
+
+      <h2>La especificación de agente</h2>
+      <p>Antes de construir, escribe una especificación. Es un documento de 1-2 páginas que describe:</p>
+      <div class="ca ca-k"><div class="ca-lbl">Estructura de una especificación de agente</div><p><strong>Objetivo:</strong> Qué problema resuelve y qué resultado produce.<br><strong>Trigger:</strong> Qué lo activa (webhook, schedule, evento manual).<br><strong>ARIA completo:</strong> Acciones, Reglas, Información, Autonomía.<br><strong>Happy path:</strong> El flujo ideal paso a paso.<br><strong>Edge cases:</strong> Qué pasa si falla X, si no encuentra Y.<br><strong>Métricas de éxito:</strong> Cómo sabes que el agente está funcionando bien.</p></div>
+
+      <h2>Métricas para evaluar agentes</h2>
+      <p>Un agente en producción necesita monitoreo. Las métricas básicas:</p>
+      <p><strong>Task completion rate:</strong> % de tareas que completa exitosamente sin intervención humana.</p>
+      <p><strong>Error rate:</strong> % de tareas donde produce outputs incorrectos o falla.</p>
+      <p><strong>Human escalation rate:</strong> % de veces que escala al humano (debe reducirse conforme el agente aprende).</p>
+      <p><strong>Tiempo de ejecución:</strong> Cuánto tarda vs. cuánto tardaría un humano.</p>
+
+      <div class="tk"><h3><div class="t-es">Conceptos clave de esta lección</div><div class="t-en">Key Concepts from This Lesson</div></h3><ul>
+        <li>Framework ARIA: Acciones, Reglas, Información, Autonomía</li>
+        <li>Empieza con alta supervisión humana, reduce gradualmente</li>
+        <li>Escribe la especificación antes de construir</li>
+        <li>Define métricas de éxito desde el diseño: completion rate, error rate, escalation rate</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e4" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 2.5: Escribe la especificación de tu agente</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + documento</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Toma el proceso de los ejercicios anteriores</h4><p>Ya tienes el análisis de componentes (2.1), el trace ReAct (2.2) y el diseño de flujo (2.3). Ahora vas a formalizarlo en una especificación completa.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Aplica el Framework ARIA</h4><p>Para tu agente, define explícitamente: ¿Qué acciones puede tomar? ¿Qué reglas/guardrails tiene? ¿Qué información necesita y produce? ¿Cuál es su nivel de autonomía por tipo de acción?</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Escribe el happy path y 3 edge cases</h4><p>El flujo ideal + qué pasa si falla la búsqueda, si el CRM no responde, si el dato no tiene suficiente información para decidir.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Define las métricas de éxito</h4><p>¿Cómo sabrás que el agente funciona bien? Define 2-3 métricas específicas y medibles.</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Documento de especificación completo (1-2 páginas). Este es el blueprint que usarás en la siguiente lección para construir el agente real.</p></div>
+    </div>
+  </div>
+  <div id="q4" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 2.5</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb40">
+        <div class="qt">1. ¿Qué significan las siglas del Framework ARIA?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">AI, Robots, Integration, Automation</li>
+          <li class="opt" onclick="ans(this,'qb40',true)"><input type="radio">Acciones, Reglas, Información, Autonomía</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Agents, RAG, Intelligence, Analysis</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Automated, Responsive, Intelligent, Adaptive</li>
+        </ul>
+        <div class="exp">ARIA = Acciones (qué puede hacer), Reglas (guardrails, qué NO puede hacer), Información (qué necesita y produce), Autonomía (cuánto decide solo vs. escala a humano).</div>
+      </div>
+      <div class="qb" id="qb41">
+        <div class="qt">2. ¿Qué tipo de acción NUNCA debería ser completamente autónoma en un agente?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Leer datos del CRM</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Buscar información en la web</li>
+          <li class="opt" onclick="ans(this,'qb41',true)"><input type="radio">Eliminar datos permanentemente</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Calcular scores de calificación</li>
+        </ul>
+        <div class="exp">Las acciones destructivas como eliminar datos deben siempre requerir aprobación humana. El riesgo de un error autónomo es demasiado alto. Empieza conservador y aumenta autonomía gradualmente para acciones de menor riesgo.</div>
+      </div>
+      <div class="qb" id="qb42">
+        <div class="qt">3. ¿Cuál de estas es la métrica más importante para evaluar si un agente mejora con el tiempo?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">El número de tokens que usa</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">Lo rápido que responde</li>
+          <li class="opt" onclick="ans(this,'qb42',true)"><input type="radio">La reducción del human escalation rate manteniendo calidad</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">El costo mensual de las APIs</li>
+        </ul>
+        <div class="exp">Si el agente mejora, necesita escalar a humanos cada vez menos para los mismos tipos de tareas mientras mantiene o mejora la calidad. Es la combinación de autonomía y confiabilidad lo que define el progreso real.</div>
+      </div>
+      <button class="qbtn" onclick="score('q4r',3)"><span class="t-es"><span class="t-es">Ver resultado</span><span class="t-en">View Result</span></span><span class="t-en">View Result</span></button>
+      <div class="qr" id="q4r"><div class="rs" id="q4s">0/3</div><p id="q4m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><span class="t-es"><span class="t-es">← Anterior</span><span class="t-en">← Previous</span></span><span class="t-en">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 2.6 ══ -->
+<div id="L5" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.6 · Proyecto · 90 min</div>
+    <h1 class="lt"><div class="t-es">Construye tu primer agente funcional</div><div class="t-en">Build Your First Functional Agent</div></h1>
+    <div class="lm"><span class="mc">⏱ 90 min</span><span class="mc">🏗️ Proyecto</span><span class="mc">⚡ Construir</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c5')">📖 Guía</button>
+    <button class="tab" onclick="tab(this,'e5')">🏗️ Proyecto</button>
+    <button class="tab" onclick="tab(this,'q5')"><span class="t-es"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span><span class="t-en"><span class="t-es">🧠 Quiz</span><span class="t-en">🧠 Quiz</span></span> Final</button>
+  </div>
+  <div id="c5" class="tc active">
+    <div class="obj"><h3>Al completar este proyecto tendrás:</h3><ul>
+      <li>Un agente real y funcional haciendo trabajo por ti</li>
+      <li>Experiencia end-to-end de diseño → construcción → prueba</li>
+      <li>La base para escalar a agentes más complejos</li>
+    </ul></div>
+    <div class="lb">
+      <h2>Lo que vas a construir</h2>
+      <p>Vas a construir tu primer agente usando la especificación que escribiste en la lección 2.5. El agente será funcional — no un demo, sino algo que resuelve un problema real de tu trabajo.</p>
+      <p>Si aún no tienes Make o n8n configurado, este es el momento. El tiempo de setup es 20-30 minutos y lo haces una sola vez.</p>
+
+      <h2>Opción A: Agente en Make (recomendado para la mayoría)</h2>
+      <p><strong>Setup:</strong> Crea una cuenta en make.com (gratis). Crea un nuevo scenario.</p>
+      <p><strong>Patrón básico de agente en Make:</strong></p>
+      <div class="fw"><div class="fw-t">Estructura del scenario</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Trigger</h4><p>Webhook, Schedule, o evento en una app (ej: "nuevo lead en HubSpot"). El trigger es lo que activa el agente.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>Módulo LLM</h4><p>Módulo de OpenAI o Anthropic. Aquí va el system prompt de tu agente con todas las instrucciones de comportamiento.</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Router / Condicional</h4><p>Based on el output del LLM, el flujo se divide. Si score alto → acción A. Si score bajo → acción B.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Acciones</h4><p>Módulos de tus apps (Salesforce, HubSpot, Slack, Gmail). Aquí el agente actúa en el mundo real.</p></div></div>
+      </div>
+
+      <h2>Opción B: Simular el agente con Claude</h2>
+      <p>Si no puedes configurar Make/n8n ahora, puedes simular el agente con Claude en modo "role-play de agente":</p>
+      <pre class="code">Sistema:
+Eres un agente de calificación de leads para [empresa].
+Tu trabajo es: [descripción del proceso].
+Cuando recibas datos de un lead, ejecuta estos pasos: [steps].
+Tus reglas: [guardrails].
+Formato de output: [especificación de output].
+
+Usuario:
+Nuevo lead entrante:
+- Nombre: [nombre]
+- Empresa: [empresa]
+- Cargo: [cargo]
+- Fuente: [fuente]
+
+Ejecuta el proceso completo y produce el output especificado.</pre>
+      <p>Esto no es un agente real en producción, pero te permite validar la lógica antes de construirlo en una herramienta.</p>
+
+      <h2>El test de los 3 niveles</h2>
+      <p>Antes de considerar tu agente "listo", pruébalo en 3 niveles:</p>
+      <p><strong>Nivel 1 — Happy path:</strong> El caso más común funciona perfecto.</p>
+      <p><strong>Nivel 2 — Edge cases:</strong> Los 3 edge cases que definiste en tu especificación. ¿Los maneja bien?</p>
+      <p><strong>Nivel 3 — Adversarial:</strong> Datos malformados, inputs inesperados, errores de API. ¿El agente falla gracefully?</p>
+    </div>
+  </div>
+  <div id="e5" class="tc">
+    <div class="ex">
+      <h2><div class="t-es">Proyecto Final — Módulo 2: Tu Primer Agente</div><div class="t-en">Module 2 Final Project: Your First Agent</div></h2>
+      <div class="ex-m"><div class="t-es">⏱ 90 min · Herramienta: Make / n8n / Claude</div><div class="t-en">⏱ 90 min · Tool: Make / n8n / Claude</div></div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Configura tu herramienta</h4><p>Si no tienes Make/n8n: crea cuenta en make.com (gratis). Si ya tienes: crea un nuevo scenario/workflow.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Implementa tu especificación</h4><p>Usando el documento de la lección 2.5, construye el agente. Si usas Make: trigger + módulo LLM + condiciones + acciones. Si usas Claude: crea el system prompt del agente y pruébalo.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Prueba los 3 niveles</h4><p>Happy path, edge cases, adversarial. Documenta qué funcionó y qué no.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Mide vs. el baseline humano</h4><p>¿Cuánto tiempo tomabas tú en hacer esta tarea? ¿Cuánto toma el agente? ¿La calidad es comparable o mejor?</p></div></div>
+      <div class="es"><div class="sn">5</div><div class="sc"><h4>Documenta los aprendizajes</h4><p>¿Qué sorpresas encontraste? ¿Qué cambiarías del diseño? ¿Qué mejoras quedan pendientes?</p></div></div>
+      <div class="dv"><h4>Entregable del Módulo 2</h4><p>Screenshot o grabación del agente funcionando + comparativa de tiempo humano vs. agente + lista de aprendizajes y mejoras futuras. ¡Felicitaciones — ya tienes tu primer agente real!</p></div>
+    </div>
+  </div>
+  <div id="q5" class="tc">
+    <div class="qz">
+      <h2><div class="t-es">Quiz Final — Módulo 2</div><div class="t-en">Module 2 Final Quiz</div></h2>
+      <p class="qi">5 preguntas · Repaso del módulo completo</p>
+      <div class="qb" id="qb50">
+        <div class="qt"><div class="t-es">1. Un agente de IA se diferencia de un LLM normal porque...</div><div class="t-en">1. An AI agent differs from a normal LLM because...</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Usa modelos más grandes</li>
+          <li class="opt" onclick="ans(this,'qb50',true)"><input type="radio">Puede actuar autónomamente en un loop percepción-acción usando tools y memoria</li>
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Solo funciona con código Python</li>
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">No necesita prompts</li>
+        </ul>
+        <div class="exp">La diferencia fundamental: el LLM responde, el agente actúa. El loop percepción-acción + tools + memoria es lo que hace a un agente capaz de trabajo autónomo.</div>
+      </div>
+      <div class="qb" id="qb51">
+        <div class="qt"><div class="t-es">2. En ReAct, ¿cuál es el orden correcto del loop?</div><div class="t-en">2. In ReAct, what is the correct order of the loop?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Action → Thought → Observation</li>
+          <li class="opt" onclick="ans(this,'qb51',true)"><input type="radio">Thought → Action → Observation (y se repite)</li>
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Observation → Action → Thought</li>
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Thought → Observation → Action</li>
+        </ul>
+        <div class="exp">ReAct: Thought (razona qué hacer) → Action (ejecuta tool) → Observation (observa resultado) → nuevo Thought. El loop continúa hasta completar el objetivo.</div>
+      </div>
+      <div class="qb" id="qb52">
+        <div class="qt"><div class="t-es">3. ¿Qué herramienta recomendarías a alguien que quiere construir un agente de negocio con la menor fricción posible?</div><div class="t-en">3. What tool would you recommend to someone who wants to build a business agent with the least friction?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">n8n self-hosted</li>
+          <li class="opt" onclick="ans(this,'qb52',true)"><input type="radio">Make (make.com)</li>
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">LangChain en Python</li>
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Escribir el agente desde cero</li>
+        </ul>
+        <div class="exp">Make ofrece el mejor equilibrio: interfaz visual intuitiva, integraciones robustas con LLMs, y suficiente potencia para la mayoría de casos de negocio. El punto de entrada recomendado.</div>
+      </div>
+      <div class="qb" id="qb53">
+        <div class="qt"><div class="t-es">4. RAG se usa principalmente para...</div><div class="t-en">4. RAG is primarily used for...</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Hacer los modelos más rápidos</li>
+          <li class="opt" onclick="ans(this,'qb53',true)"><input type="radio">Darle a los LLMs acceso a conocimiento privado y actualizado que no estaba en su entrenamiento</li>
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Reducir los costos de API</li>
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Entrenar modelos custom</li>
+        </ul>
+        <div class="exp">RAG (Retrieval-Augmented Generation) permite que el LLM responda basado en tus documentos privados y actualizados, sin necesidad de re-entrenar el modelo.</div>
+      </div>
+      <div class="qb" id="qb54">
+        <div class="qt"><div class="t-es">5. Según el Framework ARIA, ¿qué define la "A" de Autonomía?</div><div class="t-en">5. According to the ARIA Framework, what defines the "A" for Autonomy?</div></div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Las acciones que puede ejecutar el agente</li>
+          <li class="opt" onclick="ans(this,'qb54',true)"><input type="radio">Cuánto puede decidir el agente solo vs. cuándo escala a un humano</li>
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">La automatización del workflow completo</li>
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">La IA que usa el agente internamente</li>
+        </ul>
+        <div class="exp">Autonomía en ARIA define el nivel de intervención humana requerida. Empieza conservador (alta supervisión) y aumenta gradualmente conforme el agente demuestra confiabilidad.</div>
+      </div>
+      <button class="qbtn" onclick="score('q5r',5)"><span class="t-es"><span class="t-es">Ver resultado</span><span class="t-en">View Result</span></span><span class="t-en">View Result</span></button>
+      <div class="qr" id="q5r"><div class="rs" id="q5s">0/5</div><p id="q5m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="mod-complete">
+    <div style="font-size:2rem;margin-bottom:.5rem">🤖</div>
+    <div style="font-size:1.1rem;font-weight:800;margin-bottom:.3rem"><div class="t-es"><div class="t-es">¡Módulo 2 Completado!</div><div class="t-en">Module 2 Completed!</div></div><div class="t-en">Module 2 Completed!</div></div>
+    <div style="font-size:.87rem;color:var(--text2);margin-bottom:1rem"><div class="t-es"><div class="t-es">Ya sabes diseñar y construir agentes de IA. Siguiente: Vibecoding.</div><div class="t-en">You now know how to design and build AI agents. Next: Vibecoding.</div></div><div class="t-en">You now know how to design and build AI agents. Next: Vibecoding.</div></div>
+    <a href="curso-ai-m3.html" style="display:inline-block;padding:.7rem 1.5rem;background:var(--accent);color:#000;border-radius:10px;text-decoration:none;font-weight:800;font-size:.9rem"><div class="t-es"><div class="t-es">Continuar al Módulo 3 →</div><div class="t-en">Continue to Module 3 →</div></div><div class="t-en">Continue to Module 3 →</div></a>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><span class="t-es"><span class="t-es">← Anterior</span><span class="t-en">← Previous</span></span><span class="t-en">← Previous</span></button>
+    <a href="curso-ai-m3.html" class="lnbtn nx">Módulo 3 →</a>
+  </div>
+</div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const lessons=[
+  {num:'2.1',title:'Qué es un agente de IA — anatomía completa', titleEN:'What Is an AI Agent — Complete Anatomy'},
+  {num:'2.2',title:'Patrones de arquitectura: ReAct, Plan-Execute y más', titleEN:'Architecture Patterns: ReAct, Plan-Execute, and More'},
+  {num:'2.3',title:'Herramientas: n8n, Make y Zapier AI', titleEN:'Tools: n8n, Make, and Zapier AI'},
+  {num:'2.4',title:'Memoria y RAG — tu base de conocimiento', titleEN:'Memory and RAG — Your Knowledge Base'},
+  {num:'2.5',title:'Diseño de agentes para procesos de negocio', titleEN:'Designing Agents for Business Processes'},
+  {num:'2.6',title:'Construye tu primer agente funcional', titleEN:'Build Your First Functional Agent'}
+];
+
+const lessonsEN=[
+  {num:'2.1',title:'What Is an AI Agent — Complete Anatomy'},
+  {num:'2.2',title:'Architecture Patterns: ReAct, Plan-Execute, and More'},
+  {num:'2.3',title:'Tools: n8n, Make, and Zapier AI'},
+  {num:'2.4',title:'Memory and RAG — Your Knowledge Base'},
+  {num:'2.5',title:'Designing Agents for Business Processes'},
+  {num:'2.6',title:'Build Your First Functional Agent'}
+];
+let cur=0;
+const btns=document.querySelectorAll('.ll');
+const completed=new Set();
+
+function show(i){
+  document.querySelectorAll('.lp').forEach(l=>l.classList.remove('active'));
+  document.getElementById('L'+i).classList.add('active');
+  btns.forEach(b=>b.classList.remove('active'));
+  btns[i].classList.add('active');
+  cur=i;
+  const isEN = document.body.classList.contains('lang-en');
+  const tlEl = document.getElementById('tl');
+  const ttEl = document.getElementById('tt');
+  if(isEN){
+    tlEl.innerHTML = '<div class="t-es" style="display:none">Módulo 2 · Lección '+lessons[i].num+'</div><div class="t-en">Module 2 · Lesson '+lessons[i].num+'</div>';
+    ttEl.innerHTML = '<div class="t-es" style="display:none">'+lessons[i].title+'</div><div class="t-en">'+lessons[i].titleEN+'</div>';
+  } else {
+    tlEl.innerHTML = '<div class="t-es">Módulo 2 · Lección '+lessons[i].num+'</div><div class="t-en" style="display:none">Module 2 · Lesson '+lessons[i].num+'</div>';
+    ttEl.innerHTML = '<div class="t-es">'+lessons[i].title+'</div><div class="t-en" style="display:none">'+lessons[i].titleEN+'</div>';
+  }
+  completed.add(i);
+  const p=Math.round(completed.size/lessons.length*100);
+  document.getElementById('pp').textContent=p+'%';
+  document.getElementById('pf').style.width=p+'%';
+  window.scrollTo(0,0);
+  // reset tabs
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  const lp=document.getElementById('L'+i);
+  lp.querySelectorAll('.tab')[0].classList.add('active');
+  lp.querySelectorAll('.tc')[0].classList.add('active');
+}
+
+function next(){if(cur<lessons.length-1)show(cur+1);}
+function prev(){if(cur>0)show(cur-1);}
+
+function tab(el,id){
+  const lp=el.closest('.lp');
+  lp.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  lp.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function ans(el,qbId,correct){
+  const qb=document.getElementById(qbId);
+  if(qb.dataset.answered)return;
+  qb.dataset.answered='1';
+  qb.dataset.correct=correct?'1':'0';
+  el.classList.add(correct?'correct':'wrong');
+  const exp=qb.querySelector('.exp');
+  if(exp)exp.classList.add('show');
+}
+
+function score(rid,total){
+  const prefix=rid.replace('r','');
+  let correct=0;
+  document.querySelectorAll('[id^="qb'+prefix.slice(1)+'"]').forEach(qb=>{
+    if(qb.dataset.correct==='1')correct++;
+  });
+  const el=document.getElementById(rid);
+  el.classList.add('show');
+  document.getElementById(prefix+'s').textContent=correct+'/'+total;
+  const msgs=['Sigue repasando — vuelve a la lección','Bien, pero hay oportunidad de mejora','¡Muy bien! Sólido entendimiento','¡Perfecto! Dominas este tema'];
+  const idx=Math.floor((correct/total)*3);
+  document.getElementById(prefix+'m').textContent=msgs[Math.min(idx,3)];
+}
+
+/* ── LANG TOGGLE ── */
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.documentElement.classList.add('lang-en');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.classList.add('lang-en');
+        var b=document.getElementById('langBtn');
+        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>

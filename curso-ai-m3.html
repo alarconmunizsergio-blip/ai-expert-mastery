@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 3: Vibecoding</title>
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--border:#2a2a3a;--accent:#ff6584;--accent2:#ff8c42;--accentG:#43e97b;--accentB:#4facfe;--text:#e8e8f0;--text2:#9898b0;--card:#14141e;--mod:#ff8c42}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+.sidebar{width:270px;min-width:270px;background:var(--bg2);border-right:1px solid var(--border);height:100vh;position:fixed;top:0;left:0;overflow-y:auto;z-index:50;padding-bottom:2rem}
+.sidebar-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.sidebar-logo{font-size:.85rem;font-weight:800;background:linear-gradient(135deg,#ff6584,#ff8c42);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{display:block;font-size:.72rem;color:var(--text2);text-decoration:none;margin-top:.2rem}
+.sidebar-back:hover{color:var(--accent)}
+.mod-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod);padding:.8rem 1.2rem .3rem}
+.ll{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem 1.2rem;cursor:pointer;border:none;background:none;width:100%;text-align:left;color:var(--text2);font-size:.8rem;line-height:1.4;transition:background .2s}
+.ll:hover{background:rgba(255,101,132,.08);color:var(--text)}
+.ll.active{background:rgba(255,101,132,.15);color:var(--accent);font-weight:700}
+.ln{font-size:.62rem;font-weight:900;color:var(--mod);min-width:26px;padding-top:.1rem}
+.sp{padding:.8rem 1.2rem;border-top:1px solid var(--border);margin-top:.5rem}
+.sl{font-size:.7rem;color:var(--text2);margin-bottom:.3rem}
+.pb{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+.main{margin-left:270px;flex:1}
+.topbar{position:sticky;top:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;gap:1rem;z-index:40;backdrop-filter:blur(10px)}
+.tl{font-size:.75rem;color:var(--text2)}
+.tt{font-size:.9rem;font-weight:800}
+.tnav{margin-left:auto;display:flex;gap:.4rem}
+.nb{padding:.35rem .8rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s}
+.nb:hover{border-color:var(--accent);color:var(--accent)}
+.nb.p{background:var(--accent);color:#fff;border-color:var(--accent)}
+.nb.p:hover{opacity:.85}
+.content{max-width:800px;margin:0 auto;padding:2.5rem 2rem}
+.tabs{display:flex;gap:.4rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+.tab{padding:.5rem 1rem;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tc{display:none}.tc.active{display:block}
+.lp{display:none}.lp.active{display:block}
+.lh{margin-bottom:2rem}
+.badge{display:inline-flex;align-items:center;background:rgba(255,101,132,.12);border:1px solid rgba(255,101,132,.3);border-radius:7px;padding:.25rem .8rem;font-size:.68rem;font-weight:800;color:var(--mod);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.8rem}
+.lt{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:.6rem}
+.lm{display:flex;gap:.8rem;flex-wrap:wrap;color:var(--text2);font-size:.8rem}
+.mc{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.15rem .6rem;border-radius:5px}
+.obj{background:rgba(255,101,132,.06);border:1px solid rgba(255,101,132,.25);border-radius:12px;padding:1.2rem;margin-bottom:2rem}
+.obj h3{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.obj ul{list-style:none}
+.obj li{font-size:.87rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.obj li::before{content:'✓';color:var(--accent);font-weight:900;flex-shrink:0}
+.lb h2{font-size:1.2rem;font-weight:800;margin:1.8rem 0 .7rem;color:var(--text)}
+.lb h3{font-size:1rem;font-weight:800;margin:1.3rem 0 .5rem;color:var(--mod)}
+.lb p{font-size:.9rem;color:var(--text2);margin-bottom:.9rem;line-height:1.75}
+.lb strong{color:var(--text);font-weight:700}
+.ca{border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+.ca-a{background:rgba(108,99,255,.08);border-left:3px solid #6c63ff}
+.ca-k{background:rgba(255,101,132,.07);border-left:3px solid var(--accent)}
+.ca-w{background:rgba(247,151,30,.07);border-left:3px solid var(--accent2)}
+.ca-g{background:rgba(67,233,123,.07);border-left:3px solid var(--accentG)}
+.ca-lbl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+.ca-a .ca-lbl{color:#a09fff}.ca-k .ca-lbl{color:var(--accent)}.ca-w .ca-lbl{color:var(--accent2)}.ca-g .ca-lbl{color:var(--accentG)}
+.ca p{font-size:.87rem;color:var(--text);margin:0;line-height:1.65}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:.6rem .9rem;background:rgba(255,255,255,.03);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:.6rem .9rem;font-size:.83rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+td:first-child{font-weight:700;color:var(--text)}
+tr:last-child td{border-bottom:none}
+.fw{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}
+.fw-t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.8rem}
+.fi{display:flex;gap:.8rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.fi:last-child{border-bottom:none}
+.fl{font-size:1.1rem;font-weight:900;color:var(--accent);min-width:28px}
+.fc h4{font-size:.88rem;font-weight:800;color:var(--text)}
+.fc p{font-size:.8rem;color:var(--text2);margin:0}
+pre.code{background:rgba(0,0,0,.4);border:1px solid rgba(255,101,132,.2);border-radius:8px;padding:.8rem;font-size:.77rem;color:#ffb0c0;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:.6rem 0}
+.tk{background:rgba(255,101,132,.07);border:1px solid rgba(255,101,132,.25);border-radius:10px;padding:1.2rem;margin-top:1.8rem}
+.tk h3{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.tk ul{list-style:none}
+.tk li{font-size:.86rem;color:var(--text);padding:.25rem 0;display:flex;gap:.6rem}
+.tk li::before{content:'★';color:var(--accent);flex-shrink:0;font-size:.7rem;margin-top:.2rem}
+.ex{background:rgba(255,101,132,.07);border:1px solid rgba(255,101,132,.25);border-radius:14px;padding:1.8rem;margin-top:.5rem}
+.ex h2{font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+.ex-m{font-size:.76rem;color:var(--text2);margin-bottom:1.3rem}
+.es{display:flex;gap:.8rem;margin-bottom:1.1rem;align-items:flex-start}
+.sn{min-width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;margin-top:.1rem}
+.sc h4{font-size:.87rem;font-weight:800;margin-bottom:.2rem}
+.sc p{font-size:.83rem;color:var(--text2);margin:0}
+.dv{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.25);border-radius:9px;padding:.9rem;margin-top:1.3rem}
+.dv h4{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accentG);margin-bottom:.2rem}
+.dv p{font-size:.83rem;color:var(--text2);margin:0}
+.qz h2{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.qi{font-size:.86rem;color:var(--text2);margin-bottom:1.8rem}
+.qb{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;margin-bottom:1rem}
+.qt{font-size:.92rem;font-weight:700;margin-bottom:.9rem}
+.opts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.85rem;background:rgba(255,255,255,.02);transition:all .2s}
+.opt:hover{border-color:var(--accent);background:rgba(255,101,132,.08)}
+.opt.correct{background:rgba(67,233,123,.12);border-color:var(--accentG);color:var(--accentG)}
+.opt.wrong{background:rgba(255,101,132,.1);border-color:var(--accent);color:var(--accent)}
+.opt input[type=radio]{accent-color:var(--accent);flex-shrink:0;margin-top:.2rem}
+.exp{font-size:.81rem;color:var(--text2);background:rgba(255,255,255,.03);border-radius:7px;padding:.7rem .9rem;margin-top:.7rem;display:none;line-height:1.6}
+.exp.show{display:block}
+.qbtn{padding:.55rem 1.3rem;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:.9rem}
+.qr{background:rgba(255,101,132,.1);border:1px solid rgba(255,101,132,.3);border-radius:10px;padding:1.2rem;text-align:center;margin-top:1.3rem;display:none}
+.qr.show{display:block}
+.rs{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lnb{display:flex;gap:.8rem;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.lnbtn{padding:.7rem 1.2rem;border-radius:9px;text-decoration:none;font-size:.85rem;font-weight:700;border:1px solid var(--border);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s}
+.lnbtn:hover{border-color:var(--accent);color:var(--accent)}
+.lnbtn.nx{background:var(--accent);color:#fff;border-color:var(--accent)}
+.lnbtn.nx:hover{opacity:.85}
+.mod-complete{background:rgba(67,233,123,.08);border:1px solid rgba(67,233,123,.3);border-radius:12px;padding:1.5rem;margin-top:2rem;text-align:center}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+
+/* ── BILINGUAL TOGGLE ── */
+.lang-toggle{margin-top:.6rem}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;color:var(--text2);padding:.25rem .8rem;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .2s;width:100%;text-align:center;display:block;letter-spacing:.08em}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn.active-en{background:var(--accent);color:#000;border-color:var(--accent)}
+.t-en{display:none!important}
+body.lang-en .t-es{display:none!important}
+body.lang-en .t-en{display:block!important}
+body.lang-en .t-en-i{display:inline!important}
+body.lang-en .t-es-i{display:none!important}
+
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo"><div class="t-es">⚡ <span class="t-es" style="display:inline">Módulo 3 · Vibecoding</span><span class="t-en" style="display:none">Module 3 · Vibecoding</span></div><div class="t-en">⚡ Module 3 · Vibecoding</div></div>
+    <a href="curso-ai-index.html" class="sidebar-back"><div class="t-es"><span class="t-es">← Volver al inicio</span><span class="t-en" style="display:none">← Back to start</span></div><div class="t-en">← Back to start</div></a>
+    <a href="curso-ai-recursos.html" style="display:block;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-es">⭐ Setup &amp; Recursos</a><a href="curso-ai-recursos.html" style="display:none;margin-top:.8rem;font-size:.75rem;font-weight:700;color:#ffd200;text-decoration:none;padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(255,210,0,.25);background:rgba(255,210,0,.06);text-align:center" class="t-en">⭐ Resources &amp; Setup</a>
+  <div class="lang-toggle">
+    <button id="langBtn" class="lang-btn" onclick="toggleLang()">🌐 EN</button>
+  </div>
+  </div>
+  <div class="mod-label"><div class="t-es">5 Lecciones · ~6 horas</div><div class="t-en">5 Lessons · ~6 hours</div></div>
+  <button class="ll active" onclick="show(0)"><span class="ln">3.1</span><div class="t-es">Qué es Vibecoding y por qué cambia todo</div><div class="t-en">What Is Vibecoding and Why It Changes Everything</div></button>
+  <button class="ll" onclick="show(1)"><span class="ln">3.2</span><span class="t-es" style="display:inline">Las herramientas: Lovable, Bolt, Cursor, v0</span><span class="t-en" style="display:none">The Tools: Lovable, Bolt, Cursor, v0</span></button>
+  <button class="ll" onclick="show(2)"><span class="ln">3.3</span><div class="t-es">El flujo completo: idea → producto live</div><div class="t-en">The Complete Flow: Idea → Live Product</div></button>
+  <button class="ll" onclick="show(3)"><span class="ln">3.4</span><div class="t-es">Suficiente código para no perderte</div><div class="t-en">Just Enough Code to Not Get Lost</div></button>
+  <button class="ll" onclick="show(4)"><span class="ln">3.5</span><div class="t-es">Construye tu primera mini-app de RevOps</div><div class="t-en">Build Your First RevOps Mini-App</div></button>
+  <div class="sp">
+    <div class="sl"><div class="t-es">Progreso:</div><div class="t-en">Progress:</div> <span id="pp">0%</span></div>
+    <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div><div class="tl" id="tl">Módulo 3 · Lección 3.1</div><div class="tt" id="tt">Qué es Vibecoding y por qué cambia todo</div></div>
+    <div class="tnav">
+      <button class="nb" onclick="prev()"><div class="t-es">← Anterior</div><div class="t-en">← Previous</div></button>
+      <button class="nb p" onclick="next()"><div class="t-es">Siguiente →</div><div class="t-en">Next →</div></button>
+    </div>
+  </div>
+  <div class="content">
+
+<!-- ══ LECCIÓN 3.1 ══ -->
+<div id="L0" class="lp active">
+  <div class="lh">
+    <div class="badge">Módulo 3 · Lección 3.1 · 50 min</div>
+    <h1 class="lt">Qué es Vibecoding y por qué cambia todo</h1>
+    <div class="lm"><span class="mc">⏱ 50 min</span><span class="mc">⚡ Paradigma</span><span class="mc">🔑 Fundacional</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c0')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e0')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q0')">🧠 Quiz</button>
+  </div>
+  <div id="c0" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Definir Vibecoding y entender qué lo hace diferente al desarrollo tradicional</li>
+      <li>Explicar por qué democratiza la creación de software</li>
+      <li>Identificar qué tipos de productos puedes construir con Vibecoding</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El término que cambió la industria</h2>
+      <p>En febrero de 2025, Andrej Karpathy (ex-director de IA de Tesla y OpenAI) publicó un tweet que cambió la conversación sobre el desarrollo de software: <em>"Hay una nueva forma de programar que llamo 'vibe coding', donde te rindes completamente ante las vibras, te olvidas de que el código existe y simplemente le dices al modelo lo que quieres."</em></p>
+      <p>El término pegó porque describía algo que miles de personas ya estaban haciendo intuitivamente: usar IA para crear software sin entender el código, solo describiendo lo que querías y iterando hasta que funcionara.</p>
+      <div class="ca ca-a"><div class="ca-lbl">Definición</div><p><strong>Vibecoding</strong> es el proceso de construir software usando lenguaje natural con herramientas de IA, donde el humano describe qué quiere y la IA genera el código. No requiere saber programar — requiere saber describir, iterar y evaluar.</p></div>
+
+      <h2>Por qué esto es diferente a "usar un generador de código"</h2>
+      <p>Los primeros AI coding assistants (GitHub Copilot, Tabnine) eran herramientas para programadores — autocomplete inteligente que asumía que ya sabías código. Vibecoding invierte la ecuación: <strong>el no-programador es el ciudadano de primera clase</strong>.</p>
+      <p>La diferencia clave está en el loop de iteración. En el desarrollo tradicional, si algo no funciona, necesitas depurar código. En Vibecoding, dices "esto no está funcionando bien, quiero que haga X de otra manera" y la IA lo corrige.</p>
+
+      <h2><div class="t-es">Lo que realmente cambia: democratización de la creación</div><div class="t-en">What Really Changes: Democratization of Creation</div></h2>
+      <p><div class="t-es">Durante 50 años, crear software requirió aprender lenguajes de programación — una barrera que eliminó del proceso creativo a todas las personas con ideas de negocio pero sin skills técnicos. Vibecoding quiebra esta barrera. Adopción por usuarios no-técnicos: 520% crecimiento año-a-año (2025-2026). Además, 82% de developers usan o planean usar herramientas de AI coding (Marzo 2026).</div><div class="t-en">For 50 years, building software required learning programming languages — a barrier that eliminated many people with business ideas but no technical skills. Vibecoding breaks this barrier. Non-technical user adoption: 520% year-over-year growth (2025-2026). Additionally, 82% of developers use or plan to use AI coding tools (March 2026).</div></p>
+      <p><div class="t-es">Ahora el ciclo es:</div><div class="t-en">Now the cycle is:</div></p>
+      <div class="fw"><div class="fw-t">El ciclo de Vibecoding</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Tienes una idea</h4><p>Un dashboard que no existe en tu CRM. Una herramienta interna para el equipo de ventas. Una calculadora de pricing específica.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>La describes con detalle</h4><p>"Quiero una app web donde el AE ingrese el nombre de una empresa, la app consulte nuestros datos y muestre un brief de la cuenta con los últimos 3 touchpoints."</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>La herramienta genera</h4><p>En segundos tienes código funcional. No perfecto, pero funcional.</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Iteras en lenguaje natural</h4><p>"El botón de buscar debería ser verde. Agrega un campo para notas del AE. Cuando no encuentra la empresa, muestra un mensaje amigable."</p></div></div>
+        <div class="fi"><span class="fl">5</span><div class="fc"><h4>Publicas</h4><p>Con un clic, tu app está live en la web. No necesitas saber de servidores, deployments ni dominios.</p></div></div>
+      </div>
+
+      <h2>¿Qué puedes construir con Vibecoding?</h2>
+      <div class="tw"><table><thead><tr><th>Tipo</th><th>Ejemplo para RevOps</th><th>Tiempo estimado</th></tr></thead><tbody>
+        <tr><td>Landing page</td><td>Página de propuesta de consultoría</td><td>30 min</td></tr>
+        <tr><td>Dashboard / calculadora</td><td>Calculadora de ROI de implementación CRM</td><td>1-2 horas</td></tr>
+        <tr><td>Herramienta interna</td><td>Account brief generator para el equipo de ventas</td><td>2-4 horas</td></tr>
+        <tr><td>Mini-app de datos</td><td>Visualizador de pipeline con filtros custom</td><td>4-8 horas</td></tr>
+        <tr><td>App completa simple</td><td>CRM lite para un equipo pequeño</td><td>1-3 días</td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Lo que Vibecoding no reemplaza (aún)</div><div class="t-en">What Vibecoding Can't Replace (Yet)</div></h2>
+      <p><div class="t-es">Es importante ser honesto sobre las limitaciones. Vibecoding es extraordinario para crear MVPs, prototipos y herramientas internas. No está listo para sistemas de producción de alto tráfico, aplicaciones con requisitos de seguridad críticos o software que necesita mantenimiento a largo plazo por equipos grandes. Esas situaciones aún requieren engineers. Para el 80% de lo que un profesional de RevOps necesita crear — funciona perfectamente.</div><div class="t-en">It's important to be honest about limitations. Vibecoding (or "AI-assisted development") is extraordinary for creating MVPs, prototypes, and internal tools. It's not ready for high-traffic production systems, applications with critical security requirements, or software needing long-term maintenance by large teams. Those situations still require engineers. For 80% of what a RevOps professional needs to create — it works perfectly.</div></p>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>Vibecoding = crear software con lenguaje natural, sin código</li>
+        <li>El humano describe, itera y evalúa; la IA genera</li>
+        <li>Democratiza la creación: las ideas de negocio ya no necesitan esperar a un developer</li>
+        <li>Ideal para: dashboards, calculadoras, herramientas internas, MVPs</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e0" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 3.1: Lista tus ideas de productos</h2>
+      <div class="ex-m">⏱ 30 min · Solo necesitas papel o Claude</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Brain dump de ideas</h4><p>Dedica 10 minutos a escribir todas las herramientas, calculadoras, dashboards o apps que has querido tener en tu trabajo pero nunca existieron o tuviste que usar hojas de cálculo complicadas.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Clasifica por tipo y complejidad</h4><p>Para cada idea: ¿es landing page, calculadora, herramienta interna o app? ¿Complejidad: baja/media/alta? Esto te ayudará a priorizar.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Elige tu proyecto del módulo</h4><p>Selecciona la idea más valiosa con complejidad baja o media. Será tu proyecto de la lección 3.5. Escribe una descripción de 2-3 oraciones de qué hace y para quién.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Valida con Claude</h4><p>Prompt: "Tengo esta idea de mini-app: [descripción]. ¿Es viable con herramientas como Lovable o Bolt (sin programar)? ¿Qué funcionalidades básicas debería tener para ser útil desde el día 1?"</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Lista de ideas + descripción de tu proyecto elegido. Lo usarás en la lección 3.3 y 3.5.</p></div>
+    </div>
+  </div>
+  <div id="q0" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 3.1</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb0">
+        <div class="qt">1. ¿Quién acuñó el término "Vibecoding" y cuándo?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">Sam Altman en 2024</li>
+          <li class="opt" onclick="ans(this,'qb0',true)"><input type="radio">Andrej Karpathy en febrero de 2025</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">GitHub en su lanzamiento de Copilot</li>
+          <li class="opt" onclick="ans(this,'qb0',false)"><input type="radio">El término existía desde 2020</li>
+        </ul>
+        <div class="exp">Andrej Karpathy (ex-director de IA de Tesla y cofundador de OpenAI) publicó el tweet que popularizó el término en febrero de 2025, describiendo el proceso de "rendirse a las vibras" y dejar que la IA genere el código.</div>
+      </div>
+      <div class="qb" id="qb1">
+        <div class="qt">2. ¿Cuál es la diferencia fundamental entre Vibecoding y usar un asistente de código como GitHub Copilot?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Vibecoding es más caro</li>
+          <li class="opt" onclick="ans(this,'qb1',true)"><input type="radio">Vibecoding no requiere saber programar — el no-programador es el usuario principal; Copilot asiste a programadores</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">Copilot es más avanzado que las herramientas de Vibecoding</li>
+          <li class="opt" onclick="ans(this,'qb1',false)"><input type="radio">No hay diferencia real</li>
+        </ul>
+        <div class="exp">Copilot y similares son autocomplete inteligente para programadores que ya saben código. Vibecoding invierte esto: el no-programador describe en lenguaje natural y la herramienta genera todo. No necesitas entender el código generado.</div>
+      </div>
+      <div class="qb" id="qb2">
+        <div class="qt">3. ¿Para qué tipo de proyecto es Vibecoding la herramienta correcta?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Sistemas bancarios de producción con millones de usuarios</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Apps iOS/Android complejas que serán publicadas en tiendas</li>
+          <li class="opt" onclick="ans(this,'qb2',true)"><input type="radio">Dashboards, calculadoras, herramientas internas y MVPs para validar ideas de negocio</li>
+          <li class="opt" onclick="ans(this,'qb2',false)"><input type="radio">Vibecoding no es apropiado para nada profesional</li>
+        </ul>
+        <div class="exp">Vibecoding brilla para herramientas internas, MVPs y prototipos. Para el 80% de las necesidades de un profesional de RevOps y negocio, es perfectamente adecuado.</div>
+      </div>
+      <button class="qbtn" onclick="score('q0r',3)">Ver resultado</button>
+      <div class="qr" id="q0r"><div class="rs" id="q0s">0/3</div><p id="q0m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <a href="curso-ai-m2.html" class="lnbtn">← Módulo 2</a>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 3.2 ══ -->
+<div id="L1" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 3 · Lección 3.2 · 60 min</div>
+    <h1 class="lt">Las herramientas: Lovable, Bolt, Cursor y v0</h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">🔧 Herramientas</span><span class="mc">⚡ Stack</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c1')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e1')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q1')">🧠 Quiz</button>
+  </div>
+  <div id="c1" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Comparar Lovable, Bolt, Cursor y v0 y elegir la herramienta correcta</li>
+      <li>Entender los casos de uso ideales de cada herramienta</li>
+      <li>Tener tu primera cuenta configurada y lista para usar</li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">El ecosistema de herramientas de Vibecoding en 2026</div><div class="t-en">The Vibecoding Tools Ecosystem in 2026</div></h2>
+      <p><div class="t-es">En 12 meses, el ecosistema de Vibecoding pasó de 2-3 herramientas experimentales a docenas de opciones serias. Aquí están las 4 más relevantes para profesionales de negocio:</div><div class="t-en">In 12 months, the Vibecoding ecosystem evolved from 2-3 experimental tools to dozens of serious options. Here are the 4 most relevant for business professionals:</div></p>
+
+      <h2><div class="t-es">Lovable — El estándar de oro para apps completas</div><div class="t-en">Lovable — The Gold Standard for Complete Apps</div></h2>
+      <p><div class="t-es">Lovable (antes GPT Engineer) es la herramienta más avanzada para construir apps web completas. Lovable 2.0 (lanzado en 2026) incluye: auto-deployment con URLs públicas automáticas, integración nativa de Supabase backend (reduce setup manual), colaboración en tiempo real para múltiples usuarios, y "agentic mode" para ediciones multi-paso autónomas. Genera código React, backend, base de datos completamente funcionales. Valorización: $180M (Series A de $35M).</div><div class="t-en">Lovable (formerly GPT Engineer) is the most advanced tool for building complete web apps from a description. Lovable 2.0 (launched 2026) includes: auto-deployment with automatic public URLs, native Supabase backend integration (reduces manual setup), real-time collaboration for multiple users, and "agentic mode" for autonomous multi-step edits. Generates fully functional React code, backend, and database. Valuation: $180M (Series A of $35M).</div></p>
+      <div class="tw"><table><thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead><tbody>
+        <tr><td>Mejor para</td><td>Apps completas con frontend + backend + base de datos</td></tr>
+        <tr><td>Resultado</td><td>App React publicada con URL propia</td></tr>
+        <tr><td>Curva de aprendizaje</td><td>Baja — interfaz conversacional</td></tr>
+        <tr><td>Precio</td><td>Plan gratis + de pago desde $20/mes</td></tr>
+        <tr><td>Tiempo típico para MVP</td><td>2-4 horas para una app simple</td></tr>
+      </tbody></table></div>
+      <div class="ca ca-k"><div class="ca-lbl">Caso de uso ideal</div><p>Quieres construir una herramienta interna para tu equipo — por ejemplo, un portal donde los AEs ingresan datos de una cuenta y obtienen un account brief generado por IA automáticamente. Lovable puede construir eso con una descripción detallada.</p></div>
+
+      <h2><div class="t-es">Bolt — Velocidad y prototipado instantáneo</div><div class="t-en">Bolt — Speed and Instant Prototyping</div></h2>
+      <p><div class="t-es">Bolt (stackblitz.com/bolt) es ultra-rápido para prototipos. Genera apps en el navegador sin instalación. Bolt Cloud (ahora "Bolt Cloud" oficial, 2026) proporciona deployment nativo one-click con dominios custom y cola persistente. La velocidad de Bolt es incomparable — desde idea a URL pública en minutos. Valorización: $2.1B (2026). Ideal para validar ideas en minutos sin fricción.</div><div class="t-en">Bolt is ultra-fast for prototypes. Generates apps in the browser with no installation. Bolt Cloud (now official "Bolt Cloud", 2026) provides one-click native deployment with custom domains and persistent queue. Bolt's speed is unmatched — from idea to public URL in minutes. Valuation: $2.1B (2026). Ideal for validating ideas in minutes friction-free.</div></p>
+      <div class="tw"><table><thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead><tbody>
+        <tr><td>Mejor para</td><td>Prototipos rápidos, dashboards, calculadoras</td></tr>
+        <tr><td>Resultado</td><td>App web funcional con preview inmediato</td></tr>
+        <tr><td>Curva de aprendizaje</td><td>Muy baja — funciona en el navegador</td></tr>
+        <tr><td>Precio</td><td>Plan gratis disponible</td></tr>
+        <tr><td>Tiempo típico para prototipo</td><td>15-30 minutos</td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Cursor — Para cuando quieres más control</div><div class="t-en">Cursor — When You Want More Control</div></h2>
+      <p><div class="t-es">Cursor es un editor de código (como VS Code) con IA integrada muy profundamente. No es 100% no-code como Lovable/Bolt, pero permite controlar y editar el código que genera la IA. Anysphere (parent company) está valorizada en $9.2B (Series B de $400M, Sept 2025). Cursor ahora scores 92% en HumanEval, confirmando que la IA-assisted coding es mainstream en 2026. Para el usuario que quiere entender un poco más o hacer modificaciones precisas.</div><div class="t-en">Cursor is a code editor (like VS Code) with deeply integrated AI. Not 100% no-code like Lovable/Bolt, but allows you to control and edit the code the AI generates. Anysphere (parent company) valued at $9.2B (Series B of $400M, Sept 2025). Cursor now scores 92% on HumanEval, confirming AI-assisted coding is mainstream in 2026. For users who want more control or precise modifications.</div></p>
+      <div class="ca ca-w"><div class="ca-lbl"><div class="t-es">Para quién es Cursor (y Claude Code)</div><div class="t-en">Who Cursor is for (and Claude Code)</div></div><p><div class="t-es">Si llevas tiempo con Vibecoding y quieres más control, Cursor es excelente. También está Claude Code, la herramienta CLI oficial de Anthropic lanzada en 2026, que ahora es uno de los principales jugadores para AI-assisted development. Cursor y Claude Code compiten en el espacio de "agentic coding" donde pueden completar features enteras autónomamente. Ambos requieren instalar software y tener mínima comodidad con ver código (aunque no escribirlo).</div><div class="t-en">If you've spent time with Vibecoding and want more control, Cursor is excellent. There's also Claude Code, Anthropic's official CLI tool launched in 2026, which is now a major player in AI-assisted development. Cursor and Claude Code compete in the "agentic coding" space where they can autonomously complete entire features. Both require installing software and minimal comfort reading code (though not writing it).</div></p></div>
+
+      <h2><div class="t-es">v0 (Vercel) — Interfaces de usuario hermosas</div><div class="t-en">v0 (Vercel) — Beautiful User Interfaces</div></h2>
+      <p><div class="t-es">v0.dev es la herramienta especializada en generar componentes y páginas. Ahora integrado con Next.js 15 y genera páginas completas (no solo componentes). En 2026, v0 ha agregado capacidades de backend (serverless functions, databases) permitiendo apps más completas. Si necesitas que algo se vea profesional y bonito, v0 es extraordinario. Genera componentes React con Tailwind CSS que puedes copiar y pegar en cualquier proyecto o usar directamente.</div><div class="t-en">v0.dev specializes in generating components and pages. Now integrated with Next.js 15 and generates full pages (not just components). As of 2026, v0 has added backend capabilities (serverless functions, databases) enabling more complete apps. Excellent for professional-looking designs. Generates React components with Tailwind CSS you can copy and paste into any project or use directly.</div></p>
+      <div class="tw"><table><thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead><tbody>
+        <tr><td>Mejor para</td><td>Componentes UI específicos, landing pages visualmente impactantes</td></tr>
+        <tr><td>Resultado</td><td>Componentes React/HTML listos para usar</td></tr>
+        <tr><td>Curva de aprendizaje</td><td>Muy baja</td></tr>
+        <tr><td>Precio</td><td>Plan gratis generoso</td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Cómo elegir: el árbol de decisión del Vibecoder (2026)</div><div class="t-en">How to Choose: The Vibecoder Decision Tree (2026)</div></h2>
+      <div class="fw"><div class="fw-t"><div class="t-es">¿Qué herramienta uso?</div><div class="t-en">Which tool should I use?</div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4><div class="t-es">Quiero una app completa con base de datos</div><div class="t-en">I want a complete app with database</div></h4><p><div class="t-es">→ Lovable 2.0</div><div class="t-en">→ Lovable 2.0</div></p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4><div class="t-es">Quiero un prototipo rápido para mostrar hoy</div><div class="t-en">I want a quick prototype to show today</div></h4><p><div class="t-es">→ Bolt Cloud</div><div class="t-en">→ Bolt Cloud</div></p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4><div class="t-es">Quiero un componente de UI muy específico</div><div class="t-en">I want a specific UI component</div></h4><p><div class="t-es">→ v0</div><div class="t-en">→ v0</div></p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4><div class="t-es">Necesito algo backend-heavy o aplicación Python</div><div class="t-en">I need backend-heavy or Python application</div></h4><p><div class="t-es">→ Replit Agent / GitHub Copilot Workspace</div><div class="t-en">→ Replit Agent / GitHub Copilot Workspace</div></p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4><div class="t-es">Quiero más control y estoy cómodo viendo código</div><div class="t-en">I want more control and I'm comfortable seeing code</div></h4><p><div class="t-es">→ Cursor / Claude Code (agentic coding)</div><div class="t-en">→ Cursor / Claude Code (agentic coding)</div></p></div></div>
+        <div class="fi"><span class="fl">→</span><div class="fc"><h4><div class="t-es">Para empezar desde cero hoy sin instalar nada</div><div class="t-en">To start from zero today with no installation</div></h4><p><div class="t-es">→ Bolt Cloud o Lovable (sin fricción)</div><div class="t-en">→ Bolt Cloud or Lovable (frictionless)</div></p></div></div>
+      </div>
+
+      <div class="tk"><h3>Conceptos clave de esta lección (2026)</h3><ul>
+        <li>Lovable 2.0: apps completas con backend, auto-deployment, real-time collab — el estándar de oro</li>
+        <li>Bolt Cloud: prototipos ultra-rápidos con deployment, ideal para validar ideas</li>
+        <li>Cursor / Claude Code: más control para usuarios que quieren editar código (agentic coding)</li>
+        <li>v0: componentes UI hermosos + backend capabilities</li>
+        <li>Replit Agent / GitHub Copilot Workspace: para proyectos backend-heavy o whole-repo coding</li>
+        <li>Para empezar: Bolt Cloud o Lovable 2.0 (sin fricción)</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e1" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 3.2: Explora las herramientas</h2>
+      <div class="ex-m">⏱ 45 min · Herramientas: Lovable + Bolt</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Crea cuentas en Lovable y Bolt</h4><p>lovable.dev y bolt.new (o stackblitz.com/bolt). Los planes gratuitos son suficientes para este ejercicio.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>En Bolt: prueba un prompt simple (15 min)</h4><p>Pide algo básico: "Crea una calculadora de descuentos donde ingreso precio original y porcentaje de descuento, y muestra el precio final y el ahorro". Observa qué genera y cómo puedes iterarlo.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>En Lovable: prueba algo más complejo (20 min)</h4><p>Describe una mini-app: "Una herramienta donde ingreso el nombre de una empresa y puedo agregar notas sobre ella. Debe guardar las notas y mostrarlas al buscar la empresa". Ve qué genera.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Compara y anota</h4><p>¿Cuál fue más fácil? ¿Cuál generó mejor resultado? ¿Qué no pudo hacer cada herramienta? ¿Cuál elegirías para tu proyecto del módulo?</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Screenshots de ambas herramientas con tu primer prototipo + comparativa de 1 párrafo. Ya tienes manos en las herramientas.</p></div>
+    </div>
+  </div>
+  <div id="q1" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 3.2</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb10">
+        <div class="qt">1. ¿Para qué tipo de proyecto es Lovable la mejor opción?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Prototipos muy rápidos para mostrar en reuniones</li>
+          <li class="opt" onclick="ans(this,'qb10',true)"><input type="radio">Apps completas con frontend, backend y base de datos que necesitan publicarse</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Solo para componentes de interfaz de usuario</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Para usuarios avanzados que quieren controlar el código</li>
+        </ul>
+        <div class="exp">Lovable es el estándar de oro para apps completas. Genera frontend React + backend + base de datos y hace el deployment automático. Ideal cuando necesitas algo completo que funcione de verdad.</div>
+      </div>
+      <div class="qb" id="qb11">
+        <div class="qt">2. ¿Cuál es la ventaja principal de Bolt sobre Lovable?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Bolt puede hacer cosas más complejas</li>
+          <li class="opt" onclick="ans(this,'qb11',true)"><input type="radio">Bolt es ultra-rápido para prototipos — funciona en el navegador sin instalación y genera resultados en minutos</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Bolt es más barato</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Bolt tiene mejor diseño visual</li>
+        </ul>
+        <div class="exp">La ventaja de Bolt es la velocidad y la fricción cero — corre en el navegador, no hay instalación, y puedes tener un prototipo en 15-30 minutos. Perfecto para validar ideas antes de construirlas bien con Lovable.</div>
+      </div>
+      <div class="qb" id="qb12">
+        <div class="qt">3. ¿Cuándo tiene sentido usar Cursor / Claude Code en lugar de Lovable/Bolt?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Para principiantes absolutos</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Para cualquier proyecto de Vibecoding</li>
+          <li class="opt" onclick="ans(this,'qb12',true)"><input type="radio">Cuando quieres más control sobre el código generado y estás cómodo editando archivos — "agentic coding"</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Cursor es obsoleto; Claude Code es la única opción</li>
+        </ul>
+        <div class="exp">Cursor y Claude Code son para el Vibecoder que quiere control. Requieren instalar software y ver código, pero permiten modificaciones muy precisas que las herramientas no-code no permiten. El paso natural después de dominar Lovable/Bolt. Ambos compiten en el espacio de agentic coding donde pueden completar features enteras autónomamente.</div>
+      </div>
+      <button class="qbtn" onclick="score('q1r',3)">Ver resultado</button>
+      <div class="qr" id="q1r"><div class="rs" id="q1s">0/3</div><p id="q1m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><div class="t-es">← Anterior</div><div class="t-en">← Previous</div></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 3.3 ══ -->
+<div id="L2" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 3 · Lección 3.3 · 70 min</div>
+    <h1 class="lt">El flujo completo: idea → producto live</h1>
+    <div class="lm"><span class="mc">⏱ 70 min</span><span class="mc">🔄 Proceso</span><span class="mc">🚀 Deploy</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c2')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e2')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q2')">🧠 Quiz</button>
+  </div>
+  <div id="c2" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Aplicar el proceso de 5 fases para ir de idea a producto live</li>
+      <li>Escribir prompts de Vibecoding que producen resultados de calidad</li>
+      <li>Publicar tu primera app en internet</li>
+    </ul></div>
+    <div class="lb">
+      <h2>El proceso de 5 fases del Vibecoding</h2>
+      <p>El error más común al empezar a vibecoder es lanzarse directo a la herramienta con una descripción vaga. Eso produce resultados mediocres que requieren docenas de iteraciones.</p>
+      <p>El proceso correcto tiene 5 fases:</p>
+
+      <h2>Fase 1: Claridad antes de código</h2>
+      <p>Antes de abrir Lovable o Bolt, tienes que tener claridad sobre:</p>
+      <div class="fw"><div class="fw-t">Las 5 preguntas de claridad</div>
+        <div class="fi"><span class="fl">?</span><div class="fc"><h4>¿Qué problema resuelve exactamente?</h4><p>No "quiero un dashboard" sino "quiero ver el pipeline de ventas filtrado por AE y etapa en tiempo real".</p></div></div>
+        <div class="fi"><span class="fl">?</span><div class="fc"><h4>¿Quién lo usa y cómo?</h4><p>AEs desde el móvil? Managers en desktop? ¿Con qué frecuencia? ¿En qué contexto?</p></div></div>
+        <div class="fi"><span class="fl">?</span><div class="fc"><h4>¿Cuáles son las 3 funciones mínimas esenciales?</h4><p>El MVP — lo que lo hace útil desde el día 1, sin extras.</p></div></div>
+        <div class="fi"><span class="fl">?</span><div class="fc"><h4>¿Qué datos necesita y de dónde vienen?</h4><p>¿Datos hardcodeados para empezar? ¿El usuario los ingresa? ¿Se conecta a un sistema?</p></div></div>
+        <div class="fi"><span class="fl">?</span><div class="fc"><h4>¿Cómo se verá el éxito?</h4><p>Si lo muestro a alguien mañana, ¿qué necesita poder hacer para que digan "esto es útil"?</p></div></div>
+      </div>
+
+      <h2>Fase 2: El prompt fundacional</h2>
+      <p>El primer prompt es el más importante. Define la arquitectura de toda la app. Un buen prompt fundacional incluye:</p>
+      <pre class="code">Estructura del prompt fundacional:
+
+Crea una [tipo de app] llamada "[nombre]".
+
+PROPÓSITO: [qué problema resuelve en 1-2 oraciones]
+
+USUARIOS: [quién la usa, en qué contexto]
+
+FUNCIONALIDADES PRINCIPALES:
+1. [función 1 — específica y detallada]
+2. [función 2]
+3. [función 3]
+
+DISEÑO: [descripción visual — colores, estilo, referencias]
+
+DATOS: [cómo se manejan los datos — hardcodeados, ingresados por usuario, etc.]
+
+NO incluir (para esta versión): [lista de cosas a excluir del MVP]</pre>
+      <p>El campo "NO incluir" es tan importante como las funcionalidades. Evita que la IA sobre-construya.</p>
+
+      <h2>Fase 3: Iteración estructurada</h2>
+      <p>Después del primer resultado, no digas "mejorar esto". Sé específico:</p>
+      <div class="ca ca-w"><div class="ca-lbl">Prompts de iteración efectivos</div><p>❌ "Esto no está bien, mejóralo"<br>✓ "El botón de buscar debería estar a la derecha del campo, con color azul #4facfe"<br>✓ "Cuando no hay resultados, muestra este mensaje: 'No encontramos esta empresa. ¿Quieres agregarla?'"<br>✓ "Agrega validación: el campo email debe tener formato correcto antes de enviar"</p></div>
+
+      <h2>Fase 4: Testing antes de publicar</h2>
+      <p>Antes de publicar, prueba los 3 escenarios:</p>
+      <p><strong>Happy path:</strong> El flujo más común funciona perfectamente.</p>
+      <p><strong>Edge cases:</strong> ¿Qué pasa si el campo está vacío? ¿Si escriben un email inválido? ¿Si no hay datos?</p>
+      <p><strong>Dispositivos:</strong> ¿Se ve bien en móvil? ¿En pantallas pequeñas?</p>
+
+      <h2>Fase 5: Publicar (Deploy)</h2>
+      <p><strong>Lovable:</strong> Botón "Publish" en la interfaz. Genera una URL automáticamente.</p>
+      <p><strong>Bolt:</strong> Botón de deploy a Netlify o similar. También con URL propia.</p>
+      <p><strong>Dominio propio:</strong> Si quieres usar tu dominio, puedes conectarlo desde el panel de la herramienta. Costo: ~$12/año el dominio.</p>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>5 fases: Claridad → Prompt fundacional → Iteración estructurada → Testing → Deploy</li>
+        <li>La claridad antes del código ahorra horas de iteración</li>
+        <li>El campo "NO incluir" en el prompt es tan importante como las funcionalidades</li>
+        <li>Iteración específica ("botón azul a la derecha") produce mejores resultados que "mejorar esto"</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e2" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 3.3: Tu primer prompt fundacional</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + Lovable o Bolt</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Responde las 5 preguntas de claridad</h4><p>Para el proyecto que elegiste en la lección 3.1. Escribe las respuestas con detalle — esto es el 50% del trabajo.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Redacta tu prompt fundacional</h4><p>Usando la estructura de la lección. Pídele a Claude que lo revise: "¿Este prompt producirá una app clara y enfocada? ¿Qué estoy omitiendo o qué es demasiado vago?"</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Lanza el prompt en Bolt o Lovable</h4><p>Usa el prompt revisado. No empieces a iterar inmediatamente — espera el resultado completo y evalúa el 80% de la app antes de hacer cambios.</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Haz 3 iteraciones específicas</h4><p>Identifica las 3 cosas más importantes a mejorar. Para cada una, escribe un prompt de iteración específico (no vago).</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>Screenshot de tu app después de las 3 iteraciones + el prompt fundacional que usaste. ¡Ya tienes un producto en construcción!</p></div>
+    </div>
+  </div>
+  <div id="q2" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 3.3</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb20">
+        <div class="qt">1. ¿Por qué es importante incluir un campo "NO incluir" en el prompt fundacional?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Para ahorrar tokens y reducir el costo</li>
+          <li class="opt" onclick="ans(this,'qb20',true)"><input type="radio">Para evitar que la IA sobre-construya el MVP con funcionalidades innecesarias</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Es un requisito técnico de las herramientas</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">No es realmente importante</li>
+        </ul>
+        <div class="exp">Sin el campo "NO incluir", las herramientas de IA tienden a agregar funcionalidades que imaginan útiles pero que complican el MVP. Ser explícito sobre qué excluir enfoca la app en lo esencial.</div>
+      </div>
+      <div class="qb" id="qb21">
+        <div class="qt">2. ¿Cuál es la diferencia entre un prompt de iteración efectivo vs. inefectivo?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">El efectivo es más largo</li>
+          <li class="opt" onclick="ans(this,'qb21',true)"><input type="radio">El efectivo es específico ("botón azul a la derecha") vs. el inefectivo es vago ("mejorar esto")</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">El efectivo siempre incluye código</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">No hay diferencia real</li>
+        </ul>
+        <div class="exp">La especificidad es la clave. "Mejora el diseño" deja que la IA interprete — y puede empeorar las cosas. "El botón de buscar debe estar a la derecha del campo con color #4facfe" produce exactamente lo que quieres.</div>
+      </div>
+      <div class="qb" id="qb22">
+        <div class="qt">3. En las 5 fases del Vibecoding, ¿qué fase va ANTES de abrir la herramienta?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Testing</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Iteración</li>
+          <li class="opt" onclick="ans(this,'qb22',true)"><input type="radio">Claridad — responder las 5 preguntas sobre el producto</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Deploy</li>
+        </ul>
+        <div class="exp">La fase de Claridad (responder las 5 preguntas) va antes de tocar la herramienta. Este trabajo previo ahorra horas de iteración y produce resultados mucho mejores desde el primer prompt.</div>
+      </div>
+      <button class="qbtn" onclick="score('q2r',3)">Ver resultado</button>
+      <div class="qr" id="q2r"><div class="rs" id="q2s">0/3</div><p id="q2m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><div class="t-es">← Anterior</div><div class="t-en">← Previous</div></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 3.4 ══ -->
+<div id="L3" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 3 · Lección 3.4 · 60 min</div>
+    <h1 class="lt">Suficiente código para no perderte</h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">💻 Código básico</span><span class="mc">🗺️ Orientación</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c3')">📖 Lección</button>
+    <button class="tab" onclick="tab(this,'e3')">✏️ Ejercicio</button>
+    <button class="tab" onclick="tab(this,'q3')">🧠 Quiz</button>
+  </div>
+  <div id="c3" class="tc active">
+    <div class="obj"><h3>Al terminar esta lección podrás:</h3><ul>
+      <li>Leer código generado y entender su estructura básica</li>
+      <li>Identificar dónde hacer cambios simples sin romper todo</li>
+      <li>Usar Claude para explicarte código que no entiendes</li>
+    </ul></div>
+    <div class="lb">
+      <h2>Por qué necesitas entender el mínimo</h2>
+      <p>Esta lección es el único momento en todo el módulo donde tocamos código real. No para que te conviertas en developer — sino para que no estés completamente a ciegas cuando la herramienta genera algo y necesitas ajustarlo.</p>
+      <p>Piénsalo como aprender a leer el tablero de un coche sin necesitar ser mecánico. No necesitas saber cómo funciona el motor, pero sí entender qué significa cuando la luz de aceite se enciende.</p>
+
+      <h2>Las 5 cosas que debes reconocer en el código</h2>
+      <h3>1. HTML — La estructura</h3>
+      <p>HTML define qué elementos existen: botones, campos de texto, títulos, imágenes. Si ves etiquetas como <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;div&gt;</code>, es HTML. <strong>Cambiar texto dentro de HTML es seguro y simple.</strong></p>
+      <pre class="code">&lt;button&gt;Buscar empresa&lt;/button&gt;
+→ Puedes cambiar "Buscar empresa" por "Encontrar cuenta" sin problema</pre>
+
+      <h3>2. CSS — El estilo</h3>
+      <p>CSS controla colores, tamaños, posiciones. Si ves <code>color:</code>, <code>background:</code>, <code>font-size:</code>, es CSS. <strong>Cambiar valores de CSS es relativamente seguro.</strong></p>
+      <pre class="code">background-color: #4facfe;
+→ Cambiar el color hexadecimal cambia el color del fondo</pre>
+
+      <h3>3. JavaScript/TypeScript — La lógica</h3>
+      <p>Controla qué pasa cuando el usuario hace algo. Funciones, condiciones, manipulación de datos. <strong>No edites esto sin entenderlo — usa a Claude como intermediario.</strong></p>
+
+      <h3>4. Componentes en React</h3>
+      <p>Las herramientas modernas usan React, que organiza la app en componentes (piezas reutilizables). Cada archivo <code>.jsx</code> o <code>.tsx</code> es un componente. <strong>Si algo no funciona en un componente, pregunta a Claude sobre ese archivo específico.</strong></p>
+
+      <h3>5. Variables y datos</h3>
+      <p>Listas de datos, configuraciones. Si ves corchetes <code>[]</code> y llaves <code>{}</code> con texto descriptivo, son probablemente datos que puedes editar. <strong>Cambiar datos es seguro si entiendes el formato.</strong></p>
+
+      <h2>Tu mejor herramienta: Claude como intérprete</h2>
+      <p>No necesitas entender el código — necesitas saber cómo obtener ayuda. El proceso:</p>
+      <div class="fw"><div class="fw-t">Cómo usar Claude para entender código</div>
+        <div class="fi"><span class="fl">1</span><div class="fc"><h4>Copia el código que no entiendes</h4><p>El archivo completo o la sección relevante.</p></div></div>
+        <div class="fi"><span class="fl">2</span><div class="fc"><h4>Pregunta en lenguaje natural</h4><p>"¿Qué hace este código? Explícamelo como si no supiera programar."</p></div></div>
+        <div class="fi"><span class="fl">3</span><div class="fc"><h4>Pide el cambio específico</h4><p>"Necesito que cuando el usuario haga clic en el botón, en lugar de X, haga Y. ¿Cómo modifico este código?"</p></div></div>
+        <div class="fi"><span class="fl">4</span><div class="fc"><h4>Pide validación antes de aplicar</h4><p>"¿Este cambio puede romper algo más en la app?"</p></div></div>
+      </div>
+
+      <h2>Errores comunes y cómo manejarlos</h2>
+      <div class="tw"><table><thead><tr><th>Error</th><th>Qué significa</th><th>Qué hacer</th></tr></thead><tbody>
+        <tr><td>Pantalla en blanco</td><td>Error de JavaScript</td><td>Abre la consola del navegador (F12) y copia el error a Claude</td></tr>
+        <tr><td>Diseño roto</td><td>CSS no cargó o hay conflicto</td><td>Pide a Lovable/Bolt que lo corrija describiendo el problema visual</td></tr>
+        <tr><td>Datos no se guardan</td><td>Problema en la lógica de estado</td><td>Describe el comportamiento esperado vs. actual a la herramienta</td></tr>
+        <tr><td>Error de API</td><td>Conexión a servicio externo falló</td><td>Verifica las credenciales y pide a Claude que explique el error</td></tr>
+      </tbody></table></div>
+
+      <div class="tk"><h3>Conceptos clave de esta lección</h3><ul>
+        <li>HTML: estructura (seguro cambiar texto), CSS: estilo (seguro cambiar valores), JS: lógica (usar Claude como intermediario)</li>
+        <li>No necesitas entender el código — necesitas saber preguntar sobre él</li>
+        <li>Claude como intérprete: copia el código, describe el problema, pide la solución</li>
+        <li>Ante errores: describe el comportamiento, no intentes depurar solo</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="e3" class="tc">
+    <div class="ex">
+      <h2>Ejercicio 3.4: Lee el código de tu app</h2>
+      <div class="ex-m">⏱ 45 min · Herramienta: Claude + tu app de 3.3</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Abre el código de tu app (si es Lovable/Bolt)</h4><p>Lovable permite ver el código. Bolt también. Abre 2-3 archivos y miralos sin miedo — no los vas a editar todavía.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Identifica HTML, CSS y JS</h4><p>Sin entender cada línea, trata de identificar qué parte es estructura, cuál es estilo y cuál es lógica. Copia una sección pequeña de cada tipo.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Pídele a Claude que te lo explique</h4><p>Copia los 3 fragmentos y pregunta: "Explícame qué hace cada uno de estos fragmentos de código, como si no supiera nada de programación."</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Haz un cambio de texto seguro</h4><p>Cambia un label o texto en el HTML directamente (si te atreves) o pídele a Claude que te muestre exactamente qué línea cambiar y cómo.</p></div></div>
+      <div class="dv"><h4>Entregable</h4><p>3 fragmentos de código anotados con tu interpretación (aunque sea básica). Esta habilidad de "leer sin entender todo" es muy valiosa para iterar más rápido.</p></div>
+    </div>
+  </div>
+  <div id="q3" class="tc">
+    <div class="qz">
+      <h2>Quiz — Lección 3.4</h2>
+      <p class="qi">3 preguntas</p>
+      <div class="qb" id="qb30">
+        <div class="qt">1. ¿Qué tipo de cambio en el código es el MÁS seguro para alguien sin experiencia de programación?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Modificar la lógica de JavaScript</li>
+          <li class="opt" onclick="ans(this,'qb30',true)"><input type="radio">Cambiar texto dentro de etiquetas HTML (como el texto de un botón)</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Modificar las funciones de base de datos</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Editar el archivo de configuración del servidor</li>
+        </ul>
+        <div class="exp">Cambiar texto dentro de HTML (entre etiquetas como &lt;button&gt;Texto aquí&lt;/button&gt;) es el cambio más seguro — no afecta la lógica ni el estilo, solo el contenido visible.</div>
+      </div>
+      <div class="qb" id="qb31">
+        <div class="qt">2. ¿Cuál es el rol correcto de Claude cuando encuentras código que no entiendes?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Claude no puede ayudar con código</li>
+          <li class="opt" onclick="ans(this,'qb31',true)"><input type="radio">Intérprete: le copias el código, le describes el problema y te da la solución específica</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Solo puede explicar, no dar soluciones</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Debes aprender programación antes de usar Claude para código</li>
+        </ul>
+        <div class="exp">Claude es el intérprete perfecto para Vibecoders. Le copias el fragmento de código, describes qué quieres cambiar, y te da exactamente qué líneas modificar y cómo. No necesitas entender el código para usarlo.</div>
+      </div>
+      <div class="qb" id="qb32">
+        <div class="qt">3. Cuando la app muestra una pantalla en blanco después de un cambio, ¿qué es lo primero que debes hacer?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Reescribir toda la app desde cero</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Ignorarlo — probablemente se arregle solo</li>
+          <li class="opt" onclick="ans(this,'qb32',true)"><input type="radio">Abrir la consola del navegador (F12), copiar el mensaje de error y pedirle ayuda a Claude</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Contactar soporte de la herramienta</li>
+        </ul>
+        <div class="exp">Pantalla en blanco = error de JavaScript. La consola del navegador (F12 → tab Console) muestra el mensaje de error. Copia ese mensaje y pégalo a Claude para obtener la solución.</div>
+      </div>
+      <button class="qbtn" onclick="score('q3r',3)">Ver resultado</button>
+      <div class="qr" id="q3r"><div class="rs" id="q3s">0/3</div><p id="q3m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><div class="t-es">← Anterior</div><div class="t-en">← Previous</div></button>
+    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+  </div>
+</div>
+
+<!-- ══ LECCIÓN 3.5 ══ -->
+<div id="L4" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 3 · Lección 3.5 · Proyecto · 120 min</div>
+    <h1 class="lt">Construye tu primera mini-app de RevOps</h1>
+    <div class="lm"><span class="mc">⏱ 120 min</span><span class="mc">🏗️ Proyecto</span><span class="mc">🚀 Live</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c4')">📖 Guía</button>
+    <button class="tab" onclick="tab(this,'e4')">🏗️ Proyecto</button>
+    <button class="tab" onclick="tab(this,'q4')">🧠 Quiz Final</button>
+  </div>
+  <div id="c4" class="tc active">
+    <div class="obj"><h3>Al completar este proyecto tendrás:</h3><ul>
+      <li>Una mini-app de RevOps publicada y accesible por URL</li>
+      <li>Tu primera pieza de portafolio de Vibecoding</li>
+      <li>La confianza de saber que puedes crear productos digitales</li>
+    </ul></div>
+    <div class="lb">
+      <h2>Ideas de proyectos si no tienes una propia</h2>
+      <p>Usa tu idea de 3.1, o elige una de estas opciones probadas:</p>
+      <div class="fw"><div class="fw-t">Proyectos sugeridos (elige uno)</div>
+        <div class="fi"><span class="fl">A</span><div class="fc"><h4>Calculadora de ROI de CRM</h4><p>Ingresa: número de AEs, deal size promedio, tasa de cierre actual. Calcula: impacto potencial de mejora del 20% en métricas. Muestra: gráfica de resultados.</p></div></div>
+        <div class="fi"><span class="fl">B</span><div class="fc"><h4>Account Brief Generator</h4><p>Ingresa: nombre empresa, industria, tamaño. La app genera (con texto predefinido o IA) un brief estructurado con campos para el AE.</p></div></div>
+        <div class="fi"><span class="fl">C</span><div class="fc"><h4>Pipeline Tracker Personal</h4><p>Una tabla donde el AE ingresa sus deals con etapa, valor, y fecha de cierre esperada. Calcula el pipeline total y proyección mensual.</p></div></div>
+        <div class="fi"><span class="fl">D</span><div class="fc"><h4>ICP Scoring Tool</h4><p>Ingresa datos de un prospecto. La herramienta lo evalúa contra criterios de ICP hardcodeados y produce un score con justificación.</p></div></div>
+      </div>
+
+      <h2>Guía rápida de construcción</h2>
+      <p>Para el proyecto A (calculadora), el prompt fundacional podría ser:</p>
+      <pre class="code">Crea una calculadora de ROI de implementación CRM llamada "RevOps ROI Calculator".
+
+PROPÓSITO: Ayuda a consultores de RevOps a mostrar el impacto económico potencial de mejorar
+su CRM y procesos de ventas a clientes potenciales.
+
+USUARIOS: Consultores de RevOps y RevOps Managers, en desktop/tablet.
+
+FUNCIONALIDADES:
+1. Formulario de inputs: número de AEs (slider 1-100), deal size promedio ($ input),
+   tasa de cierre actual (% slider), ciclo de ventas promedio (días)
+2. Cálculo automático al cambiar cualquier input: Revenue actual, Revenue con +15% cierre,
+   Revenue con -20% ciclo de ventas, Revenue combinado
+3. Sección de resultados visual con tarjetas de métricas en colores llamativos
+4. Tabla comparativa: situación actual vs. con mejoras
+
+DISEÑO: Profesional, oscuro, colores azul (#4facfe) y verde (#43e97b) para los positivos.
+Tipografía limpia. Se siente como una herramienta de consultoría premium.
+
+NO incluir: autenticación, guardar resultados, exportar PDF (para esta versión)</pre>
+    </div>
+  </div>
+  <div id="e4" class="tc">
+    <div class="ex">
+      <h2>Proyecto Final — Módulo 3: Tu Mini-App Live</h2>
+      <div class="ex-m">⏱ 120 min · Herramienta: Lovable o Bolt</div>
+      <div class="es"><div class="sn">1</div><div class="sc"><h4>Escribe tu prompt fundacional final</h4><p>Usa el template de la lección 3.3. Pídele a Claude que lo revise y mejore antes de usarlo.</p></div></div>
+      <div class="es"><div class="sn">2</div><div class="sc"><h4>Construye en Lovable o Bolt</h4><p>Lanza el prompt. Evalúa el resultado inicial. Haz 5-10 iteraciones específicas hasta que estés satisfecho con el 80% de la app.</p></div></div>
+      <div class="es"><div class="sn">3</div><div class="sc"><h4>Prueba los 3 escenarios</h4><p>Happy path, edge cases, y prueba en móvil (cambia el tamaño de la ventana del navegador).</p></div></div>
+      <div class="es"><div class="sn">4</div><div class="sc"><h4>Publica la app</h4><p>Usa el botón de publish/deploy. Copia la URL y pruébala desde tu teléfono.</p></div></div>
+      <div class="es"><div class="sn">5</div><div class="sc"><h4>Comparte</h4><p>Envía la URL a alguien de tu red y pídele feedback. La primera reacción externa es muy valiosa.</p></div></div>
+      <div class="dv"><h4>Entregable del Módulo 3</h4><p>URL de tu app publicada + prompt fundacional que usaste + 3 aprendizajes del proceso. Tienes tu primera pieza de portafolio de Vibecoding. ¡Felicitaciones!</p></div>
+    </div>
+  </div>
+  <div id="q4" class="tc">
+    <div class="qz">
+      <h2>Quiz Final — Módulo 3</h2>
+      <p class="qi">4 preguntas · Repaso completo del módulo</p>
+      <div class="qb" id="qb40">
+        <div class="qt">1. ¿Qué es Vibecoding en una oración?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Una forma de entrenar modelos de IA con datos propios</li>
+          <li class="opt" onclick="ans(this,'qb40',true)"><input type="radio">Crear software con lenguaje natural usando herramientas de IA, sin necesidad de saber programar</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Un tipo de prompt engineering avanzado</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Automatizar tareas con scripts de Python generados por IA</li>
+        </ul>
+        <div class="exp">Vibecoding = describir lo que quieres en lenguaje natural y que la IA genere el código. No requiere saber programar — requiere saber describir, iterar y evaluar.</div>
+      </div>
+      <div class="qb" id="qb41">
+        <div class="qt">2. Para construir una app completa con base de datos y publicarla, ¿qué herramienta es la más adecuada?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb41',true)"><input type="radio">Lovable</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">v0</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">GitHub Copilot</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">NotebookLM</li>
+        </ul>
+        <div class="exp">Lovable genera frontend + backend + base de datos y hace el deployment automático. Es el estándar para construir apps completas sin código.</div>
+      </div>
+      <div class="qb" id="qb42">
+        <div class="qt">3. ¿Cuál es la primera fase del proceso de Vibecoding?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">Abrir Lovable y escribir el prompt</li>
+          <li class="opt" onclick="ans(this,'qb42',true)"><input type="radio">Claridad — responder las 5 preguntas sobre el producto antes de tocar la herramienta</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">Testing de la app</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">Deploy a producción</li>
+        </ul>
+        <div class="exp">La fase de claridad (responder: qué problema resuelve, quién lo usa, funciones mínimas, datos, criterio de éxito) debe hacerse ANTES de tocar la herramienta. Ahorra horas de iteración.</div>
+      </div>
+      <div class="qb" id="qb43">
+        <div class="qt">4. Cuando no entiendes un fragmento de código de tu app, ¿cuál es el proceso correcto?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb43',false)"><input type="radio">Aprender programación antes de continuar</li>
+          <li class="opt" onclick="ans(this,'qb43',false)"><input type="radio">Ignorar el código y solo usar la interfaz visual</li>
+          <li class="opt" onclick="ans(this,'qb43',true)"><input type="radio">Copiar el código a Claude, describir el problema y pedir la solución específica</li>
+          <li class="opt" onclick="ans(this,'qb43',false)"><input type="radio">Reescribir toda la app desde cero</li>
+        </ul>
+        <div class="exp">Claude como intérprete: copias el fragmento, describes el problema en lenguaje natural y obtienes la solución exacta. No necesitas entender el código para modificarlo con esta estrategia.</div>
+      </div>
+      <button class="qbtn" onclick="score('q4r',4)">Ver resultado</button>
+      <div class="qr" id="q4r"><div class="rs" id="q4s">0/4</div><p id="q4m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
+    </div>
+  </div>
+  <div class="mod-complete">
+    <div style="font-size:2rem;margin-bottom:.5rem">⚡</div>
+    <div style="font-size:1.1rem;font-weight:800;margin-bottom:.3rem">¡Módulo 3 Completado!</div>
+    <div style="font-size:.87rem;color:var(--text2);margin-bottom:1rem">Ya puedes construir productos digitales sin código. Siguiente: IA para tu dominio — CRM y RevOps.</div>
+    <a href="curso-ai-m4.html" style="display:inline-block;padding:.7rem 1.5rem;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:800;font-size:.9rem"><div class="t-es">Continuar al Módulo 4 →</div><div class="t-en">Continue to Module 4 →</div></a>
+  </div>
+  <div class="lnb">
+    <button class="lnbtn" onclick="prev()"><div class="t-es">← Anterior</div><div class="t-en">← Previous</div></button>
+    <a href="curso-ai-m4.html" class="lnbtn nx"><div class="t-es">Módulo 4 →</div><div class="t-en">Module 4 →</div></a>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script>
+const lessons=[
+  {num:'3.1',titleES:'Qué es Vibecoding y por qué cambia todo',titleEN:'What Is Vibecoding and Why It Changes Everything'},
+  {num:'3.2',titleES:'Las herramientas: Lovable, Bolt, Cursor, v0',titleEN:'The Tools: Lovable, Bolt, Cursor, v0'},
+  {num:'3.3',titleES:'El flujo completo: idea → producto live',titleEN:'The Complete Flow: Idea → Live Product'},
+  {num:'3.4',titleES:'Suficiente código para no perderte',titleEN:'Just Enough Code to Not Get Lost'},
+  {num:'3.5',titleES:'Construye tu primera mini-app de RevOps',titleEN:'Build Your First RevOps Mini-App'}
+];
+const lessonsEN=[
+  {num:'3.1',title:'What Is Vibecoding and Why It Changes Everything'},
+  {num:'3.2',title:'The Tools: Lovable, Bolt, Cursor, v0'},
+  {num:'3.3',title:'The Complete Flow: Idea → Live Product'},
+  {num:'3.4',title:'Just Enough Code to Not Get Lost'},
+  {num:'3.5',title:'Build Your First RevOps Mini-App'}
+];
+let cur=0;
+const btns=document.querySelectorAll('.ll');
+const completed=new Set();
+
+function show(i){
+  document.querySelectorAll('.lp').forEach(l=>l.classList.remove('active'));
+  document.getElementById('L'+i).classList.add('active');
+  btns.forEach(b=>b.classList.remove('active'));
+  btns[i].classList.add('active');
+  cur=i;
+  const isEN=document.body.classList.contains('lang-en');
+  document.getElementById('tl').textContent=isEN?('Module 3 · Lesson '+lessons[i].num):('Módulo 3 · Lección '+lessons[i].num);
+  document.getElementById('tt').textContent=isEN?lessons[i].titleEN:lessons[i].titleES;
+  completed.add(i);
+  const p=Math.round(completed.size/lessons.length*100);
+  document.getElementById('pp').textContent=p+'%';
+  document.getElementById('pf').style.width=p+'%';
+  window.scrollTo(0,0);
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  const lp=document.getElementById('L'+i);
+  lp.querySelectorAll('.tab')[0].classList.add('active');
+  lp.querySelectorAll('.tc')[0].classList.add('active');
+}
+
+function next(){if(cur<lessons.length-1)show(cur+1);}
+function prev(){if(cur>0)show(cur-1);}
+
+function tab(el,id){
+  const lp=el.closest('.lp');
+  lp.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  lp.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function ans(el,qbId,correct){
+  const qb=document.getElementById(qbId);
+  if(qb.dataset.answered)return;
+  qb.dataset.answered='1';
+  qb.dataset.correct=correct?'1':'0';
+  el.classList.add(correct?'correct':'wrong');
+  const exp=qb.querySelector('.exp');
+  if(exp)exp.classList.add('show');
+}
+
+function score(rid,total){
+  const prefix=rid.replace('r','');
+  let correct=0;
+  const num=prefix.slice(1);
+  document.querySelectorAll('[id^="qb'+num+'"]').forEach(qb=>{
+    if(qb.dataset.correct==='1')correct++;
+  });
+  const el=document.getElementById(rid);
+  el.classList.add('show');
+  document.getElementById(prefix+'s').textContent=correct+'/'+total;
+  const msgs=['Sigue repasando — vuelve a la lección','Bien, pero hay oportunidad de mejora','¡Muy bien! Sólido entendimiento','¡Perfecto! Dominas este tema'];
+  const idx=Math.floor((correct/total)*3);
+  document.getElementById(prefix+'m').textContent=msgs[Math.min(idx,3)];
+}
+
+/* ── LANG TOGGLE ── */
+function toggleLang(){
+  const en=document.body.classList.toggle('lang-en');
+  const btn=document.getElementById('langBtn');
+  if(btn){btn.textContent=en?'🌐 ES':'🌐 EN';btn.classList.toggle('active-en',en);}
+  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  try{localStorage.setItem('aiCourseL',en?'en':'es');}catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem('aiCourseL')==='en'){
+      document.documentElement.classList.add('lang-en');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.classList.add('lang-en');
+        var b=document.getElementById('langBtn');
+        if(b){b.textContent='🌐 ES';b.classList.add('active-en');}
+        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
+        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
+      });
+    }
+  }catch(e){}
+})();
+
+</script>
+
+</body>
+</html>
