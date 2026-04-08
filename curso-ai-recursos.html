@@ -126,6 +126,34 @@ h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.8rem;line-hei
 .highlight ul li{padding:.2rem 0;display:flex;gap:.5rem}
 .highlight ul li::before{content:'✓';color:var(--accent3);flex-shrink:0}
 
+/* MONTHLY ARCHIVE TABS */
+.archive-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:1rem}
+.archive-tab{background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text2);padding:.5rem 1.2rem;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.5rem}
+.archive-tab:hover{border-color:var(--accent);color:var(--accent)}
+.archive-tab.active{background:rgba(247,151,30,.15);border-color:var(--accent);color:var(--accent)}
+.month-badge{font-size:.62rem;font-weight:900;background:var(--accent);color:#000;padding:.1rem .5rem;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.month-pane{display:block}
+.month-pane.hidden{display:none!important}
+
+/* VIDEO GRID */
+.videos-section{margin-top:2.5rem}
+.videos-section h3{font-size:1.05rem;font-weight:800;margin-bottom:1rem;color:var(--text)}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:1rem}
+.video-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,transform .2s}
+.video-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.video-embed{position:relative;width:100%;padding-top:56.25%;background:#000}
+.video-embed iframe,.video-embed video{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-info{padding:1rem 1.2rem}
+.video-type{font-size:.65rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .6rem;border-radius:5px;margin-bottom:.5rem;display:inline-block}
+.vtype-yt{background:rgba(255,50,50,.15);color:#ff5252;border:1px solid rgba(255,50,50,.25)}
+.vtype-personal{background:rgba(108,99,255,.15);color:#a09fff;border:1px solid rgba(108,99,255,.25)}
+.video-info h4{font-size:.9rem;font-weight:700;margin:.4rem 0 .3rem;line-height:1.4}
+.video-info p{font-size:.8rem;color:var(--text2)}
+.video-placeholder{border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;text-align:center;padding:2rem;border-radius:16px;background:rgba(255,255,255,.015)}
+.video-placeholder .ph-icon{font-size:2.5rem;margin-bottom:.8rem;opacity:.35}
+.video-placeholder h4{font-size:.88rem;font-weight:700;color:var(--text2);margin-bottom:.4rem}
+.video-placeholder p{font-size:.78rem;color:var(--text2);max-width:220px;opacity:.7}
+
 /* DIVIDER */
 hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:3rem 0}
 
@@ -141,10 +169,10 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 
 <nav class="topnav">
   <span class="logo">🎓 AI Expert Mastery</span>
-  <a href="curso-ai-index.html">Inicio</a>
+  <a href="curso-ai-index.html"><span class="t-es-i">Inicio</span><span class="t-en-i" style="display:none">Home</span></a>
   <a href="curso-ai-m5.html">← M5</a>
   <div class="nav-right">
-    <span style="font-size:.75rem;color:var(--text2)">Bonus</span>
+    <span style="font-size:.75rem;color:var(--text2)"><span class="t-es-i">Bonus</span><span class="t-en-i" style="display:none">Bonus</span></span>
   </div>
 </nav>
 
@@ -152,7 +180,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
-  <a href="curso-ai-index.html" class="sidebar-back">← Inicio del Curso</a>
+  <a href="curso-ai-index.html" class="sidebar-back">← <span class="t-es">Inicio del Curso</span><span class="t-en" style="display:none">Course Home</span></a>
 
   <div class="lang-toggle">
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 Switch to English</button>
@@ -180,7 +208,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 <main class="main">
 
   <div class="section-hero">
-    <div class="badge">Bonus · Recursos Esenciales · Abril 2026</div>
+    <div class="badge"><span class="t-es-i">Bonus · Recursos Esenciales · Abril 2026</span><span class="t-en-i" style="display:none">Bonus · Essential Resources · April 2026</span></div>
     <div class="t-es">
       <h1>Recursos, Setup &amp; Casos de Uso</h1>
       <p class="hero-sub">Tu hub de referencia para todo lo que necesitas: configuración óptima de hardware, certificaciones gratuitas, recursos de los mejores creadores de IA y casos de uso específicos para tu profesión.</p>
@@ -195,7 +223,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
        SECTION 1: AI STATION SETUP
   ════════════════════════════════════ -->
   <section class="section" id="ai-station">
-    <div class="section-label">Setup Profesional</div>
+    <div class="section-label"><span class="t-es-i">Setup Profesional</span><span class="t-en-i" style="display:none">Professional Setup</span></div>
     <div class="t-es">
       <h2>💻 Tu AI Station — Setup Óptimo 2026</h2>
       <p class="section-sub">El hardware correcto amplifica tus capacidades de IA hasta 10×. Esta es la guía definitiva para construir la estación de trabajo de IA más capaz y eficiente, desde $500 hasta nivel pro.</p>
@@ -212,7 +240,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
     <table class="device-table">
       <thead>
         <tr>
-          <th>Dispositivo</th>
+          <th><span class="t-es-i">Dispositivo</span><span class="t-en-i" style="display:none">Device</span></th>
           <th>Chip / Specs</th>
           <th><span class="t-es">Ideal Para</span><span class="t-en" style="display:none">Best For</span></th>
           <th><span class="t-es">Precio Aprox.</span><span class="t-en" style="display:none">Price</span></th>
@@ -303,7 +331,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
         <p>Un 27" principal + iPad Pro como segunda pantalla via Sidecar, o un segundo monitor 24" para tener Claude/ChatGPT siempre visible mientras trabajas en tu CRM o código. El flujo de trabajo paralelo multiplica la productividad.</p></div>
         <div class="t-en"><h3>Dual Monitor Setup</h3>
         <p>One 27" primary + iPad Pro as second screen via Sidecar, or a second 24" monitor to always have Claude/ChatGPT visible while working in your CRM or code. Parallel workflow multiplies productivity.</p></div>
-        <span class="card-tag">Recomendado</span>
+        <span class="card-tag"><span class="t-es-i">Recomendado</span><span class="t-en-i" style="display:none">Recommended</span></span>
       </div>
       <div class="card">
         <div class="card-icon">✏️</div>
@@ -389,7 +417,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
         <p>Corre modelos como Llama 3.3 (70B), Mistral, Qwen2.5 en tu Mac Mini. Ollama para CLI y automatizaciones, LM Studio para interfaz visual. 100% privado, sin costos de API, para datos sensibles de clientes.</p></div>
         <div class="t-en"><h3>Local LLMs: Ollama + LM Studio</h3>
         <p>Run models like Llama 3.3 (70B), Mistral, Qwen2.5 on your Mac Mini. Ollama for CLI and automations, LM Studio for visual interface. 100% private, no API costs, for sensitive client data.</p></div>
-        <span class="card-tag">Gratis</span>
+        <span class="card-tag"><span class="t-es-i">Gratis</span><span class="t-en-i" style="display:none">Free</span></span>
       </div>
       <div class="card">
         <div class="card-icon">⚡</div>
@@ -461,7 +489,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
        SECTION 2: USE CASES BY PROFESSION
   ════════════════════════════════════ -->
   <section class="section" id="use-cases">
-    <div class="section-label">Aplicación Profesional</div>
+    <div class="section-label"><span class="t-es-i">Aplicación Profesional</span><span class="t-en-i" style="display:none">Professional Application</span></div>
     <div class="t-es">
       <h2>👥 Casos de Uso por Profesión</h2>
       <p class="section-sub">La IA no es una herramienta genérica — su poder se multiplica cuando la aplicas con expertise de dominio. Aquí están los casos de uso más poderosos y prácticos para cada profesión.</p>
@@ -1150,7 +1178,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
        SECTION 3: CERTIFICATIONS
   ════════════════════════════════════ -->
   <section class="section" id="certifications">
-    <div class="section-label">Educación Oficial</div>
+    <div class="section-label"><span class="t-es-i">Educación Oficial</span><span class="t-en-i" style="display:none">Official Education</span></div>
     <div class="t-es">
       <h2>🏆 Certificaciones Gratuitas de IA — 2026</h2>
       <p class="section-sub">Las certificaciones más valiosas del mercado, incluyendo las 13 certificaciones gratuitas de Anthropic. Estas acreditan tu conocimiento y son reconocidas por empleadores y clientes.</p>
@@ -1545,7 +1573,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
        SECTION 4: RUBEN HASSID RESOURCES
   ════════════════════════════════════ -->
   <section class="section" id="ruben">
-    <div class="section-label">Recursos de Creadores</div>
+    <div class="section-label"><span class="t-es-i">Recursos de Creadores</span><span class="t-en-i" style="display:none">Creator Resources</span></div>
     <div class="t-es">
       <h2>📚 Recursos de Ruben Hassid — How to AI</h2>
       <p class="section-sub">Ruben Hassid es uno de los creadores de contenido sobre IA más valiosos y prácticos. Sus guías, infografías y newsletters son material de referencia para profesionales. Aquí están los recursos más importantes de su ecosistema.</p>
@@ -1666,115 +1694,229 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
   <hr class="div">
 
   <!-- ════════════════════════════════════
-       SECTION 5: LO ÚLTIMO — ABRIL 2026
+       SECTION 5: LO ÚLTIMO — ARCHIVO MENSUAL
   ════════════════════════════════════ -->
   <section class="section" id="tools-2026">
-    <div class="section-label">Actualización Abril 2026</div>
+    <div class="section-label"><span class="t-es-i">Actualizaciones &amp; Archivo Mensual</span><span class="t-en-i" style="display:none">Updates &amp; Monthly Archive</span></div>
     <div class="t-es">
-      <h2>🔥 Lo Último de lo Último — Abril 2026</h2>
-      <p class="section-sub">El ecosistema de IA en abril de 2026 se mueve más rápido que nunca. Aquí están los lanzamientos más importantes que debes conocer ahora mismo.</p>
+      <h2>🔥 Lo Último — Archivo Mensual</h2>
+      <p class="section-sub">El ecosistema de IA se mueve cada semana. Aquí archivo los lanzamientos y novedades más importantes de cada mes — con videos de apoyo y notas propias para que siempre tengas el contexto que necesitas.</p>
     </div>
     <div class="t-en">
-      <h2>🔥 The Very Latest — April 2026</h2>
-      <p class="section-sub">The AI ecosystem in April 2026 moves faster than ever. Here are the most important launches you need to know right now.</p>
+      <h2>🔥 The Latest — Monthly Archive</h2>
+      <p class="section-sub">The AI ecosystem moves every week. Here I archive the most important launches and developments each month — with support videos and personal notes so you always have the context you need.</p>
     </div>
 
-    <div class="cards">
-
-      <div class="card" style="border-color:rgba(196,113,237,.4)">
-        <div class="card-icon">🎭</div>
-        <div class="t-es"><h3>Claude Opus 4.6 — El Modelo Más Inteligente</h3>
-        <p>El flagship de Anthropic en 2026. Razonamiento multi-paso excepcional, comprensión de documentos largos (200K tokens), y agente autónomo de clase profesional. El mejor modelo para análisis complejo, escritura de alto nivel y tareas de agente.</p></div>
-        <div class="t-en"><h3>Claude Opus 4.6 — The Most Intelligent Model</h3>
-        <p>Anthropic's 2026 flagship. Exceptional multi-step reasoning, long document comprehension (200K tokens), and professional-class autonomous agent. The best model for complex analysis, high-level writing and agent tasks.</p></div>
-        <span class="card-tag">Anthropic · Abril 2026</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(67,233,123,.4)">
-        <div class="card-icon">🤖</div>
-        <div class="t-es"><h3>GPT-5.4 — OpenAI's Multimodal Master</h3>
-        <p>La versión más reciente del modelo insignia de OpenAI. Capacidades multimodales superiores (audio, video, imagen, texto en tiempo real), razonamiento matemático de nivel PhD, y la mejor integración con herramientas externas. Especialmente fuerte en coding.</p></div>
-        <div class="t-en"><h3>GPT-5.4 — OpenAI's Multimodal Master</h3>
-        <p>The latest version of OpenAI's flagship model. Superior multimodal capabilities (audio, video, image, text in real time), PhD-level mathematical reasoning, and best-in-class external tool integration. Especially strong in coding.</p></div>
-        <span class="card-tag">OpenAI · 2026</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(79,172,254,.4)">
-        <div class="card-icon">💎</div>
-        <div class="t-es"><h3>Gemini 3.1 Pro — Ultra-Long Context</h3>
-        <p>Google DeepMind rompe el récord con 2M de tokens de contexto. Integración nativa con Google Workspace (Docs, Sheets, Gmail, Drive). El mejor para empresas que viven en el ecosistema Google y para análisis de repositorios enteros de código.</p></div>
-        <div class="t-en"><h3>Gemini 3.1 Pro — Ultra-Long Context</h3>
-        <p>Google DeepMind breaks the record with 2M context tokens. Native integration with Google Workspace (Docs, Sheets, Gmail, Drive). Best for companies living in the Google ecosystem and for analyzing entire code repositories.</p></div>
-        <span class="card-tag">Google DeepMind · 2026</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(255,140,66,.4)">
-        <div class="card-icon">❤️</div>
-        <div class="t-es"><h3>Lovable 2.0 — Vibecoding Evolucionado</h3>
-        <p>La plataforma de vibecoding más popular ahora con deployment automático, backends con Supabase integrado, y colaboración en tiempo real. Construye apps completas full-stack con IA. La herramienta favorita de non-technical founders en 2026.</p></div>
-        <div class="t-en"><h3>Lovable 2.0 — Evolved Vibecoding</h3>
-        <p>The most popular vibecoding platform now with automatic deployment, integrated Supabase backends, and real-time collaboration. Build complete full-stack apps with AI. The favorite tool of non-technical founders in 2026.</p></div>
-        <span class="card-tag">Lovable · 2026</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(255,210,0,.4)">
-        <div class="card-icon">⚡</div>
-        <div class="t-es"><h3>Cursor — Valorado en $9.2B USD</h3>
-        <p>El IDE de IA alcanzó una valuación de $9.2B en 2026, confirmando que el coding asistido es el futuro. Cursor Agent puede completar features enteras de forma autónoma. La herramienta que los engineers serios usan todos los días.</p></div>
-        <div class="t-en"><h3>Cursor — Valued at $9.2B USD</h3>
-        <p>The AI IDE reached a valuation of $9.2B in 2026, confirming that assisted coding is the future. Cursor Agent can complete entire features autonomously. The tool serious engineers use every day.</p></div>
-        <span class="card-tag">Cursor · Valuación Histórica</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(255,101,132,.4)">
-        <div class="card-icon">🏢</div>
-        <div class="t-es"><h3>HubSpot Breeze AI con GPT-5.4</h3>
-        <p>HubSpot integró GPT-5.4 en su plataforma Breeze AI, elevando todas las capacidades de CRM, marketing automation y content generation. Si eres RevOps en HubSpot, esta actualización te da superpoderes nativos sin salir de la plataforma.</p></div>
-        <div class="t-en"><h3>HubSpot Breeze AI with GPT-5.4</h3>
-        <p>HubSpot integrated GPT-5.4 into its Breeze AI platform, elevating all CRM, marketing automation and content generation capabilities. If you're RevOps on HubSpot, this update gives you native superpowers without leaving the platform.</p></div>
-        <span class="card-tag">HubSpot · 2026</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(79,172,254,.4)">
-        <div class="card-icon">☁️</div>
-        <div class="t-es"><h3>Salesforce Agentforce — $540M ARR</h3>
-        <p>La apuesta más agresiva de Salesforce en IA alcanzó $540M en ARR en 2026. Los Einstein Agents ahora pueden ejecutar procesos completos de ventas de forma autónoma. El estándar para enterprise CRM inteligente.</p></div>
-        <div class="t-en"><h3>Salesforce Agentforce — $540M ARR</h3>
-        <p>Salesforce's most aggressive AI bet reached $540M in ARR in 2026. Einstein Agents can now autonomously execute complete sales processes. The standard for intelligent enterprise CRM.</p></div>
-        <span class="card-tag">Salesforce · $540M ARR</span>
-      </div>
-
-      <div class="card" style="border-color:rgba(67,233,123,.4)">
-        <div class="card-icon">🔗</div>
-        <div class="t-es"><h3>MCP (Model Context Protocol) — El Estándar de Agentes</h3>
-        <p>El protocolo de Anthropic para conectar LLMs con herramientas externas se convirtió en el estándar de la industria. Claude, GPT, Gemini y todos los modelos principales ahora soportan MCP. Conecta tu CRM, calendar, Slack, y 500+ herramientas directamente con tu IA.</p></div>
-        <div class="t-en"><h3>MCP (Model Context Protocol) — The Agent Standard</h3>
-        <p>Anthropic's protocol for connecting LLMs with external tools became the industry standard. Claude, GPT, Gemini and all major models now support MCP. Connect your CRM, calendar, Slack, and 500+ tools directly with your AI.</p></div>
-        <span class="card-tag">Industry Standard · 2026</span>
-      </div>
-
+    <!-- ── MONTH TABS ── -->
+    <div class="archive-tabs">
+      <button class="archive-tab active" onclick="showMonth(this,'abril-2026')">
+        <span class="t-es-i">Abril 2026</span><span class="t-en-i" style="display:none">April 2026</span>
+        <span class="month-badge"><span class="t-es-i">Actual</span><span class="t-en-i" style="display:none">Current</span></span>
+      </button>
+      <button class="archive-tab" onclick="showMonth(this,'marzo-2026')">
+        <span class="t-es-i">Marzo 2026</span><span class="t-en-i" style="display:none">March 2026</span>
+      </button>
+      <!-- ➕ Agregar nuevos meses aquí: copiar el botón de arriba y crear su pane abajo -->
     </div>
 
-    <div class="highlight" style="margin-top:1.5rem;background:linear-gradient(135deg,rgba(247,151,30,.1),rgba(255,210,0,.05));border-color:rgba(247,151,30,.3)">
-      <div class="t-es"><h4 style="color:var(--accent)">💡 Cómo mantenerse actualizado en 2026</h4>
-      <ul>
-        <li><strong>Ruben Hassid Substack</strong> — ruben.substack.com (semanal, lo mejor)</li>
-        <li><strong>Ben's Bites</strong> — bensbites.beehiiv.com (diario, news rápidas)</li>
-        <li><strong>The Rundown AI</strong> — therundown.ai (diario, muy completo)</li>
-        <li><strong>Latent Space Podcast</strong> — para depth técnico real</li>
-        <li><strong>X/Twitter:</strong> Sigue a @sama, @karpathy, @anthropic, @emollick, @levelsio</li>
-        <li><strong>Claude.ai changelog</strong> — anthropic.com/news para updates de Claude</li>
-      </ul></div>
-      <div class="t-en"><h4 style="color:var(--accent)">💡 How to stay updated in 2026</h4>
-      <ul>
-        <li><strong>Ruben Hassid Substack</strong> — ruben.substack.com (weekly, the best)</li>
-        <li><strong>Ben's Bites</strong> — bensbites.beehiiv.com (daily, quick news)</li>
-        <li><strong>The Rundown AI</strong> — therundown.ai (daily, very comprehensive)</li>
-        <li><strong>Latent Space Podcast</strong> — for real technical depth</li>
-        <li><strong>X/Twitter:</strong> Follow @sama, @karpathy, @anthropic, @emollick, @levelsio</li>
-        <li><strong>Claude.ai changelog</strong> — anthropic.com/news for Claude updates</li>
-      </ul></div>
-    </div>
+    <!-- ══════════════════════════════
+         PANE: ABRIL 2026
+    ══════════════════════════════ -->
+    <div class="month-pane" id="month-abril-2026">
+
+      <div class="cards">
+        <div class="card" style="border-color:rgba(196,113,237,.4)">
+          <div class="card-icon">🎭</div>
+          <div class="t-es"><h3>Claude Opus 4.6 — El Modelo Más Inteligente</h3>
+          <p>El flagship de Anthropic en 2026. Razonamiento multi-paso excepcional, comprensión de documentos largos (200K tokens), y agente autónomo de clase profesional. El mejor modelo para análisis complejo, escritura de alto nivel y tareas de agente.</p></div>
+          <div class="t-en"><h3>Claude Opus 4.6 — The Most Intelligent Model</h3>
+          <p>Anthropic's 2026 flagship. Exceptional multi-step reasoning, long document comprehension (200K tokens), and professional-class autonomous agent. The best model for complex analysis, high-level writing and agent tasks.</p></div>
+          <span class="card-tag">Anthropic · <span class="t-es-i">Abril</span><span class="t-en-i" style="display:none">April</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(67,233,123,.4)">
+          <div class="card-icon">🤖</div>
+          <div class="t-es"><h3>GPT-5.4 — OpenAI's Multimodal Master</h3>
+          <p>La versión más reciente del modelo insignia de OpenAI. Capacidades multimodales superiores (audio, video, imagen, texto en tiempo real), razonamiento matemático de nivel PhD, y la mejor integración con herramientas externas. Especialmente fuerte en coding.</p></div>
+          <div class="t-en"><h3>GPT-5.4 — OpenAI's Multimodal Master</h3>
+          <p>The latest version of OpenAI's flagship model. Superior multimodal capabilities (audio, video, image, text in real time), PhD-level mathematical reasoning, and best-in-class external tool integration. Especially strong in coding.</p></div>
+          <span class="card-tag">OpenAI · 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(79,172,254,.4)">
+          <div class="card-icon">💎</div>
+          <div class="t-es"><h3>Gemini 3.1 Pro — Ultra-Long Context</h3>
+          <p>Google DeepMind rompe el récord con 2M de tokens de contexto. Integración nativa con Google Workspace (Docs, Sheets, Gmail, Drive). El mejor para empresas que viven en el ecosistema Google y para análisis de repositorios enteros de código.</p></div>
+          <div class="t-en"><h3>Gemini 3.1 Pro — Ultra-Long Context</h3>
+          <p>Google DeepMind breaks the record with 2M context tokens. Native integration with Google Workspace (Docs, Sheets, Gmail, Drive). Best for companies living in the Google ecosystem and for analyzing entire code repositories.</p></div>
+          <span class="card-tag">Google DeepMind · 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(255,140,66,.4)">
+          <div class="card-icon">❤️</div>
+          <div class="t-es"><h3>Lovable 2.0 — Vibecoding Evolucionado</h3>
+          <p>La plataforma de vibecoding más popular ahora con deployment automático, backends con Supabase integrado, y colaboración en tiempo real. Construye apps completas full-stack con IA. La herramienta favorita de non-technical founders en 2026.</p></div>
+          <div class="t-en"><h3>Lovable 2.0 — Evolved Vibecoding</h3>
+          <p>The most popular vibecoding platform now with automatic deployment, integrated Supabase backends, and real-time collaboration. Build complete full-stack apps with AI. The favorite tool of non-technical founders in 2026.</p></div>
+          <span class="card-tag">Lovable · 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(255,210,0,.4)">
+          <div class="card-icon">⚡</div>
+          <div class="t-es"><h3>Cursor — Valorado en $9.2B USD</h3>
+          <p>El IDE de IA alcanzó una valuación de $9.2B en 2026, confirmando que el coding asistido es el futuro. Cursor Agent puede completar features enteras de forma autónoma. La herramienta que los engineers serios usan todos los días.</p></div>
+          <div class="t-en"><h3>Cursor — Valued at $9.2B USD</h3>
+          <p>The AI IDE reached a valuation of $9.2B in 2026, confirming that assisted coding is the future. Cursor Agent can complete entire features autonomously. The tool serious engineers use every day.</p></div>
+          <span class="card-tag">Cursor · <span class="t-es-i">Valuación Histórica</span><span class="t-en-i" style="display:none">Historic Valuation</span></span>
+        </div>
+        <div class="card" style="border-color:rgba(255,101,132,.4)">
+          <div class="card-icon">🏢</div>
+          <div class="t-es"><h3>HubSpot Breeze AI con GPT-5.4</h3>
+          <p>HubSpot integró GPT-5.4 en su plataforma Breeze AI, elevando todas las capacidades de CRM, marketing automation y content generation. Si eres RevOps en HubSpot, esta actualización te da superpoderes nativos sin salir de la plataforma.</p></div>
+          <div class="t-en"><h3>HubSpot Breeze AI with GPT-5.4</h3>
+          <p>HubSpot integrated GPT-5.4 into its Breeze AI platform, elevating all CRM, marketing automation and content generation capabilities. If you're RevOps on HubSpot, this update gives you native superpowers without leaving the platform.</p></div>
+          <span class="card-tag">HubSpot · 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(79,172,254,.4)">
+          <div class="card-icon">☁️</div>
+          <div class="t-es"><h3>Salesforce Agentforce — $540M ARR</h3>
+          <p>La apuesta más agresiva de Salesforce en IA alcanzó $540M en ARR en 2026. Los Einstein Agents ahora pueden ejecutar procesos completos de ventas de forma autónoma. El estándar para enterprise CRM inteligente.</p></div>
+          <div class="t-en"><h3>Salesforce Agentforce — $540M ARR</h3>
+          <p>Salesforce's most aggressive AI bet reached $540M in ARR in 2026. Einstein Agents can now autonomously execute complete sales processes. The standard for intelligent enterprise CRM.</p></div>
+          <span class="card-tag">Salesforce · $540M ARR</span>
+        </div>
+        <div class="card" style="border-color:rgba(67,233,123,.4)">
+          <div class="card-icon">🔗</div>
+          <div class="t-es"><h3>MCP (Model Context Protocol) — El Estándar de Agentes</h3>
+          <p>El protocolo de Anthropic para conectar LLMs con herramientas externas se convirtió en el estándar de la industria. Claude, GPT, Gemini y todos los modelos principales ahora soportan MCP. Conecta tu CRM, calendar, Slack, y 500+ herramientas directamente con tu IA.</p></div>
+          <div class="t-en"><h3>MCP (Model Context Protocol) — The Agent Standard</h3>
+          <p>Anthropic's protocol for connecting LLMs with external tools became the industry standard. Claude, GPT, Gemini and all major models now support MCP. Connect your CRM, calendar, Slack, and 500+ tools directly with your AI.</p></div>
+          <span class="card-tag">Industry Standard · 2026</span>
+        </div>
+      </div>
+
+      <!-- VIDEOS ABRIL 2026 -->
+      <div class="videos-section">
+        <div class="t-es"><h3>🎬 Videos de Apoyo — Abril 2026</h3></div>
+        <div class="t-en"><h3>🎬 Support Videos — April 2026</h3></div>
+        <div class="video-grid">
+
+          <!-- ── VIDEO YOUTUBE: reemplaza VIDEO_ID con el ID real del video ── -->
+          <div class="video-card">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/koXkF2uq5OA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-info">
+              <span class="video-type vtype-yt">YouTube</span>
+              <div class="t-es"><h4>Claude vs GPT-5 vs Gemini — Comparativa Abril 2026</h4>
+              <p>Análisis detallado de los tres modelos principales con casos de uso reales para RevOps y CRM.</p></div>
+              <div class="t-en"><h4>Claude vs GPT-5 vs Gemini — April 2026 Comparison</h4>
+              <p>Detailed analysis of the three main models with real use cases for RevOps and CRM.</p></div>
+            </div>
+          </div>
+
+          <!-- ── PLACEHOLDER PARA VIDEO PROPIO ── -->
+          <div class="video-placeholder">
+            <div class="ph-icon">🎥</div>
+            <div class="t-es">
+              <h4>Tu Video Aquí</h4>
+              <p>Graba tu análisis o notas del mes y agrégalo. Sube a YouTube (no listado) o Google Drive y reemplaza este bloque.</p>
+            </div>
+            <div class="t-en">
+              <h4>Your Video Here</h4>
+              <p>Record your monthly analysis or notes and add it here. Upload to YouTube (unlisted) or Google Drive and replace this block.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:2rem;background:linear-gradient(135deg,rgba(247,151,30,.1),rgba(255,210,0,.05));border-color:rgba(247,151,30,.3)">
+        <div class="t-es"><h4 style="color:var(--accent)">💡 Cómo mantenerse actualizado en 2026</h4>
+        <ul>
+          <li><strong>Ruben Hassid Substack</strong> — ruben.substack.com (semanal, lo mejor)</li>
+          <li><strong>Ben's Bites</strong> — bensbites.beehiiv.com (diario, news rápidas)</li>
+          <li><strong>The Rundown AI</strong> — therundown.ai (diario, muy completo)</li>
+          <li><strong>Latent Space Podcast</strong> — para depth técnico real</li>
+          <li><strong>X/Twitter:</strong> Sigue a @sama, @karpathy, @anthropic, @emollick, @levelsio</li>
+          <li><strong>Claude.ai changelog</strong> — anthropic.com/news para updates de Claude</li>
+        </ul></div>
+        <div class="t-en"><h4 style="color:var(--accent)">💡 How to stay updated in 2026</h4>
+        <ul>
+          <li><strong>Ruben Hassid Substack</strong> — ruben.substack.com (weekly, the best)</li>
+          <li><strong>Ben's Bites</strong> — bensbites.beehiiv.com (daily, quick news)</li>
+          <li><strong>The Rundown AI</strong> — therundown.ai (daily, very comprehensive)</li>
+          <li><strong>Latent Space Podcast</strong> — for real technical depth</li>
+          <li><strong>X/Twitter:</strong> Follow @sama, @karpathy, @anthropic, @emollick, @levelsio</li>
+          <li><strong>Claude.ai changelog</strong> — anthropic.com/news for Claude updates</li>
+        </ul></div>
+      </div>
+
+    </div><!-- /month-abril-2026 -->
+
+    <!-- ══════════════════════════════
+         PANE: MARZO 2026 (Archivo)
+    ══════════════════════════════ -->
+    <div class="month-pane hidden" id="month-marzo-2026">
+
+      <div class="cards">
+        <div class="card" style="border-color:rgba(196,113,237,.4)">
+          <div class="card-icon">🧠</div>
+          <div class="t-es"><h3>Claude 3.7 Sonnet — Extended Thinking</h3>
+          <p>Anthropic lanzó Extended Thinking en Claude 3.7 Sonnet: el modelo puede "pensar" por hasta 10 minutos antes de responder en problemas complejos. Revolucionó el uso de IA para análisis de datos, estrategia y código complejo.</p></div>
+          <div class="t-en"><h3>Claude 3.7 Sonnet — Extended Thinking</h3>
+          <p>Anthropic launched Extended Thinking in Claude 3.7 Sonnet: the model can "think" for up to 10 minutes before responding on complex problems. Revolutionized AI use for data analysis, strategy and complex code.</p></div>
+          <span class="card-tag">Anthropic · <span class="t-es-i">Marzo</span><span class="t-en-i" style="display:none">March</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(67,233,123,.4)">
+          <div class="card-icon">🚀</div>
+          <div class="t-es"><h3>GPT-5 — El Lanzamiento del Año</h3>
+          <p>OpenAI lanzó GPT-5 con capacidades multimodales completas en tiempo real. La diferencia con GPT-4o fue sustancial: razonamiento más profundo, mejor comprensión de instrucciones complejas, y modo de voz avanzado con expresión emocional natural.</p></div>
+          <div class="t-en"><h3>GPT-5 — Launch of the Year</h3>
+          <p>OpenAI launched GPT-5 with full real-time multimodal capabilities. The jump from GPT-4o was substantial: deeper reasoning, better understanding of complex instructions, and advanced voice mode with natural emotional expression.</p></div>
+          <span class="card-tag">OpenAI · <span class="t-es-i">Marzo</span><span class="t-en-i" style="display:none">March</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(79,172,254,.4)">
+          <div class="card-icon">🌐</div>
+          <div class="t-es"><h3>n8n llega a 1M de Usuarios</h3>
+          <p>La plataforma de automatización open source superó el millón de usuarios activos, consolidándose como el estándar para agentes de IA sin código. n8n Cloud bajó precios y n8n Desktop llegó a Mac para instalación en un click.</p></div>
+          <div class="t-en"><h3>n8n Reaches 1M Users</h3>
+          <p>The open source automation platform surpassed one million active users, cementing itself as the standard for no-code AI agents. n8n Cloud lowered prices and n8n Desktop came to Mac for one-click installation.</p></div>
+          <span class="card-tag">n8n · <span class="t-es-i">Marzo</span><span class="t-en-i" style="display:none">March</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(255,140,66,.4)">
+          <div class="card-icon">📱</div>
+          <div class="t-es"><h3>Claude para iPhone — App Nativa</h3>
+          <p>Anthropic lanzó la app nativa de Claude para iOS con integración con el sistema operativo. Accede a Claude desde cualquier app via Share Sheet, dictado de voz mejorado con Whisper, y widgets del home screen. El asistente de IA más útil en móvil.</p></div>
+          <div class="t-en"><h3>Claude for iPhone — Native App</h3>
+          <p>Anthropic launched the native Claude app for iOS with OS integration. Access Claude from any app via Share Sheet, improved voice dictation with Whisper, and home screen widgets. The most useful AI assistant on mobile.</p></div>
+          <span class="card-tag">Anthropic · iOS · <span class="t-es-i">Marzo</span><span class="t-en-i" style="display:none">March</span> 2026</span>
+        </div>
+      </div>
+
+      <!-- VIDEOS MARZO 2026 -->
+      <div class="videos-section">
+        <div class="t-es"><h3>🎬 Videos de Apoyo — Marzo 2026</h3></div>
+        <div class="t-en"><h3>🎬 Support Videos — March 2026</h3></div>
+        <div class="video-grid">
+          <div class="video-placeholder">
+            <div class="ph-icon">📼</div>
+            <div class="t-es">
+              <h4>Archivo en construcción</h4>
+              <p>Los videos de este mes se agregan conforme se graban o se encuentran referencias relevantes.</p>
+            </div>
+            <div class="t-en">
+              <h4>Archive in progress</h4>
+              <p>Videos for this month are added as they are recorded or relevant references are found.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /month-marzo-2026 -->
+
+    <!-- ➕ CÓMO AGREGAR UN NUEVO MES:
+         1. Copia el botón .archive-tab de arriba y cambia el ID del mes
+         2. Copia el bloque .month-pane y cambia su id="month-NOMBRE-AÑO"
+         3. Actualiza el badge "Actual/Current" al nuevo mes (quítalo del anterior)
+         4. Agrega los cards de novedades del mes y tus videos
+    -->
 
   </section>
 
@@ -1784,7 +1926,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
        SECTION 6: LOCAL AI DEEP GUIDE
   ════════════════════════════════════ -->
   <section class="section" id="local-ai">
-    <div class="section-label">IA Local — Guía Técnica</div>
+    <div class="section-label"><span class="t-es-i">IA Local — Guía Técnica</span><span class="t-en-i" style="display:none">Local AI — Technical Guide</span></div>
     <div class="t-es">
       <h2>🏠 IA Local: Guía Definitiva de Instalación y Setup</h2>
       <p class="section-sub">Corre modelos de IA en tu propia máquina — sin costos de API, con privacidad total y disponibilidad offline. Desde Ollama hasta setups en VPS, esta es la guía completa para el profesional serio.</p>
@@ -2021,7 +2163,7 @@ npm install -g n8n
     <table class="device-table">
       <thead>
         <tr>
-          <th>Modelo</th>
+          <th><span class="t-es-i">Modelo</span><span class="t-en-i" style="display:none">Model</span></th>
           <th><span class="t-es">RAM Necesaria</span><span class="t-en" style="display:none">RAM Needed</span></th>
           <th><span class="t-es">Mejor Para</span><span class="t-en" style="display:none">Best For</span></th>
           <th>Ollama Command</th>
@@ -2138,7 +2280,7 @@ npm install -g n8n
        SECTION 7: MODEL GUIDE — ALL MODELS
   ════════════════════════════════════ -->
   <section class="section" id="model-guide">
-    <div class="section-label">Guía de Modelos</div>
+    <div class="section-label"><span class="t-es-i">Guía de Modelos</span><span class="t-en-i" style="display:none">Model Guide</span></div>
     <div class="t-es">
       <h2>🗺️ Guía Completa de Todos los Modelos — 2026</h2>
       <p class="section-sub">De ChatGPT a Gemma, de Claude a Llama — todo lo que necesitas saber sobre cada modelo, cuándo usarlo, sus versiones, precios y casos de uso específicos.</p>
@@ -2366,49 +2508,57 @@ npm install -g n8n
   </section>
 
   <div style="text-align:center;padding:3rem 0 1rem">
-    <a href="curso-ai-index.html" class="cert-link" style="font-size:.9rem;padding:.7rem 1.5rem">← Volver al Inicio del Curso</a>
+    <a href="curso-ai-index.html" class="cert-link" style="font-size:.9rem;padding:.7rem 1.5rem">← <span class="t-es-i">Volver al Inicio del Curso</span><span class="t-en-i" style="display:none">Back to Course Home</span></a>
   </div>
 
 </main>
 </div>
 
 <script>
-// Sidebar scroll highlight
+// ── Sidebar navigation ──
 function goToSection(id){
   const el=document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  // Handle both direct clicks and clicks on child spans
-  let target = event.target;
-  while(target && !target.classList.contains('nav-item')) target = target.parentElement;
+  let target=event.target;
+  while(target&&!target.classList.contains('nav-item')) target=target.parentElement;
   if(target) target.classList.add('active');
 }
 
-// Language toggle
-function toggleLang(){
-  const en=document.body.classList.toggle('lang-en');
+// ── Monthly archive tabs ──
+function showMonth(btn, monthId){
+  document.querySelectorAll('.month-pane').forEach(p=>p.classList.add('hidden'));
+  document.querySelectorAll('.archive-tab').forEach(t=>t.classList.remove('active'));
+  const pane=document.getElementById('month-'+monthId);
+  if(pane) pane.classList.remove('hidden');
+  btn.classList.add('active');
+}
+
+// ── Language toggle ──
+function applyLang(en){
+  document.body.classList.toggle('lang-en',en);
   const btn=document.getElementById('langBtn');
-  if(en){btn.textContent='🌐 Ver en Español';btn.classList.add('active-en')}
-  else{btn.textContent='🌐 Switch to English';btn.classList.remove('active-en')}
-  // Update inline-style sidebar spans (they use style="display:none" not CSS class)
-  document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
-  document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  if(btn){
+    btn.textContent=en?'🌐 Ver en Español':'🌐 Switch to English';
+    btn.classList.toggle('active-en',en);
+  }
+  // Handle ALL inline-style spans (sidebar + archive section + everywhere)
+  document.querySelectorAll('.t-en[style]').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.t-es[style]').forEach(el=>el.style.display=en?'none':'inline');
+  // Handle t-en-i / t-es-i classes
+  document.querySelectorAll('.t-en-i').forEach(el=>el.style.display=en?'inline':'none');
+  document.querySelectorAll('.t-es-i').forEach(el=>el.style.display=en?'none':'inline');
+}
+
+function toggleLang(){
+  const en=!document.body.classList.contains('lang-en');
+  applyLang(en);
   try{localStorage.setItem('aiCourseL',en?'en':'es')}catch(e){}
 }
 
-// Restore language preference
+// ── Restore language preference ──
 (function(){
-  try{
-    if(localStorage.getItem('aiCourseL')==='en'){
-      document.body.classList.add('lang-en');
-      const btn=document.getElementById('langBtn');
-      if(btn){btn.textContent='🌐 Ver en Español';btn.classList.add('active-en')}
-      document.addEventListener('DOMContentLoaded',function(){
-        document.querySelectorAll('.sidebar .t-en[style]').forEach(el=>el.style.display='inline');
-        document.querySelectorAll('.sidebar .t-es[style]').forEach(el=>el.style.display='none');
-      });
-    }
-  }catch(e){}
+  try{if(localStorage.getItem('aiCourseL')==='en') applyLang(true);}catch(e){}
 })();
 </script>
 
