@@ -343,13 +343,13 @@ body.lang-en .t-es-i{display:none!important}
         </ul>
         <div class="exp">Quick wins (high impact + low effort) generate fast value, create momentum, and demonstrate AI ROI, making it easier to get budget for bigger projects.</div></div>
       </div>
-      <button class="qbtn" onclick="score('q0r',3)">Ver resultado</button>
+      <button class="qbtn" onclick="score('q0r',3)"><span class="t-es-i">Ver resultado</span><span class="t-en-i" style="display:none">View Result</span></button>
       <div class="qr" id="q0r"><div class="rs" id="q0s">0/3</div><p id="q0m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
     </div>
   </div>
   <div class="lnb">
-    <a href="curso-ai-m3.html" class="lnbtn">← Módulo 3</a>
-    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+    <a href="curso-ai-m3.html" class="lnbtn"><span class="t-es-i">← Módulo 3</span><span class="t-en-i" style="display:none">← Module 3</span></a>
+    <button class="lnbtn nx" onclick="next()"><span class="t-es-i">Siguiente lección →</span><span class="t-en-i" style="display:none">Next Lesson →</span></button>
   </div>
 </div>
 
@@ -441,56 +441,89 @@ Slack/email: notifica al AE con el brief completo</pre>
   </div>
   <div id="e1" class="tc">
     <div class="ex">
-      <h2>Ejercicio 4.2: Diseña tu modelo de scoring</h2>
-      <div class="ex-m">⏱ 60 min · Herramienta: Claude + tu CRM</div>
+      <div class="t-es"><h2>Ejercicio 4.2: Diseña tu modelo de scoring</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + tu CRM</div></div>
+      <div class="t-en"><h2>Exercise 4.2: Design Your Lead Scoring Model</h2>
+      <div class="ex-m">⏱ 60 min · Tool: Claude + your CRM</div></div>
       <div class="es"><div class="sn">1</div><div class="sc"><h4>Define tu ICP (Ideal Customer Profile)</h4><p>Si no tienes uno documentado: describe las características de tus 5 mejores clientes actuales (industria, tamaño, cargo de comprador, problema principal). Ese es tu ICP empírico.</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>Define Your ICP (Ideal Customer Profile)</h4><p>If you don't have one documented: describe the characteristics of your 5 best current customers (industry, size, buyer role, main problem). That's your empirical ICP.</p></div></div>
       <div class="es"><div class="sn">2</div><div class="sc"><h4>Lista las señales que mejor predicen conversión</h4><p>De tus leads históricos: ¿qué señales mostraron los que convirtieron? ¿Cargo, industria, comportamiento en web, fuente? Si tienes CRM: extrae datos. Si no: usa intuición documentada.</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>List the Signals That Best Predict Conversion</h4><p>From your historical leads: what signals did those who converted show? Role, industry, web behavior, source? If you have a CRM: extract data. If not: use documented intuition.</p></div></div>
       <div class="es"><div class="sn">3</div><div class="sc"><h4>Diseña el modelo de scoring con Claude</h4><p>Prompt: "Basado en este ICP y estas señales de conversión [lista], ayúdame a diseñar un modelo de scoring de leads con pesos por señal. El score debe ir de 0-100. Justifica los pesos."</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Design the Scoring Model with Claude</h4><p>Prompt: "Based on this ICP and these conversion signals [list], help me design a lead scoring model with weights per signal. The score should range from 0-100. Justify the weights."</p></div></div>
       <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa el modelo con 5 leads reales</h4><p>Toma 5 leads de tu CRM (2 convertidos, 3 no). Aplica el modelo manualmente. ¿Discrimina bien?</p></div></div>
-      <div class="dv"><h4>Entregable</h4><p>Documento: ICP + señales + modelo de scoring con pesos + evaluación de 5 leads. Este es tu primer modelo predictivo propio.</p></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Evaluate the Model with 5 Real Leads</h4><p>Take 5 leads from your CRM (2 converted, 3 not). Apply the model manually. Does it discriminate well?</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable</h4><p>Documento: ICP + señales + modelo de scoring con pesos + evaluación de 5 leads. Este es tu primer modelo predictivo propio.</p></div>
+      <div class="t-en"><h4>Deliverable</h4><p>Document: ICP + signals + scoring model with weights + evaluation of 5 leads. This is your first predictive model.</p></div></div>
     </div>
   </div>
   <div id="q1" class="tc">
     <div class="qz">
-      <h2>Quiz — Lección 4.2</h2>
-      <p class="qi">3 preguntas</p>
+      <div class="t-es"><h2>Quiz — Lección 4.2</h2>
+      <p class="qi">3 preguntas</p></div>
+      <div class="t-en"><h2>Quiz — Lesson 4.2</h2>
+      <p class="qi">3 questions</p></div>
       <div class="qb" id="qb10">
-        <div class="qt">1. ¿Cuál es la diferencia clave entre el lead scoring tradicional y el predictivo con IA?</div>
+        <div class="t-es"><div class="qt">1. ¿Cuál es la diferencia clave entre el lead scoring tradicional y el predictivo con IA?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">El predictivo usa más señales pero funciona igual</li>
           <li class="opt" onclick="ans(this,'qb10',true)"><input type="radio">El tradicional usa reglas manuales subjetivas; el predictivo aprende de patrones reales de conversión histórica</li>
           <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">El tradicional es más preciso porque lo define un experto</li>
           <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">No hay diferencia práctica</li>
         </ul>
-        <div class="exp">El scoring tradicional es subjetivo y se desactualiza. El predictivo aprende continuamente de los patrones de tus deals reales — qué señales predijeron conversión — y se vuelve más preciso con el tiempo.</div>
+        <div class="exp">El scoring tradicional es subjetivo y se desactualiza. El predictivo aprende continuamente de los patrones de tus deals reales — qué señales predijeron conversión — y se vuelve más preciso con el tiempo.</div></div>
+        <div class="t-en"><div class="qt">1. What is the key difference between traditional and predictive AI lead scoring?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Predictive uses more signals but works the same</li>
+          <li class="opt" onclick="ans(this,'qb10',true)"><input type="radio">Traditional uses subjective manual rules; predictive learns from real historical conversion patterns</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">Traditional is more accurate because it's defined by an expert</li>
+          <li class="opt" onclick="ans(this,'qb10',false)"><input type="radio">There's no practical difference</li>
+        </ul>
+        <div class="exp">Traditional scoring is subjective and becomes outdated. Predictive learns continuously from your real deals' patterns — what signals predicted conversion — and becomes more accurate over time.</div></div>
       </div>
       <div class="qb" id="qb11">
-        <div class="qt">2. En el workflow de enriquecimiento automático, ¿cuál es el rol del LLM?</div>
+        <div class="t-es"><div class="qt">2. En el workflow de enriquecimiento automático, ¿cuál es el rol del LLM?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Buscar los datos en LinkedIn</li>
           <li class="opt" onclick="ans(this,'qb11',true)"><input type="radio">Generar el resumen de cuenta y el fit assessment a partir de los datos recolectados</li>
           <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Actualizar el CRM directamente</li>
           <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Enviar la notificación al AE</li>
         </ul>
-        <div class="exp">En el pipeline de enriquecimiento, Clay/Apollo/LinkedIn recolectan los datos. El LLM sintetiza esos datos en un resumen coherente + evaluación de fit, que es lo que realmente ayuda al AE.</div>
+        <div class="exp">En el pipeline de enriquecimiento, Clay/Apollo/LinkedIn recolectan los datos. El LLM sintetiza esos datos en un resumen coherente + evaluación de fit, que es lo que realmente ayuda al AE.</div></div>
+        <div class="t-en"><div class="qt">2. In the automated enrichment workflow, what is the LLM's role?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Search for data on LinkedIn</li>
+          <li class="opt" onclick="ans(this,'qb11',true)"><input type="radio">Generate the account summary and fit assessment from the collected data</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Update the CRM directly</li>
+          <li class="opt" onclick="ans(this,'qb11',false)"><input type="radio">Send the notification to the AE</li>
+        </ul>
+        <div class="exp">In the enrichment pipeline, Clay/Apollo/LinkedIn collect the data. The LLM synthesizes that data into a coherent summary + fit assessment, which is what really helps the AE.</div></div>
       </div>
       <div class="qb" id="qb12">
-        <div class="qt">3. ¿Cuál es la herramienta más poderosa actualmente para enriquecimiento automático con múltiples fuentes?</div>
+        <div class="t-es"><div class="qt">3. ¿Cuál es la herramienta más poderosa actualmente para enriquecimiento automático con múltiples fuentes?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Salesforce</li>
           <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">HubSpot</li>
           <li class="opt" onclick="ans(this,'qb12',true)"><input type="radio">Clay</li>
           <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Mailchimp</li>
         </ul>
-        <div class="exp">Clay es el estándar de oro para enriquecimiento con waterfalls — conecta docenas de fuentes de datos y aplica LLMs para generar insights. Es la herramienta favorita de los RevOps avanzados.</div>
+        <div class="exp">Clay es el estándar de oro para enriquecimiento con waterfalls — conecta docenas de fuentes de datos y aplica LLMs para generar insights. Es la herramienta favorita de los RevOps avanzados.</div></div>
+        <div class="t-en"><div class="qt">3. What is currently the most powerful tool for automated enrichment from multiple sources?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Salesforce</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">HubSpot</li>
+          <li class="opt" onclick="ans(this,'qb12',true)"><input type="radio">Clay</li>
+          <li class="opt" onclick="ans(this,'qb12',false)"><input type="radio">Mailchimp</li>
+        </ul>
+        <div class="exp">Clay is the gold standard for enrichment with waterfalls — it connects dozens of data sources and applies LLMs to generate insights. It's the favorite tool of advanced RevOps professionals.</div></div>
       </div>
-      <button class="qbtn" onclick="score('q1r',3)">Ver resultado</button>
+      <button class="qbtn" onclick="score('q1r',3)"><span class="t-es-i">Ver resultado</span><span class="t-en-i" style="display:none">View Result</span></button>
       <div class="qr" id="q1r"><div class="rs" id="q1s">0/3</div><p id="q1m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
     </div>
   </div>
   <div class="lnb">
-    <button class="lnbtn" onclick="prev()">← Anterior</button>
-    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+    <button class="lnbtn" onclick="prev()"><span class="t-es-i">← Anterior</span><span class="t-en-i" style="display:none">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()"><span class="t-es-i">Siguiente lección →</span><span class="t-en-i" style="display:none">Next Lesson →</span></button>
   </div>
 </div>
 
@@ -552,56 +585,89 @@ Slack/email: notifica al AE con el brief completo</pre>
   </div>
   <div id="e2" class="tc">
     <div class="ex">
-      <h2>Ejercicio 4.3: Construye una secuencia de outbound personalizado</h2>
-      <div class="ex-m">⏱ 60 min · Herramienta: Claude</div>
+      <div class="t-es"><h2>Ejercicio 4.3: Construye una secuencia de outbound personalizado</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude</div></div>
+      <div class="t-en"><h2>Exercise 4.3: Build a Personalized Outbound Sequence</h2>
+      <div class="ex-m">⏱ 60 min · Tool: Claude</div></div>
       <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige un segmento objetivo</h4><p>Un ICP específico: industria + cargo + tamaño de empresa. Ejemplo: "CTOs de scale-ups SaaS B2B de 50-200 empleados en LATAM".</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>Choose a Target Segment</h4><p>A specific ICP: industry + role + company size. Example: "CTOs of B2B SaaS scale-ups with 50-200 employees in LATAM".</p></div></div>
       <div class="es"><div class="sn">2</div><div class="sc"><h4>Define la señal de timing</h4><p>¿Qué evento hace relevante contactar a alguien de este segmento ahora? Ejemplos: acaban de recibir funding, publicaron oferta de empleo en RevOps, mencionaron un pain en LinkedIn.</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>Define the Timing Signal</h4><p>What event makes it relevant to contact someone from this segment now? Examples: they just received funding, posted a RevOps job, mentioned a pain point on LinkedIn.</p></div></div>
       <div class="es"><div class="sn">3</div><div class="sc"><h4>Usa Claude para generar 3 variantes de email</h4><p>Prompt: "Soy experto en [tu especialidad]. Escribe 3 variantes de email de outbound para [segmento], usando como señal de timing [señal]. El email debe ser personalizado, corto (3-4 párrafos), y no sonar a template. Propuesta de valor: [tu valor único]."</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Use Claude to Generate 3 Email Variants</h4><p>Prompt: "I am an expert in [your specialty]. Write 3 outbound email variants for [segment], using [signal] as a timing signal. The email should be personalized, short (3-4 paragraphs), and not sound like a template. Value proposition: [your unique value]."</p></div></div>
       <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa y refina</h4><p>¿Cuál de las 3 variantes suena más genuino? ¿Cuál tiene el mejor hook? Pide a Claude que mejore el mejor de los 3 con más especificidad.</p></div></div>
-      <div class="dv"><h4>Entregable</h4><p>3 variantes de email + tu análisis de cuál es mejor y por qué. Este es el template fundacional de tu secuencia de outbound con IA.</p></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Evaluate and Refine</h4><p>Which of the 3 variants sounds most genuine? Which has the best hook? Ask Claude to improve the best of the 3 with more specificity.</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable</h4><p>3 variantes de email + tu análisis de cuál es mejor y por qué. Este es el template fundacional de tu secuencia de outbound con IA.</p></div>
+      <div class="t-en"><h4>Deliverable</h4><p>3 email variants + your analysis of which is better and why. This is the foundational template for your AI outbound sequence.</p></div></div>
     </div>
   </div>
   <div id="q2" class="tc">
     <div class="qz">
-      <h2>Quiz — Lección 4.3</h2>
-      <p class="qi">3 preguntas</p>
+      <div class="t-es"><h2>Quiz — Lección 4.3</h2>
+      <p class="qi">3 preguntas</p></div>
+      <div class="t-en"><h2>Quiz — Lesson 4.3</h2>
+      <p class="qi">3 questions</p></div>
       <div class="qb" id="qb20">
-        <div class="qt">1. ¿Qué resuelve la IA en el marketing automation que las plataformas tradicionales no podían?</div>
+        <div class="t-es"><div class="qt">1. ¿Qué resuelve la IA en el marketing automation que las plataformas tradicionales no podían?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Enviar más emails</li>
           <li class="opt" onclick="ans(this,'qb20',true)"><input type="radio">Personalización real a escala — emails que suenan genuinos para cada prospecto</li>
           <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Reducir el costo del email marketing</li>
           <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Mejorar la tasa de entregabilidad</li>
         </ul>
-        <div class="exp">La paradoja del automation tradicional: podías enviar a todos, pero genérico. La IA resuelve esto: investigación automática + generación personalizada = emails que demuestran conocimiento real del prospecto a escala.</div>
+        <div class="exp">La paradoja del automation tradicional: podías enviar a todos, pero genérico. La IA resuelve esto: investigación automática + generación personalizada = emails que demuestran conocimiento real del prospecto a escala.</div></div>
+        <div class="t-en"><div class="qt">1. What does AI solve in marketing automation that traditional platforms couldn't?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Send more emails</li>
+          <li class="opt" onclick="ans(this,'qb20',true)"><input type="radio">Real personalization at scale — emails that sound genuine for each prospect</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Reduce the cost of email marketing</li>
+          <li class="opt" onclick="ans(this,'qb20',false)"><input type="radio">Improve deliverability rates</li>
+        </ul>
+        <div class="exp">The traditional automation paradox: you could send to everyone, but it was generic. AI solves this: automatic research + personalized generation = emails that demonstrate real knowledge of the prospect at scale.</div></div>
       </div>
       <div class="qb" id="qb21">
-        <div class="qt">2. En el workflow de contenido con IA, ¿cuál es el rol correcto del humano?</div>
+        <div class="t-es"><div class="qt">2. En el workflow de contenido con IA, ¿cuál es el rol correcto del humano?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Escribir todo el contenido (la IA solo corrige)</li>
           <li class="opt" onclick="ans(this,'qb21',true)"><input type="radio">Definir estrategia, ángulo y audiencia; editar el 20% que requiere juicio humano</li>
           <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Solo aprobar o rechazar lo que genera la IA</li>
           <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Ninguno — la IA lo hace todo</li>
         </ul>
-        <div class="exp">El rol humano es estratégico: definir qué comunicar, a quién y con qué ángulo. La IA ejecuta. El humano edita el 20% que necesita perspectiva única, ejemplos específicos y juicio de negocio.</div>
+        <div class="exp">El rol humano es estratégico: definir qué comunicar, a quién y con qué ángulo. La IA ejecuta. El humano edita el 20% que necesita perspectiva única, ejemplos específicos y juicio de negocio.</div></div>
+        <div class="t-en"><div class="qt">2. In the AI content workflow, what is the correct role of the human?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Write all the content (AI only corrects)</li>
+          <li class="opt" onclick="ans(this,'qb21',true)"><input type="radio">Define strategy, angle, and audience; edit the 20% that requires human judgment</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">Only approve or reject what AI generates</li>
+          <li class="opt" onclick="ans(this,'qb21',false)"><input type="radio">None — AI does everything</li>
+        </ul>
+        <div class="exp">The human role is strategic: define what to communicate, to whom and with what angle. AI executes. The human edits the 20% that needs unique perspective, specific examples and business judgment.</div></div>
       </div>
       <div class="qb" id="qb22">
-        <div class="qt">3. ¿Qué señal de engagement tiene el mayor peso para identificar a un prospecto en momento de decisión?</div>
+        <div class="t-es"><div class="qt">3. ¿Qué señal de engagement tiene el mayor peso para identificar a un prospecto en momento de decisión?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Abre un email</li>
           <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Sigue tu empresa en LinkedIn</li>
           <li class="opt" onclick="ans(this,'qb22',true)"><input type="radio">Visita la página de pricing múltiples veces o comparte contenido con un colega</li>
           <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Descarga un ebook</li>
         </ul>
-        <div class="exp">Visitar pricing (evaluando activamente) y compartir con un colega (construyendo caso interno) son las señales más fuertes de que hay una decisión de compra en proceso. Estas deben activar outreach inmediato.</div>
+        <div class="exp">Visitar pricing (evaluando activamente) y compartir con un colega (construyendo caso interno) son las señales más fuertes de que hay una decisión de compra en proceso. Estas deben activar outreach inmediato.</div></div>
+        <div class="t-en"><div class="qt">3. What engagement signal carries the most weight to identify a prospect at decision time?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Opens an email</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Follows your company on LinkedIn</li>
+          <li class="opt" onclick="ans(this,'qb22',true)"><input type="radio">Visits the pricing page multiple times or shares content with a colleague</li>
+          <li class="opt" onclick="ans(this,'qb22',false)"><input type="radio">Downloads an ebook</li>
+        </ul>
+        <div class="exp">Visiting pricing (actively evaluating) and sharing with a colleague (building an internal case) are the strongest signals that a purchase decision is underway. These should trigger immediate outreach.</div></div>
       </div>
-      <button class="qbtn" onclick="score('q2r',3)">Ver resultado</button>
+      <button class="qbtn" onclick="score('q2r',3)"><span class="t-es-i">Ver resultado</span><span class="t-en-i" style="display:none">View Result</span></button>
       <div class="qr" id="q2r"><div class="rs" id="q2s">0/3</div><p id="q2m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
     </div>
   </div>
   <div class="lnb">
-    <button class="lnbtn" onclick="prev()">← Anterior</button>
-    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+    <button class="lnbtn" onclick="prev()"><span class="t-es-i">← Anterior</span><span class="t-en-i" style="display:none">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()"><span class="t-es-i">Siguiente lección →</span><span class="t-en-i" style="display:none">Next Lesson →</span></button>
   </div>
 </div>
 
@@ -658,56 +724,89 @@ Slack/email: notifica al AE con el brief completo</pre>
   </div>
   <div id="e3" class="tc">
     <div class="ex">
-      <h2>Ejercicio 4.4: Crea un account intelligence brief con IA</h2>
-      <div class="ex-m">⏱ 60 min · Herramienta: Claude + LinkedIn + web</div>
+      <div class="t-es"><h2>Ejercicio 4.4: Crea un account intelligence brief con IA</h2>
+      <div class="ex-m">⏱ 60 min · Herramienta: Claude + LinkedIn + web</div></div>
+      <div class="t-en"><h2>Exercise 4.4: Create an Account Intelligence Brief with AI</h2>
+      <div class="ex-m">⏱ 60 min · Tool: Claude + LinkedIn + web</div></div>
       <div class="es"><div class="sn">1</div><div class="sc"><h4>Elige una cuenta target real</h4><p>Una empresa a la que estás prospectando o te gustaría prospectar. Puede ser un lead actual en tu CRM.</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>Choose a Real Target Account</h4><p>A company you are prospecting or would like to prospect. It can be a current lead in your CRM.</p></div></div>
       <div class="es"><div class="sn">2</div><div class="sc"><h4>Investiga en LinkedIn y web (15 min)</h4><p>Job postings actuales de la empresa (revelan prioridades estratégicas), noticias recientes, LinkedIn del CEO/CRO, página de About. Guarda lo que encuentras.</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>Research on LinkedIn and the Web (15 min)</h4><p>Current job postings from the company (reveal strategic priorities), recent news, CEO/CRO LinkedIn profiles, About page. Save what you find.</p></div></div>
       <div class="es"><div class="sn">3</div><div class="sc"><h4>Genera el brief con Claude</h4><p>Pega toda la información que recopilaste y pide: "Basado en esta información sobre [empresa], genera un account intelligence brief para nuestro equipo de ventas que incluya: resumen ejecutivo, iniciativas estratégicas probables, pains inferidos, stakeholders clave y sus motivaciones probables, ángulos de entrada recomendados, objeciones anticipadas."</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Generate the Brief with Claude</h4><p>Paste all the information you gathered and ask: "Based on this information about [company], generate an account intelligence brief for our sales team that includes: executive summary, probable strategic initiatives, inferred pain points, key stakeholders and their probable motivations, recommended entry angles, anticipated objections."</p></div></div>
       <div class="es"><div class="sn">4</div><div class="sc"><h4>Evalúa la calidad del brief</h4><p>¿Qué tan útil sería este brief para un AE antes de una primera call? ¿Qué faltó? ¿Qué información adicional necesitarías?</p></div></div>
-      <div class="dv"><h4>Entregable</h4><p>Account intelligence brief completo de una cuenta real. Muéstraselo a un AE de tu equipo y documenta su feedback.</p></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Evaluate the Quality of the Brief</h4><p>How useful would this brief be for an AE before a first call? What was missing? What additional information would you need?</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable</h4><p>Account intelligence brief completo de una cuenta real. Muéstraselo a un AE de tu equipo y documenta su feedback.</p></div>
+      <div class="t-en"><h4>Deliverable</h4><p>Complete account intelligence brief for a real account. Share it with an AE on your team and document their feedback.</p></div></div>
     </div>
   </div>
   <div id="q3" class="tc">
     <div class="qz">
-      <h2>Quiz — Lección 4.4</h2>
-      <p class="qi">3 preguntas</p>
+      <div class="t-es"><h2>Quiz — Lección 4.4</h2>
+      <p class="qi">3 preguntas</p></div>
+      <div class="t-en"><h2>Quiz — Lesson 4.4</h2>
+      <p class="qi">3 questions</p></div>
       <div class="qb" id="qb30">
-        <div class="qt">1. ¿Por qué la IA finalmente hace viable el ABM a escala?</div>
+        <div class="t-es"><div class="qt">1. ¿Por qué la IA finalmente hace viable el ABM a escala?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Porque el ABM ahora es más barato como estrategia</li>
           <li class="opt" onclick="ans(this,'qb30',true)"><input type="radio">Porque reduce el tiempo de investigación y personalización por cuenta de semanas a horas</li>
           <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Porque automatiza completamente las decisiones de qué cuentas atacar</li>
           <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">El ABM siempre fue viable — la IA no cambia nada fundamental</li>
         </ul>
-        <div class="exp">El ABM profundo siempre fue la estrategia correcta pero solo viable para pocas cuentas por el costo de tiempo. La IA comprime de semanas a horas la investigación y personalización, haciendo viable los 3 niveles.</div>
+        <div class="exp">El ABM profundo siempre fue la estrategia correcta pero solo viable para pocas cuentas por el costo de tiempo. La IA comprime de semanas a horas la investigación y personalización, haciendo viable los 3 niveles.</div></div>
+        <div class="t-en"><div class="qt">1. Why does AI finally make ABM viable at scale?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Because ABM is now cheaper as a strategy</li>
+          <li class="opt" onclick="ans(this,'qb30',true)"><input type="radio">Because it reduces research and personalization time per account from weeks to hours</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">Because it fully automates decisions about which accounts to target</li>
+          <li class="opt" onclick="ans(this,'qb30',false)"><input type="radio">ABM was always viable — AI doesn't change anything fundamental</li>
+        </ul>
+        <div class="exp">Deep ABM was always the right strategy but only viable for a few accounts due to time cost. AI compresses research and personalization from weeks to hours, making all 3 levels viable.</div></div>
       </div>
       <div class="qb" id="qb31">
-        <div class="qt">2. ¿Cuántas cuentas abarca típicamente el ABM 1:few (sectorial)?</div>
+        <div class="t-es"><div class="qt">2. ¿Cuántas cuentas abarca típicamente el ABM 1:few (sectorial)?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">5-25 cuentas</li>
           <li class="opt" onclick="ans(this,'qb31',true)"><input type="radio">25-250 cuentas</li>
           <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">250-2500 cuentas</li>
           <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">Más de 10,000 cuentas</li>
         </ul>
-        <div class="exp">ABM 1:1 = 5-25 cuentas con hyper-personalización. ABM 1:few = 25-250 cuentas con personalización por segmento. ABM 1:many = 250-2500 cuentas con personalización por señal de intención.</div>
+        <div class="exp">ABM 1:1 = 5-25 cuentas con hyper-personalización. ABM 1:few = 25-250 cuentas con personalización por segmento. ABM 1:many = 250-2500 cuentas con personalización por señal de intención.</div></div>
+        <div class="t-en"><div class="qt">2. How many accounts does ABM 1:few (sectoral) typically cover?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">5-25 accounts</li>
+          <li class="opt" onclick="ans(this,'qb31',true)"><input type="radio">25-250 accounts</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">250-2500 accounts</li>
+          <li class="opt" onclick="ans(this,'qb31',false)"><input type="radio">More than 10,000 accounts</li>
+        </ul>
+        <div class="exp">ABM 1:1 = 5-25 accounts with hyper-personalization. ABM 1:few = 25-250 accounts with segment personalization. ABM 1:many = 250-2500 accounts with intent signal personalization.</div></div>
       </div>
       <div class="qb" id="qb32">
-        <div class="qt">3. ¿Qué información de los job postings de una empresa revela el ABM inteligente?</div>
+        <div class="t-es"><div class="qt">3. ¿Qué información de los job postings de una empresa revela el ABM inteligente?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Solo el tamaño del equipo</li>
           <li class="opt" onclick="ans(this,'qb32',true)"><input type="radio">Sus iniciativas estratégicas actuales y los problemas que están priorizando resolver</li>
           <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">El presupuesto disponible para compras</li>
           <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Los job postings no son útiles para ABM</li>
         </ul>
-        <div class="exp">Los job postings son una de las señales más valiosas para ABM: revelan en qué áreas está invirtiendo la empresa, qué problemas están intentando resolver y qué tecnologías están adoptando — todo sin que te lo digan directamente.</div>
+        <div class="exp">Los job postings son una de las señales más valiosas para ABM: revelan en qué áreas está invirtiendo la empresa, qué problemas están intentando resolver y qué tecnologías están adoptando — todo sin que te lo digan directamente.</div></div>
+        <div class="t-en"><div class="qt">3. What information from a company's job postings does intelligent ABM reveal?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Only the team size</li>
+          <li class="opt" onclick="ans(this,'qb32',true)"><input type="radio">Their current strategic initiatives and the problems they're prioritizing to solve</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">The available budget for purchases</li>
+          <li class="opt" onclick="ans(this,'qb32',false)"><input type="radio">Job postings aren't useful for ABM</li>
+        </ul>
+        <div class="exp">Job postings are one of the most valuable signals for ABM: they reveal what areas the company is investing in, what problems they're trying to solve, and what technologies they're adopting — all without them telling you directly.</div></div>
       </div>
-      <button class="qbtn" onclick="score('q3r',3)">Ver resultado</button>
+      <button class="qbtn" onclick="score('q3r',3)"><span class="t-es-i">Ver resultado</span><span class="t-en-i" style="display:none">View Result</span></button>
       <div class="qr" id="q3r"><div class="rs" id="q3s">0/3</div><p id="q3m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
     </div>
   </div>
   <div class="lnb">
-    <button class="lnbtn" onclick="prev()">← Anterior</button>
-    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+    <button class="lnbtn" onclick="prev()"><span class="t-es-i">← Anterior</span><span class="t-en-i" style="display:none">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()"><span class="t-es-i">Siguiente lección →</span><span class="t-en-i" style="display:none">Next Lesson →</span></button>
   </div>
 </div>
 
@@ -767,56 +866,89 @@ Slack/email: notifica al AE con el brief completo</pre>
   </div>
   <div id="e4" class="tc">
     <div class="ex">
-      <h2>Ejercicio 4.5: Audit y diseño de tu stack</h2>
-      <div class="ex-m">⏱ 75 min · Herramienta: Claude + inventario de herramientas</div>
+      <div class="t-es"><h2>Ejercicio 4.5: Audit y diseño de tu stack</h2>
+      <div class="ex-m">⏱ 75 min · Herramienta: Claude + inventario de herramientas</div></div>
+      <div class="t-en"><h2>Exercise 4.5: Audit and Design Your Stack</h2>
+      <div class="ex-m">⏱ 75 min · Tool: Claude + tools inventory</div></div>
       <div class="es"><div class="sn">1</div><div class="sc"><h4>Haz inventario completo de herramientas</h4><p>Lista todas las herramientas que paga tu empresa: CRM, email, automation, analytics, sales tools, enrichment, BI, etc. Incluye el costo mensual/anual si lo sabes.</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>Take a Complete Tools Inventory</h4><p>List all the tools your company pays for: CRM, email, automation, analytics, sales tools, enrichment, BI, etc. Include the monthly/annual cost if you know it.</p></div></div>
       <div class="es"><div class="sn">2</div><div class="sc"><h4>Aplica las 4 dimensiones a cada herramienta</h4><p>Para cada una: utilización (1-5), ROI documentado (sí/no/parcial), integración (buena/mala/ninguna), IA nativa (sí/no/básica). Crea una tabla.</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>Apply the 4 Dimensions to Each Tool</h4><p>For each one: utilization (1-5), documented ROI (yes/no/partial), integration (good/bad/none), native AI (yes/no/basic). Create a table.</p></div></div>
       <div class="es"><div class="sn">3</div><div class="sc"><h4>Identifica candidatos a consolidar o cortar</h4><p>Utilización baja + ROI no documentado = candidato a cortar. Funcionalidad duplicada = consolidar en la mejor opción. Esto te da el presupuesto para herramientas de IA.</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Identify Candidates to Consolidate or Cut</h4><p>Low utilization + undocumented ROI = candidate to cut. Duplicate functionality = consolidate into the best option. This frees up budget for AI tools.</p></div></div>
       <div class="es"><div class="sn">4</div><div class="sc"><h4>Diseña el stack objetivo para los próximos 12 meses</h4><p>Prompt a Claude: "Basado en este stack actual [lista] y estos dolores principales [dolores de 4.1], diseña el stack óptimo para los próximos 12 meses. Qué cortar, qué agregar, qué migrar y en qué orden."</p></div></div>
-      <div class="dv"><h4>Entregable</h4><p>Audit del stack actual (tabla) + stack objetivo para 12 meses con justificación. Este documento es de consultoría real — vale dinero.</p></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Design the Target Stack for the Next 12 Months</h4><p>Prompt to Claude: "Based on this current stack [list] and these main pain points [pain points from 4.1], design the optimal stack for the next 12 months. What to cut, what to add, what to migrate and in what order."</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable</h4><p>Audit del stack actual (tabla) + stack objetivo para 12 meses con justificación. Este documento es de consultoría real — vale dinero.</p></div>
+      <div class="t-en"><h4>Deliverable</h4><p>Current stack audit (table) + 12-month target stack with justification. This document is real consulting — it's worth money.</p></div></div>
     </div>
   </div>
   <div id="q4" class="tc">
     <div class="qz">
-      <h2>Quiz — Lección 4.5</h2>
-      <p class="qi">3 preguntas</p>
+      <div class="t-es"><h2>Quiz — Lección 4.5</h2>
+      <p class="qi">3 preguntas</p></div>
+      <div class="t-en"><h2>Quiz — Lesson 4.5</h2>
+      <p class="qi">3 questions</p></div>
       <div class="qb" id="qb40">
-        <div class="qt">1. ¿Qué porcentaje del Martech stack típico está subutilizado?</div>
+        <div class="t-es"><div class="qt">1. ¿Qué porcentaje del Martech stack típico está subutilizado?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">5-10%</li>
           <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">15-20%</li>
           <li class="opt" onclick="ans(this,'qb40',true)"><input type="radio">30-40%</li>
           <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Menos del 5%</li>
         </ul>
-        <div class="exp">El 30-40% del Martech stack promedio está subutilizado, duplica funcionalidades o no genera valor documentado. Un audit bien hecho típicamente libera presupuesto significativo para reinvertir en herramientas que sí impactan.</div>
+        <div class="exp">El 30-40% del Martech stack promedio está subutilizado, duplica funcionalidades o no genera valor documentado. Un audit bien hecho típicamente libera presupuesto significativo para reinvertir en herramientas que sí impactan.</div></div>
+        <div class="t-en"><div class="qt">1. What percentage of the typical Martech stack is underutilized?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">5-10%</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">15-20%</li>
+          <li class="opt" onclick="ans(this,'qb40',true)"><input type="radio">30-40%</li>
+          <li class="opt" onclick="ans(this,'qb40',false)"><input type="radio">Less than 5%</li>
+        </ul>
+        <div class="exp">30-40% of the average Martech stack is underutilized, duplicates functionality, or generates no documented value. A well-done audit typically frees up significant budget to reinvest in tools that actually have impact.</div></div>
       </div>
       <div class="qb" id="qb41">
-        <div class="qt">2. En el framework de audit, ¿cuál dimensión es la más importante?</div>
+        <div class="t-es"><div class="qt">2. En el framework de audit, ¿cuál dimensión es la más importante?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Que la herramienta tenga IA</li>
           <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">Que tenga muchas integraciones</li>
           <li class="opt" onclick="ans(this,'qb41',true)"><input type="radio">ROI documentado — si no puedes medir el impacto, la herramienta es candidata a cortar</li>
           <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">El precio mensual</li>
         </ul>
-        <div class="exp">El ROI documentado es la dimensión más crítica. Si no puedes conectar la herramienta a un resultado de negocio medible (pipeline generado, tiempo ahorrado, conversión mejorada), es candidata a consolidar o eliminar.</div>
+        <div class="exp">El ROI documentado es la dimensión más crítica. Si no puedes conectar la herramienta a un resultado de negocio medible (pipeline generado, tiempo ahorrado, conversión mejorada), es candidata a consolidar o eliminar.</div></div>
+        <div class="t-en"><div class="qt">2. In the audit framework, which dimension is the most important?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">That the tool has AI</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">That it has many integrations</li>
+          <li class="opt" onclick="ans(this,'qb41',true)"><input type="radio">Documented ROI — if you can't measure the impact, the tool is a candidate to cut</li>
+          <li class="opt" onclick="ans(this,'qb41',false)"><input type="radio">The monthly price</li>
+        </ul>
+        <div class="exp">Documented ROI is the most critical dimension. If you can't connect the tool to a measurable business outcome (pipeline generated, time saved, conversion improved), it's a candidate to consolidate or eliminate.</div></div>
       </div>
       <div class="qb" id="qb42">
-        <div class="qt">3. ¿Cuál debe ser la primera pregunta antes de agregar una nueva herramienta de IA al stack?</div>
+        <div class="t-es"><div class="qt">3. ¿Cuál debe ser la primera pregunta antes de agregar una nueva herramienta de IA al stack?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">¿Tiene una demo buena?</li>
           <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">¿La usan otras empresas de mi industria?</li>
           <li class="opt" onclick="ans(this,'qb42',true)"><input type="radio">¿Alguna herramienta que ya tengo podría hacer esto con la IA que ya incluye?</li>
           <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">¿Cuánto cuesta?</li>
         </ul>
-        <div class="exp">Antes de agregar, consolidar. Los CRMs principales están incorporando IA que elimina la necesidad de herramientas puntuales. Primero verifica si algo que ya tienes puede cubrir la necesidad.</div>
+        <div class="exp">Antes de agregar, consolidar. Los CRMs principales están incorporando IA que elimina la necesidad de herramientas puntuales. Primero verifica si algo que ya tienes puede cubrir la necesidad.</div></div>
+        <div class="t-en"><div class="qt">3. What should be the first question before adding a new AI tool to the stack?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">Does it have a good demo?</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">Do other companies in my industry use it?</li>
+          <li class="opt" onclick="ans(this,'qb42',true)"><input type="radio">Could any tool I already have do this with the AI it already includes?</li>
+          <li class="opt" onclick="ans(this,'qb42',false)"><input type="radio">How much does it cost?</li>
+        </ul>
+        <div class="exp">Consolidate before adding. Major CRMs are incorporating AI that eliminates the need for point tools. First verify if something you already have can cover the need.</div></div>
       </div>
-      <button class="qbtn" onclick="score('q4r',3)">Ver resultado</button>
+      <button class="qbtn" onclick="score('q4r',3)"><span class="t-es-i">Ver resultado</span><span class="t-en-i" style="display:none">View Result</span></button>
       <div class="qr" id="q4r"><div class="rs" id="q4s">0/3</div><p id="q4m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
     </div>
   </div>
   <div class="lnb">
-    <button class="lnbtn" onclick="prev()">← Anterior</button>
-    <button class="lnbtn nx" onclick="next()">Siguiente lección →</button>
+    <button class="lnbtn" onclick="prev()"><span class="t-es-i">← Anterior</span><span class="t-en-i" style="display:none">← Previous</span></button>
+    <button class="lnbtn nx" onclick="next()"><span class="t-es-i">Siguiente lección →</span><span class="t-en-i" style="display:none">Next Lesson →</span></button>
   </div>
 </div>
 
@@ -856,71 +988,121 @@ Slack/email: notifica al AE con el brief completo</pre>
   </div>
   <div id="e5" class="tc">
     <div class="ex">
-      <h2>Proyecto Final — Módulo 4: Tu AI RevOps Playbook</h2>
-      <div class="ex-m">⏱ 90 min · Herramienta: Claude + todos los ejercicios anteriores</div>
+      <div class="t-es"><h2>Proyecto Final — Módulo 4: Tu AI RevOps Playbook</h2>
+      <div class="ex-m">⏱ 90 min · Herramienta: Claude + todos los ejercicios anteriores</div></div>
+      <div class="t-en"><h2>Final Project — Module 4: Your AI RevOps Playbook</h2>
+      <div class="ex-m">⏱ 90 min · Tool: Claude + all previous exercises</div></div>
       <div class="es"><div class="sn">1</div><div class="sc"><h4>Consolida todos los ejercicios del módulo</h4><p>Del 4.1: audit de stack y quick wins. Del 4.2: modelo de scoring. Del 4.3: secuencias de outbound. Del 4.4: account brief template. Del 4.5: stack objetivo. Todo esto forma las secciones del playbook.</p></div></div>
+      <div class="en"><div class="sn">1</div><div class="sc"><h4>Consolidate All Module Exercises</h4><p>From 4.1: stack audit and quick wins. From 4.2: scoring model. From 4.3: outbound sequences. From 4.4: account brief template. From 4.5: target stack. All of this forms the playbook sections.</p></div></div>
       <div class="es"><div class="sn">2</div><div class="sc"><h4>Escribe el Executive Summary con Claude</h4><p>Prompt: "Basado en este análisis de RevOps [pega el resumen de tus ejercicios], escribe un Executive Summary de media página para el CRO que explique el estado actual, la oportunidad de IA y el ROI esperado en 12 meses."</p></div></div>
+      <div class="en"><div class="sn">2</div><div class="sc"><h4>Write the Executive Summary with Claude</h4><p>Prompt: "Based on this RevOps analysis [paste your exercises summary], write a half-page Executive Summary for the CRO explaining the current state, the AI opportunity, and the expected ROI in 12 months."</p></div></div>
       <div class="es"><div class="sn">3</div><div class="sc"><h4>Crea la hoja de ruta de 12 meses</h4><p>Con Claude: prioriza las iniciativas identificadas en un timeline trimestral. Q1: quick wins. Q2: foundation. Q3-Q4: iniciativas avanzadas. Incluye recursos necesarios y dependencias.</p></div></div>
+      <div class="en"><div class="sn">3</div><div class="sc"><h4>Create the 12-Month Roadmap</h4><p>With Claude: prioritize the identified initiatives in a quarterly timeline. Q1: quick wins. Q2: foundation. Q3-Q4: advanced initiatives. Include required resources and dependencies.</p></div></div>
       <div class="es"><div class="sn">4</div><div class="sc"><h4>Define el framework de métricas</h4><p>Para cada iniciativa: métrica de proceso (leading indicator) y métrica de resultado (lagging indicator). Ejemplo: "Enriquecimiento automático → % de leads con score completo (proceso) → conversión de MQL a SQL (resultado)".</p></div></div>
+      <div class="en"><div class="sn">4</div><div class="sc"><h4>Define the Metrics Framework</h4><p>For each initiative: a process metric (leading indicator) and an outcome metric (lagging indicator). Example: "Automatic enrichment → % of leads with complete score (process) → MQL to SQL conversion (outcome)".</p></div></div>
       <div class="es"><div class="sn">5</div><div class="sc"><h4>Compila el playbook completo</h4><p>En un documento de Google Docs o Word: todas las secciones juntas. Agrega tu nombre, fecha y el logo de tu empresa/proyecto.</p></div></div>
-      <div class="dv"><h4>Entregable del Módulo 4</h4><p>Tu AI RevOps Playbook completo (6-10 páginas). Este es el activo de consultoría más valioso que habrás creado hasta ahora en el curso.</p></div>
+      <div class="en"><div class="sn">5</div><div class="sc"><h4>Compile the Complete Playbook</h4><p>In a Google Docs or Word document: all sections together. Add your name, date, and your company/project logo.</p></div></div>
+      <div class="dv"><div class="t-es"><h4>Entregable del Módulo 4</h4><p>Tu AI RevOps Playbook completo (6-10 páginas). Este es el activo de consultoría más valioso que habrás creado hasta ahora en el curso.</p></div>
+      <div class="t-en"><h4>Module 4 Deliverable</h4><p>Your complete AI RevOps Playbook (6-10 pages). This is the most valuable consulting asset you will have created so far in the course.</p></div></div>
     </div>
   </div>
   <div id="q5" class="tc">
     <div class="qz">
-      <h2>Quiz Final — Módulo 4</h2>
-      <p class="qi">5 preguntas · Repaso completo</p>
+      <div class="t-es"><h2>Quiz Final — Módulo 4</h2>
+      <p class="qi">5 preguntas · Repaso completo</p></div>
+      <div class="t-en"><h2>Final Quiz — Module 4</h2>
+      <p class="qi">5 questions · Full review</p></div>
       <div class="qb" id="qb50">
-        <div class="qt">1. ¿Cuál herramienta es actualmente el estándar para enriquecimiento con múltiples fuentes en RevOps?</div>
+        <div class="t-es"><div class="qt">1. ¿Cuál herramienta es actualmente el estándar para enriquecimiento con múltiples fuentes en RevOps?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Salesforce</li>
           <li class="opt" onclick="ans(this,'qb50',true)"><input type="radio">Clay</li>
           <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Notion</li>
           <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">HubSpot básico</li>
         </ul>
-        <div class="exp">Clay es la herramienta favorita de los RevOps avanzados para enriquecimiento — conecta docenas de fuentes en waterfalls y permite aplicar LLMs para generar insights como resúmenes y scoring.</div>
+        <div class="exp">Clay es la herramienta favorita de los RevOps avanzados para enriquecimiento — conecta docenas de fuentes en waterfalls y permite aplicar LLMs para generar insights como resúmenes y scoring.</div></div>
+        <div class="t-en"><div class="qt">1. Which tool is currently the standard for enrichment with multiple sources in RevOps?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Salesforce</li>
+          <li class="opt" onclick="ans(this,'qb50',true)"><input type="radio">Clay</li>
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Notion</li>
+          <li class="opt" onclick="ans(this,'qb50',false)"><input type="radio">Basic HubSpot</li>
+        </ul>
+        <div class="exp">Clay is the favorite tool of advanced RevOps professionals for enrichment — it connects dozens of sources in waterfalls and allows applying LLMs to generate insights like summaries and scoring.</div></div>
       </div>
       <div class="qb" id="qb51">
-        <div class="qt">2. ¿Qué transforma la IA en la capa de Revenue Analytics?</div>
+        <div class="t-es"><div class="qt">2. ¿Qué transforma la IA en la capa de Revenue Analytics?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Hace los dashboards más bonitos</li>
           <li class="opt" onclick="ans(this,'qb51',true)"><input type="radio">Pasa de mostrar lo que pasó a predecir lo que va a pasar (forecasting predictivo, deal risk detection)</li>
           <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Elimina la necesidad de un RevOps Manager</li>
           <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Solo exporta datos más fácilmente</li>
         </ul>
-        <div class="exp">El salto fundamental en analytics con IA es de descriptivo (qué pasó) a predictivo (qué va a pasar) y prescriptivo (qué debes hacer). Forecasting con confianza, detección temprana de riesgo de deals.</div>
+        <div class="exp">El salto fundamental en analytics con IA es de descriptivo (qué pasó) a predictivo (qué va a pasar) y prescriptivo (qué debes hacer). Forecasting con confianza, detección temprana de riesgo de deals.</div></div>
+        <div class="t-en"><div class="qt">2. What does AI transform in the Revenue Analytics layer?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Makes dashboards prettier</li>
+          <li class="opt" onclick="ans(this,'qb51',true)"><input type="radio">Moves from showing what happened to predicting what will happen (predictive forecasting, deal risk detection)</li>
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Eliminates the need for a RevOps Manager</li>
+          <li class="opt" onclick="ans(this,'qb51',false)"><input type="radio">Only exports data more easily</li>
+        </ul>
+        <div class="exp">The fundamental leap in analytics with AI is from descriptive (what happened) to predictive (what will happen) and prescriptive (what you should do). Forecasting with confidence, early deal risk detection.</div></div>
       </div>
       <div class="qb" id="qb52">
-        <div class="qt">3. En ABM 1:1 con IA, ¿qué permite hacer en horas que antes tomaba semanas?</div>
+        <div class="t-es"><div class="qt">3. En ABM 1:1 con IA, ¿qué permite hacer en horas que antes tomaba semanas?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Cerrar deals</li>
           <li class="opt" onclick="ans(this,'qb52',true)"><input type="radio">Investigación profunda de la cuenta y creación del account intelligence brief</li>
           <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Enviar emails masivos</li>
           <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Crear el sitio web de la cuenta</li>
         </ul>
-        <div class="exp">La investigación profunda (estructura organizacional, iniciativas estratégicas, mapeo del buying committee, ángulos de entrada) se comprimió de semanas a horas. Esto hace viable el ABM 1:1 a escala.</div>
+        <div class="exp">La investigación profunda (estructura organizacional, iniciativas estratégicas, mapeo del buying committee, ángulos de entrada) se comprimió de semanas a horas. Esto hace viable el ABM 1:1 a escala.</div></div>
+        <div class="t-en"><div class="qt">3. In AI-powered ABM 1:1, what allows you to do in hours what used to take weeks?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Close deals</li>
+          <li class="opt" onclick="ans(this,'qb52',true)"><input type="radio">Deep account research and creation of the account intelligence brief</li>
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Send mass emails</li>
+          <li class="opt" onclick="ans(this,'qb52',false)"><input type="radio">Create the account's website</li>
+        </ul>
+        <div class="exp">Deep research (organizational structure, strategic initiatives, buying committee mapping, entry angles) was compressed from weeks to hours. This makes ABM 1:1 viable at scale.</div></div>
       </div>
       <div class="qb" id="qb53">
-        <div class="qt">4. ¿Cuál es la regla de oro antes de agregar una nueva herramienta de IA al Martech stack?</div>
+        <div class="t-es"><div class="qt">4. ¿Cuál es la regla de oro antes de agregar una nueva herramienta de IA al Martech stack?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Probar 30 días gratis primero</li>
           <li class="opt" onclick="ans(this,'qb53',true)"><input type="radio">Consolidar primero: verificar si algo que ya tienes puede cubrir la necesidad</li>
           <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Pedir una demo al vendor</li>
           <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Ver si la competencia la usa</li>
         </ul>
-        <div class="exp">La regla de consolidación: los grandes CRMs están incorporando IA que puede sustituir herramientas puntuales. Antes de gastar en algo nuevo, verifica si ya tienes la funcionalidad en tu stack actual.</div>
+        <div class="exp">La regla de consolidación: los grandes CRMs están incorporando IA que puede sustituir herramientas puntuales. Antes de gastar en algo nuevo, verifica si ya tienes la funcionalidad en tu stack actual.</div></div>
+        <div class="t-en"><div class="qt">4. What is the golden rule before adding a new AI tool to the Martech stack?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Try it free for 30 days first</li>
+          <li class="opt" onclick="ans(this,'qb53',true)"><input type="radio">Consolidate first: verify if something you already have can cover the need</li>
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">Ask the vendor for a demo</li>
+          <li class="opt" onclick="ans(this,'qb53',false)"><input type="radio">See if the competition uses it</li>
+        </ul>
+        <div class="exp">The consolidation rule: major CRMs are incorporating AI that can substitute point tools. Before spending on something new, verify if you already have the functionality in your current stack.</div></div>
       </div>
       <div class="qb" id="qb54">
-        <div class="qt">5. ¿Qué hace el AI RevOps Playbook más valioso que una lista de recomendaciones?</div>
+        <div class="t-es"><div class="qt">5. ¿Qué hace el AI RevOps Playbook más valioso que una lista de recomendaciones?</div>
         <ul class="opts">
           <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Que está en formato PDF</li>
           <li class="opt" onclick="ans(this,'qb54',true)"><input type="radio">Combina audit + iniciativas priorizadas + stack + roadmap + métricas — convierte estrategia en ejecución</li>
           <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Que menciona más herramientas</li>
           <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">Que es más largo</li>
         </ul>
-        <div class="exp">El valor del playbook está en su completitud: no solo dice qué hacer sino por qué, en qué orden, con qué herramientas y cómo medir el éxito. Es la diferencia entre estrategia y ejecución.</div>
+        <div class="exp">El valor del playbook está en su completitud: no solo dice qué hacer sino por qué, en qué orden, con qué herramientas y cómo medir el éxito. Es la diferencia entre estrategia y ejecución.</div></div>
+        <div class="t-en"><div class="qt">5. What makes the AI RevOps Playbook more valuable than a list of recommendations?</div>
+        <ul class="opts">
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">That it's in PDF format</li>
+          <li class="opt" onclick="ans(this,'qb54',true)"><input type="radio">It combines audit + prioritized initiatives + stack + roadmap + metrics — converts strategy into execution</li>
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">That it mentions more tools</li>
+          <li class="opt" onclick="ans(this,'qb54',false)"><input type="radio">That it's longer</li>
+        </ul>
+        <div class="exp">The playbook's value lies in its completeness: it doesn't just say what to do but why, in what order, with what tools and how to measure success. It's the difference between strategy and execution.</div></div>
       </div>
-      <button class="qbtn" onclick="score('q5r',5)">Ver resultado</button>
+      <button class="qbtn" onclick="score('q5r',5)"><span class="t-es-i">Ver resultado</span><span class="t-en-i" style="display:none">View Result</span></button>
       <div class="qr" id="q5r"><div class="rs" id="q5s">0/5</div><p id="q5m" style="color:var(--text2);margin-top:.4rem;font-size:.88rem"></p></div>
     </div>
   </div>
@@ -931,8 +1113,8 @@ Slack/email: notifica al AE con el brief completo</pre>
     <a href="curso-ai-m5.html" style="display:inline-block;padding:.7rem 1.5rem;background:var(--accent);color:#000;border-radius:10px;text-decoration:none;font-weight:800;font-size:.9rem">Continuar al Módulo 5 →</a>
   </div>
   <div class="lnb">
-    <button class="lnbtn" onclick="prev()">← Anterior</button>
-    <a href="curso-ai-m5.html" class="lnbtn nx">Módulo 5 →</a>
+    <button class="lnbtn" onclick="prev()"><span class="t-es-i">← Anterior</span><span class="t-en-i" style="display:none">← Previous</span></button>
+    <a href="curso-ai-m5.html" class="lnbtn nx"><span class="t-es-i">Módulo 5 →</span><span class="t-en-i" style="display:none">Module 5 →</span></a>
   </div>
 </div>
 
@@ -990,8 +1172,7 @@ function ans(el,qbId,correct){
   qb.dataset.answered='1';
   qb.dataset.correct=correct?'1':'0';
   el.classList.add(correct?'correct':'wrong');
-  const exp=qb.querySelector('.exp');
-  if(exp)exp.classList.add('show');
+  qb.querySelectorAll('.exp').forEach(exp=>exp.classList.add('show'));
 }
 
 function score(rid,total){
@@ -1004,9 +1185,11 @@ function score(rid,total){
   const el=document.getElementById(rid);
   el.classList.add('show');
   document.getElementById(prefix+'s').textContent=correct+'/'+total;
-  const msgs=['Sigue repasando — vuelve a la lección','Bien, pero hay oportunidad de mejora','¡Muy bien! Sólido entendimiento','¡Perfecto! Dominas este tema'];
+  const mEs=['Sigue repasando — vuelve a la lección','Bien, pero hay oportunidad de mejora','¡Muy bien! Sólido entendimiento','¡Perfecto! Dominas este tema'];
+  const mEn=['Keep reviewing — go back to the lesson','Good, but room to improve','Very good! Solid understanding','Perfect! You have mastered this topic'];
   const idx=Math.floor((correct/total)*3);
-  document.getElementById(prefix+'m').textContent=msgs[Math.min(idx,3)];
+  const _enMsg=document.body.classList.contains('lang-en');
+  document.getElementById(prefix+'m').textContent=(_enMsg?mEn:mEs)[Math.min(idx,3)];
 }
 
 /* ── LANG TOGGLE ── */
