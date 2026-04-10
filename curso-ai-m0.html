@@ -1042,7 +1042,7 @@ function nextLesson(){
     completed.add(currentLesson);
     updateProgress();
     showLesson(currentLesson+1);
-  }
+  }else{completed.add(currentLesson);updateProgress();window.location.href='curso-ai-m1.html';}
 }
 
 function prevLesson(){

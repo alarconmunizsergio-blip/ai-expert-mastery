@@ -860,7 +860,7 @@ function show(i){
   lp.querySelectorAll('.tc')[0].classList.add('active');
 }
 
-function next(){if(cur<lessons.length-1)show(cur+1);}
+function next(){if(cur<lessons.length-1)show(cur+1);else window.location.href='curso-ai-index.html';}
 function prev(){if(cur>0)show(cur-1);}
 
 function tab(el,id){

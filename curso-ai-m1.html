@@ -791,7 +791,7 @@ function show(i){
   lp.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',j===0));
   lp.querySelectorAll('.tc').forEach((tc,j)=>tc.classList.toggle('active',j===0));
 }
-function next(){if(cur<ls.length-1){done.add(cur);upd();show(cur+1);}}
+function next(){if(cur<ls.length-1){done.add(cur);upd();show(cur+1);}else{done.add(cur);upd();window.location.href='curso-ai-m2.html';}}
 function prev(){if(cur>0)show(cur-1);}
 function tab(btn,id){
   const lp=btn.closest('.lp');
