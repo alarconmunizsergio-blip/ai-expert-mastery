@@ -191,7 +191,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
   <a class="nav-item" onclick="goToSection('use-cases')"><span class="t-es">👥 Casos de Uso por Profesión</span><span class="t-en" style="display:none">👥 Use Cases by Profession</span></a>
   <a class="nav-item" onclick="goToSection('certifications')"><span class="t-es">🏆 Certificaciones Gratuitas</span><span class="t-en" style="display:none">🏆 Free Certifications</span></a>
   <a class="nav-item" onclick="goToSection('ruben')"><span class="t-es">📚 Recursos Ruben Hassid</span><span class="t-en" style="display:none">📚 Ruben Hassid Resources</span></a>
-  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Abril 2026</span><span class="t-en" style="display:none">🔥 Latest: April 2026</span></a>
+  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Mayo 2026</span><span class="t-en" style="display:none">🔥 Latest: May 2026</span></a>
   <a class="nav-item" onclick="goToSection('local-ai')"><span class="t-es">🏠 IA Local: Ollama + VPS</span><span class="t-en" style="display:none">🏠 Local AI: Ollama + VPS</span></a>
   <a class="nav-item" onclick="goToSection('model-guide')"><span class="t-es">🗺️ Guía de Todos los Modelos</span><span class="t-en" style="display:none">🗺️ Complete Model Guide</span></a>
 
@@ -1709,9 +1709,12 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 
     <!-- ── MONTH TABS ── -->
     <div class="archive-tabs">
-      <button class="archive-tab active" onclick="showMonth(this,'abril-2026')">
-        <span class="t-es-i">Abril 2026</span><span class="t-en-i" style="display:none">April 2026</span>
+      <button class="archive-tab active" onclick="showMonth(this,'mayo-2026')">
+        <span class="t-es-i">Mayo 2026</span><span class="t-en-i" style="display:none">May 2026</span>
         <span class="month-badge"><span class="t-es-i">Actual</span><span class="t-en-i" style="display:none">Current</span></span>
+      </button>
+      <button class="archive-tab" onclick="showMonth(this,'abril-2026')">
+        <span class="t-es-i">Abril 2026</span><span class="t-en-i" style="display:none">April 2026</span>
       </button>
       <button class="archive-tab" onclick="showMonth(this,'marzo-2026')">
         <span class="t-es-i">Marzo 2026</span><span class="t-en-i" style="display:none">March 2026</span>
@@ -1720,9 +1723,109 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
     </div>
 
     <!-- ══════════════════════════════
+         PANE: MAYO 2026
+    ══════════════════════════════ -->
+    <div class="month-pane" id="month-mayo-2026">
+
+      <div class="cards">
+        <div class="card" style="border-color:rgba(67,233,123,.4)">
+          <div class="card-icon">⚡</div>
+          <div class="t-es"><h3>GPT-5.5 Instant — Ahora Gratis para Todos</h3>
+          <p>OpenAI lanzó GPT-5.5 Instant el 5 de mayo de 2026 como el nuevo modelo por defecto de ChatGPT — incluyendo el plan gratuito. Reemplaza a GPT-5.3 Instant y trae 52.5% menos alucinaciones en áreas sensibles (medicina, derecho, finanzas). Logra 81.2 en AIME 2025 (vs 65.4 del modelo anterior) y 76 en MMMU-Pro multimodal. Nueva capacidad de personalización: puede consultar conversaciones pasadas, archivos y Gmail para respuestas personalizadas (Plus/Pro).</p></div>
+          <div class="t-en"><h3>GPT-5.5 Instant — Now Free for Everyone</h3>
+          <p>OpenAI launched GPT-5.5 Instant on May 5, 2026 as ChatGPT's new default model — including the free plan. Replaces GPT-5.3 Instant with 52.5% fewer hallucinations in sensitive areas (medicine, law, finance). Scores 81.2 on AIME 2025 (vs 65.4 for prior model) and 76 on MMMU-Pro multimodal. New personalization: can search past conversations, files and Gmail for personalized answers (Plus/Pro).</p></div>
+          <span class="card-tag">OpenAI · <span class="t-es-i">5 Mayo</span><span class="t-en-i" style="display:none">May 5</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(196,113,237,.4)">
+          <div class="card-icon">🎨</div>
+          <div class="t-es"><h3>Claude Design — Prototipado Visual con IA</h3>
+          <p>Anthropic Labs lanzó Claude Design, una nueva herramienta para crear outputs visuales directamente con Claude Opus 4.7. Genera diseños, prototipos interactivos, slides y one-pagers con IA. El output es HTML vivo y clickeable — no imágenes estáticas. Integra tu design system, refina con comentarios inline y exporta a Canva, PDF, PPTX o HTML. Disponible para suscriptores de Claude Pro, Max, Team y Enterprise en claude.ai/design.</p></div>
+          <div class="t-en"><h3>Claude Design — Visual Prototyping with AI</h3>
+          <p>Anthropic Labs launched Claude Design, a new tool for creating visual outputs directly with Claude Opus 4.7. Generate designs, interactive prototypes, slides and one-pagers with AI. Output is live, clickable HTML — not static images. Integrates your design system, refine with inline comments and export to Canva, PDF, PPTX or HTML. Available for Claude Pro, Max, Team and Enterprise subscribers at claude.ai/design.</p></div>
+          <span class="card-tag">Anthropic Labs · <span class="t-es-i">Mayo</span><span class="t-en-i" style="display:none">May</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(79,172,254,.4)">
+          <div class="card-icon">💎</div>
+          <div class="t-es"><h3>Gemini 2.5 Pro — Actualización de Mayo</h3>
+          <p>Google lanzó una actualización mejorada de Gemini 2.5 Pro el 6 de mayo de 2026. Mejoras notables en coding (lidera en AIDER Polyglot), razonamiento científico avanzado (top en GPQA y Humanity's Last Exam), y un nuevo estilo de escritura más creativo y expresivo. Disponible en Google AI Studio, Vertex AI y la app Gemini. La ventana de 2M de tokens sigue siendo la más grande del mercado.</p></div>
+          <div class="t-en"><h3>Gemini 2.5 Pro — May Update</h3>
+          <p>Google released an enhanced Gemini 2.5 Pro update on May 6, 2026. Notable improvements in coding (leads on AIDER Polyglot), advanced scientific reasoning (top on GPQA and Humanity's Last Exam), and a new more creative, expressive writing style. Available in Google AI Studio, Vertex AI and the Gemini app. The 2M token window remains the largest on the market.</p></div>
+          <span class="card-tag">Google · <span class="t-es-i">6 Mayo</span><span class="t-en-i" style="display:none">May 6</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(255,140,66,.4)">
+          <div class="card-icon">🤖</div>
+          <div class="t-es"><h3>Grok 4.3 — 1M Tokens, Video Nativo, 40% Más Barato</h3>
+          <p>xAI lanzó Grok 4.3 en mayo 2026: modelo frontier con razonamiento built-in, contexto de 1M tokens y soporte nativo para video (primera vez en Grok). Precio reducido 40% a $1.25/M tokens de input. Puntaje 53 en el Intelligence Index (media del mercado: 35). Incluye 16-Agent Heavy: un sistema de 16 agentes paralelos coordinados por un orquestador — ideal para planificación compleja y simulaciones largas. También lanzó APIs de voz: Grok STT y TTS multilingüe (25+ idiomas).</p></div>
+          <div class="t-en"><h3>Grok 4.3 — 1M Tokens, Native Video, 40% Cheaper</h3>
+          <p>xAI launched Grok 4.3 in May 2026: frontier model with built-in reasoning, 1M token context and native video support (first time in Grok). Price cut 40% to $1.25/M input tokens. Scores 53 on the Intelligence Index (market average: 35). Includes 16-Agent Heavy: a 16 parallel agent system coordinated by an orchestrator — ideal for complex planning and long simulations. Also launched voice APIs: Grok STT and TTS multilingual (25+ languages).</p></div>
+          <span class="card-tag">xAI · <span class="t-es-i">Mayo</span><span class="t-en-i" style="display:none">May</span> 2026</span>
+        </div>
+        <div class="card" style="border-color:rgba(255,101,132,.4)">
+          <div class="card-icon">🏢</div>
+          <div class="t-es"><h3>Anthropic — Wall Street + SpaceX Colossus Deal</h3>
+          <p>Anthropic anunció en mayo 2026 dos movimientos estratégicos: (1) 10 agent templates para servicios financieros (pitchbooks, KYC, cierre de libros) disponibles como plugins en Claude Cowork y Claude Code — en colaboración con firmas como JP Morgan; (2) Acuerdo con SpaceX para usar toda la capacidad de cómputo de Colossus 1: más de 300 megawatts y 220,000 GPUs NVIDIA. La mayor expansión de infraestructura de Anthropic hasta la fecha.</p></div>
+          <div class="t-en"><h3>Anthropic — Wall Street + SpaceX Colossus Deal</h3>
+          <p>Anthropic announced two strategic moves in May 2026: (1) 10 agent templates for financial services (pitchbooks, KYC, closing the books) available as plugins in Claude Cowork and Claude Code — in collaboration with firms like JP Morgan; (2) Agreement with SpaceX to use all compute capacity of Colossus 1: over 300 megawatts and 220,000 NVIDIA GPUs. The largest infrastructure expansion in Anthropic's history.</p></div>
+          <span class="card-tag">Anthropic · <span class="t-es-i">Mayo</span><span class="t-en-i" style="display:none">May</span> 2026</span>
+        </div>
+      </div>
+
+      <!-- VIDEOS MAYO 2026 -->
+      <div class="videos-section">
+        <div class="t-es"><h3>🎬 Videos de Apoyo — Mayo 2026</h3></div>
+        <div class="t-en"><h3>🎬 Support Videos — May 2026</h3></div>
+        <div class="video-grid">
+          <!-- ── PLACEHOLDER PARA VIDEO PROPIO ── -->
+          <div class="video-placeholder">
+            <div class="ph-icon">🎥</div>
+            <div class="t-es">
+              <h4>Tu Video Aquí</h4>
+              <p>Graba tu análisis del mes y agrégalo. Sube a YouTube (no listado) o Google Drive y reemplaza este bloque.</p>
+            </div>
+            <div class="t-en">
+              <h4>Your Video Here</h4>
+              <p>Record your monthly analysis and add it here. Upload to YouTube (unlisted) or Google Drive and replace this block.</p>
+            </div>
+          </div>
+          <div class="video-placeholder">
+            <div class="ph-icon">📝</div>
+            <div class="t-es">
+              <h4>Notas del Mes</h4>
+              <p>Agrega tus reflexiones personales, prompts que funcionaron o casos de uso que descubriste este mes.</p>
+            </div>
+            <div class="t-en">
+              <h4>Monthly Notes</h4>
+              <p>Add your personal reflections, prompts that worked, or use cases you discovered this month.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:2rem;background:linear-gradient(135deg,rgba(67,233,123,.1),rgba(79,172,254,.05));border-color:rgba(67,233,123,.3)">
+        <div class="t-es"><h4 style="color:#43e97b">🔑 Takeaways clave de Mayo 2026</h4>
+        <ul>
+          <li><strong>GPT-5.5 Instant en tier gratuito</strong> — El nivel de inteligencia accesible sin pagar sigue subiendo dramáticamente</li>
+          <li><strong>Claude Design</strong> — Anthropic entra al espacio de diseño visual: prototipa desde el chat</li>
+          <li><strong>Grok 4.3</strong> — El más barato con 1M tokens y video nativo; competencia real para aplicaciones de volumen</li>
+          <li><strong>Gemini 2.5 Pro</strong> — Sigue mejorando; el más fuerte para proyectos en ecosistema Google</li>
+          <li><strong>Anthropic + SpaceX</strong> — 220K GPUs más para Anthropic = esperar modelos más grandes pronto</li>
+        </ul></div>
+        <div class="t-en"><h4 style="color:#43e97b">🔑 Key takeaways from May 2026</h4>
+        <ul>
+          <li><strong>GPT-5.5 Instant on free tier</strong> — The level of intelligence accessible without paying keeps rising dramatically</li>
+          <li><strong>Claude Design</strong> — Anthropic enters the visual design space: prototype from the chat</li>
+          <li><strong>Grok 4.3</strong> — The cheapest with 1M tokens and native video; real competition for volume applications</li>
+          <li><strong>Gemini 2.5 Pro</strong> — Keeps improving; strongest for Google ecosystem projects</li>
+          <li><strong>Anthropic + SpaceX</strong> — 220K more GPUs for Anthropic = expect bigger models soon</li>
+        </ul></div>
+      </div>
+
+    </div><!-- /month-mayo-2026 -->
+
+    <!-- ══════════════════════════════
          PANE: ABRIL 2026
     ══════════════════════════════ -->
-    <div class="month-pane" id="month-abril-2026">
+    <div class="month-pane hidden" id="month-abril-2026">
 
       <div class="cards">
         <div class="card" style="border-color:rgba(196,113,237,.4)">
@@ -2384,6 +2487,7 @@ npm install -g n8n
         <table class="device-table" style="font-size:.8rem">
           <thead><tr><th>Versión / Modo</th><th>Cuándo Usarla</th><th>Acceso</th></tr></thead>
           <tbody>
+            <tr><td><strong>GPT-5.5 Instant</strong></td><td>Uso diario rápido, anti-alucinaciones, memoria de conversaciones y Gmail</td><td>Gratis · Plus · Pro</td></tr>
             <tr><td><strong>GPT-5.5 / 5.5 Pro</strong></td><td>Tareas agénticas multi-paso, código avanzado, análisis de datos complejos</td><td>Plus/Pro/Business/Enterprise</td></tr>
             <tr><td><strong>GPT-5.5 Thinking</strong></td><td>Razonamiento extendido step-by-step, matemáticas, ciencia</td><td>Pro ($200/mes)</td></tr>
             <tr><td><strong>o4-mini / o3</strong></td><td>Razonamiento extendido step-by-step para matemáticas, ciencia, código</td><td>Plus/Pro ($20-200/mes)</td></tr>
@@ -2398,6 +2502,7 @@ npm install -g n8n
         <table class="device-table" style="font-size:.8rem">
           <thead><tr><th>Version / Mode</th><th>When to Use</th><th>Access</th></tr></thead>
           <tbody>
+            <tr><td><strong>GPT-5.5 Instant</strong></td><td>Fast daily use, anti-hallucination, memory of conversations and Gmail</td><td>Free · Plus · Pro</td></tr>
             <tr><td><strong>GPT-5.5 / 5.5 Pro</strong></td><td>Multi-step agentic tasks, advanced code, complex data analysis</td><td>Plus/Pro/Business/Enterprise</td></tr>
             <tr><td><strong>GPT-5.5 Thinking</strong></td><td>Extended step-by-step reasoning, math, science</td><td>Pro ($200/month)</td></tr>
             <tr><td><strong>o4-mini / o3</strong></td><td>Extended step-by-step reasoning for math, science, code</td><td>Plus/Pro ($20-200/month)</td></tr>
