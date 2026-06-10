@@ -191,7 +191,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
   <a class="nav-item" onclick="goToSection('use-cases')"><span class="t-es">👥 Casos de Uso por Profesión</span><span class="t-en" style="display:none">👥 Use Cases by Profession</span></a>
   <a class="nav-item" onclick="goToSection('certifications')"><span class="t-es">🏆 Certificaciones Gratuitas</span><span class="t-en" style="display:none">🏆 Free Certifications</span></a>
   <a class="nav-item" onclick="goToSection('ruben')"><span class="t-es">📚 Recursos Ruben Hassid</span><span class="t-en" style="display:none">📚 Ruben Hassid Resources</span></a>
-  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Mayo 2026</span><span class="t-en" style="display:none">🔥 Latest: May 2026</span></a>
+  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Junio 2026</span><span class="t-en" style="display:none">🔥 Latest: June 2026</span></a>
   <a class="nav-item" onclick="goToSection('local-ai')"><span class="t-es">🏠 IA Local: Ollama + VPS</span><span class="t-en" style="display:none">🏠 Local AI: Ollama + VPS</span></a>
   <a class="nav-item" onclick="goToSection('model-guide')"><span class="t-es">🗺️ Guía de Todos los Modelos</span><span class="t-en" style="display:none">🗺️ Complete Model Guide</span></a>
 
@@ -1709,9 +1709,12 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 
     <!-- ── MONTH TABS ── -->
     <div class="archive-tabs">
-      <button class="archive-tab active" onclick="showMonth(this,'mayo-2026')">
-        <span class="t-es-i">Mayo 2026</span><span class="t-en-i" style="display:none">May 2026</span>
+      <button class="archive-tab active" onclick="showMonth(this,'junio-2026')">
+        <span class="t-es-i">Junio 2026</span><span class="t-en-i" style="display:none">June 2026</span>
         <span class="month-badge"><span class="t-es-i">Actual</span><span class="t-en-i" style="display:none">Current</span></span>
+      </button>
+      <button class="archive-tab" onclick="showMonth(this,'mayo-2026')">
+        <span class="t-es-i">Mayo 2026</span><span class="t-en-i" style="display:none">May 2026</span>
       </button>
       <button class="archive-tab" onclick="showMonth(this,'abril-2026')">
         <span class="t-es-i">Abril 2026</span><span class="t-en-i" style="display:none">April 2026</span>
@@ -1719,13 +1722,96 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
       <button class="archive-tab" onclick="showMonth(this,'marzo-2026')">
         <span class="t-es-i">Marzo 2026</span><span class="t-en-i" style="display:none">March 2026</span>
       </button>
-      <!-- ➕ Agregar nuevos meses aquí: copiar el botón de arriba y crear su pane abajo -->
     </div>
+
+    <!-- ══════════════════════════════
+         PANE: JUNIO 2026
+    ══════════════════════════════ -->
+    <div class="month-pane" id="month-junio-2026">
+
+      <div class="cards">
+
+        <div class="card" style="border-color:rgba(196,113,237,.6);box-shadow:0 0 22px rgba(196,113,237,.3)">
+          <div class="card-icon">🧬</div>
+          <div class="t-es"><h3>Claude Fable 5 — Mythos Público · El Modelo Más Potente del Mundo</h3>
+          <p>Anthropic lanzó <strong>Claude Fable 5 hoy, 9 de junio de 2026</strong> — la versión pública del modelo Mythos, antes reservada solo para Project Glasswing. Fable 5 supera a todos los modelos existentes por un margen histórico: <strong>SWE-bench Pro 80.3%</strong> (el siguiente rival está 11 puntos atrás), <strong>FrontierCode Diamond 29.3%</strong> (vs 13.4% de Opus 4.8). Completó una migración de base de código de 50 millones de líneas en un solo día. Precio: <strong>$10/$50 por millón de tokens</strong> (la mitad que Mythos Preview). Las solicitudes sensibles de ciberseguridad o biología recaen automáticamente en Opus 4.8. Gratis en planes Pro/Max/Team/Enterprise hasta el 22 de junio. Disponible en API, AWS, Google Cloud, Microsoft Foundry y GitHub Copilot.</p></div>
+          <div class="t-en"><h3>Claude Fable 5 — Public Mythos · The World's Most Powerful Model</h3>
+          <p>Anthropic launched <strong>Claude Fable 5 today, June 9, 2026</strong> — the public version of the Mythos model, previously reserved for Project Glasswing only. Fable 5 surpasses all existing models by a historic margin: <strong>SWE-bench Pro 80.3%</strong> (next rival is 11 points behind), <strong>FrontierCode Diamond 29.3%</strong> (vs 13.4% for Opus 4.8). Completed a 50-million-line codebase migration in a single day. Price: <strong>$10/$50 per million tokens</strong> (half of Mythos Preview). Sensitive cybersecurity/biology requests auto-fallback to Opus 4.8. Free on Pro/Max/Team/Enterprise plans through June 22. Available on API, AWS, Google Cloud, Microsoft Foundry and GitHub Copilot.</p></div>
+          <span class="card-tag">Anthropic · <span class="t-es-i">9 Junio</span><span class="t-en-i" style="display:none">June 9</span> 2026 🔥</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(67,233,123,.4)">
+          <div class="card-icon">🧠</div>
+          <div class="t-es"><h3>ChatGPT "Dreaming" — Memoria que Evoluciona Sola</h3>
+          <p>OpenAI lanzó <strong>Dreaming V3</strong> el 4-5 de junio: un proceso de fondo que sintetiza y actualiza la memoria de ChatGPT automáticamente entre conversaciones. La diferencia clave con el sistema anterior: la memoria ahora tiene <strong>conciencia temporal</strong> — si guardó "vas a Singapur en julio", la actualiza sola a "fuiste a Singapur en julio 2026" cuando ya pasó. No necesitas pedirle que recuerde nada. Reemplaza completamente el viejo sistema de "saved memories". Rollout: Plus/Pro USA primero, luego Free y global. El próximo estándar de personalización en IA.</p></div>
+          <div class="t-en"><h3>ChatGPT "Dreaming" — Memory That Evolves on Its Own</h3>
+          <p>OpenAI launched <strong>Dreaming V3</strong> on June 4-5: a background process that automatically synthesizes and updates ChatGPT's memory between conversations. The key difference from the previous system: memory now has <strong>temporal awareness</strong> — if it saved "you're going to Singapore in July," it updates itself to "you went to Singapore in July 2026" when the trip ends. No explicit commands needed. Fully replaces the old "saved memories" system. Rollout: Plus/Pro USA first, then Free and global. The next standard for AI personalization.</p></div>
+          <span class="card-tag">OpenAI · <span class="t-es-i">4 Junio</span><span class="t-en-i" style="display:none">June 4</span> 2026</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(255,140,66,.4)">
+          <div class="card-icon">☁️</div>
+          <div class="t-es"><h3>OpenAI en AWS — GPT-5.5 y Codex en Amazon Bedrock</h3>
+          <p>El 2 de junio OpenAI expandió su cobertura enterprise: <strong>GPT-5.5, Codex y la API de OpenAI ahora disponibles en Amazon Web Services</strong> vía Amazon Bedrock. Las empresas pueden acceder a los modelos frontier de OpenAI dentro de su infraestructura AWS existente, con los controles de seguridad y procesos de procurement que ya usan. Combinado con la presencia de Claude Fable 5 en Bedrock, AWS se convierte en el único cloud que aloja simultáneamente los mejores modelos de OpenAI y Anthropic.</p></div>
+          <div class="t-en"><h3>OpenAI on AWS — GPT-5.5 and Codex on Amazon Bedrock</h3>
+          <p>On June 2 OpenAI expanded its enterprise footprint: <strong>GPT-5.5, Codex and the OpenAI API now available on Amazon Web Services</strong> via Amazon Bedrock. Companies can access OpenAI's frontier models within their existing AWS infrastructure, using the security controls and procurement processes they already rely on. Combined with Claude Fable 5 on Bedrock, AWS becomes the only cloud hosting the best models from both OpenAI and Anthropic simultaneously.</p></div>
+          <span class="card-tag">OpenAI × AWS · <span class="t-es-i">2 Junio</span><span class="t-en-i" style="display:none">June 2</span> 2026</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(79,172,254,.4)">
+          <div class="card-icon">💎</div>
+          <div class="t-es"><h3>Gemini 3.5 Pro — "Danos hasta el mes que viene" · Preview Interna</h3>
+          <p>Google anunció Gemini 3.5 Pro en Google I/O (19 mayo) con una frase memorable de Sundar Pichai: <em>"Give us until next month to get it to you"</em> — lo que provocó protestas del público. En preview interna y Vertex: contexto 2M tokens, modo <strong>Deep Think</strong> (razonamiento extendido), multimodal frontier. Precio esperado: ~$15/$60 por millón de tokens. Disponibilidad general prevista para junio/julio 2026. Cuando llegue, será la respuesta directa de Google a Claude Fable 5.</p></div>
+          <div class="t-en"><h3>Gemini 3.5 Pro — "Give Us Until Next Month" · Internal Preview</h3>
+          <p>Google announced Gemini 3.5 Pro at Google I/O (May 19) with a memorable quote from Sundar Pichai: <em>"Give us until next month to get it to you"</em> — which drew audible groans from the audience. In internal preview and Vertex: 2M token context, <strong>Deep Think</strong> mode (extended reasoning), frontier multimodal. Expected price: ~$15/$60 per million tokens. General availability targeted June/July 2026. When it arrives, it will be Google's direct answer to Claude Fable 5.</p></div>
+          <span class="card-tag">Google · <span class="t-es-i">Próximamente</span><span class="t-en-i" style="display:none">Coming Soon</span> Junio 2026</span>
+        </div>
+
+      </div>
+
+      <!-- VIDEOS JUNIO 2026 -->
+      <div class="videos-section">
+        <div class="t-es"><h3>🎬 Videos de Apoyo — Junio 2026</h3></div>
+        <div class="t-en"><h3>🎬 Support Videos — June 2026</h3></div>
+        <div class="video-grid">
+          <div class="video-placeholder">
+            <div class="ph-icon">🎥</div>
+            <div class="t-es"><h4>Tu Video Aquí</h4><p>Graba tu análisis de Claude Fable 5 y los cambios de junio. Sube a YouTube (no listado) y reemplaza este bloque.</p></div>
+            <div class="t-en"><h4>Your Video Here</h4><p>Record your analysis of Claude Fable 5 and June changes. Upload to YouTube (unlisted) and replace this block.</p></div>
+          </div>
+          <div class="video-placeholder">
+            <div class="ph-icon">📝</div>
+            <div class="t-es"><h4>Notas del Mes</h4><p>Tus reflexiones sobre cómo Fable 5 cambia el juego para tu práctica profesional.</p></div>
+            <div class="t-en"><h4>Monthly Notes</h4><p>Your reflections on how Fable 5 changes the game for your professional practice.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:2rem;background:linear-gradient(135deg,rgba(196,113,237,.12),rgba(67,233,123,.05));border-color:rgba(196,113,237,.4)">
+        <div class="t-es"><h4 style="color:#c471ed">🔑 Takeaways clave de Junio 2026 — 9 Junio</h4>
+        <ul>
+          <li><strong>🧬 Claude Fable 5 HOY</strong> — Mythos llega al público. SWE-bench Pro 80.3% — el siguiente modelo está a 11 puntos. La brecha con el resto del mercado es histórica</li>
+          <li><strong>🎯 Fable 5 gratis hasta el 22 de junio</strong> — Si tienes Claude Pro/Max/Team/Enterprise, ya lo tienes. Úsalo ahora</li>
+          <li><strong>🧠 ChatGPT "Dreaming"</strong> — La memoria de IA dejó de ser una lista estática. Ahora evoluciona sola con conciencia temporal</li>
+          <li><strong>☁️ OpenAI en AWS</strong> — GPT-5.5 + Claude Fable 5 coexisten en Amazon Bedrock. El mayor cloud del mundo tiene los dos mejores modelos</li>
+          <li><strong>💎 Gemini 3.5 Pro viene</strong> — Deep Think + 2M tokens. Google se queda como "próximamente" mientras Anthropic domina el presente</li>
+        </ul></div>
+        <div class="t-en"><h4 style="color:#c471ed">🔑 Key takeaways from June 2026 — June 9</h4>
+        <ul>
+          <li><strong>🧬 Claude Fable 5 TODAY</strong> — Mythos goes public. SWE-bench Pro 80.3% — the next model is 11 points behind. The gap with the rest of the market is historic</li>
+          <li><strong>🎯 Fable 5 free until June 22</strong> — If you have Claude Pro/Max/Team/Enterprise, you already have it. Use it now</li>
+          <li><strong>🧠 ChatGPT "Dreaming"</strong> — AI memory stopped being a static list. Now it evolves on its own with temporal awareness</li>
+          <li><strong>☁️ OpenAI on AWS</strong> — GPT-5.5 + Claude Fable 5 coexist on Amazon Bedrock. The world's largest cloud has both best models</li>
+          <li><strong>💎 Gemini 3.5 Pro coming</strong> — Deep Think + 2M tokens. Google stays "coming soon" while Anthropic dominates the present</li>
+        </ul></div>
+      </div>
+
+    </div><!-- /month-junio-2026 -->
 
     <!-- ══════════════════════════════
          PANE: MAYO 2026
     ══════════════════════════════ -->
-    <div class="month-pane" id="month-mayo-2026">
+    <div class="month-pane hidden" id="month-mayo-2026">
 
       <div class="cards">
         <div class="card" style="border-color:rgba(67,233,123,.4)">
@@ -2506,8 +2592,9 @@ npm install -g n8n
         <table class="device-table" style="font-size:.8rem">
           <thead><tr><th>Versión</th><th>Cuándo Usarla</th><th>Precio</th><th>Contexto</th></tr></thead>
           <tbody>
-            <tr><td><strong>Claude Mythos</strong></td><td>Ciberseguridad, vulnerabilidades zero-day, tareas frontier — Claude Code/Security</td><td>$25/$125 por M tokens</td><td>200K tokens</td></tr>
-            <tr><td><strong>Claude Opus 4.8 ✨</strong></td><td>Dynamic Workflows, agentes en paralelo, Fast Mode 2.5×, análisis estratégico profundo</td><td>$5/$25 por M tokens · Fast $10/$50</td><td>1M tokens</td></tr>
+            <tr><td><strong>Claude Fable 5 🧬</strong></td><td>El modelo más potente del mundo — SWE-bench Pro 80.3%, FrontierCode Diamond 29.3%. Coding, ciencia, razonamiento frontier</td><td>$10/$50 por M tokens · Gratis en Pro/Max hasta 22 junio</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Mythos 5</strong></td><td>Ciberseguridad avanzada, zero-day — acceso restringido (Glasswing + bio researchers)</td><td>$25/$125 por M tokens</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Opus 4.8</strong></td><td>Dynamic Workflows, agentes en paralelo, Fast Mode 2.5×, análisis estratégico profundo</td><td>$5/$25 por M tokens · Fast $10/$50</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Sonnet 4.6</strong></td><td>Uso diario, balance costo/calidad. El modelo que más usarás</td><td>API: ~$3/M tokens</td><td>200K tokens</td></tr>
             <tr><td><strong>Claude Haiku 3.5</strong></td><td>Tareas rápidas y repetitivas, clasificación, resúmenes cortos</td><td>API: ~$0.25/M tokens</td><td>200K tokens</td></tr>
           </tbody>
@@ -2519,8 +2606,9 @@ npm install -g n8n
         <table class="device-table" style="font-size:.8rem">
           <thead><tr><th>Version</th><th>When to Use</th><th>Price</th><th>Context</th></tr></thead>
           <tbody>
-            <tr><td><strong>Claude Mythos</strong></td><td>Cybersecurity, zero-day vulnerabilities, frontier tasks — via Claude Code/Security</td><td>$25/$125 per M tokens</td><td>200K tokens</td></tr>
-            <tr><td><strong>Claude Opus 4.8 ✨</strong></td><td>Dynamic Workflows, parallel agents, Fast Mode 2.5×, deep strategic analysis</td><td>$5/$25 per M tokens · Fast $10/$50</td><td>1M tokens</td></tr>
+            <tr><td><strong>Claude Fable 5 🧬</strong></td><td>World's most powerful model — SWE-bench Pro 80.3%, FrontierCode Diamond 29.3%. Coding, science, frontier reasoning</td><td>$10/$50 per M tokens · Free on Pro/Max through June 22</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Mythos 5</strong></td><td>Advanced cybersecurity, zero-day — restricted access (Glasswing + bio researchers)</td><td>$25/$125 per M tokens</td><td>200K tokens</td></tr>
+            <tr><td><strong>Claude Opus 4.8</strong></td><td>Dynamic Workflows, parallel agents, Fast Mode 2.5×, deep strategic analysis</td><td>$5/$25 per M tokens · Fast $10/$50</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Sonnet 4.6</strong></td><td>Daily use, cost/quality balance. The model you'll use most</td><td>API: ~$3/M tokens</td><td>200K tokens</td></tr>
             <tr><td><strong>Claude Haiku 3.5</strong></td><td>Fast and repetitive tasks, classification, short summaries</td><td>API: ~$0.25/M tokens</td><td>200K tokens</td></tr>
           </tbody>
