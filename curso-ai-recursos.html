@@ -191,7 +191,7 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
   <a class="nav-item" onclick="goToSection('use-cases')"><span class="t-es">👥 Casos de Uso por Profesión</span><span class="t-en" style="display:none">👥 Use Cases by Profession</span></a>
   <a class="nav-item" onclick="goToSection('certifications')"><span class="t-es">🏆 Certificaciones Gratuitas</span><span class="t-en" style="display:none">🏆 Free Certifications</span></a>
   <a class="nav-item" onclick="goToSection('ruben')"><span class="t-es">📚 Recursos Ruben Hassid</span><span class="t-en" style="display:none">📚 Ruben Hassid Resources</span></a>
-  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Julio 2026</span><span class="t-en" style="display:none">🔥 Latest: July 2026</span></a>
+  <a class="nav-item" onclick="goToSection('tools-2026')"><span class="t-es">🔥 Lo Último: Sep 2026</span><span class="t-en" style="display:none">🔥 Latest: Sep 2026</span></a>
   <a class="nav-item" onclick="goToSection('local-ai')"><span class="t-es">🏠 IA Local: Ollama + VPS</span><span class="t-en" style="display:none">🏠 Local AI: Ollama + VPS</span></a>
   <a class="nav-item" onclick="goToSection('model-guide')"><span class="t-es">🗺️ Guía de Todos los Modelos</span><span class="t-en" style="display:none">🗺️ Complete Model Guide</span></a>
 
@@ -1709,7 +1709,13 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
 
     <!-- ── MONTH TABS ── -->
     <div class="archive-tabs">
-      <button class="archive-tab active" onclick="showMonth(this,'julio-2026')">
+      <button class="archive-tab active" onclick="showMonth(this,'sep-2026')">
+        <span class="t-es-i">Sep 2026</span><span class="t-en-i" style="display:none">Sep 2026</span>
+      </button>
+      <button class="archive-tab" onclick="showMonth(this,'agosto-2026')">
+        <span class="t-es-i">Agosto 2026</span><span class="t-en-i" style="display:none">August 2026</span>
+      </button>
+      <button class="archive-tab" onclick="showMonth(this,'julio-2026')">
         <span class="t-es-i">Julio 2026</span><span class="t-en-i" style="display:none">July 2026</span>
       </button>
       <button class="archive-tab" onclick="showMonth(this,'junio-2026')">
@@ -1733,7 +1739,127 @@ hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(-
     <!-- ══════════════════════════════
          PANE: JULIO 2026
     ══════════════════════════════ -->
-    <div class="month-pane" id="month-julio-2026">
+    <!-- ══════════════════════════════
+         PANE: SEP 2026
+    ══════════════════════════════ -->
+    <div class="month-pane" id="month-sep-2026">
+      <div class="cards">
+
+        <div class="card" style="border-color:rgba(196,113,237,.6);box-shadow:0 0 22px rgba(196,113,237,.3)">
+          <div class="card-icon">🧬</div>
+          <div class="t-es"><h3>Claude Fable 5.1 — Mismo Precio, Cache 75% Más Barato, Benchmarks Duplicados</h3>
+          <p>Anthropic lanzó <strong>Claude Fable 5.1 el 1 de septiembre de 2026</strong> junto con Mythos 5.1. El precio base se mantiene idéntico ($10/$50/M tokens), pero el gran cambio es en cache: las lecturas de prompt-cache caen de $1.00 a <strong>$0.25 por millón de tokens — una reducción del 75%</strong>. Esto beneficia enormemente a los agentes de larga duración que reutilizan contexto extenso. En benchmarks, Fable 5.1 casi duplica a Fable 5 en Terminal-Bench-Science: <strong>52.6% vs 24.7%</strong>. Supera a Fable 5 y Opus 5 en los 7 benchmarks publicados. Anthropic lo posiciona para razonamiento exigente, agentes de larga duración, investigación multistep y trabajo con documentos densos. Mythos 5.1 disponible solo para cyberdefensores y científicos de la vida acreditados.</p></div>
+          <div class="t-en"><h3>Claude Fable 5.1 — Same Price, Cache 75% Cheaper, Doubled Benchmarks</h3>
+          <p>Anthropic launched <strong>Claude Fable 5.1 on September 1, 2026</strong> alongside Mythos 5.1. Base pricing stays identical ($10/$50/M tokens), but the big change is in cache: prompt-cache reads drop from $1.00 to <strong>$0.25 per million tokens — a 75% reduction</strong>. This massively benefits long-running agents that reuse extensive context. On benchmarks, Fable 5.1 nearly doubles Fable 5 on Terminal-Bench-Science: <strong>52.6% vs 24.7%</strong>. Beats Fable 5 and Opus 5 across all 7 published benchmarks. Anthropic positions it for demanding reasoning, long-horizon agents, multistep research, and document-heavy professional work. Mythos 5.1 available only to vetted cyberdefenders and life scientists.</p></div>
+          <span class="card-tag">Anthropic · <span class="t-es-i">1 Sep</span><span class="t-en-i" style="display:none">Sep 1</span> 2026 🔥</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(255,140,66,.4)">
+          <div class="card-icon">🧮</div>
+          <div class="t-es"><h3>OpenAI Astra — Resuelve 10 Problemas Matemáticos Abiertos por $2,000</h3>
+          <p>OpenAI anunció <strong>Astra</strong>, su próximo modelo frontier (sin fecha de release pública aún), con una demostración sin precedente: resolvió <strong>10 problemas matemáticos abiertos sin resolver por décadas</strong> — en geometría de alta dimensión, teoría de grupos, criptografía de retículas, combinatoria extremal y más. OpenAI publicó un manuscrito de 249 páginas y certificados de prueba Lean 4 en GitHub bajo Apache 2.0, con "sorry count" cero (cada paso formalmente verificado). Costo total de compute: ~$2,000 a tasas de GPT-5.6 Sol. Entre los logros: primera construcción explícita de un grupo no-sófico, cerrando una pregunta abierta desde 1999. Aun pendiente de revisión académica formal, pero el impacto ya está sacudiendo el mundo matemático.</p></div>
+          <div class="t-en"><h3>OpenAI Astra — Solves 10 Open Math Problems for $2,000</h3>
+          <p>OpenAI announced <strong>Astra</strong>, its next frontier model (no public release date yet), with an unprecedented demonstration: it solved <strong>10 open mathematical problems unsolved for decades</strong> — in high-dimensional geometry, group theory, lattice cryptography, extremal combinatorics and more. OpenAI published a 249-page manuscript and Lean 4 proof certificates on GitHub under Apache 2.0, with zero "sorry count" (every step formally verified). Total compute cost: ~$2,000 at GPT-5.6 Sol API rates. Among the results: the first explicit construction of a non-sofic group, settling a question open since 1999. Still awaiting formal academic peer review, but the impact is already shaking the math world.</p></div>
+          <span class="card-tag">OpenAI · <span class="t-es-i">Ago/Sep</span><span class="t-en-i" style="display:none">Aug/Sep</span> 2026 🚨</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(79,172,254,.4)">
+          <div class="card-icon">⚡</div>
+          <div class="t-es"><h3>Gemini 3.8 Flash — Google Mantiene Cadencia Semanal de Modelos</h3>
+          <p>Google lanzó <strong>Gemini 3.8 Flash</strong> en los primeros días de septiembre, pocas semanas después del 3.7 Flash de agosto. La cadencia de lanzamientos de Google en el verano de 2026 es sin precedente: 3.5 Flash (mayo), 3.6 Flash (julio), 3.7 Flash (agosto) y ahora 3.8 Flash — cuatro versiones en cuatro meses. En paralelo, Google impulsa la familia <strong>Omni Flash</strong> para video y audio multimodal de alta velocidad, disponible en Google AI Studio, Flow y la plataforma de agentes Gemini Enterprise. Paralelamente, Amazon lanzó <strong>Nova 2 Sonic</strong> — modelo de speech-to-speech nativo diseñado para conversación ultra-rápida y natural en tiempo real.</p></div>
+          <div class="t-en"><h3>Gemini 3.8 Flash — Google Maintains Weekly Model Cadence</h3>
+          <p>Google launched <strong>Gemini 3.8 Flash</strong> in early September, just weeks after the August 3.7 Flash. Google's summer 2026 release cadence is unprecedented: 3.5 Flash (May), 3.6 Flash (July), 3.7 Flash (August), now 3.8 Flash — four versions in four months. In parallel, Google pushes the <strong>Omni Flash</strong> family for high-speed multimodal video and audio, available on Google AI Studio, Flow, and the Gemini Enterprise agent platform. Simultaneously, Amazon launched <strong>Nova 2 Sonic</strong> — a native speech-to-speech model designed for ultra-fast, natural real-time conversation.</p></div>
+          <span class="card-tag">Google + Amazon · <span class="t-es-i">Sep</span><span class="t-en-i" style="display:none">Sep</span> 2026</span>
+        </div>
+
+      </div>
+      <div class="videos-section">
+        <div class="t-es"><h3>🎬 Videos de Apoyo — Sep 2026</h3></div>
+        <div class="t-en"><h3>🎬 Support Videos — Sep 2026</h3></div>
+        <div class="video-grid">
+          <div class="video-placeholder"><div class="ph-icon">🎥</div>
+            <div class="t-es"><h4>Tu Video Aquí</h4><p>Graba tu análisis de Fable 5.1 y lo que significa Astra para el futuro de la IA.</p></div>
+            <div class="t-en"><h4>Your Video Here</h4><p>Record your analysis of Fable 5.1 and what Astra means for the future of AI.</p></div>
+          </div>
+          <div class="video-placeholder"><div class="ph-icon">📝</div>
+            <div class="t-es"><h4>Notas del Mes</h4><p>¿Cuándo usar Fable 5.1 vs Opus 5 vs GPT-5.6 Sol? Construye tu árbol de decisión.</p></div>
+            <div class="t-en"><h4>Monthly Notes</h4><p>When to use Fable 5.1 vs Opus 5 vs GPT-5.6 Sol? Build your decision tree.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="highlight" style="margin-top:2rem;background:linear-gradient(135deg,rgba(196,113,237,.12),rgba(67,233,123,.05));border-color:rgba(196,113,237,.4)">
+        <div class="t-es"><h4 style="color:#c471ed">🔑 Takeaways clave — Sep 2026 (actualizado 9 Sep)</h4>
+        <ul>
+          <li><strong>🧬 Fable 5.1 es el nuevo tope</strong> — Mismo precio que Fable 5, cache 75% más barato. Terminal-Bench-Science duplicado: 52.6% vs 24.7%. El modelo de referencia para agentes y razonamiento complejo</li>
+          <li><strong>🧮 Astra cambia qué significa "inteligencia"</strong> — 10 problemas matemáticos sin resolver por décadas, resueltos por $2,000 de compute. Proofs formalizadas, publicadas open source. Aún no disponible públicamente</li>
+          <li><strong>⚡ Google: 4 Flash en 4 meses</strong> — La cadencia de Google es agresiva. Gemini 3.8 Flash ya supera al 3.7. El mercado de modelos de velocidad es el más competitivo ahora mismo</li>
+          <li><strong>💸 Agosto: costos colapsando</strong> — GPT-5.6 Luna -80% en agosto ($0.20/M), cache de Fable 5.1 -75% en septiembre. Usar IA frontier es cada vez más accesible</li>
+          <li><strong>🔊 Voz nativa</strong> — Amazon Nova 2 Sonic y los nuevos modelos de voz de todos los labs marcan la era de IA conversacional ultra-rápida sin latencia perceptible</li>
+        </ul></div>
+        <div class="t-en"><h4 style="color:#c471ed">🔑 Key takeaways — Sep 2026 (updated Sep 9)</h4>
+        <ul>
+          <li><strong>🧬 Fable 5.1 is the new ceiling</strong> — Same price as Fable 5, cache 75% cheaper. Terminal-Bench-Science doubled: 52.6% vs 24.7%. The reference model for agents and complex reasoning</li>
+          <li><strong>🧮 Astra changes what "intelligence" means</strong> — 10 math problems unsolved for decades, solved for $2,000 compute. Formalized proofs, published open source. Not yet publicly available</li>
+          <li><strong>⚡ Google: 4 Flash in 4 months</strong> — Google's cadence is aggressive. Gemini 3.8 Flash already beats 3.7. The speed-model market is the most competitive right now</li>
+          <li><strong>💸 August: costs collapsing</strong> — GPT-5.6 Luna -80% in August ($0.20/M), Fable 5.1 cache -75% in September. Using frontier AI is getting more accessible</li>
+          <li><strong>🔊 Native voice</strong> — Amazon Nova 2 Sonic and new voice models from all labs mark the era of ultra-fast conversational AI with no perceptible latency</li>
+        </ul></div>
+      </div>
+    </div><!-- /month-sep-2026 -->
+
+    <!-- ══════════════════════════════
+         PANE: AGOSTO 2026
+    ══════════════════════════════ -->
+    <div class="month-pane hidden" id="month-agosto-2026">
+      <div class="cards">
+
+        <div class="card" style="border-color:rgba(79,172,254,.5);box-shadow:0 0 16px rgba(79,172,254,.2)">
+          <div class="card-icon">⚡</div>
+          <div class="t-es"><h3>Gemini 3.7 Flash — Mejor que 3.6 a la Mitad del Precio</h3>
+          <p>A solo 3 semanas del lanzamiento de Gemini 3.6 Flash, Google lanzó <strong>Gemini 3.7 Flash</strong> en agosto — su modelo de trabajo más inteligente hasta la fecha para coding y agentes. El precio introductorio: la <strong>mitad del costo por millón de tokens de Gemini 3.6 Flash</strong>. Mejoras sustanciales en ingeniería de software, knowledge work y flujos de desarrollo web. Disponible en Gemini API, Google AI Studio y Vertex AI. La cadencia de lanzamientos de Google está superando a todos los labs: un nuevo Flash cada 3-4 semanas. Para los usuarios, esto significa que el modelo en el que te basas hoy puede quedar obsoleto antes de fin de mes.</p></div>
+          <div class="t-en"><h3>Gemini 3.7 Flash — Better than 3.6 at Half the Price</h3>
+          <p>Just 3 weeks after the launch of Gemini 3.6 Flash, Google launched <strong>Gemini 3.7 Flash</strong> in August — its most intelligent workhorse model yet for coding and agents. Introductory price: <strong>half the cost per million tokens of Gemini 3.6 Flash</strong>. Substantial improvements in software engineering, knowledge work, and web development workflows. Available on Gemini API, Google AI Studio, and Vertex AI. Google's release cadence is outpacing all labs: a new Flash every 3-4 weeks. For users, this means the model you rely on today can be obsolete before the month ends.</p></div>
+          <span class="card-tag">Google · <span class="t-es-i">Agosto</span><span class="t-en-i" style="display:none">August</span> 2026 🔥</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(255,140,66,.4)">
+          <div class="card-icon">💸</div>
+          <div class="t-es"><h3>GPT-5.6 Luna -80% · ChatGPT Llega a 1,000 Millones de Usuarios</h3>
+          <p>OpenAI recortó el precio de <strong>GPT-5.6 Luna un 80%</strong> en agosto — ahora cuesta <strong>$0.20 por millón de tokens de input</strong> (antes $1.00). La variante de velocidad/costo de la familia GPT-5.6 se convierte en el modelo frontier más barato del mercado. En paralelo, <strong>ChatGPT superó los 1,000 millones de usuarios activos semanales</strong> — el producto de software de crecimiento más rápido de la historia. OpenAI también confirmó que su próximo modelo (Astra) activa su "umbral de ciberseguridad crítica" — lo que llevó a una colaboración especial con el gobierno de EE.UU. antes de cualquier release público.</p></div>
+          <div class="t-en"><h3>GPT-5.6 Luna -80% · ChatGPT Reaches 1 Billion Users</h3>
+          <p>OpenAI cut <strong>GPT-5.6 Luna pricing by 80%</strong> in August — now costs <strong>$0.20 per million input tokens</strong> (was $1.00). The speed/cost variant of the GPT-5.6 family becomes the cheapest frontier model on the market. In parallel, <strong>ChatGPT surpassed 1 billion weekly active users</strong> — the fastest-growing software product in history. OpenAI also confirmed that its next model (Astra) triggers its "critical cybersecurity threshold" — leading to a special collaboration with the US government before any public release.</p></div>
+          <span class="card-tag">OpenAI · <span class="t-es-i">Agosto</span><span class="t-en-i" style="display:none">August</span> 2026</span>
+        </div>
+
+        <div class="card" style="border-color:rgba(67,233,123,.4)">
+          <div class="card-icon">🏷️</div>
+          <div class="t-es"><h3>Claude Watermarking — La IA de Anthropic Ahora Firma su Output</h3>
+          <p>En agosto, Anthropic implementó <strong>watermarking criptográfico en el texto generado por Claude</strong> para cumplir con el EU AI Act. El sistema clave: las elecciones de palabras de Claude se anclan a una clave criptográfica, haciendo que el output sea <strong>criptográficamente provable</strong> — cualquier fragmento de texto generado por Claude puede ser verificado sin comprometer la calidad del texto. Es técnicamente invisible para los lectores humanos pero detectable algorítmicamente. Esto marca el inicio de la era de "provenance" en IA: saber si un texto fue generado por una IA y por cuál. Otros labs seguirán — el EU AI Act aplica a todos los modelos usados en Europa.</p></div>
+          <div class="t-en"><h3>Claude Watermarking — Anthropic's AI Now Signs Its Output</h3>
+          <p>In August, Anthropic implemented <strong>cryptographic watermarking on Claude-generated text</strong> to comply with the EU AI Act. The key system: Claude's word choices are keyed to a cryptographic key, making the output <strong>cryptographically provable</strong> — any fragment of text generated by Claude can be verified without compromising text quality. It's technically invisible to human readers but algorithmically detectable. This marks the start of the "provenance" era in AI: knowing whether a text was AI-generated and by which model. Other labs will follow — the EU AI Act applies to all models used in Europe.</p></div>
+          <span class="card-tag">Anthropic · <span class="t-es-i">Agosto</span><span class="t-en-i" style="display:none">August</span> 2026 · EU AI Act</span>
+        </div>
+
+      </div>
+      <div class="highlight" style="margin-top:2rem;background:linear-gradient(135deg,rgba(79,172,254,.08),rgba(67,233,123,.05));border-color:rgba(79,172,254,.3)">
+        <div class="t-es"><h4 style="color:#4facfe">🔑 Takeaways clave — Agosto 2026</h4>
+        <ul>
+          <li><strong>⚡ Gemini 3.7 Flash</strong> — El mejor Flash de Google hasta la fecha, a mitad del precio del 3.6. Google sigue la cadencia más agresiva del sector</li>
+          <li><strong>💸 GPT-5.6 Luna -80%</strong> — $0.20/M tokens. Los precios frontier se colapsan. ChatGPT: 1B usuarios semanales — el producto digital más grande de la historia</li>
+          <li><strong>🏷️ Watermarking en Claude</strong> — EU AI Act en acción. El texto generado por IA ahora puede tener firma criptográfica. Empieza la era de la provenance en IA</li>
+          <li><strong>🧮 Astra preview</strong> — OpenAI muestra lo que puede hacer su próximo modelo antes de lanzarlo: matemática de investigación al nivel de Papers de Nature</li>
+        </ul></div>
+        <div class="t-en"><h4 style="color:#4facfe">🔑 Key takeaways — August 2026</h4>
+        <ul>
+          <li><strong>⚡ Gemini 3.7 Flash</strong> — Google's best Flash yet, at half the price of 3.6. Google maintains the most aggressive release cadence in the industry</li>
+          <li><strong>💸 GPT-5.6 Luna -80%</strong> — $0.20/M tokens. Frontier prices collapsing. ChatGPT: 1B weekly users — the largest digital product in history</li>
+          <li><strong>🏷️ Watermarking in Claude</strong> — EU AI Act in action. AI-generated text can now have a cryptographic signature. The provenance era in AI begins</li>
+          <li><strong>🧮 Astra preview</strong> — OpenAI shows what its next model can do before launching: research-level math at the level of Nature papers</li>
+        </ul></div>
+      </div>
+    </div><!-- /month-agosto-2026 -->
+
+    <div class="month-pane hidden" id="month-julio-2026">
 
       <div class="cards">
 
@@ -2742,7 +2868,7 @@ npm install -g n8n
         <table class="device-table" style="font-size:.8rem">
           <thead><tr><th>Versión</th><th>Cuándo Usarla</th><th>Precio</th><th>Contexto</th></tr></thead>
           <tbody>
-            <tr><td><strong>Claude Fable 5 🧬</strong></td><td>El modelo más potente del mundo — SWE-bench Pro 80.3%. Acceso global restaurado (fin de junio). Requiere créditos en planes de consumo desde julio 7</td><td>$10/$50 por M tokens</td><td>1M tokens</td></tr>
+            <tr><td><strong>Claude Fable 5.1 🧬</strong> 🆕</td><td>Actualización del 1 sep 2026. Terminal-Bench-Science 52.6% (vs 24.7% de Fable 5). Cache reads -75% ($0.25/M). Razonamiento exigente, agentes de larga duración</td><td>$10/$50 por M tokens · Cache $0.25/M</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Opus 5</strong> 🆕</td><td>Capacidades near-Fable 5 al mismo precio que Opus 4.8. State-of-the-art en Frontier-Bench y GDPval-AA. Modelo más seguro de Anthropic. Default en Claude Max. Lanzado 24 julio 2026</td><td>$5/$25 por M tokens · Fast $10/$50</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Mythos 5</strong></td><td>Ciberseguridad avanzada, zero-day — acceso restringido (Glasswing + bio researchers)</td><td>$25/$125 por M tokens</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Sonnet 4.6</strong></td><td>Uso diario, balance costo/calidad. Excelente para la mayoría de tareas profesionales</td><td>API: ~$3/$15 por M tokens</td><td>1M tokens</td></tr>
@@ -2756,7 +2882,7 @@ npm install -g n8n
         <table class="device-table" style="font-size:.8rem">
           <thead><tr><th>Version</th><th>When to Use</th><th>Price</th><th>Context</th></tr></thead>
           <tbody>
-            <tr><td><strong>Claude Fable 5 🧬</strong></td><td>World's most powerful model — SWE-bench Pro 80.3%. Global access restored (late June). Requires usage credits on consumer plans from July 7</td><td>$10/$50 per M tokens</td><td>1M tokens</td></tr>
+            <tr><td><strong>Claude Fable 5.1 🧬</strong> 🆕</td><td>Sep 1 2026 update. Terminal-Bench-Science 52.6% (vs 24.7% on Fable 5). Cache reads -75% ($0.25/M). Demanding reasoning, long-horizon agents</td><td>$10/$50 per M tokens · Cache $0.25/M</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Opus 5</strong> 🆕</td><td>Near-Fable 5 capabilities at the same price as Opus 4.8. State-of-the-art on Frontier-Bench and GDPval-AA. Anthropic's safest model. Default on Claude Max. Launched July 24, 2026</td><td>$5/$25 per M tokens · Fast $10/$50</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Mythos 5</strong></td><td>Advanced cybersecurity, zero-day — restricted access (Glasswing + bio researchers)</td><td>$25/$125 per M tokens</td><td>1M tokens</td></tr>
             <tr><td><strong>Claude Sonnet 4.6</strong></td><td>Daily use, cost/quality balance. Excellent for most professional tasks</td><td>API: ~$3/$15 per M tokens</td><td>1M tokens</td></tr>
