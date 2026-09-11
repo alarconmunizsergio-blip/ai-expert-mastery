@@ -186,6 +186,9 @@ body.lang-en .t-es-i{display:none!important}
   <button class="lesson-link" onclick="showLesson(3)">
     <span class="lesson-num">0.4</span><span class="t-es" style="display:inline">Tu setup profesional de IA</span><span class="t-en" style="display:none">Your Professional AI Setup</span>
   </button>
+    <button class="lnav-btn" onclick="showLesson(4)">
+    <span class="lesson-num">0.5</span><span class="t-es" style="display:inline">IA, regulación y ética 2026</span><span class="t-en" style="display:none">AI, Regulation & Ethics 2026</span>
+    </button>
   <div class="sidebar-progress">
     <div class="progress-label">Progreso del módulo: <span id="progress-pct">0%</span></div>
     <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
@@ -1012,12 +1015,65 @@ Analiza este pipeline y dame recomendaciones específicas para los próximos 30 
   </div><!-- end .content -->
 </div><!-- end .main -->
 
+
+<div id="lesson-4" class="lesson-pane" style="display:none">
+  <div class="lesson-header">
+    <div class="lesson-badge"><span class="t-es-i">Módulo 0 · Lección 0.5 · 40 min</span><span class="t-en-i">Module 0 · Lesson 0.5 · 40 min</span></div>
+    <h1 class="lesson-title"><span class="t-es">IA, regulación y ética: lo que necesitas saber en 2026</span><span class="t-en">AI, Regulation & Ethics: What You Need to Know in 2026</span></h1>
+    <div class="lesson-meta"><span class="meta-chip">⏱ 40 min</span><span class="meta-chip">⚖️ Regulación</span><span class="meta-chip">🌍 Global</span></div>
+  </div>
+  <div class="lesson-objectives"><h3><span class="t-es-i">Al terminar esta lección podrás:</span><span class="t-en-i">By the end you'll be able to:</span></h3><ul>
+    <li><span class="t-es">Entender el EU AI Act y cómo te afecta como profesional o empresa</span><span class="t-en">Understand the EU AI Act and how it affects you as a professional or company</span></li>
+    <li><span class="t-es">Saber qué es el watermarking criptográfico de IA y por qué importa</span><span class="t-en">Know what AI cryptographic watermarking is and why it matters</span></li>
+    <li><span class="t-es">Navegar las responsabilidades éticas de usar IA en tu trabajo</span><span class="t-en">Navigate the ethical responsibilities of using AI in your work</span></li>
+    <li><span class="t-es">Posicionarte correctamente en conversaciones sobre regulación de IA</span><span class="t-en">Position yourself correctly in AI regulation conversations</span></li>
+  </ul></div>
+  <div class="lesson-body">
+    <h2><span class="t-es">El EU AI Act: la ley que cambió las reglas</span><span class="t-en">The EU AI Act: The Law That Changed the Rules</span></h2>
+    <p><span class="t-es">El <strong>EU AI Act</strong> entró en vigor en agosto 2024 y su aplicación completa llega en agosto 2026. Es la primera regulación comprensiva de IA en el mundo y establece el estándar que el resto del planeta está siguiendo. Si usas IA en cualquier contexto profesional europeo — o si tu empresa vende a clientes en la UE — esta ley te afecta.</span><span class="t-en">The <strong>EU AI Act</strong> came into force in August 2024 with full application in August 2026. It's the world's first comprehensive AI regulation and sets the standard the rest of the planet is following. If you use AI in any European professional context — or if your company sells to EU customers — this law affects you.</span></p>
+    <div class="callout callout-warning">
+      <div class="callout-label"><span class="t-es-i">CUATRO NIVELES DE RIESGO</span><span class="t-en-i">FOUR RISK LEVELS</span></div>
+      <p><span class="t-es"><strong>Riesgo Inaceptable</strong> (prohibido): IA de scoring social, manipulación subliminal, reconocimiento facial en espacios públicos (excepciones de seguridad).<br><strong>Alto Riesgo</strong> (regulado estrictamente): IA en salud, justicia, empleo, infraestructura crítica. Requiere registro, auditoría y transparencia.<br><strong>Riesgo Limitado</strong> (transparencia obligatoria): Chatbots y sistemas que interactúan con personas deben identificarse como IA.<br><strong>Riesgo Mínimo</strong> (libre): Filtros de spam, IA de videojuegos, mayoría de casos de uso empresarial.</span><span class="t-en"><strong>Unacceptable Risk</strong> (prohibited): social scoring AI, subliminal manipulation, facial recognition in public spaces (security exceptions).<br><strong>High Risk</strong> (strictly regulated): AI in health, justice, employment, critical infrastructure. Requires registration, audit, and transparency.<br><strong>Limited Risk</strong> (transparency mandatory): Chatbots and systems interacting with people must identify themselves as AI.<br><strong>Minimal Risk</strong> (free): Spam filters, gaming AI, majority of business use cases.</span></p>
+    </div>
+
+    <h2><span class="t-es">Watermarking criptográfico: la firma invisible de la IA</span><span class="t-en">Cryptographic Watermarking: AI's Invisible Signature</span></h2>
+    <p><span class="t-es">En agosto 2026, <strong>Anthropic implementó watermarking criptográfico</strong> en todo el texto generado por Claude — una respuesta directa al mandato del EU AI Act. ¿Cómo funciona? Se insertan patrones estadísticos invisibles en las palabras elegidas por el modelo. No puedes ver el watermark, pero un detector entrenado puede identificar con alta confianza si un texto fue generado por IA.</span><span class="t-en">In August 2026, <strong>Anthropic implemented cryptographic watermarking</strong> in all text generated by Claude — a direct response to the EU AI Act mandate. How does it work? Statistical patterns invisible to the human eye are inserted in the words chosen by the model. You can't see the watermark, but a trained detector can identify with high confidence whether a text was AI-generated.</span></p>
+    <p><span class="t-es">Otros modelos van siguiendo: Google implementó watermarking en Gemini 3.8, OpenAI lo activó como opción en GPT-5.6. Esto tiene implicaciones directas para:</span><span class="t-en">Other models are following: Google implemented watermarking in Gemini 3.8, OpenAI activated it as an option in GPT-5.6. This has direct implications for:</span></p>
+    <div class="callout callout-key">
+      <div class="callout-label"><span class="t-es-i">IMPLICACIONES PRÁCTICAS</span><span class="t-en-i">PRACTICAL IMPLICATIONS</span></div>
+      <p><span class="t-es">✅ Contenido editorial: medios y academias pueden verificar si un texto es humano<br>⚠️ Marketing: textos de IA usados como "propios" pueden ser detectados y penalizados en el futuro<br>✅ Transparencia: clientes y reguladores pueden auditar si usas IA en tus entregas<br>⚠️ Legal: contratos que prohíben contenido IA pueden ser verificados técnicamente</span><span class="t-en">✅ Editorial content: media and academia can verify if a text is human<br>⚠️ Marketing: AI texts used as "own" may be detected and penalized in the future<br>✅ Transparency: clients and regulators can audit whether you use AI in your deliverables<br>⚠️ Legal: contracts prohibiting AI content can be technically verified</span></p>
+    </div>
+
+    <h2><span class="t-es">Tu posición ética como profesional de IA</span><span class="t-en">Your Ethical Position as an AI Professional</span></h2>
+    <p><span class="t-es">El debate no es "¿usar o no usar IA?" — esa batalla está ganada. La pregunta es <strong>cómo usarla responsablemente</strong>. Tres principios que aplican en 2026:</span><span class="t-en">The debate isn't "to use or not to use AI?" — that battle is won. The question is <strong>how to use it responsibly</strong>. Three principles that apply in 2026:</span></p>
+    <div class="callout callout-accent">
+      <div class="callout-label">PRINCIPIOS / PRINCIPLES</div>
+      <p><span class="t-es"><strong>1. Transparencia activa:</strong> Si tu entregable tiene IA significativa, dilo. No porque la ley lo exija (aún), sino porque es lo que construye confianza a largo plazo.<br><strong>2. Supervisión humana:</strong> Los sistemas de IA de alto riesgo (decisiones sobre personas) necesitan un humano en el loop. Úsalos como asistentes, no como árbitros.<br><strong>3. Propiedad de los datos:</strong> Entiende qué datos envías a qué modelos. Los modelos cloud procesan tu información — lee las políticas de datos de Anthropic, OpenAI, Google antes de enviar datos sensibles.</span><span class="t-en"><strong>1. Active transparency:</strong> If your deliverable has significant AI, say so. Not because the law requires it (yet), but because it's what builds long-term trust.<br><strong>2. Human oversight:</strong> High-risk AI systems (decisions about people) need a human in the loop. Use them as assistants, not arbiters.<br><strong>3. Data ownership:</strong> Understand what data you're sending to which models. Cloud models process your information — read Anthropic's, OpenAI's, Google's data policies before sending sensitive data.</span></p>
+    </div>
+
+    <h2><span class="t-es">Regulación global: el mapa</span><span class="t-en">Global Regulation: The Map</span></h2>
+    <div class="tw"><table><thead><tr><th><span class="t-es-i">Región</span><span class="t-en-i">Region</span></th><th><span class="t-es-i">Estado en 2026</span><span class="t-en-i">Status in 2026</span></th><th><span class="t-es-i">Impacto práctico</span><span class="t-en-i">Practical impact</span></th></tr></thead><tbody>
+      <tr><td>🇪🇺 UE</td><td><span class="t-es">EU AI Act completo vigente</span><span class="t-en">Full EU AI Act in force</span></td><td><span class="t-es">Multas de hasta €35M o 7% ingresos globales</span><span class="t-en">Fines up to €35M or 7% global revenue</span></td></tr>
+      <tr><td>🇺🇸 EEUU</td><td><span class="t-es">Marco ejecutivo + regulación sectorial (no ley federal)</span><span class="t-en">Executive framework + sector regulation (no federal law)</span></td><td><span class="t-es">California lidera con SB 1047; federal en discusión</span><span class="t-en">California leads with SB 1047; federal under discussion</span></td></tr>
+      <tr><td>🇨🇳 China</td><td><span class="t-es">Reglamento de IA generativa vigente</span><span class="t-en">Generative AI regulations in force</span></td><td><span class="t-es">Watermarking obligatorio, contenido debe reflejar valores socialistas</span><span class="t-en">Mandatory watermarking, content must reflect socialist values</span></td></tr>
+      <tr><td>🇬🇧 UK</td><td><span class="t-es">Enfoque pro-innovación, sin ley específica</span><span class="t-en">Pro-innovation approach, no specific law</span></td><td><span class="t-es">Autoridades sectoriales aplican sus propios marcos</span><span class="t-en">Sector authorities apply their own frameworks</span></td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="exercise-section">
+    <h2><span class="t-es">✏️ Ejercicio 0.5 — Tu política de IA personal</span><span class="t-en">✏️ Exercise 0.5 — Your Personal AI Policy</span></h2>
+    <div class="exercise-content">
+      <p><span class="t-es">Escribe un documento de 1 página ("Mi Política de Uso de IA") que describes: (1) qué tipos de tareas automatizas con IA, (2) cómo informas a tus clientes/empleadores sobre el uso de IA, (3) qué datos nunca enviarás a modelos cloud, (4) cómo supervisas los outputs de IA antes de entregarlos. Guárdalo como referencia y compártelo con tu equipo si aplica.</span><span class="t-en">Write a 1-page document ("My AI Usage Policy") describing: (1) what types of tasks you automate with AI, (2) how you inform clients/employers about AI use, (3) what data you'll never send to cloud models, (4) how you supervise AI outputs before delivering them. Save it as a reference and share with your team if applicable.</span></p>
+    </div>
+  </div>
+</div>
+
 <script>
 const lessons=[
   {id:0,num:'0.1',title:'Cómo funcionan los LLMs realmente',titleEn:'How LLMs Really Work'},
   {id:1,num:'0.2',title:'El mapa del ecosistema IA 2026',titleEn:'The AI Ecosystem Map 2026'},
   {id:2,num:'0.3',title:'Terminología esencial para profesionales',titleEn:'Essential Terminology for Professionals'},
-  {id:3,num:'0.4',title:'Tu setup profesional de IA',titleEn:'Your Professional AI Setup'}
+  {id:3,num:'0.4',title:'Tu setup profesional de IA',titleEn:'Your Professional AI Setup'},
+  {id:4,num:'0.5',title:'IA, regulación y ética: lo que necesitas saber en 2026',titleEn:'AI, Regulation & Ethics: What You Need to Know in 2026'}
 ];
 let currentLesson=0;
 let completed=new Set();
