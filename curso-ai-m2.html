@@ -143,6 +143,7 @@ body.lang-en .t-es-i{display:none!important}
   <button class="ll" onclick="show(3)"><span class="ln">2.4</span><span class="t-es" style="display:inline">Memoria y RAG — tu base de conocimiento</span><span class="t-en" style="display:none">Memory & RAG — Your Knowledge Base</span></button>
   <button class="ll" onclick="show(4)"><span class="ln">2.5</span><span class="t-es" style="display:inline">Diseño de agentes para procesos de negocio</span><span class="t-en" style="display:none">Agent Design for Business Processes</span></button>
   <button class="ll" onclick="show(5)"><span class="ln">2.6</span><span class="t-es" style="display:inline">Construye tu primer agente funcional</span><span class="t-en" style="display:none">Build Your First Functional Agent</span></button>
+      <button class="ll" onclick="show(6)"><span class="ln">2.7</span><div><div class="t-es-i">MCP: el protocolo que conecta la IA con todo</div><div class="t-en-i">MCP: The Protocol That Connects AI</div></div></button>
   <div class="sp">
     <div class="sl">Progreso: <span id="pp">0%</span></div>
     <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
@@ -923,6 +924,122 @@ Ejecuta el proceso completo y produce el output especificado.</pre>
   </div><!-- /content -->
 </div><!-- /main -->
 
+
+<div id="L6" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 2 · Lección 2.7 · 60 min</div>
+    <h1 class="lt"><div class="t-es">MCP: el protocolo que conecta la IA con todo</div><div class="t-en">MCP: The Protocol That Connects AI to Everything</div></h1>
+    <div class="lm"><span class="mc">⏱ 60 min</span><span class="mc">🔌 Integración</span><span class="mc">🚀 2026</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c6')"><span class="t-es-i">📖 Lección</span><span class="t-en-i">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e6')"><span class="t-es-i">✏️ Ejercicio</span><span class="t-en-i">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q6')">🧠 Quiz</button>
+  </div>
+  <div id="c6" class="tc active">
+    <div class="obj"><h3><span class="t-es-i">Al terminar esta lección podrás:</span><span class="t-en-i">By the end of this lesson you'll be able to:</span></h3><ul>
+      <li><div class="t-es">Explicar qué es MCP y por qué cambió la arquitectura de agentes en 2025</div><div class="t-en">Explain what MCP is and why it changed agent architecture in 2025</div></li>
+      <li><div class="t-es">Conectar Claude con herramientas externas usando MCPs disponibles</div><div class="t-en">Connect Claude to external tools using available MCPs</div></li>
+      <li><div class="t-es">Integrar MCPs en n8n y Make para automatizaciones avanzadas</div><div class="t-en">Integrate MCPs into n8n and Make for advanced automations</div></li>
+      <li><div class="t-es">Elegir los MCPs correctos para tu caso de uso específico</div><div class="t-en">Choose the right MCPs for your specific use case</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">¿Qué es MCP y por qué importa?</div><div class="t-en">What Is MCP and Why Does It Matter?</div></h2>
+      <p><div class="t-es">El <strong>Model Context Protocol (MCP)</strong> es un estándar abierto creado por Anthropic en noviembre 2024 que resolvió uno de los problemas más grandes de los agentes de IA: la conexión con el mundo exterior. Antes de MCP, cada integración requería código personalizado para cada herramienta. Después de MCP, existe un protocolo universal que cualquier IA puede usar para conectarse a cualquier sistema.</div><div class="t-en">The <strong>Model Context Protocol (MCP)</strong> is an open standard created by Anthropic in November 2024 that solved one of the biggest problems with AI agents: connecting to the outside world. Before MCP, each integration required custom code for each tool. After MCP, there is a universal protocol that any AI can use to connect to any system.</div></p>
+      <p><div class="t-es">En septiembre 2026, el ecosistema MCP tiene más de <strong>5,000 MCPs disponibles</strong> — desde Gmail hasta Figma, desde GitHub hasta bases de datos SQL, desde Slack hasta sistemas de pagos. Es el "USB de la inteligencia artificial".</div><div class="t-en">By September 2026, the MCP ecosystem has over <strong>5,000 MCPs available</strong> — from Gmail to Figma, from GitHub to SQL databases, from Slack to payment systems. It's the "USB of artificial intelligence."</div></p>
+      <div class="ca ca-g"><div class="ca-lbl">ANALOGÍA CLAVE / KEY ANALOGY</div><p><div class="t-es">Imagina que los LLMs son cerebros brillantes encerrados en una habitación. Antes de MCP, tenían que gritar por la ventana para comunicarse con el mundo. Con MCP, tienen una puerta estándar que abre a cualquier herramienta, base de datos o API del planeta.</div><div class="t-en">Think of LLMs as brilliant brains locked in a room. Before MCP, they had to shout through the window to communicate with the world. With MCP, they have a standard door that opens to any tool, database, or API on the planet.</div></p></div>
+
+      <h2><div class="t-es">Arquitectura de MCP: cómo funciona</div><div class="t-en">MCP Architecture: How It Works</div></h2>
+      <p><div class="t-es">MCP usa una arquitectura cliente-servidor sencilla:</div><div class="t-en">MCP uses a simple client-server architecture:</div></p>
+      <div class="tw"><table><thead><tr><th><div class="t-es">Componente</div><div class="t-en">Component</div></th><th><div class="t-es">Qué hace</div><div class="t-en">What it does</div></th><th><div class="t-es">Ejemplo</div><div class="t-en">Example</div></th></tr></thead><tbody>
+        <tr><td><div class="t-es">Host (Cliente MCP)</div><div class="t-en">Host (MCP Client)</div></td><td><div class="t-es">La app de IA que inicia la conexión</div><div class="t-en">The AI app that initiates the connection</div></td><td>Claude (Cowork), n8n, Make</td></tr>
+        <tr><td>MCP Server</td><td><div class="t-es">Expone herramientas y recursos al LLM</div><div class="t-en">Exposes tools and resources to the LLM</div></td><td><div class="t-es">Gmail MCP, GitHub MCP, Notion MCP</div><div class="t-en">Gmail MCP, GitHub MCP, Notion MCP</div></td></tr>
+        <tr><td>Transport</td><td><div class="t-es">Canal de comunicación (stdio o HTTP/SSE)</div><div class="t-en">Communication channel (stdio or HTTP/SSE)</div></td><td>JSON-RPC 2.0</td></tr>
+        <tr><td>Resources</td><td><div class="t-es">Datos que el LLM puede leer (archivos, BD, emails)</div><div class="t-en">Data the LLM can read (files, DB, emails)</div></td><td><div class="t-es">Inbox de Gmail, issues de GitHub</div><div class="t-en">Gmail inbox, GitHub issues</div></td></tr>
+        <tr><td>Tools</td><td><div class="t-es">Acciones que el LLM puede ejecutar</div><div class="t-en">Actions the LLM can execute</div></td><td><div class="t-es">Enviar email, crear PR, actualizar CRM</div><div class="t-en">Send email, create PR, update CRM</div></td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">Los MCPs que debes conocer en 2026</div><div class="t-en">The MCPs You Need to Know in 2026</div></h2>
+      <div class="tw"><table><thead><tr><th>MCP</th><th><div class="t-es">Categoría</div><div class="t-en">Category</div></th><th><div class="t-es">Lo que desbloquea</div><div class="t-en">What it unlocks</div></th></tr></thead><tbody>
+        <tr><td>Gmail / Outlook</td><td>Comunicación</td><td><div class="t-es">Leer, escribir y clasificar emails automáticamente</div><div class="t-en">Read, write and classify emails automatically</div></td></tr>
+        <tr><td>GitHub / GitLab</td><td>Dev</td><td><div class="t-es">Crear PRs, revisar código, gestionar issues con IA</div><div class="t-en">Create PRs, review code, manage issues with AI</div></td></tr>
+        <tr><td>Notion / Google Docs</td><td>Productividad</td><td><div class="t-es">IA que lee y escribe en tu knowledge base</div><div class="t-en">AI that reads and writes to your knowledge base</div></td></tr>
+        <tr><td>Slack / Teams</td><td>Comunicación</td><td><div class="t-es">Agentes que responden mensajes y toman acciones en canales</div><div class="t-en">Agents that respond to messages and take actions in channels</div></td></tr>
+        <tr><td>Postgres / Supabase</td><td>Datos</td><td><div class="t-es">Consultas en lenguaje natural sobre tus bases de datos</div><div class="t-en">Natural language queries over your databases</div></td></tr>
+        <tr><td>HubSpot / Salesforce</td><td>CRM</td><td><div class="t-es">Actualizar deals, crear contactos, run reports vía IA</div><div class="t-en">Update deals, create contacts, run reports via AI</div></td></tr>
+        <tr><td>Figma / Canva</td><td>Diseño</td><td><div class="t-es">Agentes que leen designs y generan variaciones</div><div class="t-en">Agents that read designs and generate variations</div></td></tr>
+        <tr><td>Browser (Puppeteer)</td><td>Web</td><td><div class="t-es">Control total del navegador para scraping y automatización</div><div class="t-en">Full browser control for scraping and automation</div></td></tr>
+      </tbody></table></div>
+
+      <h2><div class="t-es">MCP en la práctica: 3 formas de usarlo hoy</div><div class="t-en">MCP in Practice: 3 Ways to Use It Today</div></h2>
+      <h3><div class="t-es">1. En Claude Cowork (sin código)</div><div class="t-en">1. In Claude Cowork (no code)</div></h3>
+      <p><div class="t-es">Cowork ya tiene MCPs preinstalados para Gmail, Google Calendar, Notion, Slack, y más. Solo conectas tu cuenta en Configuración → Conectores y Claude puede acceder a esas herramientas directamente. No necesitas saber qué es un servidor MCP — solo autorizas y Claude hace el resto.</div><div class="t-en">Cowork already has pre-installed MCPs for Gmail, Google Calendar, Notion, Slack, and more. You just connect your account in Settings → Connectors and Claude can access those tools directly. You don't need to know what an MCP server is — you just authorize and Claude does the rest.</div></p>
+      <h3><div class="t-es">2. En Claude Code (para developers)</div><div class="t-en">2. In Claude Code (for developers)</div></h3>
+      <p><div class="t-es">Claude Code tiene acceso nativo a MCPs. Puedes añadir servidores MCP con <code>claude mcp add</code> desde el terminal. Una vez conectado, Claude Code puede usar el MCP directamente en su flujo de trabajo de coding — por ejemplo, leer tu base de datos para entender el schema antes de escribir código.</div><div class="t-en">Claude Code has native MCP access. You can add MCP servers with <code>claude mcp add</code> from the terminal. Once connected, Claude Code can use the MCP directly in its coding workflow — for example, reading your database to understand the schema before writing code.</div></p>
+      <h3><div class="t-es">3. En n8n y Make (para automatizaciones)</div><div class="t-en">3. In n8n and Make (for automations)</div></h3>
+      <p><div class="t-es">n8n tiene integración nativa con MCPs desde la versión 1.40. Puedes usar un nodo "MCP Client" que se conecta a cualquier servidor MCP y expone sus herramientas al flujo. En Make, puedes usar el módulo HTTP genérico para llamar endpoints MCP o usar las integraciones nativas ya disponibles.</div><div class="t-en">n8n has native MCP integration since version 1.40. You can use an "MCP Client" node that connects to any MCP server and exposes its tools to the flow. In Make, you can use the generic HTTP module to call MCP endpoints or use the already-available native integrations.</div></p>
+
+      <div class="ca ca-a"><div class="ca-lbl">PARADIGM SHIFT 2026</div><p><div class="t-es">Antes: "Construye un agente que use la API de Gmail" (semanas de trabajo). Después de MCP: "Claude, revisa mi Gmail y responde todos los emails de soporte con prioridad alta" (literalmente hoy, con el MCP de Gmail ya instalado en Cowork). MCP redujo el tiempo de integración de semanas a minutos.</div><div class="t-en">Before: "Build an agent that uses the Gmail API" (weeks of work). After MCP: "Claude, check my Gmail and respond to all high-priority support emails" (literally today, with the Gmail MCP already installed in Cowork). MCP reduced integration time from weeks to minutes.</div></p></div>
+
+      <h2><div class="t-es">El futuro: MCPs que construyes tú mismo</div><div class="t-en">The Future: MCPs You Build Yourself</div></h2>
+      <p><div class="t-es">La especificación MCP es abierta y puedes crear tu propio servidor MCP para exponer cualquier sistema interno al LLM. Con Python o TypeScript, puedes crear un MCP que conecte Claude a tu ERP, tu base de datos propietaria, tu sistema de tickets — cualquier cosa. El SDK oficial de Anthropic hace esto sorprendentemente fácil.</div><div class="t-en">The MCP specification is open and you can create your own MCP server to expose any internal system to the LLM. With Python or TypeScript, you can create an MCP that connects Claude to your ERP, your proprietary database, your ticketing system — anything. Anthropic's official SDK makes this surprisingly easy.</div></p>
+      <div class="ca ca-k"><div class="ca-lbl"><div class="t-es">DÓNDE ENCONTRAR MCPs</div><div class="t-en">WHERE TO FIND MCPs</div></div><p>mcp.so · github.com/modelcontextprotocol/servers · Anthropic Plugin Marketplace (integrado en Cowork) · npm: busca "mcp-server-*" · PyPI: busca "mcp-*"</p></div>
+    </div>
+  </div>
+  <div id="e6" class="tc">
+    <div class="fw"><div class="fw-t"><div class="t-es">✏️ Ejercicio 2.7 — Tu primer agente con MCP</div><div class="t-en">✏️ Exercise 2.7 — Your First MCP-Powered Agent</div></div>
+      <div class="lb">
+        <p><div class="t-es"><strong>Objetivo:</strong> Conectar al menos 2 MCPs en Cowork y construir un mini-flujo que combine información de dos fuentes diferentes.</div><div class="t-en"><strong>Goal:</strong> Connect at least 2 MCPs in Cowork and build a mini-workflow combining information from two different sources.</div></p>
+        <h3><div class="t-es">Paso 1 — Conecta tus MCPs</div><div class="t-en">Step 1 — Connect Your MCPs</div></h3>
+        <p><div class="t-es">En Cowork → Settings → Connectors, conecta: Gmail (o tu email) + Notion (o Google Docs). Autoriza ambos.</div><div class="t-en">In Cowork → Settings → Connectors, connect: Gmail (or your email) + Notion (or Google Docs). Authorize both.</div></p>
+        <h3><div class="t-es">Paso 2 — El prompt del agente</div><div class="t-en">Step 2 — The Agent Prompt</div></h3>
+        <p><div class="t-es">Usa este prompt: <em>"Revisa mis últimos 5 emails sin leer. Para cada uno, extrae: remitente, asunto, y acción requerida (si hay alguna). Luego crea una página en Notion llamada 'Inbox Procesado [fecha]' con esta información organizada en una tabla."</em></div><div class="t-en">Use this prompt: <em>"Check my last 5 unread emails. For each one, extract: sender, subject, and required action (if any). Then create a page in Notion called 'Processed Inbox [date]' with this information organized in a table."</em></div></p>
+        <h3><div class="t-es">Paso 3 — Escala</div><div class="t-en">Step 3 — Scale Up</div></h3>
+        <p><div class="t-es">Ahora añade un tercer MCP (Google Calendar o Slack) y modifica el agente para que también considere tus reuniones del día al priorizar los emails. Documenta qué herramientas usó el agente y en qué orden.</div><div class="t-en">Now add a third MCP (Google Calendar or Slack) and modify the agent to also consider your meetings for the day when prioritizing emails. Document which tools the agent used and in what order.</div></p>
+        <h3><div class="t-es">Entregable</div><div class="t-en">Deliverable</div></h3>
+        <p><div class="t-es">Screenshot del agente usando múltiples MCPs + la página de Notion generada automáticamente. Comparte en Discord con #modulo-2-mcp.</div><div class="t-en">Screenshot of the agent using multiple MCPs + the automatically generated Notion page. Share in Discord with #module-2-mcp.</div></p>
+      </div>
+    </div>
+  </div>
+  <div id="q6" class="tc">
+    <div class="lb">
+      <h2><div class="t-es">🧠 Quiz — Lección 2.7</div><div class="t-en">🧠 Quiz — Lesson 2.7</div></h2>
+      <div id="qb27_1" class="qb">
+        <p class="qt"><div class="t-es">¿Qué organización creó el Model Context Protocol?</div><div class="t-en">Which organization created the Model Context Protocol?</div></p>
+        <div class="qs">
+          <button class="qa" onclick="ans(this,'qb27_1',false)">OpenAI</button>
+          <button class="qa" onclick="ans(this,'qb27_1',true)">Anthropic</button>
+          <button class="qa" onclick="ans(this,'qb27_1',false)">Google DeepMind</button>
+          <button class="qa" onclick="ans(this,'qb27_1',false)">Microsoft</button>
+        </div>
+        <div class="exp"><div class="t-es">Anthropic lanzó MCP como estándar abierto en noviembre 2024. Hoy es adoptado por OpenAI, Google y la mayoría del ecosistema de IA.</div><div class="t-en">Anthropic launched MCP as an open standard in November 2024. Today it's adopted by OpenAI, Google, and most of the AI ecosystem.</div></div>
+      </div>
+      <div id="qb27_2" class="qb">
+        <p class="qt"><div class="t-es">En la arquitectura MCP, ¿qué componente expone las herramientas al LLM?</div><div class="t-en">In MCP architecture, which component exposes tools to the LLM?</div></p>
+        <div class="qs">
+          <button class="qa" onclick="ans(this,'qb27_2',false)"><div class="t-es">El host (cliente)</div><div class="t-en">The host (client)</div></button>
+          <button class="qa" onclick="ans(this,'qb27_2',true)">MCP Server</button>
+          <button class="qa" onclick="ans(this,'qb27_2',false)">Transport layer</button>
+          <button class="qa" onclick="ans(this,'qb27_2',false)">JSON-RPC</button>
+        </div>
+        <div class="exp"><div class="t-es">El MCP Server es el que expone recursos y tools al LLM. El host (Cowork, n8n) es el cliente que inicia la conexión.</div><div class="t-en">The MCP Server is the one that exposes resources and tools to the LLM. The host (Cowork, n8n) is the client that initiates the connection.</div></div>
+      </div>
+      <div id="qb27_3" class="qb">
+        <p class="qt"><div class="t-es">¿Cuántos MCPs aproximadamente hay disponibles en el ecosistema en 2026?</div><div class="t-en">Approximately how many MCPs are available in the ecosystem in 2026?</div></p>
+        <div class="qs">
+          <button class="qa" onclick="ans(this,'qb27_3',false)">~200</button>
+          <button class="qa" onclick="ans(this,'qb27_3',false)">~1,000</button>
+          <button class="qa" onclick="ans(this,'qb27_3',true)">+5,000</button>
+          <button class="qa" onclick="ans(this,'qb27_3',false)">+50,000</button>
+        </div>
+        <div class="exp"><div class="t-es">El ecosistema MCP creció explosivamente. En septiembre 2026 supera los 5,000 servidores MCP disponibles públicamente.</div><div class="t-en">The MCP ecosystem grew explosively. By September 2026 it surpasses 5,000 publicly available MCP servers.</div></div>
+      </div>
+      <div class="qr-wrap"><button class="qr-btn" onclick="score('r27',3)"><div class="t-es">Ver resultado</div><div class="t-en">See result</div></button></div>
+      <div id="r27" class="qr"><span class="t-es-i">Resultado: </span><span class="t-en-i">Result: </span><strong id="27s"></strong> · <span id="27m"></span></div>
+    </div>
+  </div>
+</div>
+
 <script>
 const lessons=[
   {num:'2.1',title:'Qué es un agente de IA — anatomía completa', titleEN:'What Is an AI Agent — Complete Anatomy'},
@@ -930,7 +1047,8 @@ const lessons=[
   {num:'2.3',title:'Herramientas: n8n, Make y Zapier AI', titleEN:'Tools: n8n, Make, and Zapier AI'},
   {num:'2.4',title:'Memoria y RAG — tu base de conocimiento', titleEN:'Memory and RAG — Your Knowledge Base'},
   {num:'2.5',title:'Diseño de agentes para procesos de negocio', titleEN:'Designing Agents for Business Processes'},
-  {num:'2.6',title:'Construye tu primer agente funcional', titleEN:'Build Your First Functional Agent'}
+  {num:'2.6',title:'Construye tu primer agente funcional', titleEN:'Build Your First Functional Agent'},
+  {num:'2.7',title:'MCP: el protocolo que conecta la IA con todo', titleEN:'MCP: The Protocol That Connects AI to Everything'}
 ];
 
 const lessonsEN=[
