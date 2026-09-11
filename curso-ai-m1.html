@@ -144,6 +144,7 @@ body.lang-en .t-es-i{display:none!important}
   <button class="ll" onclick="show(5)"><span class="ln">1.6</span><div class="t-es">Meta-Prompting: la IA mejora tus prompts</div><div class="t-en">Meta-Prompting: AI Improves Your Prompts</div></button>
   <button class="ll" onclick="show(6)"><span class="ln">1.7</span><div class="t-es">Prompt Chaining: divide y vencerás</div><div class="t-en">Prompt Chaining: Divide and Conquer</div></button>
   <button class="ll" onclick="show(7)"><span class="ln">1.8</span><div class="t-es">Tu Prompt Library profesional</div><div class="t-en">Your Professional Prompt Library</div></button>
+      <button class="ll" onclick="show(8)"><span class="ln">1.9</span><div><div class="t-es-i">Selección de modelos y economía de la IA</div><div class="t-en-i">Model Selection & AI Economics</div></div></button>
   <div class="sp">
     <div class="sl"><div class="t-es">Progreso: <span id="pp">0%</span></div><div class="t-en">Progress: <span id="pp">0%</span></div></div>
     <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
@@ -837,6 +838,130 @@ timeline and success metric. Format: executive table."
   </div>
 </div>
 
+
+<div id="L8" class="lp">
+  <div class="lh">
+    <div class="badge">Módulo 1 · Lección 1.9 · 45 min</div>
+    <h1 class="lt"><div class="t-es">Selección de modelos y economía de la IA</div><div class="t-en">Model Selection and AI Economics</div></h1>
+    <div class="lm"><span class="mc">⏱ 45 min</span><span class="mc">💰 Economía</span><span class="mc">🎯 Estrategia</span></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="tab(this,'c8')"><span class="t-es-i">📖 Lección</span><span class="t-en-i">📖 Lesson</span></button>
+    <button class="tab" onclick="tab(this,'e8')"><span class="t-es-i">✏️ Ejercicio</span><span class="t-en-i">✏️ Exercise</span></button>
+    <button class="tab" onclick="tab(this,'q8')">🧠 Quiz</button>
+  </div>
+  <div id="c8" class="tc active">
+    <div class="obj"><h3><span class="t-es-i">Al terminar esta lección podrás:</span><span class="t-en-i">By the end you'll be able to:</span></h3><ul>
+      <li><div class="t-es">Elegir el modelo correcto para cada tarea según costo y capacidad</div><div class="t-en">Choose the right model for each task by cost and capability</div></li>
+      <li><div class="t-es">Calcular el costo de tus proyectos de IA antes de construirlos</div><div class="t-en">Calculate the cost of your AI projects before building them</div></li>
+      <li><div class="t-es">Usar prompt caching para reducir costos hasta un 90%</div><div class="t-en">Use prompt caching to reduce costs by up to 90%</div></li>
+      <li><div class="t-es">Entender la guerra de precios de la IA y aprovecharte de ella</div><div class="t-en">Understand the AI pricing war and take advantage of it</div></li>
+    </ul></div>
+    <div class="lb">
+      <h2><div class="t-es">La guerra de precios que cambió todo</div><div class="t-en">The Pricing War That Changed Everything</div></h2>
+      <p><div class="t-es">En septiembre 2026, la IA frontier es <strong>90% más barata</strong> que hace 18 meses. GPT-5.6 Luna cuesta $0.20/M tokens de output — lo que antes costaba $15/M con GPT-4. Claude Fable 5.1 ofrece prompt caching a $0.25/M (75% de descuento sobre el precio base). Esta guerra de precios tiene un ganador claro: tú.</div><div class="t-en">By September 2026, frontier AI is <strong>90% cheaper</strong> than 18 months ago. GPT-5.6 Luna costs $0.20/M output tokens — what used to cost $15/M with GPT-4. Claude Fable 5.1 offers prompt caching at $0.25/M (75% discount on base price). This pricing war has a clear winner: you.</div></p>
+
+      <h2><div class="t-es">El mapa de modelos: septiembre 2026</div><div class="t-en">The Model Map: September 2026</div></h2>
+      <div class="tw"><table><thead><tr><th><div class="t-es">Modelo</div><div class="t-en">Model</div></th><th><div class="t-es">Mejor para</div><div class="t-en">Best for</div></th><th>Input/Output $/M</th><th><div class="t-es">Ventana</div><div class="t-en">Context</div></th></tr></thead><tbody>
+        <tr><td>Claude Fable 5.1 🧬</td><td><div class="t-es">Agentes complejos, código avanzado, research</div><div class="t-en">Complex agents, advanced code, research</div></td><td>$10 / $50</td><td>1M</td></tr>
+        <tr><td>Claude Opus 5</td><td><div class="t-es">Análisis profundo, escritura de alta calidad, seguridad</div><div class="t-en">Deep analysis, high-quality writing, safety</div></td><td>$5 / $25</td><td>1M</td></tr>
+        <tr><td>Claude Sonnet 4.6 ⭐</td><td><div class="t-es">Uso diario, balance calidad-precio ideal</div><div class="t-en">Daily use, ideal quality-price balance</div></td><td>~$3 / $15</td><td>1M</td></tr>
+        <tr><td>Claude Haiku 4.5</td><td><div class="t-es">Tareas simples, clasificación, resúmenes rápidos</div><div class="t-en">Simple tasks, classification, quick summaries</div></td><td>$1 / $5</td><td>200K</td></tr>
+        <tr><td>GPT-5.6 Sol</td><td><div class="t-es">Razonamiento máximo, problemas complejos</div><div class="t-en">Maximum reasoning, complex problems</div></td><td>~$5 / $25</td><td>1M</td></tr>
+        <tr><td>GPT-5.6 Terra</td><td><div class="t-es">Balance rendimiento-costo para producción</div><div class="t-en">Performance-cost balance for production</div></td><td>~$1 / $5</td><td>1M</td></tr>
+        <tr><td>GPT-5.6 Luna 💸</td><td><div class="t-es">Volumen alto, automatizaciones masivas</div><div class="t-en">High volume, mass automations</div></td><td>~$0.20</td><td>1M</td></tr>
+        <tr><td>Gemini 3.8 Flash</td><td><div class="t-es">Contexto muy largo, multimodal, Google Workspace</div><div class="t-en">Very long context, multimodal, Google Workspace</div></td><td>~$0.075</td><td>2M</td></tr>
+      </tbody></table></div>
+      <div class="ca ca-g"><div class="ca-lbl">REGLA DE ORO / GOLDEN RULE</div><p><div class="t-es">Usa Haiku/Luna para clasificar y filtrar → Sonnet/Terra para procesar → Fable 5.1/Sol solo para lo que realmente necesita el máximo poder. Esta estrategia en cascada puede reducir tu factura de IA un 70%.</div><div class="t-en">Use Haiku/Luna to classify and filter → Sonnet/Terra to process → Fable 5.1/Sol only for what genuinely needs maximum power. This cascade strategy can reduce your AI bill by 70%.</div></p></div>
+
+      <h2><div class="t-es">Prompt Caching: el multiplicador más ignorado</div><div class="t-en">Prompt Caching: The Most Overlooked Multiplier</div></h2>
+      <p><div class="t-es">Cuando tienes un system prompt largo o documentos de contexto que se repiten en muchas llamadas, el prompt caching guarda esa parte en memoria y la siguiente llamada la reutiliza a <strong>10-25% del costo normal</strong>. Con Claude Fable 5.1, el caché cuesta $0.25/M tokens vs $10/M estándar — un ahorro del 97.5%.</div><div class="t-en">When you have a long system prompt or context documents that repeat across many calls, prompt caching saves that part in memory and the next call reuses it at <strong>10-25% of normal cost</strong>. With Claude Fable 5.1, cache costs $0.25/M tokens vs $10/M standard — a 97.5% saving.</div></p>
+      <div class="fw">
+        <div class="fw-t"><div class="t-es">Cuándo activar prompt caching</div><div class="t-en">When to Activate Prompt Caching</div></div>
+        <div class="lb">
+          <p>✅ <div class="t-es">System prompts de +1000 tokens que se repiten</div><div class="t-en">System prompts of +1000 tokens that repeat</div></p>
+          <p>✅ <div class="t-es">RAG: documentos de contexto fijos (tu knowledge base)</div><div class="t-en">RAG: fixed context documents (your knowledge base)</div></p>
+          <p>✅ <div class="t-es">Conversaciones largas con historial extenso</div><div class="t-en">Long conversations with extensive history</div></p>
+          <p>❌ <div class="t-es">Prompts cortos o únicos (el overhead no vale la pena)</div><div class="t-en">Short or unique prompts (the overhead isn't worth it)</div></p>
+        </div>
+      </div>
+
+      <h2><div class="t-es">Árbol de decisión: ¿qué modelo uso?</div><div class="t-en">Decision Tree: Which Model Do I Use?</div></h2>
+      <div class="ca ca-a"><div class="ca-lbl">FRAMEWORK</div><p>
+        <div class="t-es"><strong>¿Es una tarea repetitiva de volumen alto?</strong> → Haiku 4.5 o GPT-5.6 Luna<br>
+        <strong>¿Requiere razonamiento medio + herramientas?</strong> → Claude Sonnet 4.6 o GPT-5.6 Terra<br>
+        <strong>¿Es un agente complejo con código o investigación profunda?</strong> → Claude Fable 5.1 o GPT-5.6 Sol<br>
+        <strong>¿Necesitas contexto de 2M tokens o Google Workspace?</strong> → Gemini 3.8 Flash<br>
+        <strong>¿Máxima seguridad y alineación importan?</strong> → Claude Opus 5</div>
+        <div class="t-en"><strong>Is it a high-volume repetitive task?</strong> → Haiku 4.5 or GPT-5.6 Luna<br>
+        <strong>Does it require medium reasoning + tools?</strong> → Claude Sonnet 4.6 or GPT-5.6 Terra<br>
+        <strong>Is it a complex agent with code or deep research?</strong> → Claude Fable 5.1 or GPT-5.6 Sol<br>
+        <strong>Do you need 2M token context or Google Workspace?</strong> → Gemini 3.8 Flash<br>
+        <strong>Does maximum safety and alignment matter?</strong> → Claude Opus 5</div>
+      </p></div>
+
+      <h2><div class="t-es">Presupuesta tu proyecto de IA antes de construirlo</div><div class="t-en">Budget Your AI Project Before Building It</div></h2>
+      <p><div class="t-es">Formula básica: <strong>Costo = (tokens_input × precio_input + tokens_output × precio_output) × llamadas_por_mes</strong></div><div class="t-en">Basic formula: <strong>Cost = (input_tokens × input_price + output_tokens × output_price) × calls_per_month</strong></div></p>
+      <div class="tw"><table><thead><tr><th><div class="t-es">Caso de uso</div><div class="t-en">Use case</div></th><th><div class="t-es">Modelo recomendado</div><div class="t-en">Recommended model</div></th><th><div class="t-es">Costo estimado/mes</div><div class="t-en">Est. cost/month</div></th></tr></thead><tbody>
+        <tr><td><div class="t-es">Clasificar 10K emails/mes</div><div class="t-en">Classify 10K emails/month</div></td><td>Haiku 4.5 / Luna</td><td>~$2</td></tr>
+        <tr><td><div class="t-es">Agente de outreach (500 emails personalizados)</div><div class="t-en">Outreach agent (500 personalized emails)</div></td><td>Sonnet 4.6</td><td>~$15</td></tr>
+        <tr><td><div class="t-es">Research agent con 50 searches/día</div><div class="t-en">Research agent with 50 searches/day</div></td><td>Fable 5.1 + caché</td><td>~$40</td></tr>
+        <tr><td><div class="t-es">Chatbot de soporte (5K convos/mes)</div><div class="t-en">Support chatbot (5K convos/month)</div></td><td>Sonnet 4.6</td><td>~$75</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+  <div id="e8" class="tc">
+    <div class="fw"><div class="fw-t"><div class="t-es">✏️ Ejercicio 1.9 — Presupuesta tu stack de IA</div><div class="t-en">✏️ Exercise 1.9 — Budget Your AI Stack</div></div>
+      <div class="lb">
+        <p><div class="t-es"><strong>Objetivo:</strong> Auditar todos los casos de uso de IA que tienes (o quieres tener) y calcular el costo real de construirlos.</div><div class="t-en"><strong>Goal:</strong> Audit all your AI use cases (current or planned) and calculate the real cost of building them.</div></p>
+        <h3><div class="t-es">Paso 1 — Lista tus casos de uso</div><div class="t-en">Step 1 — List Your Use Cases</div></h3>
+        <p><div class="t-es">Escribe 5 tareas que quieres automatizar con IA. Para cada una estima: ¿cuántas veces ocurre al mes? ¿cuántos tokens aproximadamente necesita?</div><div class="t-en">Write 5 tasks you want to automate with AI. For each, estimate: how many times does it occur per month? How many tokens does it approximately need?</div></p>
+        <h3><div class="t-es">Paso 2 — Aplica el árbol de decisión</div><div class="t-en">Step 2 — Apply the Decision Tree</div></h3>
+        <p><div class="t-es">Usa el framework de esta lección para asignar el modelo correcto a cada caso de uso. No uses Fable 5.1 donde Haiku basta.</div><div class="t-en">Use the framework from this lesson to assign the right model to each use case. Don't use Fable 5.1 where Haiku suffices.</div></p>
+        <h3><div class="t-es">Paso 3 — Calcula y optimiza</div><div class="t-en">Step 3 — Calculate and Optimize</div></h3>
+        <p><div class="t-es">Calcula el costo mensual total. Luego identifica cuáles se beneficiarían de prompt caching y recalcula. ¿Cuánto ahorras?</div><div class="t-en">Calculate total monthly cost. Then identify which ones would benefit from prompt caching and recalculate. How much do you save?</div></p>
+      </div>
+    </div>
+  </div>
+  <div id="q8" class="tc">
+    <div class="lb">
+      <h2><div class="t-es">🧠 Quiz — Lección 1.9</div><div class="t-en">🧠 Quiz — Lesson 1.9</div></h2>
+      <div id="qb19_1" class="qb">
+        <p class="qt"><div class="t-es">Tienes un chatbot de soporte que procesa 10,000 conversaciones cortas por mes. ¿Qué modelo elegirías?</div><div class="t-en">You have a support chatbot that processes 10,000 short conversations per month. Which model would you choose?</div></p>
+        <div class="qs">
+          <button class="qa" onclick="ans(this,'qb19_1',false)">Claude Fable 5.1</button>
+          <button class="qa" onclick="ans(this,'qb19_1',false)">Claude Opus 5</button>
+          <button class="qa" onclick="ans(this,'qb19_1',true)">Claude Haiku 4.5 / GPT-5.6 Luna</button>
+          <button class="qa" onclick="ans(this,'qb19_1',false)">Gemini 3.8 Flash</button>
+        </div>
+        <div class="exp"><div class="t-es">Para volumen alto con tareas simples, Haiku o Luna son la elección correcta. Usar Fable 5.1 aquí sería 250x más caro sin beneficio real.</div><div class="t-en">For high volume with simple tasks, Haiku or Luna is the right choice. Using Fable 5.1 here would be 250x more expensive with no real benefit.</div></div>
+      </div>
+      <div id="qb19_2" class="qb">
+        <p class="qt"><div class="t-es">¿Cuánto cuesta un token en caché con Claude Fable 5.1 vs el precio estándar?</div><div class="t-en">How much does a cached token cost with Claude Fable 5.1 vs standard price?</div></p>
+        <div class="qs">
+          <button class="qa" onclick="ans(this,'qb19_2',false)">50% del precio normal</button>
+          <button class="qa" onclick="ans(this,'qb19_2',true)">2.5% del precio normal ($0.25/M vs $10/M)</button>
+          <button class="qa" onclick="ans(this,'qb19_2',false)">75% del precio normal</button>
+          <button class="qa" onclick="ans(this,'qb19_2',false)">Igual precio, pero más rápido</button>
+        </div>
+        <div class="exp"><div class="t-es">El prompt caching de Fable 5.1 cuesta $0.25/M vs $10/M estándar — un ahorro del 97.5%. Es la palanca de costo más poderosa disponible hoy.</div><div class="t-en">Fable 5.1 prompt caching costs $0.25/M vs $10/M standard — a 97.5% saving. It's the most powerful cost lever available today.</div></div>
+      </div>
+      <div id="qb19_3" class="qb">
+        <p class="qt"><div class="t-es">¿Cuál es el modelo con mayor ventana de contexto disponible públicamente en 2026?</div><div class="t-en">Which is the model with the largest context window publicly available in 2026?</div></p>
+        <div class="qs">
+          <button class="qa" onclick="ans(this,'qb19_3',false)">Claude Fable 5.1 (1M)</button>
+          <button class="qa" onclick="ans(this,'qb19_3',true)">Gemini 3.8 Flash (2M)</button>
+          <button class="qa" onclick="ans(this,'qb19_3',false)">GPT-5.6 Sol (1M)</button>
+          <button class="qa" onclick="ans(this,'qb19_3',false)">Kimi K3 (1M)</button>
+        </div>
+        <div class="exp"><div class="t-es">Gemini 3.8 Flash lidera con 2M tokens de contexto — equivalente a ~1,500 páginas de texto. Ideal para análisis de documentos muy largos.</div><div class="t-en">Gemini 3.8 Flash leads with 2M token context — equivalent to ~1,500 pages of text. Ideal for very long document analysis.</div></div>
+      </div>
+      <div class="qr-wrap"><button class="qr-btn" onclick="score('r19',3)"><div class="t-es">Ver resultado</div><div class="t-en">See result</div></button></div>
+      <div id="r19" class="qr"><span class="t-es-i">Resultado: </span><span class="t-en-i">Result: </span><strong id="19s"></strong> · <span id="19m"></span></div>
+    </div>
+  </div>
+</div>
+
 <script>
 const lessons=[
   {n:'1.1',t:'Por qué el prompting es una habilidad real'},
@@ -846,7 +971,8 @@ const lessons=[
   {n:'1.5',t:'Role Prompting y System Prompts avanzados'},
   {n:'1.6',t:'Meta-Prompting: la IA mejora tus prompts'},
   {n:'1.7',t:'Prompt Chaining: divide y vencerás'},
-  {n:'1.8',t:'Tu Prompt Library profesional'}
+  {n:'1.8',t:'Tu Prompt Library profesional'},
+  {n:'1.9',t:'Selección de modelos y economía de la IA'}
 ];
 const lessonsEN=[
   {n:'1.1',t:'Why Prompting Is a Real Skill'},
@@ -856,7 +982,8 @@ const lessonsEN=[
   {n:'1.5',t:'Role Prompting and System Prompts'},
   {n:'1.6',t:'Meta-Prompting: AI Improves Your Prompts'},
   {n:'1.7',t:'Prompt Chaining: Divide and Conquer'},
-  {n:'1.8',t:'Your Professional Prompt Library'}
+  {n:'1.8',t:'Your Professional Prompt Library'},
+  {n:'1.9',t:'Model Selection and AI Economics'}
 ];
 let cur=0;const done=new Set();
 function show(i){
